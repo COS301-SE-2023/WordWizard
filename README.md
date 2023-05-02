@@ -59,3 +59,7 @@ I am a Bsc Computer Science student at the University of Pretoria. I enjoy web a
 I am very interested in AI and the ways we as computer scientist can apply AI to help and improve the lives of people. 
 
 I like to challenge myself and embrace more complex problems. Here is my LinkedIn at [https://www.linkedin.com/in/franco-van-vuuren-1968b5254]
+
+
+![image](https://user-images.githubusercontent.com/80365036/235758142-5e612123-458a-4732-a21d-6879e0b26443.png)
+
