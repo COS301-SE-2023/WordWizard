@@ -22,6 +22,16 @@ I am passionate about solving complex problems and continuously expanding my kno
 If you would like to learn more about my skills and experience, please feel free to connect with me on LinkedIn at [https://www.linkedin.com/in/janrobotha12].
 
 ## Stefan van Beek
+I am a passionate third year BSc Information and Knowledge Systems student at the University of Pretoria. Throughout my course I have honed my coding skills and I have experience in multiple programming languages, including C++, Java, PHP, JavaScript and TypeScript as well as JS libraries and frameworks such as React and Angular respectively.
+
+I have over 5 years of coding experience and I excel at designing and developing coding solutions for complex problems. Throughout my course I have worked on several group projects through which I have learned that I am a team player who is as good at leading a team as following instructions from a team leader.
+
+I am also a quick study who never shies away from a challenge, and I am always keen to broaden my knowledge and deepen my understanding of subjects that I am already familiar with.
+
+I am currently interning at Monkey and River where I am tasked (along with my team) to develop components and solutions for projects being developed by the company.
+
+Please find a link to my LinkedIn page below, for more information about me and my endeavours:
+http://www.linkedin.com/in/stefan-van-beek-66814424b 
 
 ## Megan Hugo
 
