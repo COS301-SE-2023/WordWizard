@@ -26,15 +26,11 @@ If you would like to learn more about my skills and experience, please feel free
 ## Megan Hugo
 
 ## Adrain Hawkins
-As a BSc Information and Knowledge Systems student at the University of Pretoria, you have gained proficiency in several programming languages, including C++, Java, JavaScript (including Node.js and Angular), PHP, and Python. You have developed a strong foundation in problem-solving, which has prepared you to tackle complex challenges. You are currently interning at Monkey and River, where you are applying your skills and knowledge to real-world projects.
+I'm an Information and Knowledge Systems student pursuing my BSc degree from the University of Pretoria. During my course of study, I have gained proficiency in various programming languages, including C++, Java, JavaScript (including Node.js and Angular), PHP, and Python. Through my coursework and personal projects, I have developed web applications, and designed user interfaces to hone my skills.
 
-As a student in the Information and Knowledge Systems program, you have been exposed to a range of programming languages, including C++, Java, JavaScript, PHP, and Python. You have demonstrated proficiency in these languages through your coursework and personal projects, which have included developing web applications, implementing algorithms, and designing user interfaces.
+Apart from my technical skills, I have a strong foundation in problem-solving. I can easily break down complex problems into smaller components to develop effective solutions. My skills have been utilized in various projects.
 
-In addition to technical skills, you have developed a strong foundation in problem-solving. You are able to break down complex problems into smaller, more manageable components and develop effective solutions. You have applied these skills in various projects, including designing an application to optimize restaurant seating and implementing a machine learning model to predict crop yields.
-
-Currently, you are interning at Monkey and River, where you are contributing to the development of real-world projects. Your responsibilities include designing and implementing software solutions, debugging code, and collaborating with other team members. You are a quick learner and are always looking for ways to improve your skills and contribute to the success of the team.
-
-Overall, your strong technical skills, problem-solving abilities, and passion for learning make you a valuable member of the team at Monkey and River.
+Presently, I'm interning at Monkey and River, where I'm contributing to real-world projects. My role involves designing and implementing software solutions, debugging code, and collaborating with team members. I'm a quick learner and always on the lookout for opportunities to enhance my skills and contribute to the success of the team.
 
 Links: https://www.linkedin.com/in/adrian-hawkins-89822a236
 
