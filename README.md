@@ -31,7 +31,7 @@ Through my coursework, I have established a solid foundation in various programm
 
 I'm passionate about programming and always eager to learn new things to expand my knowledge and expertise.
 
-LinkedIn: linkedin.com/in/megan-hugo-702a97274
+LinkedIn: https://www.linkedin.com/in/megan-hugo-702a97274
 ## Adrain Hawkins
 I'm an Information and Knowledge Systems student pursuing my BSc degree from the University of Pretoria. During my course of study, I have gained proficiency in various programming languages, including C++, Java, JavaScript (including Node.js and Angular), PHP, and Python. Through my coursework and personal projects, I have developed web applications, and designed user interfaces to hone my skills.
 
