@@ -6,6 +6,7 @@ The system is designed to adapt to each user's level of proficiency and learning
 # Video Demo1
 
 # Functional Requirements(SRS)
+https://docs.google.com/document/d/1ciOoZX2MzLFtCf3m2Z29c-V7krlfxKHC/edit?usp=sharing&ouid=116132882510647438116&rtpof=true&sd=true
 
 # GitHub Project Board
 https://github.com/orgs/COS301-SE-2023/projects/12/views/1
