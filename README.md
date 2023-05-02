@@ -5,7 +5,7 @@ The system is designed to adapt to each user's level of proficiency and learning
 
 # Video Demo1
 
-# Functional Requirements
+# Functional Requirements(SRS)
 
 # GitHub Project Board
 https://github.com/orgs/COS301-SE-2023/projects/12/views/1
@@ -42,3 +42,9 @@ Presently, I'm interning at Monkey and River, where I'm contributing to real-wor
 Links: https://www.linkedin.com/in/adrian-hawkins-89822a236
 
 ## Franco van Vuuren
+
+I am a Bsc Computer Science student at the University of Pretoria. I enjoy web and mobile development, espically front-end development. I am comfortable and enjoy using technologies like Angular, Ionic and Node.
+
+I am very interested in AI and the ways we as computer scientist can apply AI to help and improve the lives of people. 
+
+I like to challenge myself and embrace more complex problems. Here is my LinkedIn at [linkedin.com/in/franco-van-vuuren-1968b5254]
