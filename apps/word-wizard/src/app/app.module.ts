@@ -12,7 +12,7 @@ import { SharedUiModule } from '@word-wizard/app/shared-ui';
     SharedUiModule,
     BrowserModule,
     RouterModule.forRoot(appRoutes, { initialNavigation: 'enabledBlocking' }),
-    IonicModule.forRoot()
+    IonicModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],

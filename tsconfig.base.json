@@ -15,7 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@myshared/*": ["libs/*"],
+      "@word-wizard/app/home/page": ["libs/app/home/page/src/index.ts"],
       "@word-wizard/app/shared-ui": ["libs/app/shared-ui/src/index.ts"]
     }
   },
