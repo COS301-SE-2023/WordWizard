@@ -9,7 +9,8 @@
     "test:ci": "nx run-many --target=test --all --skip-nx-cache --parallel=5 --configuration=ci",
     "lint": "nx run-many --target=lint --all --skip-nx-cache --parallel=5",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,html,scss}\"",
-    "check-format": "prettier --check \"**/*.{js,jsx,ts,tsx,html,scss}\""
+    "check-format": "prettier --check \"**/*.{js,jsx,ts,tsx,html,scss}\"",
+    "analytics": "npx unlighthouse --site localhost:4200"
   },
   "private": true,
   "dependencies": {
