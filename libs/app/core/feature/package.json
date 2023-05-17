@@ -1,5 +1,5 @@
 {
-  "name": "@word-wizard/app/home/page",
+  "name": "@word-wizard/app/core/feature",
   "version": "0.0.1",
   "type": "commonjs"
 }
