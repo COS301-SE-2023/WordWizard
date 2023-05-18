@@ -5,8 +5,13 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 
 const routes: Routes = [
+  // {
+  //   path: 'mic',
+  //   loadChildren: () =>
+  //     import('@word-wizard/app/reading/feature').then((m) => m.ReadingModule),
+  // },
   {
-    path: 'mic',
+    path: 'reading',
     loadChildren: () =>
       import('@word-wizard/app/reading/feature').then((m) => m.ReadingModule),
   },

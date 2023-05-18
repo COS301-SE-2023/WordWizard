@@ -2,10 +2,25 @@
   "name": "app-shared-ui",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/app/shared-ui/src",
-  "prefix": "word-wizard",
-  "tags": [],
   "projectType": "library",
   "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/app/shared-ui",
+        "main": "libs/app/shared-ui/src/index.ts",
+        "tsConfig": "libs/app/shared-ui/tsconfig.lib.json",
+        "assets": ["libs/app/shared-ui/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/app/shared-ui/**/*.ts"]
+      }
+    },
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
@@ -19,16 +34,7 @@
           "codeCoverage": true
         }
       }
-    },
-    "lint": {
-      "executor": "@nx/linter:eslint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": [
-          "libs/app/shared-ui/**/*.ts",
-          "libs/app/shared-ui/**/*.html"
-        ]
-      }
     }
-  }
+  },
+  "tags": []
 }

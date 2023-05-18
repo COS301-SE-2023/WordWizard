@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'word-wizard-microphone',
@@ -7,9 +7,4 @@ import { Component } from '@angular/core';
 })
 export class MicrophoneComponent {
 
-  onClick() {
-    console.log('Button clicked');
-  }
-
-  
 }

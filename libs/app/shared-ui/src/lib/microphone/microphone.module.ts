@@ -7,8 +7,8 @@ import { IonicModule } from '@ionic/angular';
 import { MicrophoneComponent } from './microphone.component';
 
 @NgModule({
-  imports: [CommonModule, FormsModule, IonicModule],
-  declarations: [MicrophoneComponent],
-  exports: [MicrophoneComponent]
+  imports: [ CommonModule, FormsModule, IonicModule,],
+  declarations: [MicrophoneComponent ],
+  exports: [MicrophoneComponent ]
 })
-export class MicrophoneModule { }
+export class MicrophoneModule {}
