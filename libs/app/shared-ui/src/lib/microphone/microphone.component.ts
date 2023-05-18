@@ -6,7 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./microphone.component.scss'],
 })
 export class MicrophoneComponent {
-  onClick(): void {
+
+  onClick() {
     console.log('Button clicked');
   }
+
+  
 }

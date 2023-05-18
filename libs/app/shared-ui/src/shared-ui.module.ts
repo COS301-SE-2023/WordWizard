@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
-import { MicrophoneComponent } from './lib/microphone/microphone.component';
+import { MicrophoneModule } from './lib/microphone/microphone.module';
 
 @NgModule({
   imports: [CommonModule, IonicModule],
-  declarations: [MicrophoneComponent],
-  exports: [MicrophoneComponent],
+  declarations: [MicrophoneModule],
+  exports: [MicrophoneModule],
 })
 export class SharedUiModule {}

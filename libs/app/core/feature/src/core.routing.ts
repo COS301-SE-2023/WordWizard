@@ -4,7 +4,13 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 
 
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path: 'mic',
+    loadChildren: () =>
+      import('@word-wizard/app/reading/feature').then((m) => m.ReadingModule),
+  },
+];
 
 @NgModule({
   imports: [
