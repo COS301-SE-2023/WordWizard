@@ -5,10 +5,8 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './speaker.component.html',
   styleUrls: ['./speaker.component.scss'],
 })
-export class SpeakerComponent  implements OnInit {
+export class SpeakerComponent   {
 
-  constructor() { }
 
-  ngOnInit() {}
 
 }

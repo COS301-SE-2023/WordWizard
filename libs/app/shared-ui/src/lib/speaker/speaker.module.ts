@@ -3,12 +3,11 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
-
 import { SpeakerComponent } from './speaker.component';
 
 @NgModule({
-  imports: [ CommonModule, FormsModule, IonicModule,],
-  declarations: [SpeakerComponent ],
-  exports: [SpeakerComponent ]
+  imports: [CommonModule, FormsModule, IonicModule],
+  declarations: [SpeakerComponent],
+  exports: [SpeakerComponent]
 })
-export class SpeakerComponent Module {}
+export class SpeakerComponentModule {}
