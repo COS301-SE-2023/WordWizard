@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./reading.page.scss']
 })
 export class ReadingPage {
+  backgroundImage = 'assets/img/CastleBackground.png';
 
 }

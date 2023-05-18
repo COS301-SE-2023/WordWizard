@@ -1,0 +1,28 @@
+.button-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px; /* Adjust the padding as desired */
+}
+
+.button-group {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.button-group:not(:last-child) {
+    margin-right: 14px; /* Adjust the margin as desired */
+}
+
+.button-group:last-child {
+    margin-left: auto;
+}
+
+ion-content.page-container {
+    --background: url(../../../../../apps/word-wizard/src/assets/img/CastleBackground.png) 0 0/100% 100% no-repeat;
+}

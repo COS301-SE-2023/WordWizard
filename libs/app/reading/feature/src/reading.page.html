@@ -1,4 +1,15 @@
-<ion-content>
-  <word-wizard-microphone></word-wizard-microphone>
-  <app-speaker [audioSrc]="'assets/mp3/pronunciation_en_magic.mp3'"></app-speaker>
+<ion-content class="page-container">
+    <div class="button-container">
+      <div class="button-group">
+        <app-speaker [audioSrc]="'assets/mp3/pronunciation_en_magic.mp3'"></app-speaker>
+      </div>
+      <div class="button-group">
+        <word-wizard-microphone></word-wizard-microphone>
+      </div>
+      <div class="button-group">
+        <word-wizard-exit></word-wizard-exit>
+      </div>
+    </div>
 </ion-content>
+
+ 
