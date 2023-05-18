@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./core.shell.scss']
 })
 export class CoreShell {
-
+  onClick() {
+    console.log('click');
+    localStorage.setItem('test', 'test');
+  }
 }

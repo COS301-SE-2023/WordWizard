@@ -4,7 +4,13 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 
 
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path: 'library',
+    loadChildren: () =>
+      import('@word-wizard/app/library/feature').then((m) => m.LibraryModule),
+  },
+];
 
 @NgModule({
   imports: [
