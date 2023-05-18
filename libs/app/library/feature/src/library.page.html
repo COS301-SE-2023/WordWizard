@@ -1,2 +1,28 @@
-<p>library works!</p>
-<button (click)="onClick">Click me!</button>
+<!-- <p>library works!</p> -->
+
+<ion-header>
+    <ion-toolbar>
+      <ion-segment value="vocab" #toolbarSegment>
+            <ion-segment-button value="vocab">
+                <ion-img src="assets/icon/spellbook.PNG"></ion-img>
+                Vocabulary
+            </ion-segment-button>
+            <ion-segment-button value="practice">
+                <ion-img src="assets/icon/wand-and-glasses.PNG"></ion-img>
+                Practice
+            </ion-segment-button>
+      </ion-segment>
+    </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+
+    <!-- VOCABULARY LIST -->
+    <ion-content *ngIf="toolbarSegment.value === 'vocab'"> 
+        vocab list
+    </ion-content>
+
+    <!-- PRACTICE LIST -->
+    <ion-content *ngIf="toolbarSegment.value === 'practice'"> 
+        practice section
+    </ion-content>
+</ion-content>

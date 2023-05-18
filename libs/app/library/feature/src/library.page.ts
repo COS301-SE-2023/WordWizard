@@ -10,4 +10,5 @@ export class LibraryPage {
     console.log('click');
     localStorage.setItem('test', 'test');
   }
+
 }
