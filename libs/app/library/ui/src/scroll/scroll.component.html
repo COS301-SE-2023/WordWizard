@@ -1,0 +1,22 @@
+<div class="box" [class.clicked]="open" (click)="open = true">
+  <div class="content" *ngIf="!open" class="word">{{word}}</div>
+  <div class="content" *ngIf="open">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12">
+          <p class="word">{{word}}</p>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12">
+          <p>{{definition}}</p>
+        </ion-col>
+      </ion-row>
+      <ion-row>        
+        <ion-col size="12">
+          <ion-button (click)="speak()">Speaker</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</div>

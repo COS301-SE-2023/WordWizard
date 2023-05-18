@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "build:app": "nx run word-wizard:build",
-    "start:app": "nx run word-wizard:serve",
+    "build:app": "nx run word-wizard:build --configuration=development",
+    "start:app": "nx run word-wizard:serve --configuration=development",
     "test": "nx run-many --target=test --all --skip-nx-cache --parallel=5",
     "test:ci": "nx run-many --target=test --all --skip-nx-cache --parallel=5 --configuration=ci",
     "lint": "nx run-many --target=lint --all --skip-nx-cache --parallel=5",

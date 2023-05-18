@@ -1,0 +1,47 @@
+.container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+  }
+
+  .box {
+    width: 100%;
+    height: 70px;
+    background-color: #CB7339;
+    transition: all 1s ease;
+    // z-index: 10;
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+  }
+
+  .word{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 20px;
+    line-height: 24px;
+    color: #000000;
+  }
+
+  .defention{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 15px;
+    line-height: 18px;
+    color: #000000;
+  }
+
+  .box.clicked {
+    transform: translate(100px, 100px);
+    width: 200px;
+    height: 500px;
+  }
+
+  .close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+  }
