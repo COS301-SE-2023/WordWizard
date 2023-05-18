@@ -1,1 +1,1 @@
-export * from './lib/app-library-feature';
+export * from './library.module';
