@@ -1,0 +1,23 @@
+.speaker-button {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #6074DF;
+    border: 2px solid #000000;
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.3s ease;
+}
+
+.speaker-button.active {
+    background-color: #00FF00;
+}
+
+.speaker-icon {
+    font-size: 32px;
+    color: #000000;
+}
+  
