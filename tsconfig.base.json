@@ -16,6 +16,9 @@
     "baseUrl": ".",
     "paths": {
       "@word-wizard/app/core/feature": ["libs/app/core/feature/src/index.ts"],
+      "@word-wizard/app/library/feature": [
+        "libs/app/library/feature/src/index.ts"
+      ],
       "@word-wizard/app/shared-ui": ["libs/app/shared-ui/src/index.ts"]
     }
   },
