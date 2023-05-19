@@ -7,8 +7,8 @@ import { Component } from '@angular/core';
 })
 export class LibraryPage {
 
-  hasVocab: boolean = true;
-  hasPractice: boolean = true;
+  hasVocab = true;
+  hasPractice = true;
 
   onClick() {
     console.log('click');
