@@ -4,15 +4,15 @@ import { CoreRouting } from './core.routing';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { CoreShell } from './core.shell';
 import { RouteReuseStrategy } from '@angular/router';
-
+import { SharedUiModule } from '@word-wizard/app/shared-ui';
 
 @NgModule({
   declarations: [CoreShell],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
-    CoreRouting
-
+    CoreRouting,
+    SharedUiModule
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [CoreShell],
