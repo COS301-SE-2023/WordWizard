@@ -10,6 +10,7 @@ export class ReadingPage {
   word = 'Magic';
   imageSrc: string;
   Level = 'Journeyman';
+  Percentage = 50;
 
   constructor() {
     // Set the image source based on the word
