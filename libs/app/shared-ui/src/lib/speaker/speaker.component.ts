@@ -1,10 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'word-wizard-speaker',
+  selector: 'app-speaker',
   templateUrl: './speaker.component.html',
-  styleUrls: ['./speaker.component.scss'],
+  styleUrls: ['./speaker.component.scss']
 })
 export class SpeakerComponent {
+  @Input() audioSrc!: string;
 
+  playAudio(): void {
+    const audio = new Audio(this.audioSrc);
+    audio.play();
+  }
 }

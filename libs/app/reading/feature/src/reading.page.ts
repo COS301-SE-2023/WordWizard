@@ -6,5 +6,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./reading.page.scss']
 })
 export class ReadingPage {
+  backgroundImage = 'assets/img/CastleBackground.png';
+  word = 'Magic';
+  imageSrc: string;
+  Level = 'Journeyman';
+  Percentage = 50;
+
+  constructor() {
+    // Set the image source based on the word
+    this.imageSrc = `assets/img/${this.word}.png`;
+  }
 
 }

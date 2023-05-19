@@ -1,0 +1,151 @@
+.container {
+    position: absolute;
+    top: 52%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 400px;
+    height: 50%;
+    background-color: #6074DF;
+    border: 5px solid #000000;
+    border-radius: 10px;
+    overflow: hidden;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.header-container {
+    background-color: #6074DF;
+    color: #ffffff;
+    border: 2px solid #000000;
+    font-size: 36px;
+    padding: 10px;
+    text-align: center;
+}
+
+.header-container p {
+    margin: 0;
+}
+
+.content-container {
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.content-container img {
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+    margin: auto;
+}
+
+.button-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+}
+
+.button-group {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.button-group:not(:last-child) {
+    margin-right: 14px;
+}
+
+.button-group:last-child {
+    margin-left: auto;
+}
+
+ion-content.page-container {
+    --background: url(../../../../../apps/word-wizard/src/assets/img/CastleBackground.png) 0 0/100% 100% no-repeat;
+    opacity: 0.84;
+}
+
+ion-header {
+    background-color: #6074DF;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.header-title {
+    color: #ffffff;
+    font-size: 28px;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+  
+
+//Potion Bottle CSS
+
+/* Rectangle 34 */
+.wizard-potion-bottle {
+    position: absolute;
+    width: 40%;
+    height: 20%;
+    left: 33%;
+    top: 3.5%;
+    border-radius: 50%;
+    background: #A8CCD7;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.wizard-potion-neck {
+    position: absolute;
+    width: 43.59px;
+    height: 30.03px;
+    left: 60%;
+    top: 3%;
+    background: #A8CCD7;
+    transform: rotate(39.29deg);
+}
+
+
+.wizard-potion-cork {
+    position: absolute;
+    width: 21px;
+    height: 16px;
+    left: 67%;
+    top: 1.8%;
+    background: #CAA478;
+    transform: rotate(42.09deg);
+}
+
+.wizard-potion-elixir {
+    position: absolute;
+    width: 145px;
+    height: 73px;
+    left: 31.2%;
+    top: 13.5%;
+    border-radius: 0 0 13rem 13rem;
+    background: #6074DF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    transform: rotate(10.33deg);
+
+    color: #ffffff;
+    font-size: 28px;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+
+
+
+
+  
+  
+  
+  
+
+  
+  
+  
