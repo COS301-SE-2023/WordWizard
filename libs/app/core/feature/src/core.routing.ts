@@ -5,15 +5,14 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 
 const routes: Routes = [
-  // {
-  //   path: 'mic',
-  //   loadChildren: () =>
-  //     import('@word-wizard/app/reading/feature').then((m) => m.ReadingModule),
-  // },
   {
     path: 'reading',
     loadChildren: () =>
       import('@word-wizard/app/reading/feature').then((m) => m.ReadingModule),
+  {
+    path: 'library',
+    loadChildren: () =>
+      import('@word-wizard/app/library/feature').then((m) => m.LibraryModule),
   },
 ];
 

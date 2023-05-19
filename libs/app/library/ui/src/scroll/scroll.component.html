@@ -1,0 +1,29 @@
+<div>
+  <div class="scroll-closed">
+    <button id="open-custom-dialog-{{number}}"  class="box word">{{word}}</button>
+  </div>
+  <ion-modal id="example-modal" #modal trigger="open-custom-dialog-{{number}}" class="scroll-opened no-padding">
+    <ng-template>
+      <div class="wrapper">
+        <h1 class="word">{{word}}</h1>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="12" class="ion-text-center ion-align-items-center">
+              <ion-label>{{definition}}</ion-label> <br>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="12" class="ion-text-center ion-align-items-center">
+              <ion-button (click)="speak()">Speak</ion-button> <br>
+              <ion-button (click)="speakSlow()">Slow</ion-button>
+            </ion-col>
+          </ion-row>
+          <!-- <ion-row>
+            <ion-col size="12" class="ion-text-center ion-align-items-center">
+            </ion-col>
+          </ion-row> -->
+        </ion-grid>
+      </div>
+    </ng-template>
+  </ion-modal>
+</div>
