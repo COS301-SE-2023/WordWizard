@@ -16,6 +16,9 @@
     "baseUrl": ".",
     "paths": {
       "@word-wizard/app/core/feature": ["libs/app/core/feature/src/index.ts"],
+      "@word-wizard/app/reading/data-access": [
+        "libs/app/reading/data-access/src/index.ts"
+      ],
       "@word-wizard/app/reading/feature": [
         "libs/app/reading/feature/src/index.ts"
       ],
