@@ -9,6 +9,7 @@ const routes: Routes = [
     path: 'reading',
     loadChildren: () =>
       import('@word-wizard/app/reading/feature').then((m) => m.ReadingModule),
+  },
   {
     path: 'library',
     loadChildren: () =>
