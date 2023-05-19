@@ -29,8 +29,9 @@
                   <!-- <ion-col *ngFor="let spell of spells" size="4">
                       <spell [spell]="spell"></spell>
                     </ion-col> -->
-                <ion-col *ngFor="let num of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]" size="6">
-                    <ww-scroll word="apple" definition="Large round fruit"></ww-scroll>
+                <ion-col class="ion-text-center ion-align-items-center" *ngFor="let num of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; let i = index" size="6">
+                    <!-- <ww-scroll-closed word="apple"></ww-scroll-closed> -->
+                    <ww-scroll word="apple" definition="Large round fruit" [number]="i"></ww-scroll>
                     <!-- <ion-img src="assets/img/item/scroll-closed-cropped.png"></ion-img> -->
 
                 </ion-col>
