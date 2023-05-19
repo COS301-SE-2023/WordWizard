@@ -24,3 +24,6 @@ jobs:
 
       - name: Build app
         run: npm run build:app:dev
+        
+      - name: Check if build succeeded
+        run: |
