@@ -16,15 +16,15 @@
   <div class="Bottle-title" class="wizard-potion-elixir">
     {{ Percentage }}%
   </div>
-  
-  
-  
-  
+
+
+
+
   
 
   <div class="container">
     <div class="header-container">
-      <p>magic</p>
+      <p> {{ word }}</p>
     </div>
     <div class="content-container">
       <img [src]="imageSrc" alt="Magic Image">
@@ -32,7 +32,7 @@
   </div>
   <div class="button-container">
     <div class="button-group">
-      <app-speaker [audioSrc]="'assets/mp3/pronunciation_en_magic.mp3'"></app-speaker>
+      <app-speaker [speakPhrase]="word" ></app-speaker>
     </div>
     <div class="button-group">
       <word-wizard-microphone></word-wizard-microphone>

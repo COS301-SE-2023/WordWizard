@@ -6,10 +6,23 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./speaker.component.scss']
 })
 export class SpeakerComponent {
-  @Input() audioSrc!: string;
+  @Input() speakPhrase!: string;
+  @Input() definition!: string;
 
-  playAudio(): void {
-    const audio = new Audio(this.audioSrc);
-    audio.play();
+  speak(){
+    if (this.speakPhrase) {
+      this.textToSpeech(this.speakPhrase);
+    }
+    if (this.definition){
+      setTimeout(() => this.textToSpeech(this.definition), 1000);
+    }
   }
+
+  textToSpeech(phrase: string) {
+    const utterance = new SpeechSynthesisUtterance(phrase);
+    utterance.volume = 0.9;
+    utterance.lang = 'en-GB';
+    speechSynthesis.speak(utterance);
+  }
+
 }
