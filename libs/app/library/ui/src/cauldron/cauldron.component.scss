@@ -7,6 +7,12 @@
     padding-top: 40%;
     // align-items: end;
   }
+
+.definition{
+  padding-left: 20%;
+  padding-right: 20%;
+}
+
   
   .transparent-background{
     --background: transparent;
@@ -56,7 +62,7 @@
   
   ion-modal#example-modal .wrapper {
     margin-bottom: 10px;
-    padding-top: 50%;
+    padding-top: 40%;
   }
   
   .empty-bottle {
