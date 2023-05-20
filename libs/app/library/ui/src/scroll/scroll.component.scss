@@ -10,6 +10,9 @@
   background: transparent url('../../../../../../apps/word-wizard/src/assets/img/item/scroll-closed-cropped.png') no-repeat center center;
   background-size: contain;
   border: none; /* Remove the button border */
+  padding-bottom: 10%;
+  padding-right: 15%;
+
   //padding: 0;
 }
 
@@ -125,4 +128,8 @@ ion-col {
 
 h1 {
   text-align: center;
+}
+
+.open-scroll-content{
+  padding-top: 50%;
 }
