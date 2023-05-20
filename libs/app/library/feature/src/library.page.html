@@ -1,0 +1,57 @@
+<!-- <p>library works!</p> -->
+
+<ion-header>
+    <ion-toolbar>
+      <ion-segment value="vocab" #toolbarSegment>
+            <ion-segment-button value="vocab">
+                <ion-img src="assets/icon/spellbook.PNG"></ion-img>
+                Vocabulary
+            </ion-segment-button>
+            <ion-segment-button value="practice">
+                <ion-img src="assets/icon/wand-and-glasses.PNG"></ion-img>
+                Practice
+            </ion-segment-button>
+      </ion-segment>
+    </ion-toolbar>
+</ion-header>
+<!-- <button (click)="onClick()">Click me!</button> -->
+<ion-content class="ion-padding">
+
+    <!-- VOCABULARY LIST -->
+    <ion-content *ngIf="toolbarSegment.value === 'vocab'" ngClass="vocab-list"> 
+        <ion-text *ngIf="!hasVocab">
+            <h3>No spells yet :O</h3>
+            <p>Complete some lessons to learn new spells</p>
+          </ion-text>
+
+          <ion-grid *ngIf="hasVocab">
+              <ion-row>
+                  <!-- <ion-col *ngFor="let spell of spells" size="4">
+                      <spell [spell]="spell"></spell>
+                    </ion-col> -->
+                <ion-col class="ion-text-center ion-align-items-center" *ngFor="let num of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; let i = index" size="6">
+                    <!-- <ww-scroll-closed word="apple"></ww-scroll-closed> -->
+                    <ww-scroll word="apple" definition="Large round fruit" [number]="i"></ww-scroll>
+                    <!-- <ion-img src="assets/img/item/scroll-closed-cropped.png"></ion-img> -->
+
+                </ion-col>
+              </ion-row>
+          </ion-grid>
+    </ion-content>
+
+    <!-- PRACTICE LIST -->
+    <ion-content *ngIf="toolbarSegment.value === 'practice'" ngClass="practice-list"> 
+        <ion-grid *ngIf="hasPractice">
+            <ion-row>
+                <!-- <ion-col *ngFor="let spell of spells" size="4">
+                    <spell [spell]="spell"></spell>
+                  </ion-col> -->
+              <ion-col *ngFor="let num of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]" size="6">
+                  <!-- <spell [spell]="spell"></spell> -->
+                  <ion-img src="assets/img/item/cauldron-cropped.png"></ion-img>
+
+              </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-content>
+</ion-content>
