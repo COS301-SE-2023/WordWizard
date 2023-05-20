@@ -8,6 +8,7 @@ import { ReadingRouting } from './reading.routing';
 import { RouterModule } from '@angular/router';
 
 import { SharedUiModule } from '@word-wizard/app/shared-ui';
+import { ReadingSharedUiModule } from '@word-wizard/app/reading/shared-ui';
 
 @NgModule({
   imports: [
@@ -17,7 +18,7 @@ import { SharedUiModule } from '@word-wizard/app/shared-ui';
     ReadingRouting,
     RouterModule,
     SharedUiModule,
-
+    ReadingSharedUiModule,
   ],
   declarations: [ReadingPage],
 })

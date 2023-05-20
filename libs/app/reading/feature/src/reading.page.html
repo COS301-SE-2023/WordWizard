@@ -6,22 +6,9 @@
 
 
 <ion-content class="page-container">
-
-  <div class="wizard-potion-bottle">
+  <div id="potion-container">
+    <ww-progress-potion [percentage]="Percentage"></ww-progress-potion>
   </div>
-  <div class="wizard-potion-neck">
-  </div>
-  <div class="wizard-potion-cork">
-  </div>
-  <div class="Bottle-title" class="wizard-potion-elixir">
-    {{ Percentage }}%
-  </div>
-
-
-
-
-  
-
   <div class="container">
     <div class="header-container">
       <p> {{ word }}</p>
