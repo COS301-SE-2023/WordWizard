@@ -5,6 +5,7 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { CoreShell } from './core.shell';
 import { RouteReuseStrategy } from '@angular/router';
 import { SharedUiModule } from '@word-wizard/app/shared-ui';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [CoreShell],
@@ -12,7 +13,8 @@ import { SharedUiModule } from '@word-wizard/app/shared-ui';
     BrowserModule,
     IonicModule.forRoot(),
     CoreRouting,
-    SharedUiModule
+    SharedUiModule,
+    NoopAnimationsModule,
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [CoreShell],

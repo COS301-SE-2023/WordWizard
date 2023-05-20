@@ -4,7 +4,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: 90%;
-    max-width: 400px;
+    // max-width: 400px;
     height: 50%;
     background-color: #6074DF;
     border: 5px solid #000000;
@@ -83,69 +83,22 @@ ion-header {
     text-align: center;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
-  
 
-//Potion Bottle CSS
-
-/* Rectangle 34 */
-.wizard-potion-bottle {
-    position: absolute;
-    width: 40%;
-    height: 20%;
-    left: 33%;
-    top: 3.5%;
-    border-radius: 50%;
-    background: #A8CCD7;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+ww-progress-potion{
+    position: relative;
+    display: grid;
+    place-items: center;
+    background: transparent;
+    margin: 0px;
+    padding: 0px;
+    height: 40vw;
+    width: 40vw;
 }
 
-.wizard-potion-neck {
-    position: absolute;
-    width: 43.59px;
-    height: 30.03px;
-    left: 60%;
-    top: 3%;
-    background: #A8CCD7;
-    transform: rotate(39.29deg);
+#potion-container{
+  width: 100vw;
+  height: fit-content;
+  display: grid;
+  place-items: center;
+  margin-top: 10%;
 }
-
-
-.wizard-potion-cork {
-    position: absolute;
-    width: 21px;
-    height: 16px;
-    left: 67%;
-    top: 1.8%;
-    background: #CAA478;
-    transform: rotate(42.09deg);
-}
-
-.wizard-potion-elixir {
-    position: absolute;
-    width: 145px;
-    height: 73px;
-    left: 31.2%;
-    top: 13.5%;
-    border-radius: 0 0 13rem 13rem;
-    background: #6074DF;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    transform: rotate(10.33deg);
-
-    color: #ffffff;
-    font-size: 28px;
-    text-align: center;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
-}
-
-
-
-
-
-  
-  
-  
-  
-
-  
-  
-  

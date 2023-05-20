@@ -22,6 +22,9 @@
       "@word-wizard/app/reading/feature": [
         "libs/app/reading/feature/src/index.ts"
       ],
+      "@word-wizard/app/reading/shared-ui": [
+        "libs/app/reading/shared-ui/src/index.ts"
+      ],
       "@word-wizard/app/library/feature": [
         "libs/app/library/feature/src/index.ts"
       ],
