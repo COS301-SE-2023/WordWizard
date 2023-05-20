@@ -4,7 +4,8 @@
     background: transparent url('../../../../../../apps/word-wizard/src/assets/img/item/cauldron-cropped.png') no-repeat center center;
     background-size: contain;
     border: none; /* Remove the button border */
-    //padding: 0;
+    padding-top: 40%;
+    // align-items: end;
   }
   
   .transparent-background{
@@ -21,7 +22,7 @@
       font-weight: 800;
       font-size: 20px;
       line-height: 24px;
-      color: #000000;
+      color: #ffffff;
     }
   
   ion-modal#example-modal {
@@ -55,6 +56,7 @@
   
   ion-modal#example-modal .wrapper {
     margin-bottom: 10px;
+    padding-top: 50%;
   }
   
   .empty-bottle {
@@ -88,5 +90,6 @@
   
   h1 {
     text-align: center;
+    color: #000000 !important;
   }
   
