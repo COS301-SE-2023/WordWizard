@@ -11,6 +11,7 @@ export class CauldronComponent {
   @Input () number!: number;
 
   bottleClass = "empty-bottle no-padding";
+  isCorrect = false;
 
   open = false;
   speak(){
@@ -31,6 +32,13 @@ export class CauldronComponent {
     utterance.volume = 0.9;
     utterance.lang = 'en-EU';
     speechSynthesis.speak(utterance);
+  }
+
+  test() {
+    if (true) {
+      this.bottleClass = "full-bottle no-padding";
+      this.isCorrect = true;
+    }
   }
 
 }
