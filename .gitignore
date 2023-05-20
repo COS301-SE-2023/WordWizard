@@ -40,3 +40,12 @@ Thumbs.db
 
 .angular
 .unlighthouse
+
+
+#Python
+venv
+__pycache__
+
+
+#Enviroment variables
+.env
