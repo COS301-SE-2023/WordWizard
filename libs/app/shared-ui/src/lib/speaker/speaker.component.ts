@@ -6,23 +6,17 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./speaker.component.scss']
 })
 export class SpeakerComponent {
-  @Input() speakPhrase!: string;
-  @Input() definition!: string;
+  @Input() audioSrc!: string;
+  @Input() phrase!: string;
 
-  speak(){
-    if (this.speakPhrase) {
-      this.textToSpeech(this.speakPhrase);
-    }
-    if (this.definition){
-      setTimeout(() => this.textToSpeech(this.definition), 1000);
-    }
-  }
-
-  textToSpeech(phrase: string) {
-    const utterance = new SpeechSynthesisUtterance(phrase);
+  playAudio(): void {
+    // const audio = new Audio(this.audioSrc);
+    // audio.play();
+    speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(this.phrase);
+    //Remove volume, this voice is apparently the loudest thing on earth
     utterance.volume = 0.9;
-    utterance.lang = 'en-GB';
+    utterance.lang = 'en-EU';
     speechSynthesis.speak(utterance);
   }
-
 }
