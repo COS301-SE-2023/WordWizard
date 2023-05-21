@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'word-wizard-exit',
+  selector: 'ww-exit',
   templateUrl: './exit.component.html',
   styleUrls: ['./exit.component.scss'],
 })

@@ -28,13 +28,13 @@
   </div>
   <div class="button-container">
     <div class="button-group">
-      <app-speaker [audioSrc]="'assets/mp3/pronunciation_en_magic.mp3'"></app-speaker>
+      <ww-speaker [speakPhrase]="word"></ww-speaker>
     </div>
     <div class="button-group">
-      <word-wizard-microphone></word-wizard-microphone>
+      <ww-microphone></ww-microphone>
     </div>
     <div class="button-group">
-      <word-wizard-exit></word-wizard-exit>
+      <ww-exit></ww-exit>
     </div>
   </div>
 </ion-content>
