@@ -40,3 +40,12 @@ Thumbs.db
 
 .angular
 .unlighthouse
+
+
+#Sensitive files
+.env
+
+#Python
+__pycache__
+.pytest_cache
+venv

@@ -1,4 +1,12 @@
 # Umleiten - WordWizard
+
+![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/COS301-SE-2023/WordWizard)
+[![codecov](https://codecov.io/gh/COS301-SE-2023/WordWizard/branch/dev/graph/badge.svg?token=2BANYONTYU)](https://codecov.io/gh/COS301-SE-2023/WordWizard)
+![GitHub issues](https://img.shields.io/github/issues/COS301-SE-2023/WordWizard)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/COS301-SE-2023/WordWizard)
+[![Build](https://github.com/COS301-SE-2023/WordWizard/actions/workflows/build.yml/badge.svg?branch=dev)](https://github.com/COS301-SE-2023/WordWizard/actions/workflows/build.yml)
+
+
 WordWizard is a language learning platform that uses artificial intelligence and natural language processing to help users improve their vocabulary, grammar, and pronunciation skills. The platform offers a variety of interactive exercises to provide a fun and engaging learning experience.
 
 The system is designed to adapt to each user's level of proficiency and learning style, offering personalized feedback and recommendations to help them progress. The Umleiten team is responsible for developing and maintaining the WordWizard platform, ensuring its functionality, reliability, and security. The team is also focused on improving the platform's AI capabilities, expanding its language offerings, and enhancing the user experience through innovative features and design updates.
@@ -6,10 +14,12 @@ The system is designed to adapt to each user's level of proficiency and learning
 # Video Demo1
 
 # Functional Requirements(SRS)
-https://docs.google.com/document/d/1ciOoZX2MzLFtCf3m2Z29c-V7krlfxKHC/edit?usp=sharing&ouid=116132882510647438116&rtpof=true&sd=true
+[![Google Docs](https://img.shields.io/badge/Google%20Docs-View%20Document-blue)](https://docs.google.com/document/d/1ciOoZX2MzLFtCf3m2Z29c-V7krlfxKHC/edit?usp=sharing&ouid=116132882510647438116&rtpof=true&sd=true)
+
 
 # GitHub Project Board
-https://github.com/orgs/COS301-SE-2023/projects/12/views/1
+[![Project Status](https://img.shields.io/badge/Project-Active-brightgreen.svg)](https://github.com/orgs/COS301-SE-2023/projects/12/views/1)
+
 
 # Team profile description 
 
