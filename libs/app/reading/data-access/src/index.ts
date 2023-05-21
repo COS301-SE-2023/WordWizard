@@ -1,1 +1,3 @@
-export * from './lib/app-reading-data-access';
+export * from './reading.state';
+export * from './reading.module';
+export * from './reading.actions';

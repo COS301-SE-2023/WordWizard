@@ -1,7 +1,7 @@
 name: Build
 
 on:
-  pull_request_target:
+  pull_request:
     branches:
       - dev
 
@@ -24,3 +24,6 @@ jobs:
 
       - name: Build app
         run: npm run build:app:dev
+        
+      - name: Check if build succeeded
+        run: |
