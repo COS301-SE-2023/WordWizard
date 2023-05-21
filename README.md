@@ -4,6 +4,7 @@
 [![codecov](https://codecov.io/gh/COS301-SE-2023/WordWizard/branch/dev/graph/badge.svg?token=2BANYONTYU)](https://codecov.io/gh/COS301-SE-2023/WordWizard)
 ![GitHub issues](https://img.shields.io/github/issues/COS301-SE-2023/WordWizard)
 ![GitHub pull requests](https://img.shields.io/github/issues-pr/COS301-SE-2023/WordWizard)
+[![Build](https://github.com/COS301-SE-2023/WordWizard/actions/workflows/build.yml/badge.svg?branch=dev)](https://github.com/COS301-SE-2023/WordWizard/actions/workflows/build.yml)
 
 
 WordWizard is a language learning platform that uses artificial intelligence and natural language processing to help users improve their vocabulary, grammar, and pronunciation skills. The platform offers a variety of interactive exercises to provide a fun and engaging learning experience.
