@@ -1,0 +1,23 @@
+ion-header{
+  height: 5vh;
+  background-color: #6074DF;
+
+  ion-icon{
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+
+  ion-title{
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+  }
+
+  #header-content{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
