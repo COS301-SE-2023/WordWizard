@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { ExitComponent } from './exit.component';
+import { InfoComponent } from './info.component';
 
 @NgModule({
   imports: [ CommonModule, FormsModule, IonicModule,],
-  declarations: [ExitComponent ],
-  exports: [ExitComponent ]
+  declarations: [InfoComponent ],
+  exports: [InfoComponent ]
 })
-export class ExitModule {}
+export class InfoModule {}
