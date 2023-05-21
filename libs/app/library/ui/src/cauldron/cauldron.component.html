@@ -14,12 +14,12 @@
             </ion-row>
             <ion-row>
               <ion-col size="12" class="ion-text-center ion-align-items-center">
-                <app-speaker [phrase]="vocab.word"></app-speaker>
+                <ww-speaker [speakPhrase]="vocab.word" [definition]="vocab.defition"></ww-speaker>
               </ion-col>
             </ion-row>
             <ion-row>
               <ion-col size="12" class="ion-text-center ion-align-items-center">
-                <word-wizard-microphone></word-wizard-microphone>
+                <ww-microphone></ww-microphone>
                 <!-- <ion-button (click)="test()">Practice</ion-button> -->
               </ion-col>
             </ion-row>
