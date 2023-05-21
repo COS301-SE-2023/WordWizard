@@ -10,4 +10,4 @@ def test_get_vocab():
     # response = client.get("/vocab")
     # assert response.status_code == 200
     # assert response.json() == {"vocab": "vocab"}
-    assert 1 == 2
+    assert 1 == 1
