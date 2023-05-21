@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'ww-microphone',
+  selector: 'word-wizard-microphone',
   templateUrl: './microphone.component.html',
   styleUrls: ['./microphone.component.scss'],
 })

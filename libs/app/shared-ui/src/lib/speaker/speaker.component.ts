@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'ww-speaker',
+  selector: 'app-speaker',
   templateUrl: './speaker.component.html',
   styleUrls: ['./speaker.component.scss']
 })
