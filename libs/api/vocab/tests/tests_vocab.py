@@ -11,3 +11,6 @@ def test_get_vocab():
     # assert response.status_code == 200
     # assert response.json() == {"vocab": "vocab"}
     assert 1 == 1
+
+def test_post_vocab():
+    assert 1 == 1
