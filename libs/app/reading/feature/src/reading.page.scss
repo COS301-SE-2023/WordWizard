@@ -16,7 +16,6 @@
 .header-container {
     background-color: #6074DF;
     color: #ffffff;
-    border: 2px solid #000000;
     font-size: 36px;
     padding: 10px;
     text-align: center;
@@ -24,6 +23,7 @@
 
 .header-container p {
     margin: 0;
+    text-shadow: 2px 2px black;
 }
 
 .content-container {
