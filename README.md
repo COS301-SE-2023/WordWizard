@@ -12,6 +12,7 @@ WordWizard is a language learning platform that uses artificial intelligence and
 The system is designed to adapt to each user's level of proficiency and learning style, offering personalized feedback and recommendations to help them progress. The Umleiten team is responsible for developing and maintaining the WordWizard platform, ensuring its functionality, reliability, and security. The team is also focused on improving the platform's AI capabilities, expanding its language offerings, and enhancing the user experience through innovative features and design updates.
 
 # Video Demo1
+https://drive.google.com/file/d/1aJwT3MnHAc1StSafWJLCn1nHeHRavKGw/view?usp=share_link
 
 # Functional Requirements(SRS)
 [![Google Docs](https://img.shields.io/badge/Google%20Docs-View%20Document-blue)](https://docs.google.com/document/d/1ciOoZX2MzLFtCf3m2Z29c-V7krlfxKHC/edit?usp=sharing&ouid=116132882510647438116&rtpof=true&sd=true)
