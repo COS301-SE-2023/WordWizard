@@ -6,13 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./library.page.scss']
 })
 export class LibraryPage {
-
   hasVocab = true;
   hasPractice = true;
-
-  onClick() {
-    console.log('click');
-    localStorage.setItem('test', 'test');
-  }
-
 }
