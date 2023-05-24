@@ -2,25 +2,12 @@
 
 
 <ion-content class="page-container">
-
-  <div class="wizard-potion-bottle">
+  <div id="potion-container">
+    <ww-progress-potion [percentage]="Percentage"></ww-progress-potion>
   </div>
-  <div class="wizard-potion-neck">
-  </div>
-  <div class="wizard-potion-cork">
-  </div>
-  <div class="Bottle-title" class="wizard-potion-elixir">
-    {{ Percentage }}%
-  </div>
-  
-  
-  
-  
-  
-
   <div class="container">
     <div class="header-container">
-      <p>magic</p>
+      <p> {{ word }}</p>
     </div>
     <div class="content-container">
       <img [src]="imageSrc" alt="Magic Image">
@@ -28,7 +15,7 @@
   </div>
   <div class="button-container">
     <div class="button-group">
-      <ww-speaker [speakPhrase]="word"></ww-speaker>
+      <ww-speaker [speakPhrase]="word" ></ww-speaker>
     </div>
     <div class="button-group">
       <ww-microphone></ww-microphone>
