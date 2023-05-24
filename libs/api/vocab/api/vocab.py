@@ -6,8 +6,8 @@ router = APIRouter()
 
 @router.get("/")
 def get_vocab():
-    return {"vocab": "vocab"}
+    return {"vocab": "test"}
 
-@router.post("/{vocab_id}")
+@router.post("/")
 def create_vocab(vocab: Vocab):
     return {"vocab_id": vocab.word}

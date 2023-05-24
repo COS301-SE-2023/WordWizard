@@ -8,12 +8,6 @@ import {
   ReadingRequest
 } from './requests/reading.request';
 
-const headers = new HttpHeaders({
-  'Content-Type': 'application/json',
-  'Access-Control-Allow-Origin': '*'
-  // Add more headers as required
-});
-
 @Injectable({
   providedIn: 'root'
 })
@@ -23,9 +17,12 @@ export class ReadingService {
 
   constructor(private http:HttpClient) {}
 
-    getVocab(request: ReadingRequest):Observable<Vocab>{
-      console.table(request);
-      return this.http.post<Vocab>(this.endpoint, request, {headers});
-    }
+  getVocab(request: ReadingRequest): Observable<Vocab> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+
+    return this.http.post<Vocab>(this.endpoint, request, { headers });
+  }
 
 }

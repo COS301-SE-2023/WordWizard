@@ -13,5 +13,16 @@ export interface ReadingStateModel {
 @Injectable()
 export class ReadingState {
 
+  // @Action(Example)
+  // example(ctx: StateContext<ReadingStateModel>, action: Example) {
+  //   const request = {
+  //     word: this.word,
+  //     definition: 'A fruit that grows on trees'
+  //   } as ReadingRequest;
+
+  //   this.readingService.getVocab(request).subscribe((data) => {
+  //     console.log(data);
+  //   });
+  // }
 }
 

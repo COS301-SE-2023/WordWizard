@@ -18,12 +18,5 @@ export class ReadingPage {
     // Set the image source based on the word
     this.imageSrc = `assets/img/${this.word}.png`;
 
-    const request = {
-      word: this.word
-    } as ReadingRequest;
-
-    this.readingService.getVocab(request).subscribe((data) => {
-      console.log(data);
-    });
   }
 }
