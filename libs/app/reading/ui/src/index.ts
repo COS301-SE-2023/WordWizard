@@ -1,1 +1,1 @@
-export * from './lib/app-reading-ui';
+export * from './progress-potion/app-reading-ui';
