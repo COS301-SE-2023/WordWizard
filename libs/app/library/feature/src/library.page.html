@@ -31,7 +31,7 @@
                     </ion-col> -->
                 <ion-col class="ion-text-center ion-align-items-center" *ngFor="let j of dictionary; let i = index" size="6">
                     <!-- <ww-scroll-closed word="apple"></ww-scroll-closed> -->
-                    <ww-scroll [word]="j.word" definition="j.definition" [number]="i"></ww-scroll>
+                    <ww-scroll [vocab]="j" definition="Large round fruit" [number]="i"></ww-scroll>
                     <!-- <ion-img src="assets/img/item/scroll-closed-cropped.png"></ion-img> -->
 
                 </ion-col>
