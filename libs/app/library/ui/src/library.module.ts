@@ -10,12 +10,12 @@ import { CauldronModule } from './cauldron';
     CommonModule, 
     IonicModule,
     ScrollModule,
-    CauldronModule 
+    CauldronModule ,
   ],
   declarations: [],
   exports: [ 
     ScrollModule,
-    CauldronModule 
+    CauldronModule ,
   ],
 })
 export class LibraryModule {}
