@@ -30,4 +30,12 @@ export class CauldronComponent {
 
   }
 
+  textFromMicrophone = '';
+
+  handleTextChange(text: string) {
+    this.textFromMicrophone = text;
+    console.log('Text from microphone:', text);
+    // Handle the text as needed
+  }
+
 }

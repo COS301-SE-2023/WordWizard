@@ -1,8 +1,8 @@
 <div>
     <div>
-      <button id="open-custom-dialog-{{number}}"  class="box word">{{vocab.word}}</button>
+      <button id="open-cauldron-dialog-{{number}}"  class="box word">{{vocab.word}}</button>
     </div>
-    <ion-modal id="example-modal" #modal trigger="open-custom-dialog-{{number}}" [ngClass]="bottleClass">
+    <ion-modal id="example-modal" #modal trigger="open-cauldron-dialog-{{number}}" [ngClass]="bottleClass">
       <ng-template>
         <div class="wrapper">
           <h1 class="word">{{vocab.word}}</h1>
@@ -15,7 +15,7 @@
             <ion-row>
               <ion-col size="12" class="ion-text-center ion-align-items-center">
                 <ww-speaker [speakPhrase]="vocab.word" [definition]="vocab.definition"></ww-speaker>
-                <ww-microphone></ww-microphone>
+                <ww-microphone (textChanged)="handleTextChange($event)"></ww-microphone>
               </ion-col>
             </ion-row>
             <!-- <ion-row>
