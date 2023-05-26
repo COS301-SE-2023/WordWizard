@@ -1,5 +1,13 @@
 from pydantic import BaseModel
 
-class reading(BaseModel):
+class FocusWord(BaseModel):
     word: str
-    definition: str
+    imageURL: str
+
+class Passage(BaseModel):
+    passage: str
+    focusWords: list[FocusWord]
+
+class PassageRqst(BaseModel):
+    userID: str
+    readingLevel: str

@@ -56,13 +56,8 @@ export class ReadingState {
   // }
 
   @Selector()
-  static getPassage(state: ReadingStateModel) {
-    return state.Passage.model.passage;
-  }
-
-  @Selector()
-  static getFocusWords(state: ReadingStateModel) {
-    return state.Passage.model.focusWords;
+  static getReadingState(state: ReadingStateModel) {
+    return state;
   }
 
   @Action(SetPassage)

@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { word } from './word.interface';
-import { Store } from '@ngxs/store';
+import { Select, Store } from '@ngxs/store';
 import { SetPassage } from '@word-wizard/app/reading/data-access';
+import { ReadingState } from '@word-wizard/app/reading/data-access';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'reading',
@@ -9,6 +11,9 @@ import { SetPassage } from '@word-wizard/app/reading/data-access';
   styleUrls: ['./reading.page.scss']
 })
 export class ReadingPage {
+
+  @Select(ReadingState.getReadingState) readingState$!: Observable<ReadingState>;
+
   backgroundImage = 'assets/img/CastleBackground.png';
   word = 'Magic';
   imageSrc: string;
@@ -31,6 +36,7 @@ export class ReadingPage {
   practice!: word[];
 
   constructor(private store: Store) {
+
     // Set the image source based on the word
     this.imageSrc = `assets/img/${this.word}.png`;
 
@@ -45,6 +51,11 @@ export class ReadingPage {
 
   ngOnInit() {
     this.store.dispatch(new SetPassage());
+
+    this.readingState$.subscribe((data) => {
+      console.log(data);
+    });
+
   }
 
   getWordColor(w: word) {

@@ -11,6 +11,8 @@ import { SharedUiModule } from '@word-wizard/app/shared-ui';
 import { ReadingSharedUiModule } from '@word-wizard/app/reading/shared-ui';
 import { HttpClientModule } from '@angular/common/http';
 import { ReadingService } from '@word-wizard/app/reading/data-access';
+import { NgxsModule } from '@ngxs/store';
+import { ReadingState } from '@word-wizard/app/reading/data-access';
 
 @NgModule({
   imports: [
@@ -22,6 +24,7 @@ import { ReadingService } from '@word-wizard/app/reading/data-access';
     SharedUiModule,
     ReadingSharedUiModule,
     HttpClientModule,
+    NgxsModule.forFeature([ReadingState]),
   ],
   declarations: [ReadingPage],
   providers: [ReadingService]

@@ -21,7 +21,8 @@ export class ReadingService {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
-    return this.http.post<Passage>(this.endpoint, request, { headers });
+    const tempEndpoint = this.endpoint + "/passage";
+    return this.http.post<Passage>(tempEndpoint, request, { headers });
   }
 
 }
