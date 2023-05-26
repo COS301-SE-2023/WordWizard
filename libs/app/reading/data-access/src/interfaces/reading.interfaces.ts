@@ -7,4 +7,5 @@ export interface Word{
 export interface Content {
   passage: Word[];
   focusWordsIndex: number[];
+  done: boolean;
 }

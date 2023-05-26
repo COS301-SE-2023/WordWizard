@@ -23,6 +23,7 @@ export interface ReadingStateModel {
       Content: {
         passage: Word[];
         focusWords: number[];
+        done: boolean;
       },
       Word: {
         // word: string;
@@ -30,9 +31,6 @@ export interface ReadingStateModel {
         // correct: boolean | null;
         current:number;
         attemptsRemaining: number;
-      },
-      RecognisedWords:{
-        recognisedWords: string[];
       }
 //Fair enough
     };
@@ -48,13 +46,11 @@ export interface ReadingStateModel {
         Content:{
           passage: [],
           focusWords: [],
+          done: false
         },
         Word: {
           current: 0,
           attemptsRemaining: 5,
-        },
-        RecognisedWords:{
-          recognisedWords: [],
         }
       }
     }
@@ -102,25 +98,103 @@ export class ReadingState {
 
   @Action(MakeAttempt)
   async MakeAttempt(ctx: StateContext<ReadingStateModel>, {payload}:MakeAttempt) {
-    const state = ctx.getState();
-    const currentAttempts = state.Passage.model.Word.attemptsRemaining;
-    if(currentAttempts == 0){
-      // ctx.patchState({
-      //   ...state,
+    ctx.setState(
+      produce((draft: ReadingStateModel) => {
+        const passage = draft.Passage.model.Content.passage;
+        const word = draft.Passage.model.Word;
+  
+        const currentAttempts = word.attemptsRemaining - 1;
+        const currentWord = passage[word.current];
+  
+        if (currentAttempts < 0) {
+          currentWord.correct = false;
+          word.current++;
+          word.attemptsRemaining = 5;
+        } else if (currentWord.word.toLowerCase() === payload.newAttempt.toLowerCase()) {
+          currentWord.correct = true;
+          word.current++;
+          word.attemptsRemaining = 5;
+        } else {
+          word.attemptsRemaining = currentAttempts;
+        }
+      })
+    );
+    // const state = ctx.getState();
+    // const currentAttempts = state.Passage.model.Word.attemptsRemaining -1;
+    // //Attempts are now finished and the word is wrong
+    // if(currentAttempts < 0){
+    //   state.Passage.model.Content.passage[state.Passage.model.Word.current].correct = false;
+    //   ctx.patchState({
+    //     ...state,
 
-      //   Passage:{
-      //     model:{
-
-      //     }
-      //   }
-      // })
-    }
+    //     Passage:{
+    //       model:{
+    //         Content:{
+    //           ...state.Passage.model.Content,
+    //         },
+    //         Word:{
+    //           current: state.Passage.model.Word.current + 1,
+    //           attemptsRemaining: 5,
+    //         }
+    //       }
+    //     }
+    //   })
+    // }
+    // //Word is correct
+    // else if(state.Passage.model.Content.passage[state.Passage.model.Word.current].word.toLocaleLowerCase() === payload.newAttempt.toLocaleLowerCase()){
+    //   let complete = false;
+    //   if(state.Passage.model.Content.passage.length <= state.Passage.model.Word.current + 1)
+    //     complete = true;
+    //   ctx.setState(
+    //     produce((draft: ReadingStateModel) => {
+    //       const state = draft.Passage.model;
+    //       const currentAttempts = state.Word.attemptsRemaining - 1;
+    
+    //       if (currentAttempts < 0) {
+    //         state.Content.passage[state.Word.current].correct = false;
+    //         state.Word.current++;
+    //         state.Word.attemptsRemaining = 5;
+    //       } else if (
+    //         state.Content.passage[state.Word.current].word.toLocaleLowerCase() ===
+    //         payload.newAttempt.toLocaleLowerCase()
+    //       ) {
+    //         state.Content.passage[state.Word.current].correct = true;
+    //         state.Word.current++;
+    //         state.Word.attemptsRemaining = 5;
+    //       } else {
+    //         state.Word.attemptsRemaining = currentAttempts;
+    //       }
+    //     })
+    //   );
+    // }
+    // //Attempts are not done and word is incorrect
+    // else{
+    //   ctx.patchState({
+    //     ...state,
+    //     Passage:{
+    //       model:{
+    //         Content:{
+    //           ...state.Passage.model.Content,
+    //         },
+    //         Word:{
+    //           ...state.Passage.model.Word,
+    //           attemptsRemaining: currentAttempts,
+    //         }
+    //       }
+    //     }
+    //   })
+    // }
   }
 
 
   @Selector()
   static getReadingState(state: ReadingStateModel) {
     return state.Passage.model.Content;
+  }
+
+  @Selector()
+  static getCurrent(state: ReadingStateModel) {
+    return state.Passage.model.Word.current;
   }
 }
 

@@ -9,8 +9,8 @@
     <div class="header-container">
       <div>
         <p *ngIf="done">
-          <span *ngFor="let word of practice.passage; let last = last">
-            <span [ngStyle]="{ 'color': getWordColor(word) }">{{ word.word }}</span>{{ !last ? ' ' : '' }}
+          <span *ngFor="let word of practice?.passage; let last = last">
+            <span [ngStyle]="{ 'color': getWordColor(word) }">{{ word?.word }}</span>{{ !last ? ' ' : '' }}
           </span>
         </p>
         <p *ngIf="!done">
