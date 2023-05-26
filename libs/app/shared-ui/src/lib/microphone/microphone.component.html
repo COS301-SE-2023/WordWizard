@@ -1,4 +1,4 @@
-<button [style.background-color]="isRecording ? '#00FF00' : (isRecording ? '#ffffff' : null)" class="microphone-button" (mousedown)="startRecording()" (touchstart)="startRecording()" (mouseup)="stopRecording()" (touchend)="stopRecording()">
+<button [style.background-color]="isRecording ? '#00FF00' : (isRecording ? '#ffffff' : null)" class="microphone-button" (touchstart)="recording()" (touchend)="recording()">
   <ion-icon name="mic" class="microphone-icon" src="assets/svg/mic.svg"></ion-icon>
 </button>
 

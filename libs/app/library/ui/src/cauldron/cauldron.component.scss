@@ -1,0 +1,108 @@
+.box {
+    width: 100%; /* Set the desired width */
+    height: 150px; /* Set the desired height */
+    background: transparent url('../../../../../../apps/word-wizard/src/assets/img/item/cauldron-cropped.png') no-repeat center center;
+    background-size: contain;
+    border: none; /* Remove the button border */
+    padding-top: 40%;
+    // align-items: end;
+  }
+
+.definition{
+  padding-left: 20%;
+  padding-right: 20%;
+}
+
+  
+  .transparent-background{
+    --background: transparent;
+  }
+  .transparent-background * {
+    background: transparent !important;
+  }
+  
+  
+    .word{
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 800;
+      font-size: 20px;
+      line-height: 24px;
+      color: #ffffff;
+    }
+  
+  ion-modal#example-modal {
+    --width: fit-content;
+    --min-width: 250px;
+    --height: 70%;
+    --border-radius: 6px;
+    // --box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);
+  
+    // --backdrop-opacity: 0;
+    pointer-events: none;
+    --border-width: 0;
+    --box-shadow: none;
+    --ion-background-color: transparent;
+  }
+  
+  ion-modal#example-modal h1 {
+    margin: 20px 20px 10px 20px;
+  }
+  
+  ion-modal#example-modal ion-icon {
+    margin-right: 6px;
+  
+    width: 48px;
+    height: 48px;
+  
+    padding: 4px 0;
+  
+    color: #aaaaaa;
+  }
+  
+  ion-modal#example-modal .wrapper {
+    margin-bottom: 10px;
+    padding-top: 50%;
+  }
+  
+  .empty-bottle {
+    --background: url(../../../../../../apps/word-wizard/src/assets/img/item/potion-empty-cropped.png) 0 0/100% 100% no-repeat;
+  }
+
+  .full-bottle {
+    --background: url(../../../../../../apps/word-wizard/src/assets/img/item/potion-full-cropped.png) 0 0/100% 100% no-repeat;
+  }
+  
+  ion-button {
+    background: transparent;
+    padding: 0% !important;
+  }
+  
+  ion-item  {
+    background: transparent !important;
+  }
+  
+  ion-item ion-label {
+    text-align: center;
+  }
+  
+  ion-list {
+    background: transparent !important;
+    // --color: #000000;
+    // opacity: 0.5;
+  }
+  
+  ion-col {
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+  }
+  
+  h1 {
+    text-align: center;
+    color: #000000 !important;
+  }
+  
+  ww-microphone {
+    margin: 10px;
+  }
