@@ -1,9 +1,10 @@
-export interface FocusWord{
+export interface Word{
   word: string;
-  imageURL: string;
+  imageURL: string | null;
+  correct: boolean | null;
 }
 
-export interface Passage {
-  passage: string;
-  focusWords: FocusWord[];
+export interface Content {
+  passage: Word[];
+  focusWordsIndex: number[];
 }

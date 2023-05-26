@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
 import {
   SetPassage,
+  MakeAttempt
  } from './reading.actions';
 
  import {produce} from 'immer';
@@ -11,7 +12,7 @@ import {
 } from './requests/reading.request';
 
 import {
-  FocusWord,
+  Word,
 } from './interfaces/reading.interfaces';
 
 import { ReadingService } from './reading.service';
@@ -19,8 +20,21 @@ import { ReadingService } from './reading.service';
 export interface ReadingStateModel {
   Passage: {
     model:{
-      passage: string;
-      focusWords: FocusWord[];
+      Content: {
+        passage: Word[];
+        focusWords: number[];
+      },
+      Word: {
+        // word: string;
+        // imageURL: string | null;
+        // correct: boolean | null;
+        current:number;
+        attemptsRemaining: number;
+      },
+      RecognisedWords:{
+        recognisedWords: string[];
+      }
+//Fair enough
     };
   }
 }
@@ -31,8 +45,17 @@ export interface ReadingStateModel {
   defaults: {
     Passage: {
       model: {
-        passage: '',
-        focusWords: [],
+        Content:{
+          passage: [],
+          focusWords: [],
+        },
+        Word: {
+          current: 0,
+          attemptsRemaining: 5,
+        },
+        RecognisedWords:{
+          recognisedWords: [],
+        }
       }
     }
   }
@@ -55,10 +78,6 @@ export class ReadingState {
   //   });
   // }
 
-  @Selector()
-  static getReadingState(state: ReadingStateModel) {
-    return state;
-  }
 
   @Action(SetPassage)
   async setPassage(ctx: StateContext<ReadingStateModel>) {
@@ -68,17 +87,40 @@ export class ReadingState {
     } as PassageRequest;
 
     const passage = await this.readingService.getPassage(rqst).toPromise();
-
+    console.log(passage);
     try{
       ctx.setState(
         produce((draft: ReadingStateModel) => {
-            draft.Passage.model.passage = passage.passage;
-            draft.Passage.model.focusWords = passage.focusWords;
+            draft.Passage.model.Content.passage = passage.passage;
+            draft.Passage.model.Content.focusWords = passage.focusWordsIndex;
         })
       );
     } catch (err) {
       console.log(err);
     }
+  }
+
+  @Action(MakeAttempt)
+  async MakeAttempt(ctx: StateContext<ReadingStateModel>, {payload}:MakeAttempt) {
+    const state = ctx.getState();
+    const currentAttempts = state.Passage.model.Word.attemptsRemaining;
+    if(currentAttempts == 0){
+      // ctx.patchState({
+      //   ...state,
+
+      //   Passage:{
+      //     model:{
+
+      //     }
+      //   }
+      // })
+    }
+  }
+
+
+  @Selector()
+  static getReadingState(state: ReadingStateModel) {
+    return state.Passage.model.Content;
   }
 }
 

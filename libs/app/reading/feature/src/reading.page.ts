@@ -1,7 +1,11 @@
 import { Component } from '@angular/core';
-import { word } from './word.interface';
 import { Select, Store } from '@ngxs/store';
-import { SetPassage } from '@word-wizard/app/reading/data-access';
+import {
+  ReadingStateModel,
+  SetPassage,
+  Content,
+  Word
+} from '@word-wizard/app/reading/data-access';
 import { ReadingState } from '@word-wizard/app/reading/data-access';
 import { Observable } from 'rxjs';
 
@@ -12,71 +16,66 @@ import { Observable } from 'rxjs';
 })
 export class ReadingPage {
 
-  @Select(ReadingState.getReadingState) readingState$!: Observable<ReadingState>;
+  @Select(ReadingState.getReadingState) readingState$!: Observable<Content>;
 
   backgroundImage = 'assets/img/CastleBackground.png';
-  word = 'Magic';
-  imageSrc: string;
-  Level = 'Journeyman';
-  Percentage = "0%";
 
   readingPageData = {
-    bgImage : 'assets/img/CastleBackground.png',
     word : '',
     imageSrc : '',
     level : 'Journeyman',
-    progressPercentage : '0%',
   }
 
+  progressPercentage = '0%'
+
   // textFromMicrophone!: string;
-  currentWord = 0;
-
   textFromMicrophone: string[] = [];
-
-  practice!: word[];
+  practice!: Content;
+  currentWord = 0;
+  done = false;
 
   constructor(private store: Store) {
-
-    // Set the image source based on the word
-    this.imageSrc = `assets/img/${this.word}.png`;
-
-    //Grab sentence from backend?
-    this.practice = [
-      { word: 'Magic', correct: null },
-      { word: 'Great', correct: null },
-      { word: 'Wizard', correct: null },
-    ]
-
+    // this.practice.passage = [
+    //   { word: 'Magic', correct: null, imageURL: 'assets/img/Magic.png' },
+    //   { word: 'Great', correct: null, imageURL: 'assets/img/Great.png' },
+    //   { word: 'Wizard', correct: null, imageURL: 'assets/img/Wizard.png' },
+    // ];
   }
 
   ngOnInit() {
+
     this.store.dispatch(new SetPassage());
 
     this.readingState$.subscribe((data) => {
-      console.log(data);
+      this.practice = data;
     });
 
   }
 
-  getWordColor(w: word) {
+  getWordColor(w: Word | null | undefined) {
+    if(w){
     if(w.correct)
-      return 'green';
-    else if(w.correct === false)
-      return 'red';
+        return 'green';
+      else if(w.correct === false)
+        return 'red';
+    }
     return 'white';
   }
 
   handleTextChange(text: string) {
     this.textFromMicrophone.push(text);
-    this.practice = this.practice.map((practiceWord) => {
-      const foundWord = this.textFromMicrophone.find((outputWord) => outputWord.toLocaleUpperCase() === practiceWord.word.toLocaleUpperCase());
-      return {
-        ...practiceWord,
-        correct: foundWord ? true : practiceWord.correct,
-      };
-    });
+    //Give child x attempts to allow for speech to text to fuck up
 
-    const tp = this.practice.filter((w) => w.correct !== null).length/this.practice.length * 100;
-    this.Percentage = `${tp.toFixed(0)}%`;
+
+    // this.practice.passage = this.practice.passage.map((word: Word) => {
+    //   if (this.textFromMicrophone.includes(word.word)) {
+    //     return { ...word, correct: true };
+    //   } else {
+    //     return word;
+    //   }
+    // });
+
+    // this.progressPercentage = `${(this.practice.passage.filter(word => word.correct !== null).length/this.practice.passage.length) * 100}%`;
+
   }
 }

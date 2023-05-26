@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {
-  Passage,
+  Content,
 } from './interfaces/reading.interfaces';
 import {
   PassageRequest,
@@ -17,12 +17,12 @@ export class ReadingService {
 
   constructor(private http:HttpClient) {}
 
-   getPassage(request: PassageRequest): Observable<Passage> {
+   getPassage(request: PassageRequest): Observable<Content> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
     const tempEndpoint = this.endpoint + "/passage";
-    return this.http.post<Passage>(tempEndpoint, request, { headers });
+    return this.http.post<Content>(tempEndpoint, request, { headers });
   }
 
 }
