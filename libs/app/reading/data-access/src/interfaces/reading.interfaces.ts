@@ -1,4 +1,9 @@
-export interface Vocab {
+export interface FocusWord{
   word: string;
-  definition: string;
+  imageURL: string;
+}
+
+export interface Passage {
+  passage: string;
+  focusWords: FocusWord[];
 }

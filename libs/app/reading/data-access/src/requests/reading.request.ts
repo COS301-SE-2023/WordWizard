@@ -1,4 +1,4 @@
-export interface ReadingRequest {
-    word: string;
-    definition: string;
+export interface PassageRequest {
+    userID: string;
+    readingLevel: string;
 }

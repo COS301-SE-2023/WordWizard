@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {
-  Vocab
+  Passage,
 } from './interfaces/reading.interfaces';
 import {
-  ReadingRequest
+  PassageRequest,
 } from './requests/reading.request';
 
 @Injectable({
@@ -13,16 +13,15 @@ import {
 })
 export class ReadingService {
 
-  endpoint = "http://127.0.0.1:8000/vocab";
+  endpoint = "http://127.0.0.1:8000/reading";
 
   constructor(private http:HttpClient) {}
 
-  getVocab(request: ReadingRequest): Observable<Vocab> {
+   getPassage(request: PassageRequest): Observable<Passage> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
-
-    return this.http.post<Vocab>(this.endpoint, request, { headers });
+    return this.http.post<Passage>(this.endpoint, request, { headers });
   }
 
 }

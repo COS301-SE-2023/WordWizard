@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { word } from './word.interface';
+import { Store } from '@ngxs/store';
+import { SetPassage } from '@word-wizard/app/reading/data-access';
 
 @Component({
   selector: 'reading',
@@ -13,6 +15,14 @@ export class ReadingPage {
   Level = 'Journeyman';
   Percentage = "0%";
 
+  readingPageData = {
+    bgImage : 'assets/img/CastleBackground.png',
+    word : '',
+    imageSrc : '',
+    level : 'Journeyman',
+    progressPercentage : '0%',
+  }
+
   // textFromMicrophone!: string;
   currentWord = 0;
 
@@ -20,7 +30,7 @@ export class ReadingPage {
 
   practice!: word[];
 
-  constructor() {
+  constructor(private store: Store) {
     // Set the image source based on the word
     this.imageSrc = `assets/img/${this.word}.png`;
 
@@ -31,6 +41,10 @@ export class ReadingPage {
       { word: 'Wizard', correct: null },
     ]
 
+  }
+
+  ngOnInit() {
+    this.store.dispatch(new SetPassage());
   }
 
   getWordColor(w: word) {
