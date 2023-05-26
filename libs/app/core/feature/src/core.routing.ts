@@ -15,6 +15,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('@word-wizard/app/library/feature').then((m) => m.LibraryModule),
   },
+  {
+    path: 'signup',
+    loadChildren: () =>
+      import('@word-wizard/app/auth/feature').then((m) => m.SignupModule),
+  },
 ];
 
 @NgModule({
