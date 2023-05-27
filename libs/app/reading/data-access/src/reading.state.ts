@@ -95,7 +95,7 @@ export class ReadingState {
 
   @Action(MakeAttempt)
   async MakeAttempt(ctx: StateContext<ReadingStateModel>, {payload}:MakeAttempt) {
-       ctx.setState(
+    ctx.setState(
       produce((draft: ReadingStateModel) => {
         const passage = draft.Passage.model.Content.passage;
         const Word = draft.Passage.model.Word;
@@ -104,22 +104,35 @@ export class ReadingState {
       
         const currentWord = passage[current];
         attemptsRemaining--;
-      
-        if (currentWord.word.toLowerCase() === payload.newAttempt.toLowerCase()) {
-          currentWord.correct = true;
-          Word.current++;
-          Word.attemptsRemaining = 5;
-          passage[current].correct = true;
-        } else if (attemptsRemaining <= 0) {
-          currentWord.correct = false;
-          Word.current++;
-          Word.attemptsRemaining = 5;
-        } else {
-          Word.attemptsRemaining = Word.attemptsRemaining - 1;
-        }
+        if(draft.Passage.model.Content.done){
+          if(attemptsRemaining > 0){
+            const foundIndex = passage.findIndex((word) => word.word.toLowerCase() === payload.newAttempt.toLowerCase());
+            if(foundIndex !== -1)
+              passage[foundIndex].correct = true;
+            Word.attemptsRemaining = Word.attemptsRemaining - 1;
+          } else{
+            console.log("No attempts left");
+            //Get new passage or move onto next level
+          }
+        } else{
+          if (currentWord.word.toLowerCase() === payload.newAttempt.toLowerCase()) {
+            currentWord.correct = true;
+            Word.current++;
+            Word.attemptsRemaining = 5;
+            passage[current].correct = true;
+          } else if (attemptsRemaining <= 0) {
+            currentWord.correct = false;
+            Word.current++;
+            Word.attemptsRemaining = 5;
+          } else {
+            Word.attemptsRemaining = Word.attemptsRemaining - 1;
+          }
 
-        if(Word.current === passage.length){
-          draft.Passage.model.Content.done = true;
+          if(Word.current === passage.length){
+            Word.attemptsRemaining = 5*passage.length;
+            console.log(Word.attemptsRemaining)
+            draft.Passage.model.Content.done = true;
+          }
         }
       })
     )
