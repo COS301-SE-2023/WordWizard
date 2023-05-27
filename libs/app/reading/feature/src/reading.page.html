@@ -8,16 +8,21 @@
   <div class="container">
     <div class="header-container">
       <div>
-        <p *ngIf="done">
-          <span *ngFor="let word of practice?.passage; let last = last">
-            <span [ngStyle]="{ 'color': getWordColor(word) }">{{ word?.word }}</span>{{ !last ? ' ' : '' }}
-          </span>
-        </p>
-        <p *ngIf="!done">
-          <span [ngStyle]="{ 'color': getWordColor(practice.passage[currentWord]) }">{{ practice.passage[currentWord]?.word }}</span>
-          <div class="content-container">
-            <img [src]="practice.passage[currentWord]?.imageURL" alt="Magic Image">
-          </div>
+          <ng-container *ngIf="!practice.done; else doneTemplate">
+            <p>
+              <span [ngStyle]="{ 'color': getWordColor(practice.passage[currentWord]) }">{{ practice.passage[currentWord]?.word }}</span>
+            </p>
+            <div class="content-container">
+              <img [src]="practice.passage[currentWord]?.imageURL" alt="Magic Image"/>
+            </div>
+          </ng-container>
+          <ng-template #doneTemplate>
+            <p>
+              <span *ngFor="let word of practice?.passage; let last = last">
+                <span [ngStyle]="{ 'color': getWordColor(word) }">{{ word?.word }}</span>{{ !last ? ' ' : '' }}
+              </span>
+            </p>
+          </ng-template>
       </div>
 
     </div>
@@ -27,7 +32,13 @@
   </div>
   <div class="button-container">
     <div class="button-group">
-      <ww-speaker *ngIf="!done" [speakPhrase]="practice.passage[currentWord]?.word"></ww-speaker>
+      <ng-container *ngIf="!practice.done; else finishedTemplate">
+        <ww-speaker [speakPhrase]="practice.passage[currentWord]?.word"></ww-speaker>
+      </ng-container>
+      <ng-template #finishedTemplate>
+        <ww-speaker [speakPhrase]="sentence"></ww-speaker>
+      </ng-template>
+      
       <!-- <ww-speaker *ngIf="done" [speakPhrase]="practice?.passage"></ww-speaker> -->
     </div>
     <div class="button-group">
