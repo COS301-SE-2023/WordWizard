@@ -1,5 +1,11 @@
 import { Component } from '@angular/core';
 import { List } from './list.interface';
+import { 
+  SetVocab,
+  SetPractice,
+  LibraryState,
+ } from '@word-wizard/app/library/data-access';
+ import { Select, Store } from '@ngxs/store';
 @Component({
   selector: 'library',
   templateUrl: './library.page.html',

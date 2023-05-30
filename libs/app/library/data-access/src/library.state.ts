@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
-import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
+import { Action, Selector, State, StateContext } from '@ngxs/store';
+import { Word } from './interfaces/library.interfaces';
+import { SetPractice, SetVocab } from './library.actions';
+import { LibraryService } from './library.service';
 
 export interface LibraryStateModel {
   Passage: {
     model:{
-      Content: {
-        passage: string[];
-        focusWordsIndex: number[];
-        done: boolean;
+      Practice:{
+        words: Word[]
       },
-      Word: {
-        current:number;
-        attemptsRemaining: number;
+      Vocab:{
+        words: Word[]
       }
     };
   }
@@ -22,14 +22,11 @@ export interface LibraryStateModel {
   defaults: {
     Passage: {
       model: {
-        Content:{
-          passage: [],
-          focusWordsIndex: [],
-          done: false
+        Practice: {
+          words: []
         },
-        Word: {
-          current: 0,
-          attemptsRemaining: 5,
+        Vocab: {
+          words: []
         }
       }
     }
@@ -39,7 +36,7 @@ export interface LibraryStateModel {
 @Injectable()
 export class LibraryState {
 
-//   constructor() {}
+  constructor(private readonly libraryService: LibraryService) {}
 
   // @Action(Example)
   // example(ctx: StateContext<ReadingStateModel>, action: Example) {
@@ -53,10 +50,25 @@ export class LibraryState {
   //   });
   // }
 
+  @Action(SetPractice)
+  setPractice(ctx: StateContext<LibraryStateModel>, action: SetPractice) {
+    console.log("Set practice action called");
+  }
+
+  @Action(SetVocab)
+  setVocab(ctx: StateContext<LibraryStateModel>, action: SetVocab) {
+    console.log("Set vocab action called");
+  }
+
 
   @Selector()
-  static getCurrent(state: LibraryStateModel) {
-    return state.Passage.model.Word.current;
+  static getPractice(state: LibraryStateModel) {
+    return state.Passage.model.Practice;
+  }
+
+  @Selector()
+  static getVocab(state: LibraryStateModel) {
+    return state.Passage.model.Vocab;
   }
 }
 
