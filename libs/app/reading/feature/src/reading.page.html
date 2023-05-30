@@ -7,7 +7,14 @@
   </div>
   <div class="container">
     <div class="header-container">
-      <p> {{ word }}</p>
+      <div>
+        <p>
+          <span *ngFor="let word of practice; let last = last">
+            <span [ngStyle]="{ 'color': getWordColor(word) }">{{ word.word }}</span>{{ !last ? ' ' : '' }}
+          </span>
+        </p>
+      </div>
+      
     </div>
     <div class="content-container">
       <img [src]="imageSrc" alt="Magic Image">
@@ -18,7 +25,7 @@
       <ww-speaker [speakPhrase]="word" ></ww-speaker>
     </div>
     <div class="button-group">
-      <ww-microphone></ww-microphone>
+      <ww-microphone (textChanged)="handleTextChange($event)"></ww-microphone>
     </div>
     <div class="button-group">
       <ww-info></ww-info>
