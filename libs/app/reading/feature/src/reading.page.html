@@ -10,10 +10,10 @@
       <div>
           <ng-container *ngIf="!practice.done; else doneTemplate">
             <p>
-              <span [ngStyle]="{ 'color': getWordColor(practice.passage[currentWord]) }">{{ practice.passage[currentWord]?.word }}</span>
+              <span [ngStyle]="{ 'color': getWordColor(practice.passage[practice.focusWordsIndex[currentWord]]) }">{{ practice.passage[practice.focusWordsIndex[currentWord]]?.word }}</span>
             </p>
             <div class="content-container">
-              <img [src]="practice.passage[currentWord]?.imageURL" alt="Magic Image"/>
+              <img [src]="practice.passage[practice.focusWordsIndex[currentWord]]?.imageURL" alt="Magic Image"/>
             </div>
           </ng-container>
           <ng-template #doneTemplate>

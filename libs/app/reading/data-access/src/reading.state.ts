@@ -22,7 +22,7 @@ export interface ReadingStateModel {
     model:{
       Content: {
         passage: Word[];
-        focusWords: number[];
+        focusWordsIndex: number[];
         done: boolean;
       },
       Word: {
@@ -36,13 +36,12 @@ export interface ReadingStateModel {
 
 @State<ReadingStateModel>({
   name: 'reading',
-
   defaults: {
     Passage: {
       model: {
         Content:{
           passage: [],
-          focusWords: [],
+          focusWordsIndex: [],
           done: false
         },
         Word: {
@@ -80,12 +79,11 @@ export class ReadingState {
     } as PassageRequest;
 
     const passage = await this.readingService.getPassage(rqst).toPromise();
-    console.log(passage);
     try{
       ctx.setState(
         produce((draft: ReadingStateModel) => {
             draft.Passage.model.Content.passage = passage.passage;
-            draft.Passage.model.Content.focusWords = passage.focusWordsIndex;
+            draft.Passage.model.Content.focusWordsIndex = passage.focusWordsIndex;
         })
       );
     } catch (err) {
@@ -98,11 +96,12 @@ export class ReadingState {
     ctx.setState(
       produce((draft: ReadingStateModel) => {
         const passage = draft.Passage.model.Content.passage;
+        const focus = draft.Passage.model.Content.focusWordsIndex;
         const Word = draft.Passage.model.Word;
         const current = Word.current;
         let attemptsRemaining = Word.attemptsRemaining;
       
-        const currentWord = passage[current];
+        const currentWord = passage[focus[current]];
         attemptsRemaining--;
         if(draft.Passage.model.Content.done){
           if(attemptsRemaining > 0){
@@ -128,9 +127,8 @@ export class ReadingState {
             Word.attemptsRemaining = Word.attemptsRemaining - 1;
           }
 
-          if(Word.current === passage.length){
+          if(Word.current === focus.length){
             Word.attemptsRemaining = 5*passage.length;
-            console.log(Word.attemptsRemaining)
             draft.Passage.model.Content.done = true;
           }
         }
