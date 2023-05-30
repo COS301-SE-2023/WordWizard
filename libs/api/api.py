@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from .vocab.api.vocab import router as vocab_router
 from fastapi.middleware.cors import CORSMiddleware
 from .reading.api.reading import router as reading_router
+from .library.api.library import router as library_router
 
 
 app = FastAPI()
@@ -19,4 +20,5 @@ app.add_middleware(
 
 app.include_router(vocab_router, prefix="/vocab", tags=["vocab"])
 app.include_router(reading_router, prefix="/reading", tags=["reading"])
+app.include_router(library_router, prefix="/library", tags=["library"])
 
