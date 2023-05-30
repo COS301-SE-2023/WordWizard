@@ -33,12 +33,14 @@
     "@ionic/angular-toolkit": "^9.0.0",
     "@ngxs/store": "^3.8.1",
     "immer": "^10.0.2",
+    "angularx-social-login": "^4.1.0",
     "ionicons": "^7.1.0",
     "rxjs": "~6.6.7",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"
   },
   "devDependencies": {
+    "@abacritt/angularx-social-login": "^2.1.0",
     "@angular-devkit/build-angular": "~16.0.0",
     "@angular-devkit/core": "~16.0.0",
     "@angular-devkit/schematics": "~16.0.0",
