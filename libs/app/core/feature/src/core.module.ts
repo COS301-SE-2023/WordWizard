@@ -6,6 +6,8 @@ import { CoreShell } from './core.shell';
 import { RouteReuseStrategy } from '@angular/router';
 import { SharedUiModule } from '@word-wizard/app/shared-ui';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+// eslint-disable-next-line @nx/enforce-module-boundaries
+import { SharedAuthModule } from '@word-wizard/app/auth/feature';
 
 @NgModule({
   declarations: [CoreShell],
@@ -15,8 +17,15 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     CoreRouting,
     SharedUiModule,
     NoopAnimationsModule,
+    SharedAuthModule,
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [CoreShell],
 })
-export class CoreModule {}
+export class CoreModule {
+
+  constructor() {
+    console.log("CoreModule constructor");
+}
+
+}
