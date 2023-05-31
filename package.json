@@ -33,6 +33,8 @@
     "@ionic/angular-toolkit": "^9.0.0",
     "@ngxs/store": "^3.8.1",
     "angularx-social-login": "^4.1.0",
+    "dotenv": "^16.0.3",
+    "immer": "^10.0.2",
     "ionicons": "^7.1.0",
     "rxjs": "~6.6.7",
     "tslib": "^2.3.0",
