@@ -34,7 +34,10 @@
       "@word-wizard/app/stage/data-access": [
         "libs/app/stage/data-access/src/index.ts"
       ],
-      "@word-wizard/app/stage/feature": ["libs/app/stage/feature/src/index.ts"]
+      "@word-wizard/app/stage/feature": ["libs/app/stage/feature/src/index.ts"],
+      "@word-wizard/app/stage/shared-ui": [
+        "libs/app/stage/shared-ui/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "dist", "**/*.spec.ts"]
