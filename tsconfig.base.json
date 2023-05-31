@@ -31,6 +31,9 @@
         "libs/app/reading/shared-ui/src/index.ts"
       ],
       "@word-wizard/app/shared-ui": ["libs/app/shared-ui/src/index.ts"],
+      "@word-wizard/app/stage/data-access": [
+        "libs/app/stage/data-access/src/index.ts"
+      ],
       "@word-wizard/app/stage/feature": ["libs/app/stage/feature/src/index.ts"]
     }
   },
