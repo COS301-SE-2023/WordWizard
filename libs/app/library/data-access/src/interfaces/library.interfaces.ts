@@ -1,6 +1,7 @@
 export interface Word {
     word: string;
-    defenition: string;
+    defenition?: string;
+    image?: string;
 }
 
 export interface WordList{
