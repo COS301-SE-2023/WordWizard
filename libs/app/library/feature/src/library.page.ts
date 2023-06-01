@@ -4,6 +4,7 @@ import {
   SetVocab,
   SetPractice,
   LibraryState,
+  WordList,
  } from '@word-wizard/app/library/data-access';
  import { Select, Store } from '@ngxs/store';
 @Component({
@@ -16,7 +17,7 @@ export class LibraryPage {
   hasVocab = true;
   hasPractice = true;
 
-  dictionary:List[] = [
+  dictionary:WordList[] = [
     {
       word:"Apple",
       definition:" usually round, red or yellow, edible fruit of a small tree", //definition of apple
@@ -95,7 +96,8 @@ export class LibraryPage {
     }
   ]
 
-  practice:List[] = [
+  practice:WordList = {
+    words:[
     {
       word:"Tiger",
       definition:"a very large solitary cat with a yellow-brown coat striped with black, native to the forests of Asia but becoming increasingly rare",
@@ -124,7 +126,7 @@ export class LibraryPage {
       word:"Zebra",
       definition:"an African wild horse with black-and-white stripes and an erect mane",
     }
-  ]
+  ]}
 
   constructor(
     private store: Store
@@ -137,6 +139,19 @@ export class LibraryPage {
 
   ngAfterViewInit() {
     this.store.dispatch(new SetPractice());
+    console.log('Practice list set');
+
+    this.store.dispatch(new SetVocab());
+    console.log('Vocab list set');
+
+    this.store.select(LibraryState.practice).subscribe((practice) => {
+      if (practice.words.length > 0)
+      {
+        this.hasPractice = true;
+        this.practice = practice;
+      }
+    }
+    );
 
   }
 

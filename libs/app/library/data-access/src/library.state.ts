@@ -62,12 +62,12 @@ export class LibraryState {
 
 
   @Selector()
-  static getPractice(state: LibraryStateModel) {
+  static practice(state: LibraryStateModel) {
     return state.Passage.model.Practice;
   }
 
   @Selector()
-  static getVocab(state: LibraryStateModel) {
+  static vocab(state: LibraryStateModel) {
     return state.Passage.model.Vocab;
   }
 }
