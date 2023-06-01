@@ -126,9 +126,18 @@ export class LibraryPage {
     }
   ]
 
+  constructor(
+    private store: Store
+  ) { }
+
   onClick() {
     console.log('click');
     localStorage.setItem('test', 'test');
+  }
+
+  ngAfterViewInit() {
+    this.store.dispatch(new SetPractice());
+
   }
 
 }
