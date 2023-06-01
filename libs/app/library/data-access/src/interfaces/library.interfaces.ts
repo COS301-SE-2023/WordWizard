@@ -1,6 +1,6 @@
 export interface Word {
     word: string;
-    defenition?: string;
+    definition?: string;
     image?: string;
 }
 
