@@ -3,10 +3,10 @@ import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
 import { Word } from './interfaces/library.interfaces';
 import { SetPractice, SetVocab } from './library.actions';
 import { LibraryService } from './library.service';
-// import produce from 'immer';
+import produce from 'immer';
 
 export interface LibraryStateModel {
-  Passage: {
+  Library: {
     model:{
       Practice:{
         words: Word[]
@@ -19,9 +19,9 @@ export interface LibraryStateModel {
 }
 
 @State<LibraryStateModel>({
-  name: 'reading',
+  name: 'library',
   defaults: {
-    Passage: {
+    Library: {
       model: {
         Practice: {
           words: []
@@ -90,12 +90,17 @@ export class LibraryState {
       }
     ]}
 
-    // // Set the practice list in the state
-    // return ctx.setState(
-    //   produce((draft) => {
-    //     draft.practice = list;
-    //   })
-    // );
+    // Set the practice list in the state
+    try {
+
+      return ctx.setState(
+        produce((draft: LibraryStateModel) => {
+          draft.Library.model.Practice = list;
+        })
+      );
+    } catch (err) {
+      console.log(err);
+    }
     
   }
 

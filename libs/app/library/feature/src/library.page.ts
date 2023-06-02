@@ -17,7 +17,8 @@ export class LibraryPage {
   hasVocab = true;
   hasPractice = true;
 
-  dictionary:WordList[] = [
+  dictionary:WordList = {
+    words: [
     {
       word:"Apple",
       definition:" usually round, red or yellow, edible fruit of a small tree", //definition of apple
@@ -94,7 +95,7 @@ export class LibraryPage {
       word:"Strawberry",
       definition:"a sweet soft red fruit with a seed-studded surface",
     }
-  ]
+  ]}
 
   practice:WordList = {
     words:[
