@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from ..util.library_models import PracticeRqst
+from ..util.library_models import PracticeRqst, VocabRqst, Word, WordList
 
 
 router = APIRouter()
@@ -8,6 +8,18 @@ router = APIRouter()
 def get_practice():
     return {'reading': 'reading'}
 
-@router.post('/passage')
+@router.post('/practice')
 def create_reading(reading: PracticeRqst):
-    return {'reading': reading}
+    wordList = WordList(words=[
+        Word(word='practice', defenition='defenition'), 
+        Word(word='word', defenition='defenition')
+    ])
+    return wordList
+
+@router.post('/vocab')
+def create_vocab(vocab: VocabRqst):
+    wordList = WordList(words=[
+        Word(word='vocab', defenition='defenition'), 
+        Word(word='word', defenition='defenition')
+    ])
+    return wordList
