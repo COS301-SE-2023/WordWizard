@@ -1,5 +1,3 @@
-<!-- <p>library works!</p> -->
-
 <ion-header>
     <ion-toolbar>
       <ion-segment value="vocab" #toolbarSegment>
@@ -14,7 +12,6 @@
       </ion-segment>
     </ion-toolbar>
 </ion-header>
-<!-- <button (click)="onClick()">Click me!</button> -->
 <ion-content class="ion-padding">
 
     <!-- VOCABULARY LIST -->
@@ -29,9 +26,9 @@
                   <!-- <ion-col *ngFor="let spell of spells" size="4">
                       <spell [spell]="spell"></spell>
                     </ion-col> -->
-                <ion-col class="ion-text-center ion-align-items-center" *ngFor="let j of dictionary; let i = index" size="6">
+                <ion-col class="ion-text-center ion-align-items-center" *ngFor="let j of vocab?.words; let i = index" size="6">
                     <!-- <ww-scroll-closed word="apple"></ww-scroll-closed> -->
-                    <ww-scroll [vocab]="j" definition="Large round fruit" [number]="i"></ww-scroll>
+                    <ww-scroll [vocab]="j" [number]="i"></ww-scroll>
                     <!-- <ion-img src="assets/img/item/scroll-closed-cropped.png"></ion-img> -->
 
                 </ion-col>
@@ -46,7 +43,7 @@
                 <!-- <ion-col *ngFor="let spell of spells" size="4">
                     <spell [spell]="spell"></spell>
                   </ion-col> -->
-              <ion-col *ngFor="let j of practice; let i = index" size="6">
+              <ion-col *ngFor="let j of practice.words; let i = index" size="6">
                   <ww-cauldron [vocab]="j" [number]="i"></ww-cauldron>
                   <!-- <ion-img src="assets/img/item/cauldron-cropped.png"></ion-img> -->
 

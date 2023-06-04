@@ -4,8 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { LibraryPage } from './library.page';
 import { LibraryRouting } from './library.routing';
+import { HttpClientModule } from '@angular/common/http';
 import { LibraryModule as LibraryUiModule }  from '@word-wizard/app/library/ui';
 import { RouterModule } from '@angular/router';
+import { NgxsModule } from '@ngxs/store';
+import { LibraryState, LibraryService } from '@word-wizard/app/library/data-access';
 
 
 @NgModule({
@@ -15,8 +18,11 @@ import { RouterModule } from '@angular/router';
     IonicModule,
     LibraryRouting,
     RouterModule,
-    LibraryUiModule
+    LibraryUiModule,
+    NgxsModule.forFeature([LibraryState]),
+    HttpClientModule
   ],
   declarations: [LibraryPage],
+  providers: [LibraryService]
 })
 export class LibraryModule { }
