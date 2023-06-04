@@ -37,7 +37,11 @@ def create_reading(reading: PracticeRqst):
 @router.post('/vocab')
 def create_vocab(vocab: VocabRqst):
 
+    # Access the collection
+    vocab_collection = db["Vocabulary"]  # Replace "user" with your actual collection name
 
+    # Get the relevant vocab list
+    result = vocab_collection.find_one({"child_id": vocab.userID})
 
     wordList = WordList(words=[
         Word(word='vocab', defenition='defenition'), 

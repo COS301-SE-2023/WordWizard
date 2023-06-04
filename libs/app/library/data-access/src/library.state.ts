@@ -71,7 +71,8 @@ export class LibraryState {
   @Action(SetVocab)
   async setVocab(ctx: StateContext<LibraryStateModel>) {
     const rqst: VocabRequest = {
-      userID: '',
+      // Tesing with real db id
+      userID: '64784f19bdfa8f92954b9d77',
     } as VocabRequest;
     const vocab = await this.libraryService.getVocab(rqst).toPromise();
     ctx.setState(
