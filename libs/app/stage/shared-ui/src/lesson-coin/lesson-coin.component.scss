@@ -1,3 +1,7 @@
+*{
+  margin: 0px;
+  padding: 0px;
+}
 #coin-mapping-container{
   height: 100vh;
   width: 100vw;
@@ -13,24 +17,34 @@
 }
 
 .coin{
-  width: 8rem;
-  height: 8rem;
+  width: fit-content;
+  height: fit-content;
   position: relative;
 }
 
 .coin-image-container{
   position:relative;
-  width: 100%;
-  height: 100%;
+  width: fit-content;
+  height: fit-content;
 }
 
 .coin-image-container>img{
-  width: 100%;
+  width: 8rem;
   height: auto;
 }
 
 .coin-connectors{
   position: absolute;
-  width: fit-content;
-  height: fit-content;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+.coin-connectors svg{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
 }

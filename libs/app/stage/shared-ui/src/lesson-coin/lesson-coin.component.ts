@@ -21,7 +21,7 @@ interface Line {
 })
 export class LessonCoinComponent{
 
-  @Input() coins: Array<Coin> = [{name: 'coin', filledStars: 0}, {name: 'coin', filledStars: 0}, {name: 'coin', filledStars: 0}, {name: 'coin', filledStars: 0}, {name: 'coin', filledStars: 0}];
+  @Input() coins: Array<Coin> = [{name: 'coin1', filledStars: 0}, {name: 'coin2', filledStars: 0}, {name: 'coin3', filledStars: 0}, {name: 'coin4', filledStars: 0}, {name: 'coin5', filledStars: 0}];
   lines: Array<Line> = [];
 
   constructor() {
@@ -30,18 +30,32 @@ export class LessonCoinComponent{
       coin.leftPosition = window.innerWidth - ((window.innerWidth/3)* (Math.floor(Math.random() * 3) + 1));
     });
 
+    console.log('com');
+
   }
 
   ngAfterViewInit() {
+    console.log('after')
+
+    let widthOffset = document.getElementById(this.coins[1].name)?.offsetWidth || 0;
+    let heightOffset = document.getElementById(this.coins[1].name)?.clientHeight || 0;
+    console.log(heightOffset)
+    widthOffset = widthOffset/2;
+    heightOffset = heightOffset/2;
+
+    console.log('width:',widthOffset,'height', heightOffset);
+
     this.coins.forEach((coin, index) => {
-      if(index < this.coins.length - 1)
-      this.lines.push({
-        x1: coin.leftPosition || 0,
-        y1: document.getElementById(coin.name)?.getBoundingClientRect().y || 0,
-        x2: this.coins[index+1].leftPosition || 0,
-        y2:document.getElementById(this.coins[index+1].name)?.getBoundingClientRect().y || 0,
-        filled: coin.filledStars>2
-      });
+      console.log(coin.leftPosition);
+      if(index < this.coins.length - 1){
+        this.lines.push({
+          x1: (coin.leftPosition || 0) + widthOffset,
+          y1: (document.getElementById(coin.name)?.getBoundingClientRect().y) || 0 + heightOffset,
+          x2: ((this.coins[index+1].leftPosition || 0) + widthOffset),
+          y2: (document.getElementById(this.coins[index+1].name)?.getBoundingClientRect().y) || 0 + heightOffset,
+          filled: coin.filledStars>2
+        });
+      }
     });
   }
 

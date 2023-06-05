@@ -1,6 +1,6 @@
 <div id="coin-mapping-container">
   <div class="coin-map">
-    <div class="coin" *ngFor="let coin of coins; index as i" id="{{coin.name}}" [ngStyle]="{'left':coin.leftPosition + 'px'}">
+    <div class="coin" *ngFor="let coin of coins" id="{{coin.name}}" [ngStyle]="{'left':coin.leftPosition + 'px'}">
 
     <div class="stars-container">
 
@@ -14,13 +14,15 @@
       <p></p>
     </div>
 
-    <div class="coin-connectors">
-      <svg>
-        <line style="stroke:rgb(0,0,0);stroke-width:2" x1="{{lines[i].x1}}" x2="{{lines[i].x2}}" y1="{{lines[i].y1}}" y2="{{lines[i].y2}}"/>
-      </svg>
-    </div>
+  </div>
+
+  <div class="coin-connectors" *ngFor="let line of lines">
+    <svg>
+      <line [attr.x1]=line.x1 [attr.x2]=line.x2 [attr.y1]=line.y1 [attr.y2]=line.y2 style="stroke:rgb(0,0,0);stroke-width:2"/>
+    </svg>
   </div>
 
   </div>
 
 </div>
+ks
