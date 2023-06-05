@@ -19,12 +19,12 @@
 
   <div class="coin-connectors" *ngFor="let line of lines">
     <svg>
-      <line stroke-dashoffset="10000" stroke-dasharray="10,10" [ngClass]="{ 'animate-line': animateLine }" *ngIf="line.filled" [attr.x1]=line.x1 [attr.x2]=line.x2 [attr.y1]=line.y1 [attr.y2]=line.y2 style="stroke:rgb(221,163,29);stroke-width:4"/>
-      <line stroke-dashoffset="10000" stroke-dasharray="10,10" [ngClass]="{ 'animate-line': animateLine }" *ngIf="!line.filled" [attr.x1]=line.x1 [attr.x2]=line.x2 [attr.y1]=line.y1 [attr.y2]=line.y2 style="stroke:rgb(0,0,0);stroke-width:4"/>
+      <line [style.stroke-dasharray]="line.length" [style.stroke-dashoffset]="line.length" class="line" *ngIf="line.filled" [attr.x1]=line.x1 [attr.x2]=line.x2 [attr.y1]=line.y1 [attr.y2]=line.y2 style="stroke:rgb(221,163,29);stroke-width:4"/>
+      <line [style.stroke-dasharray]="line.length" [style.stroke-dashoffset]="line.length" class="line" *ngIf="!line.filled" [attr.x1]=line.x1 [attr.x2]=line.x2 [attr.y1]=line.y1 [attr.y2]=line.y2 style="stroke:rgb(0,0,0);stroke-width:4"/>
     </svg>
   </div>
 
   </div>
 
 </div>
-ks
+

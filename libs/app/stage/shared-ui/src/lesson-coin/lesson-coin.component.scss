@@ -55,9 +55,10 @@
   left: 0;
   width: 100vw;
   height: 100vh;
+  z-index: 0;
 }
 
-.animate-line {
+.line-animation{
   animation: lineFillAnimation 1s linear forwards;
 }
 
@@ -67,3 +68,6 @@
   }
 }
 
+button{
+  z-index: 1000;
+}
