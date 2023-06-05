@@ -1,6 +1,7 @@
 *{
   margin: 0px;
   padding: 0px;
+  font-family: sans-serif;
 }
 #coin-mapping-container{
   height: 100vh;
@@ -14,12 +15,14 @@
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  z-index: 10;
 }
 
 .coin{
   width: fit-content;
   height: fit-content;
   position: relative;
+  z-index: 10;
 }
 
 .coin-image-container{
@@ -33,12 +36,17 @@
   height: auto;
 }
 
+.level-name-container{
+  font-size:1.3rem;
+}
+
 .coin-connectors{
   position: absolute;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
+  z-index: 1;
 }
 
 .coin-connectors svg{
@@ -48,3 +56,14 @@
   width: 100vw;
   height: 100vh;
 }
+
+.animate-line {
+  animation: lineFillAnimation 1s linear forwards;
+}
+
+@keyframes lineFillAnimation {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+

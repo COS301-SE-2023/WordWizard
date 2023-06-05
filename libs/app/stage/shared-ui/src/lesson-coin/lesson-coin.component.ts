@@ -21,8 +21,9 @@ interface Line {
 })
 export class LessonCoinComponent{
 
-  @Input() coins: Array<Coin> = [{name: 'coin1', filledStars: 0}, {name: 'coin2', filledStars: 0}, {name: 'coin3', filledStars: 0}, {name: 'coin4', filledStars: 0}, {name: 'coin5', filledStars: 0}];
+  @Input() coins: Array<Coin> = [{name: 'coin1', filledStars: 2}, {name: 'coin2', filledStars: 3}, {name: 'coin3', filledStars: 3}, {name: 'coin4', filledStars: 0}, {name: 'coin5', filledStars: 0}];
   lines: Array<Line> = [];
+  animateLine= false;
 
   constructor() {
 
@@ -53,10 +54,16 @@ export class LessonCoinComponent{
           y1: (document.getElementById(coin.name)?.getBoundingClientRect().y) || 0 + heightOffset,
           x2: ((this.coins[index+1].leftPosition || 0) + widthOffset),
           y2: (document.getElementById(this.coins[index+1].name)?.getBoundingClientRect().y) || 0 + heightOffset,
-          filled: coin.filledStars>2
+          filled: this.coins[index+1].filledStars>=2
         });
       }
     });
+
+    this.startAnimation();
+  }
+
+  startAnimation() {
+    this.animateLine = true;
   }
 
 }
