@@ -1,5 +1,9 @@
 from fastapi import APIRouter
 from ..util.vocab_models import Vocab
+import os
+from pymongo import MongoClient
+from dotenv import load_dotenv
+load_dotenv()
 
 
 router = APIRouter()
