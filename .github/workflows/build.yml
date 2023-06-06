@@ -31,9 +31,6 @@ jobs:
       - name: Run python tests
         run: npm run test:api
 
-      - name: Run api
-        run: npm run start:api
-
       - name: Install dependencies
         run: npm install --legacy-peer-deps
 
