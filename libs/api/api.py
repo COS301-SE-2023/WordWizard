@@ -1,8 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from vocab.api.vocab import router as vocab_router
-from reading.api.reading import router as reading_router
-from library.api.library import router as library_router
+from .vocab.api.vocab import router as vocab_router
+from .reading.api.reading import router as reading_router
+from .library.api.library import router as library_router
 
 app = FastAPI()
 origins = ["*"]
