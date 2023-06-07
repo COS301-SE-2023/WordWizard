@@ -34,14 +34,20 @@ def get_vocab(vocab: VocabRqst):
         word_list.add_word(doc, '') # Call api or something to generate img url
     return word_list
 
-@router.post('/vocab/add')
+@router.post('/practice/remove')
 def add_vocab(rqst: UpdateVocab):
     practice_collection = db["Practice"]
-    result = practice_collection.find_one({"child_id": rqst.userID, "words": rqst.word})
-    print(result)
-    if result is None:
-        return None
-    word_list = WordList()
-    for doc in result["words"]:
-        print(doc) # Call api or something to generate img url
-    return word_list
+    document = practice_collection.find_one({"child_id": rqst.userID, "words": rqst.word})
+    if document:
+        vocab_collection = db["Vocabulary"]
+        practice_collection.update_one(
+            {"child_id": rqst.userID},
+            {"$pull": {"words": rqst.word}}
+        )
+        vocab_collection.update_one(
+            {"child_id": rqst.userID}, 
+            {"$addToSet": {"words": rqst.word}},
+            upsert=True
+        )
+        return {"status":"success"}
+    return {"status":"failed"}
