@@ -58,7 +58,7 @@ export class LibraryState {
   @Action(SetPractice)
   async setPractice(ctx: StateContext<LibraryStateModel>) {
     const rqst: PracticeRequest = {
-      userID: '', // Grab id from where? Auth state or what?
+      userID: '64784f19bdfa8f92954b9d78', // Grab id from where? Auth state or what?
     } as PracticeRequest;
     const practice = await this.libraryService.getPractice(rqst).toPromise();
     ctx.setState(
@@ -72,7 +72,7 @@ export class LibraryState {
   async setVocab(ctx: StateContext<LibraryStateModel>) {
     const rqst: VocabRequest = {
       // Tesing with real db id
-      userID: '64784f19bdfa8f92954b9d77',
+      userID: '64784f19bdfa8f92954b9d78',
     } as VocabRequest;
     const vocab = await this.libraryService.getVocab(rqst).toPromise();
     ctx.setState(

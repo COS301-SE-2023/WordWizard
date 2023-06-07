@@ -17,7 +17,6 @@ export class LibraryService {
       'Content-Type': 'application/json'
     });
     return this.http.post<WordList>(`${this.endpoint}/library/vocab`, request, { headers });
-    console.log(this.endpoint);
   }
 
   getPractice(request: PracticeRequest): Observable<WordList>{

@@ -9,18 +9,14 @@
         <ion-grid>
           <ion-row>
             <ion-col size="11" class="ion-text-center ion-align-items-center">
-              <ion-label class="definition">{{vocab.definition}}</ion-label> <br>
+              <img src="{{vocab.img}}"> <br>
             </ion-col>
           </ion-row>
           <ion-row >
             <ion-col size="12" class="ion-text-center ion-align-items-center">
-              <ww-speaker [speakPhrase]="vocab.word" [definition]="vocab.definition"></ww-speaker>
+              <ww-speaker [speakPhrase]="vocab.word"></ww-speaker>
             </ion-col>
           </ion-row>
-          <!-- <ion-row>
-            <ion-col size="12" class="ion-text-center ion-align-items-center">
-            </ion-col>
-          </ion-row> -->
         </ion-grid>
       </div>
     </ng-template>
