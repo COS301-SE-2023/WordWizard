@@ -62,7 +62,6 @@ export class LibraryState {
       word: payload.word
     } as UpdateRequest;
     const rsps = await this.libraryService.UpdatePractice(rqst).toPromise();
-    console.error(rsps);
     if(rsps.status === 'success'){
       ctx.setState(
         produce((draft: LibraryStateModel) => {
@@ -73,7 +72,6 @@ export class LibraryState {
         })
       );
     }
-    
   }
 
   @Action(SetPractice)
@@ -92,7 +90,6 @@ export class LibraryState {
   @Action(SetVocab)
   async setVocab(ctx: StateContext<LibraryStateModel>) {
     const rqst: VocabRequest = {
-      // Tesing with real db id
       userID: '64784f19bdfa8f92954b9d78',
     } as VocabRequest;
     const vocab = await this.libraryService.getVocab(rqst).toPromise();

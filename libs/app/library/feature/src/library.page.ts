@@ -39,4 +39,8 @@ export class LibraryPage {
       }
     });
   }
+
+  handleTextChange(text: string) {
+    this.store.dispatch(new UpdatePractice({userID:"64784f19bdfa8f92954b9d78", word: text}));
+  }
 }

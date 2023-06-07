@@ -11,31 +11,26 @@ export class MicrophoneComponent {
   @Output() textChanged: EventEmitter<string> = new EventEmitter<string>();
 
   constructor(public voiceService: VoiceRecognitionService) {
-    // this.voiceService.init();
     this.voiceService.wordChanged.subscribe((word: string) => {
-      this.textChanged.emit(word); // Log each word said
+      this.textChanged.emit(word);
     });
   }
   
   startRecording(): void {
-    console.log('Start recording');
     this.isRecording = true;
-
   }
 
   recording(){
     if(this.isRecording){
-      this.voiceService.stop()
+      this.voiceService.stop();
       this.isRecording = false;
     }else{
-      this.voiceService.start()
+      this.voiceService.start();
       this.isRecording = true;
     }
-
   }
 
   stopRecording(): void {
-    console.log('Stop recording');
     this.isRecording = false;
   }
 

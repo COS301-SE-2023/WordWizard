@@ -32,56 +32,55 @@ def test_get_practice_valid():
         assert "word" in word
         assert "img" in word
 
-# def test_add_practice_valid():
-#     rqst = {"userID": "64784f19bdfa8f92954b9d78", "word": word}
-#     response = client.post("/library/practice/add", json=rqst)
-#     assert response.status_code == 200
-#     result = response.json()
-#     assert "status" in result
-#     assert result["status"] == "success"
-
-# def test_add_vocab_valid():
-#     rqst = {"userID": "64784f19bdfa8f92954b9d78", "word": word}
-#     response = client.post("/library/vocab/add", json=rqst)
-#     assert response.status_code == 200
-#     result = response.json()
-#     assert "status" in result
-#     assert result["status"] == "success"
-
-# def test_add_vocab_duplicate():
-#     rqst = {"userID": "64784f19bdfa8f92954b9d78", "word": word}
-#     response = client.post("/library/vocab/add", json=rqst)
-#     assert response.status_code == 200
-#     result = response.json()
-#     assert "status" in result
-#     assert result["status"] == "failed"
-
-# def test_add_practice_duplicate():
-#     rqst = {"userID": "64784f19bdfa8f92954b9d78", "word": word}
-#     response = client.post("/library/practice/add", json=rqst)
-#     assert response.status_code == 200
-#     result = response.json()
-#     assert "status" in result
-#     assert result["status"] == "failed"
-
-def test_get_vocab_no_words_available():
-    rqst = {"userID": "64784f19bdfa8f92954b9d78"}
-    response = client.post("/library/vocab", json=rqst)
+def test_add_practice_valid():
+    rqst = {"userID": "64784f19bdfa8f92954b9d78", "word": word}
+    response = client.post("/library/practice/add", json=rqst)
     assert response.status_code == 200
     result = response.json()
-    assert "words" in result
-    assert len(result["words"]) == 0
+    assert "status" in result
     assert result["status"] == "success"
 
-
-def test_get_practice_no_words_available():
-    rqst = {"userID": "64784f19bdfa8f92954b9d78"}
-    response = client.post("/library/practice", json=rqst)
+def test_add_vocab_valid():
+    rqst = {"userID": "64784f19bdfa8f92954b9d78", "word": word}
+    response = client.post("/library/vocab/add", json=rqst)
     assert response.status_code == 200
     result = response.json()
-    assert "words" in result
-    assert len(result["words"]) == 0
+    assert "status" in result
     assert result["status"] == "success"
+
+def test_add_vocab_duplicate():
+    rqst = {"userID": "64784f19bdfa8f92954b9d78", "word": word}
+    response = client.post("/library/vocab/add", json=rqst)
+    assert response.status_code == 200
+    result = response.json()
+    assert "status" in result
+    assert result["status"] == "failed"
+
+def test_add_practice_duplicate():
+    rqst = {"userID": "64784f19bdfa8f92954b9d78", "word": word}
+    response = client.post("/library/practice/add", json=rqst)
+    assert response.status_code == 200
+    result = response.json()
+    assert "status" in result
+    assert result["status"] == "failed"
+
+# def test_get_vocab_no_words_available():
+#     rqst = {"userID": "64784f19bdfa8f92954b9d78"}
+#     response = client.post("/library/vocab", json=rqst)
+#     assert response.status_code == 200
+#     result = response.json()
+#     assert "words" in result
+#     assert len(result["words"]) == 0
+#     assert result["status"] == "success"
+
+# def test_get_practice_no_words_available():
+#     rqst = {"userID": "64784f19bdfa8f92954b9d78"}
+#     response = client.post("/library/practice", json=rqst)
+#     assert response.status_code == 200
+#     result = response.json()
+#     assert "words" in result
+#     assert len(result["words"]) == 0
+#     assert result["status"] == "success"
 
 
 # def test_get_vocab_server_error():
