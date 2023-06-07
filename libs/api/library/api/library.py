@@ -50,16 +50,13 @@ def get_practice():
 @router.post('/practice')
 def create_reading(practice: PracticeRqst):
     Practice_collection = db["Practice"]
-    print(practice.userID)
     result = Practice_collection.find_one({"child_id": practice.userID})
-    # if result is None:
-    #     print("No practice list found")
-    #     return None
-    for document in result:
-        print("LOOP")
-        print(document)
-
-    return {'reading': 'reading'}
+    if result is None:
+        return None
+    word_list = WordList()
+    for doc in result["words"]:
+        word_list.add_word(doc, '') # Call api or something to generate img url
+    return word_list
 
 
 @router.post('/vocab')
