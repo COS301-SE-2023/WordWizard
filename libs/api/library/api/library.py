@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from ..util.library_models import PracticeRqst, VocabRqst, Word, WordList, UpdateVocab
+from ..util.library_models import PracticeRqst, VocabRqst, Word, WordList, UpdateRqst
 import os
 from dotenv import load_dotenv
 from pymongo import MongoClient
@@ -12,9 +12,9 @@ db = client["WordWizardDB"]
 
 
 @router.post('/practice')
-def create_reading(practice: PracticeRqst):
+def create_reading(rqst: PracticeRqst):
     practice_collection = db["Practice"]
-    result = practice_collection.find_one({"child_id": practice.userID})
+    result = practice_collection.find_one({"child_id": rqst.userID})
     if result is None:
         return None
     word_list = WordList()
@@ -24,9 +24,9 @@ def create_reading(practice: PracticeRqst):
 
 
 @router.post('/vocab')
-def get_vocab(vocab: VocabRqst):
+def get_vocab(rqst: VocabRqst):
     vocab_collection = db["Vocabulary"]
-    result = vocab_collection.find_one({"child_id": vocab.userID})
+    result = vocab_collection.find_one({"child_id": rqst.userID})
     if result is None:
         return None
     word_list = WordList()
@@ -35,7 +35,7 @@ def get_vocab(vocab: VocabRqst):
     return word_list
 
 @router.post('/practice/remove')
-def add_vocab(rqst: UpdateVocab):
+def remove_practice(rqst: UpdateRqst):
     practice_collection = db["Practice"]
     document = practice_collection.find_one({"child_id": rqst.userID, "words": rqst.word})
     if document:
@@ -50,4 +50,30 @@ def add_vocab(rqst: UpdateVocab):
             upsert=True
         )
         return {"status":"success"}
-    return {"status":"failed"}
+    return {"status":"failed"}   
+
+@router.post('/practice/add') 
+def add_practice(rqst: UpdateRqst):
+    practice_collection = db["Practice"]
+    document = practice_collection.find_one({"child_id": rqst.userID})
+    if document and rqst.word not in document["words"]:
+        practice_collection.update_one(
+            {"child_id": rqst.userID},
+            {"$addToSet": {"words": rqst.word}},
+            upsert=True
+        )
+        return {"status": "success"}
+    return {"status": "failed"}
+
+@router.post('/vocab/add') 
+def add_practice(rqst: UpdateRqst):
+    vocab_collection = db["Vocabulary"]
+    document = vocab_collection.find_one({"child_id": rqst.userID})
+    if document and rqst.word not in document["words"]:
+        vocab_collection.update_one(
+            {"child_id": rqst.userID},
+            {"$addToSet": {"words": rqst.word}},
+            upsert=True
+        )
+        return {"status": "success"}
+    return {"status": "failed"}
