@@ -62,6 +62,19 @@
   animation: lineFillAnimation 1s linear forwards;
 }
 
+.stars-container{
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: fit-content;
+}
+
+.stars-container>img{
+  width: 2rem;
+  height: auto;
+}
+
 @keyframes lineFillAnimation {
   to {
     stroke-dashoffset: 0;

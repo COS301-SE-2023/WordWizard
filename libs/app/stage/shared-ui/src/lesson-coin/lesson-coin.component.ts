@@ -32,28 +32,25 @@ export class LessonCoinComponent{
       coin.leftPosition = window.innerWidth - ((window.innerWidth/3)* (Math.floor(Math.random() * 3) + 1));
     });
 
-    console.log('com');
 
   }
 
   ngAfterViewInit() {
-    console.log('after')
 
     let widthOffset = document.getElementById(this.coins[1].name)?.offsetWidth || 0;
-    let heightOffset = document.getElementById(this.coins[1].name)?.clientHeight || 0;
-    console.log(heightOffset)
+    let heightOffset = document.getElementById(this.coins[1].name)?.offsetHeight || 0;
+    console.log(widthOffset, heightOffset);
     widthOffset = widthOffset/2;
     heightOffset = heightOffset/2;
 
-    console.log('width:',widthOffset,'height', heightOffset);
 
     this.coins.forEach((coin, index) => {
       console.log(coin.leftPosition);
       if(index < this.coins.length - 1){
         const x1= (coin.leftPosition || 0) + widthOffset;
-        const y1= (document.getElementById(coin.name)?.getBoundingClientRect().y) || 0 + heightOffset;
+        const y1= (document.getElementById(coin.name)?.getBoundingClientRect().y) || 0 - heightOffset;
         const x2= ((this.coins[index+1].leftPosition || 0) + widthOffset);
-        const y2= (document.getElementById(this.coins[index+1].name)?.getBoundingClientRect().y) || 0 + heightOffset;
+        const y2= (document.getElementById(this.coins[index+1].name)?.getBoundingClientRect().y) || 0 - heightOffset;
         const filled= this.coins[index+1].filledStars>=2;
         this.lines.push({
           x1 : x1,
