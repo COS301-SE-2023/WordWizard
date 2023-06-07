@@ -14,6 +14,10 @@ class PracticeRqst(BaseModel):
 class VocabRqst(BaseModel):
     userID: str
 
+class UpdateVocab(BaseModel):
+    userID: str
+    word: str
+
 class Word:
     def __init__(self, word: str, img: str):
         self.word = word
