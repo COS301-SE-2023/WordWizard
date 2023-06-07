@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
 import { Word } from './interfaces/library.interfaces';
-import { SetPractice, SetVocab } from './library.actions';
-import { VocabRequest, PracticeRequest } from './requests/library.requests';
+import { SetPractice, SetVocab, UpdatePractice } from './library.actions';
+import { VocabRequest, PracticeRequest, UpdateRequest } from './requests/library.requests';
 import { LibraryService } from './library.service';
 import { produce } from 'immer';
 
@@ -54,6 +54,27 @@ export class LibraryState {
   //     console.log(data);
   //   });
   // }
+
+  @Action(UpdatePractice)
+  async UpdatePractice(ctx: StateContext<LibraryStateModel>, {payload}:UpdatePractice) {
+    const rqst: UpdateRequest = {
+      userID: payload.userID,
+      word: payload.word
+    } as UpdateRequest;
+    const rsps = await this.libraryService.UpdatePractice(rqst).toPromise();
+    console.error(rsps);
+    if(rsps.status === 'success'){
+      ctx.setState(
+        produce((draft: LibraryStateModel) => {
+          const practiceList = draft.Library.model.Practice;
+          const wordIndex = practiceList.words.findIndex((word) => word.word === payload.word);
+          if (wordIndex !== -1) 
+            practiceList.words.splice(wordIndex, 1);
+        })
+      );
+    }
+    
+  }
 
   @Action(SetPractice)
   async setPractice(ctx: StateContext<LibraryStateModel>) {

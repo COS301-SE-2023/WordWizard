@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { 
   SetVocab,
   SetPractice,
+  UpdatePractice,
   LibraryState,
   WordList,
 } from '@word-wizard/app/library/data-access';
