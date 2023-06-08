@@ -6,6 +6,11 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
+    path: 'dashboard',
+    loadChildren: () =>
+      import('@word-wizard/app/dashboard/feature').then((m) => m.DashboardModule),
+  },
+  {
     path: 'reading',
     loadChildren: () =>
       import('@word-wizard/app/reading/feature').then((m) => m.ReadingModule),

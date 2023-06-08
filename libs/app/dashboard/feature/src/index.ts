@@ -1,1 +1,2 @@
-export * from './lib/app-dashboard-feature';
+export * from './dashboard.module';
+export * from './dashboard.page';
