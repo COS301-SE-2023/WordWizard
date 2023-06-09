@@ -1,4 +1,30 @@
 .dashboard {
     --background: url(../../../../../apps/word-wizard/src/assets/img/bg/library-background.jpg) 0 0/100% 100% no-repeat;
+    height: 100%;
 }
+
+ion-button {
+    --background: none;
+    width: fit-content;
+    height: fit-content;
+}
+
+ion-img {
+    width: 100px;
+    height: 100px;
+}
+
+.pfp {
+    background-color: cornflowerblue;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+}
+
+ion-avatar {
+    width: 100px;
+    height: 100px;
+}
+
+
 
