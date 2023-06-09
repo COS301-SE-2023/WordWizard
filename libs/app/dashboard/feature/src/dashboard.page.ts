@@ -13,5 +13,6 @@ import { Observable } from 'rxjs';
   styleUrls: ['./dashboard.page.scss']
 })
 export class DashboardPage {
-
+  stage: number = 1;
+  pfp : string = 'assets/img/item/cauldron-cropped.png';
 }

@@ -1,6 +1,22 @@
 .dashboard {
-    --background: url(../../../../../apps/word-wizard/src/assets/img/bg/library-background.jpg) 0 0/100% 100% no-repeat;
+    background: url(../../../../../apps/word-wizard/src/assets/img/bg/library-background.jpg) 0 0/100% 100% no-repeat;
     height: 100%;
+}
+
+.links {
+    --background: transparent;
+}
+
+.settings {
+    --background: transparent;
+    width: 75px;
+    height: fit-content;
+    margin-right: 0px !important;
+}
+
+.settings ion-img {
+    width: 75px;
+    height: 75px;
 }
 
 ion-button {
@@ -15,15 +31,15 @@ ion-img {
 }
 
 .pfp {
-    background-color: cornflowerblue;
+    background-color: rgb(62, 110, 200);
     border-radius: 50%;
-    border: 2px solid black;
+    border: 5px solid rgb(63, 63, 63);
     box-shadow: 0 0 10px black;
     width: 150px;
     height: 150px;
 
     margin: auto;
-    margin-top: 10%;
+    margin-top: 0;
 }
 
 ion-avatar {
@@ -35,7 +51,6 @@ ion-avatar {
 .spellbook ion-img {
     width: 100px;
     height: 100px;
-    margin: auto;
 }
 
 .trophy ion-img {
@@ -52,15 +67,41 @@ ion-avatar {
 
 .spellbook {
     margin: auto;
+    text-decoration: none;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
 }
 
 .trophy {
     margin: auto;
+    text-decoration: none;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
 }
 
 .map {
     margin: auto;
+    text-decoration: none;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
 }
+
+ion-col {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
 
 
 
