@@ -17,13 +17,49 @@ ion-img {
 .pfp {
     background-color: cornflowerblue;
     border-radius: 50%;
-    width: 100px;
-    height: 100px;
+    border: 2px solid black;
+    box-shadow: 0 0 10px black;
+    width: 150px;
+    height: 150px;
+
+    margin: auto;
+    margin-top: 10%;
 }
 
 ion-avatar {
+    width: 150px;
+    height: 150px;
+    margin: auto;
+}
+
+.spellbook ion-img {
     width: 100px;
     height: 100px;
+    margin: auto;
+}
+
+.trophy ion-img {
+    width: 100px;
+    height: 100px;
+    margin: auto;
+}
+
+.map ion-img {
+    width: 100px;
+    height: 100px;
+    margin: auto;
+}
+
+.spellbook {
+    margin: auto;
+}
+
+.trophy {
+    margin: auto;
+}
+
+.map {
+    margin: auto;
 }
 
 
