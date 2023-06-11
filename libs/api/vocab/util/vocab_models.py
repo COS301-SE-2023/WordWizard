@@ -1,5 +1,5 @@
 from pydantic import BaseModel
 
-class Vocab(BaseModel):
+class Voc(BaseModel):
     word: str
     definition: str

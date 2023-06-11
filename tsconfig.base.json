@@ -17,6 +17,9 @@
     "paths": {
       "@word-wizard/app/auth/feature": ["libs/app/auth/feature/src/index.ts"],
       "@word-wizard/app/core/feature": ["libs/app/core/feature/src/index.ts"],
+      "@word-wizard/app/library/data-access": [
+        "libs/app/library/data-access/src/index.ts"
+      ],
       "@word-wizard/app/library/feature": [
         "libs/app/library/feature/src/index.ts"
       ],
