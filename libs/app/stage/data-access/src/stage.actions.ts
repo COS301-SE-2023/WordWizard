@@ -1,2 +1,3 @@
-export class Example {
+export class SetStage{
+  static readonly type = '[Stage] Set Stage';
 }
