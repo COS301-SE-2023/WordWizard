@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, SimpleChanges } from '@angular/core';
 import { Coin } from '@word-wizard/app/stage/data-access';
 
 interface Line {
@@ -18,16 +18,27 @@ interface Line {
 })
 export class LessonCoinComponent{
 
-  @Input() coins: Array<Coin> = [{name: 'coin1', filledStars: 2}, {name: 'coin2', filledStars: 3}, {name: 'coin3', filledStars: 3}, {name: 'coin4', filledStars: 0}, {name: 'coin5', filledStars: 0}];
+  @Input() coins: Array<Coin> = [];
   lines: Array<Line> = [];
 
-  constructor() {
+  ngOnInit() {
+
 
     this.coins.forEach((coin) => {
       coin.leftPosition = window.innerWidth - ((window.innerWidth/3)* (Math.floor(Math.random() * 3) + 1));
     });
 
 
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if(changes['coins']){
+      this.lines.forEach((line, index) => {
+        // const tempCoins = changes['coins'].currentValue as Coin[];
+        line.filled = (changes['coins'].currentValue[index+1].filledStars) >= 2;
+      });
+    }
+    console.log('change'+ this.lines);
   }
 
   ngAfterViewInit() {
@@ -46,7 +57,7 @@ export class LessonCoinComponent{
         const y1= (document.getElementById(coin.name)?.getBoundingClientRect().y) || 0 - heightOffset;
         const x2= ((this.coins[index+1].leftPosition || 0) + widthOffset);
         const y2= (document.getElementById(this.coins[index+1].name)?.getBoundingClientRect().y) || 0 - heightOffset;
-        const filled= this.coins[index+1].filledStars>=2;
+        const filled= (this.coins[index+1].filledStars)>=2;
         this.lines.push({
           x1 : x1,
           y1 : y1,

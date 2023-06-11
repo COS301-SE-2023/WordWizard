@@ -16,7 +16,7 @@ export class StagePage {
   name= '';
   background='';
 
-  coins : Coin[] = [{name:'', filledStars:0}, {name:'', filledStars:0}, {name:'', filledStars:0}, {name:'', filledStars:0}, {name:'', filledStars:0}];
+  coins : Coin[] = [{name:''} as Coin, {name:''}as Coin, {name:''}as Coin, {name:''}as Coin, {name:''}as Coin];
 
   constructor(private store: Store) {}
 
@@ -28,10 +28,14 @@ export class StagePage {
       this.name = data.name;
       this.background = data.background;
       this.coins.forEach((coin:Coin, index:number) => {
+        coin.filledStars = data.levels[index] ?? 0;
         coin.name = 'level ' + (index+1);
-        coin.filledStars = data.levels[index];
         });
+
+        console.table(this.coins);
     });
+
+
 
   }
 }
