@@ -7,3 +7,9 @@ export interface stage{
 export interface stageRequest{
   userID: string;
 }
+
+export interface Coin {
+  name: string;
+  filledStars: number;
+  leftPosition?: number;
+}

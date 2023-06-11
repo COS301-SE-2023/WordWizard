@@ -2,8 +2,7 @@ import { Component } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { SetStage, StageState } from '@word-wizard/app/stage/data-access';
 import { Observable } from 'rxjs';
-import { stage } from '@word-wizard/app/stage/data-access';
-
+import { stage, Coin} from '@word-wizard/app/stage/data-access';
 @Component({
   selector: 'stage',
   templateUrl: './stage.page.html',
@@ -15,8 +14,9 @@ export class StagePage {
   @Select(StageState.getStage) stage$!: Observable<stage>;
 
   name= '';
-  levels= [0,0,0,0,0];
   background='';
+
+  coins : Coin[] = [{name:'', filledStars:0}, {name:'', filledStars:0}, {name:'', filledStars:0}, {name:'', filledStars:0}, {name:'', filledStars:0}];
 
   constructor(private store: Store) {}
 
@@ -25,11 +25,12 @@ export class StagePage {
     this.store.dispatch(new SetStage());
 
     this.stage$.subscribe((data) => {
-      console.log('asd',data);
-
       this.name = data.name;
-      this.levels = data.levels;
       this.background = data.background;
+      this.coins.forEach((coin:Coin, index:number) => {
+        coin.name = 'level ' + (index+1);
+        coin.filledStars = data.levels[index];
+        });
     });
 
   }

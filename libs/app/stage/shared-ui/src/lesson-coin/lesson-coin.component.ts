@@ -1,10 +1,5 @@
 import { Component, Input } from '@angular/core';
-
-interface Coin {
-  name: string;
-  filledStars: number;
-  leftPosition?: number;
-}
+import { Coin } from '@word-wizard/app/stage/data-access';
 
 interface Line {
   x1: number;
