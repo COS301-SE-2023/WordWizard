@@ -2,7 +2,7 @@ import random
 import string
 from fastapi.testclient import TestClient
 from ...api import app
-# import mongomock
+import mongomock
 
 client = TestClient(app)
 libClient = TestClient(app)
@@ -46,13 +46,13 @@ def test_get_practice_valid():
 #     assert "status" in result
 #     assert result["status"] == "success"
 
-# def test_add_vocab_valid():
-#     rqst = {"userID": "64784f19bdfa8f92954b9d78", "word": word2}
-#     response = client.post("/library/vocab/add", json=rqst)
-#     assert response.status_code == 200
-#     result = response.json()
-#     assert "status" in result
-#     assert result["status"] == "success"
+def test_add_vocab_valid():
+    rqst = {"userID": "64784f19bdfa8f92954b9d78", "word": word2}
+    response = client.post("/library/vocab/add", json=rqst)
+    assert response.status_code == 200
+    result = response.json()
+    assert "status" in result
+    assert result["status"] == "success"
 
 # def test_get_vocab_no_words_available():
 #     rqst = {"userID": "64784f19bdfa8f92954b9d78"}
@@ -76,7 +76,7 @@ def test_get_practice_valid():
 
 def test_get_vocab_api():
     # Call function to assign the mock client 
-    # assign_mock_client()
+    assign_mock_client()
 
     rqst = {"userID": "64784f19bdfa8f92954b9d78"}
     response = libClient.post("/library/vocab", json=rqst)
@@ -89,5 +89,5 @@ def test_get_vocab_api():
         assert "img" in word
 
     # Reassign the real client
-    # assign_actual_client()
+    assign_actual_client()
 
