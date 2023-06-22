@@ -2,24 +2,25 @@
   "name": "app-reading-feature",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/app/reading/feature/src",
+  "prefix": "word-wizard",
+  "tags": ["reading"],
   "projectType": "library",
   "targets": {
     "build": {
-      "executor": "@nx/js:tsc",
-      "outputs": ["{options.outputPath}"],
+      "executor": "@nx/angular:ng-packagr-lite",
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
-        "outputPath": "dist/libs/app/reading/feature",
-        "main": "libs/app/reading/feature/src/index.ts",
-        "tsConfig": "libs/app/reading/feature/tsconfig.lib.json",
-        "assets": ["libs/app/reading/feature/*.md"]
-      }
-    },
-    "lint": {
-      "executor": "@nx/linter:eslint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["libs/app/reading/feature/**/*.ts"]
-      }
+        "project": "libs/app/reading/feature/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/app/reading/feature/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/app/reading/feature/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
     },
     "test": {
       "executor": "@nx/jest:jest",
@@ -34,7 +35,16 @@
           "codeCoverage": true
         }
       }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/app/reading/feature/**/*.ts",
+          "libs/app/reading/feature/**/*.html"
+        ]
+      }
     }
-  },
-  "tags": []
+  }
 }
