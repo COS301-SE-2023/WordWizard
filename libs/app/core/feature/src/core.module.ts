@@ -4,11 +4,11 @@ import { CoreRouting } from './core.routing';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { CoreShell } from './core.shell';
 import { RouteReuseStrategy } from '@angular/router';
-import { SharedUiModule } from '@word-wizard/app/shared-ui';
+// import { SharedUiModule } from '@word-wizard/app/shared-ui';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxsModule } from '@ngxs/store';
 // eslint-disable-next-line @nx/enforce-module-boundaries
-import { SharedAuthModule } from '@word-wizard/app/auth/feature';
+// import { SharedAuthModule } from '@word-wizard/app/auth/feature';
 
 @NgModule({
   declarations: [CoreShell],
@@ -16,12 +16,12 @@ import { SharedAuthModule } from '@word-wizard/app/auth/feature';
     BrowserModule,
     IonicModule.forRoot(),
     CoreRouting,
-    SharedUiModule,
+    // SharedUiModule,
     NoopAnimationsModule,
     NgxsModule.forRoot([
 
     ]),
-    SharedAuthModule,
+    // SharedAuthModule,
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [CoreShell],
