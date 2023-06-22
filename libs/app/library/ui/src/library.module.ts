@@ -12,7 +12,6 @@ import { CauldronModule } from './cauldron';
     ScrollModule,
     CauldronModule ,
   ],
-  declarations: [],
   exports: [ 
     ScrollModule,
     CauldronModule ,
