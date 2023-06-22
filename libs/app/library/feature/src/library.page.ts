@@ -9,7 +9,7 @@ import {
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 @Component({
-  selector: 'library',
+  selector: 'ww-library',
   templateUrl: './library.page.html',
   styleUrls: ['./library.page.scss']
 })
