@@ -2,24 +2,25 @@
   "name": "app-library-data-access",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/app/library/data-access/src",
+  "prefix": "word-wizard",
+  "tags": ["state"],
   "projectType": "library",
   "targets": {
     "build": {
-      "executor": "@nx/js:tsc",
-      "outputs": ["{options.outputPath}"],
+      "executor": "@nx/angular:ng-packagr-lite",
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
-        "outputPath": "dist/libs/app/library/data-access",
-        "main": "libs/app/library/data-access/src/index.ts",
-        "tsConfig": "libs/app/library/data-access/tsconfig.lib.json",
-        "assets": ["libs/app/library/data-access/*.md"]
-      }
-    },
-    "lint": {
-      "executor": "@nx/linter:eslint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["libs/app/library/data-access/**/*.ts"]
-      }
+        "project": "libs/app/library/data-access/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/app/library/data-access/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/app/library/data-access/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
     },
     "test": {
       "executor": "@nx/jest:jest",
@@ -34,7 +35,16 @@
           "codeCoverage": true
         }
       }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/app/library/data-access/**/*.ts",
+          "libs/app/library/data-access/**/*.html"
+        ]
+      }
     }
-  },
-  "tags": []
+  }
 }
