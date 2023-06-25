@@ -30,7 +30,7 @@ describe('ReadingPage', () => {
     const mockRecognition = {
       start: jest.fn(),
       stop: jest.fn(),
-      onresult: null,
+      addEventListener: jest.fn(), // Add this line to mock addEventListener
     };
     (window as any).webkitSpeechRecognition = jest.fn().mockImplementation(() => mockRecognition);
 
