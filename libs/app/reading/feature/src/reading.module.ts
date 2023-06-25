@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
 import { NgxsModule } from '@ngxs/store';
 import { ReadingState, ReadingService } from '@word-wizard/app/reading/data-access';
 import { ReadingSharedUiModule } from '@word-wizard/app/reading/shared-ui';
+import { SharedUiModule } from '@word-wizard/app/shared-ui';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { ReadingSharedUiModule } from '@word-wizard/app/reading/shared-ui';
     RouterModule,
     NgxsModule.forFeature([ReadingState]),
     HttpClientModule,
-    ReadingSharedUiModule
+    ReadingSharedUiModule,
+    SharedUiModule
   ],
   declarations: [ReadingPage],
   providers: [ReadingService]
