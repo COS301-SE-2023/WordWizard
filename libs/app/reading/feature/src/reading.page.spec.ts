@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 import { ReadingPage } from './reading.page';
 import { NgxsModule, Store } from '@ngxs/store';
-import { ReadingState, ReadingService } from '@word-wizard/app/reading/data-access';
+import { ReadingState, ReadingService, Word } from '@word-wizard/app/reading/data-access';
 import { ReadingSharedUiModule } from '@word-wizard/app/reading/shared-ui';
 import { SharedUiModule } from '@word-wizard/app/shared-ui';
 import { HttpClientModule } from '@angular/common/http';
@@ -32,11 +32,10 @@ describe('ReadingPage', () => {
       providers: [ReadingService],
     }).compileComponents();
 
-    // Mock webkitSpeechRecognition
     const mockRecognition = {
       start: jest.fn(),
       stop: jest.fn(),
-      addEventListener: jest.fn(), // Add this line to mock addEventListener
+      addEventListener: jest.fn(),
     };
     (window as any).webkitSpeechRecognition = jest.fn().mockImplementation(() => mockRecognition);
 
@@ -45,9 +44,7 @@ describe('ReadingPage', () => {
     fixture.detectChanges();
 
     store = TestBed.inject(Store);
-    jest.spyOn(store, 'dispatch'); // Spy on the dispatch method of the store
-
-    // Mock the readingState$ observable
+    jest.spyOn(store, 'dispatch'); 
     const mockReadingState$ = of({
       Passage: {
         model: {
@@ -57,13 +54,13 @@ describe('ReadingPage', () => {
             done: false,
           },
           Word: {
-            current: 0, // Assuming the current word index is 1
+            current: 0, 
             attemptsRemaining: 3,
           },
         },
       },
     } as ReadingStateModel);
-    jest.spyOn(store, 'select').mockReturnValue(mockReadingState$); // Use mockReturnValue instead of and.returnValue
+    jest.spyOn(store, 'select').mockReturnValue(mockReadingState$); 
 
     fixture.detectChanges();
   }));
@@ -72,10 +69,8 @@ describe('ReadingPage', () => {
     expect(component).toBeTruthy();
   });
 
-  // integration testing:
-
   it('should set currentWord value from getCurrent$ observable', () => {
-    expect(component.currentWord).toBe(0); // Assuming the current word index is 1
+    expect(component.currentWord).toBe(0); 
   });
 
   it('should update progressPercentage when readingState changes', () => {
@@ -96,9 +91,39 @@ describe('ReadingPage', () => {
         },
       },
     };
-    const mockReadingState$ = of(newReadingStateModel); // Update the mock readingState$
-    jest.spyOn(store, 'select').mockReturnValue(mockReadingState$); // Spy on the select method and return the updated mock readingState$
-    fixture.detectChanges(); // Trigger change detection
+    const mockReadingState$ = of(newReadingStateModel); 
+    jest.spyOn(store, 'select').mockReturnValue(mockReadingState$); 
+    fixture.detectChanges();
     expect(component.progressPercentage).toBe('33%');
+  });
+
+  it('should return "green" when word.correct is true', () => {
+    const word: Word = { word: 'Test', imageURL: null, correct: true };
+    const color = component.getWordColor(word);
+    expect(color).toEqual('green');
+  });
+
+  it('should return "red" when word.correct is false', () => {
+    const word: Word = { word: 'Test', imageURL: null, correct: false };
+    const color = component.getWordColor(word);
+    expect(color).toEqual('red');
+  });
+
+  it('should return "white" when word is null', () => {
+    const word: Word | null = null;
+    const color = component.getWordColor(word);
+    expect(color).toEqual('white');
+  });
+
+  it('should return "white" when word is undefined', () => {
+    const word: Word | undefined = undefined;
+    const color = component.getWordColor(word);
+    expect(color).toEqual('white');
+  });
+
+  it('should return "white" when word.correct is undefined', () => {
+    const word: Word = { word: 'Test', imageURL: null, correct: null };
+    const color = component.getWordColor(word);
+    expect(color).toEqual('white');
   });
 });
