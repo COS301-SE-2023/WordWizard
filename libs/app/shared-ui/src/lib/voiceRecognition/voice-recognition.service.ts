@@ -11,7 +11,6 @@ export class VoiceRecognitionService {
   isStoppedSpeechRecog = false;
   public text = '';
   tempWords!: string;
-
   wordChanged: EventEmitter<string> = new EventEmitter<string>();
 
   constructor(){
@@ -28,15 +27,12 @@ export class VoiceRecognitionService {
     })
   }
 
-
   start(){
     this.isStoppedSpeechRecog = false;
     this.recognition.start();
-    // console.log("Active");
     this.recognition.addEventListener('end', (condition: any) => {
       if (this.isStoppedSpeechRecog) {
         this.recognition.stop();
-        // console.log("stop");
       } else {
         this.recognition.start();
       }
@@ -47,13 +43,11 @@ export class VoiceRecognitionService {
     this.isStoppedSpeechRecog = true;
     this.wordConcat();
     this.recognition.stop();
-    // console.log("Stoped");
   }
 
   wordConcat() {
     this.text += this.tempWords + ' ';
     this.tempWords = '';
   }
-
 }
 /* eslint:enable */

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import {
-  ReadingStateModel,
+  // ReadingStateModel,
   SetPassage,
   MakeAttempt,
   Content,
@@ -11,7 +11,7 @@ import { ReadingState } from '@word-wizard/app/reading/data-access';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'reading',
+  selector: 'ww-reading',
   templateUrl: './reading.page.html',
   styleUrls: ['./reading.page.scss']
 })

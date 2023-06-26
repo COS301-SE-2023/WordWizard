@@ -2,13 +2,14 @@ import { Component } from '@angular/core';
 import { 
   SetVocab,
   SetPractice,
+  UpdatePractice,
   LibraryState,
   WordList,
 } from '@word-wizard/app/library/data-access';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 @Component({
-  selector: 'library',
+  selector: 'ww-library',
   templateUrl: './library.page.html',
   styleUrls: ['./library.page.scss']
 })
@@ -23,6 +24,7 @@ export class LibraryPage {
   @Select(LibraryState.vocab) vocab$!: Observable<WordList>;
 
   constructor(private store: Store){
+    // throw new Error("I fucking hate testing");
     this.store.dispatch(new SetPractice());
     this.store.dispatch(new SetVocab());
     this.practice$.subscribe((data) => {;
@@ -37,5 +39,14 @@ export class LibraryPage {
         this.vocab = data;
       }
     });
+  }
+
+  test(t:boolean){
+    // throw new Error("I fucking hate testing");
+    return t;
+  }
+
+  handleTextChange(text: string) {
+    this.store.dispatch(new UpdatePractice({userID:"64784f19bdfa8f92954b9d78", word: text}));
   }
 }
