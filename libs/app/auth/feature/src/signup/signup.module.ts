@@ -4,14 +4,14 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { Signup } from './signup.page';
+import { SignupPage } from './signup.page';
 import { AuthRouting } from '../Auth.routing';
 
 
 @NgModule({
   imports: [ AuthRouting, CommonModule, FormsModule, IonicModule,],
-  declarations: [Signup ],
-  exports: [Signup ],
+  declarations: [SignupPage],
+  exports: [SignupPage],
   
 })
 export class SignupModule {}

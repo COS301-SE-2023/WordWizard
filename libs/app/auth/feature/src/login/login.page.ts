@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-login',
+  selector: 'ww-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-export class Login  {
+export class LoginPage  {
 
 }

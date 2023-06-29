@@ -4,14 +4,14 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { Login } from './login.page';
+import { LoginPage } from './login.page';
 
 
 
 @NgModule({
   imports: [ CommonModule, FormsModule, IonicModule,],
-  declarations: [ Login ],
-  exports: [ Login ]
+  declarations: [LoginPage],
+  exports: [LoginPage]
 })
 export class LoginModule {
 

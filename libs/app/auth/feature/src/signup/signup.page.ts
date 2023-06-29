@@ -8,11 +8,11 @@ import {  GoogleSigninButtonModule } from '@abacritt/angularx-social-login';
 
 
 @Component({
-  selector: 'app-signup',
+  selector: 'ww-signup',
   templateUrl: './signup.page.html',
   styleUrls: ['./signup.page.scss'],
 })
-export class Signup {
+export class SignupPage {
 
   // signInWithGoogle(): void {
   //   this.authService.signIn(GoogleLoginProvider.PROVIDER_ID)
