@@ -60,6 +60,9 @@ export class ReadingPage {
   }
 
   handleTextChange(text: string) {
+    if(text.toLocaleLowerCase() == this.practice.passage[this.practice.focusWordsIndex[this.currentWord]].word.toLocaleLowerCase()) {
+      console.log("trigger confetti");
+    }
     this.store.dispatch(new MakeAttempt({newAttempt: text}));
 
   }
