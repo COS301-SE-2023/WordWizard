@@ -9,6 +9,7 @@ import {
 } from '@word-wizard/app/reading/data-access';
 import { ReadingState } from '@word-wizard/app/reading/data-access';
 import { Observable } from 'rxjs';
+import * as confetti from 'canvas-confetti';
 
 @Component({
   selector: 'ww-reading',
@@ -32,7 +33,6 @@ export class ReadingPage {
   textFromMicrophone: string[] = [];
   practice!: Content;
   currentWord = 0;
-  done = false;
   sentence = "";
 
   constructor(private store: Store) {
@@ -60,10 +60,57 @@ export class ReadingPage {
   }
 
   handleTextChange(text: string) {
-    if(text.toLocaleLowerCase() == this.practice.passage[this.practice.focusWordsIndex[this.currentWord]].word.toLocaleLowerCase()) {
-      console.log("trigger confetti");
+    if(!this.practice.done) {
+      if(text.toLocaleLowerCase() == this.practice.passage[this.practice.focusWordsIndex[this.currentWord]].word.toLocaleLowerCase()) {
+        this.triggerConfetti();
+        setTimeout(() => this.store.dispatch(new MakeAttempt({newAttempt: text})), 1000);
+      }
+      else 
+        this.store.dispatch(new MakeAttempt({newAttempt: text}));
     }
-    this.store.dispatch(new MakeAttempt({newAttempt: text}));
+    else
+      this.store.dispatch(new MakeAttempt({newAttempt: text}));
 
+  }
+
+  triggerConfetti() {
+    setTimeout(() => 
+      this.shoot()
+      ,0
+    );
+    setTimeout(() => 
+      this.shoot()
+      ,50
+    );
+    setTimeout(() => 
+      this.shoot()
+      ,100
+    );
+  }
+
+  shoot() : void{
+    const config = {
+      spread: 360,
+      ticks: 50,
+      gravity: 0,
+      decay: 0.94,
+      startVelocity: 20,
+      shapes: ['star'],
+      colors: ['FFE400', 'FFBD00', 'E89400', 'FFCA6C', 'FDFFB8']
+    };
+  
+    confetti.default({
+      ...config,
+      particleCount: 40,
+      scalar: 1.2,
+      shapes: ['star']
+    });
+  
+    confetti.default({
+      ...config,
+      particleCount: 10,
+      scalar: 0.75,
+      shapes: ['circle']
+    });
   }
 }
