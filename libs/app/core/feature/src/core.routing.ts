@@ -20,6 +20,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('@word-wizard/app/auth/feature').then((m) => m.SignupModule),
   },
+  {
+    path: 'manage-children',
+    loadChildren: () =>
+      import('@word-wizard/app/manage-children/feature').then((m) => m.ManageChildrenModule),
+  }
 ];
 
 @NgModule({
