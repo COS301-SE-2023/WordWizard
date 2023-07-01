@@ -36,7 +36,7 @@ export class MicrophoneComponent {
       this.stream.getAudioTracks().forEach((track) => track.stop());
       this.voiceService.convertSpeechToText(blob).subscribe(
         (res:any) => {
-          console.log(res);
+          this.textChanged.emit(res.text);
         }
       );
     });
