@@ -1,1 +1,59 @@
-<p>add-child works!</p>
+<ion-content scrollY="false">
+    <div class="overlay-container" [class.hidden-overlay]="!visible">
+        <div class="overlay">
+            <div class="selected-outer">
+                <div class="selected-image">
+                    <ion-avatar class="custom-avatar">
+                        <ion-img 
+                        src="https://img.freepik.com/free-vector/cute-shiba-inu-dog-wearing-dragon-costume-cartoon-vector-icon-illustration-animal-holiday-isolated_138676-7105.jpg?size=626&ext=jpg&ga=GA1.2.772846284.1688291417&semt=ais" />
+                    </ion-avatar>
+                </div>
+            </div>
+            <ion-grid>
+                <ion-row>
+                    <ion-col size="12" class="close">
+                        <ion-icon src="assets/svg/close-outline.svg" class="close-icon" (click)="controlModal()"></ion-icon>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col size="12" class="modal-header">
+                        <p class="pick-text">Pick an Image</p>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col size="4" *ngFor="let i of pictures">
+                        <!-- <div class="test-image"></div> -->
+                        <ion-item style="--border-width:0">
+                            <label htmlFor="img">                            
+                                <ion-avatar slot="start" class="check-img">
+                                <ion-img 
+                                src="https://img.freepik.com/free-vector/cute-shiba-inu-dog-wearing-dragon-costume-cartoon-vector-icon-illustration-animal-holiday-isolated_138676-7105.jpg?size=626&ext=jpg&ga=GA1.2.772846284.1688291417&semt=ais" />        
+                                </ion-avatar>
+                            </label>
+                            <ion-checkbox slot="end" id="img" style="display:none"></ion-checkbox>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </div>
+    </div>
+
+
+    <form [formGroup]="form">
+        <div class="container">
+            <ion-button class="add-picture" (click)="controlModal()">
+                <ion-icon [ngStyle]="{'font-size': '128px'}" slot="icon-only" src="assets/svg/add-outline.svg"></ion-icon>
+            </ion-button>
+        </div>
+        <div>
+            <label htmlFor="name">Name:</label><br>
+            <input type="text" id="name" formControlName="name" class="test"/>
+        </div>
+        <div>
+            <label htmlFor="age">Age:</label><br>
+            <input type="number" id="age" formControlName="age" class="test1"/>
+        </div>
+        <ion-button [disabled]="!form.valid" type="submit" class="submit-btn">Next</ion-button>
+    </form>
+    
+</ion-content>

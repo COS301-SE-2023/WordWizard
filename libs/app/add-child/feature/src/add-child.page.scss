@@ -1,0 +1,172 @@
+.submit-btn {
+    --background: #861486;
+    // --background-hover: #9ce0be;
+    // --background-activated: #861486;
+    // --background-focused: #861486;
+  
+    color: #FFF;
+    font-size: 1.5rem;
+    font-family: Inter;
+    font-style: normal;
+    // font-weight: 400;
+    line-height: normal;
+    height:3rem;
+    width:7rem;
+  
+    --border-radius: 1.25rem;
+
+    margin-top: 6.5rem;
+    // --border-color: #000;
+    // --border-style: solid;
+    // --border-width: 1px;
+  
+    // --box-shadow: 0 2px 6px 0 rgb(0, 0, 0, 0.25);
+  
+    // --ripple-color: deeppink;
+  
+    // --padding-top: 10px;
+    // --padding-bottom: 10px;
+  }
+
+ion-content {
+    --background: #070527;
+}
+
+input {
+    border-radius: 10px;
+    border: 2px solid #070527;
+    background: rgba(248, 248, 248, 0.30);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+    height: 3rem;
+    width: 17rem;
+    margin-top:0.5rem;
+    margin-bottom: 1.3rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+label {
+    color: #FFF;
+    font-size: 24px;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.add-picture{
+    --border-radius: 50%;
+    --background: #861486;
+    --box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+    width: 10rem;
+    height: 10rem;
+}
+
+.container {
+    margin-top: 6.5rem;
+    margin-bottom: 4rem;
+    display: flex;
+    justify-content: center;
+}
+
+.overlay {
+    margin-top: 12.7rem;
+    width: 20rem;
+    background-color: #FFFFFF;
+    border-radius: 1em;
+    position: absolute;
+    z-index:1;
+    // border: 3px solid black;
+
+}
+
+.overlay-container {
+    display: flex;
+    justify-content: center;
+}
+
+.close {
+    display: flex;
+    justify-content: flex-end;
+    color:black;
+    font-size: 2.5rem;
+  }
+
+.selected-outer {
+    position: absolute;
+    top: -15%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6.2rem;
+    height: 6.2rem;
+    background-color: white;
+    border-radius: 50%;
+    // border: 8px solid black;
+}
+
+.hidden-overlay {
+    display: none;
+}
+
+.selected-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 6.2rem;
+}
+
+.custom-avatar {
+    --size: 5.5rem;
+    width: var(--size);
+    height: var(--size);
+}
+
+.check-img {
+    --size: 4.35rem;
+    width: var(--size);
+    height: var(--size);
+}
+
+ion-item {
+    // --background: #19422d;
+    --color: #fff;
+  
+    --border-color: #fff;
+    --border-style: dashed;
+    --border-width: 2px;
+  
+    --border-radius: 20px;
+  
+    --ripple-color: #fff;
+  
+    --detail-icon-color: white;
+    --detail-icon-opacity: 1;
+    --detail-icon-font-size: 20px;
+    width: 6.4rem;
+  }
+
+.pick-text {
+    color: #861486;
+    font-size: 1.5rem;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: center;
+}
+
+
+.test-image {
+    width: 83px;
+    height: 83px;
+    border-radius: 100px;
+    background-color: red;
+}
