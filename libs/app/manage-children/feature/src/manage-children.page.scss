@@ -1,5 +1,6 @@
 ion-content {
     --background: linear-gradient(to right, #5975CF, #070527);
+
   }
 
 ion-header {
@@ -9,9 +10,9 @@ ion-header {
 }
 
 .circle {
-  width: 80%;
+  width: 70%;
   height: 0;
-  padding-bottom:80%;
+  padding-bottom:70%;
   background-color: transparent;
   border: 3px solid white;
   border-radius: 50%;
@@ -21,18 +22,30 @@ ion-header {
   background-repeat: no-repeat;
   background-position: center;
   color: white;
-  font-size: 800%;
-}
 
-.plus {
-  // font-size: 300%;
+
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .custom-ion-item {
   --ion-item-background: transparent;
   display: flex;
 }
-// .custom-flex-content {
-//   display: flex;
-//   flex-wrap: wrap;
-// }
+
+.child-name {
+  font-size: 200%;
+  color: white;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.children-grid {
+  margin-top: 10%;; 
+}

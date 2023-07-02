@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'word-wizard-manage-children',
@@ -13,8 +13,11 @@ export class ManageChildrenPage {
     { name: "Charlie", image: "https://img.freepik.com/free-vector/cute-young-dragon-cartoon-vector-icon-illustration-animal-nature-icon-concept-isolated-premium-vector-flat-cartoon-style_138676-3544.jpg?size=626&ext=jpg&ga=GA1.2.772846284.1688291417&semt=ais" }
   ];
 
+  constructor(private router: Router) {}
+
   setChild(child: { name: string, image: string }) {
     console.log("Selected child:", child);
+    this.router.navigate(['library']); //chanfe to child statistics page
     // Add your logic here to handle the selection of a child
   }
 

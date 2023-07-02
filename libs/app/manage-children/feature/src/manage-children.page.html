@@ -22,14 +22,15 @@
 </ion-header>
 
 <ion-content>
-    <ion-grid>
+    <ion-grid class="children-grid">
         <ion-row>
           <ion-col *ngFor="let child of children" size="6">
             <button class="circle" [style.background-image]="'url(' + child.image + ')'" (click)="setChild(child)"></button>
+            <div class="child-name">{{child.name}}</div>
           </ion-col>
           <ion-col size="6">
             <button class="circle" (click)="addNewChild()">
-                <div class="plus">+</div>
+                <ion-icon name="add-outline"></ion-icon>
             </button>
             </ion-col>
         </ion-row>
