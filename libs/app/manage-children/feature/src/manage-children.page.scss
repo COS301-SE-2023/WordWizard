@@ -9,18 +9,28 @@ ion-header {
 }
 
 .circle {
-    width: 30%;
-    height: 0;
-    padding-bottom: 30%;
-    background-color: black;
-    border: 2px solid white;
-    border-radius: 50%;
+  width: 80%;
+  height: 0;
+  padding-bottom:80%;
+  background-color: black;
+  border: 3px solid white;
+  border-radius: 50%;
+  left: 5%;
 
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-  }
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
 
-  ion-list {
-    background-color: transparent;
-  }
+.plus {
+  // font-size: 300%;
+}
+
+.custom-ion-item {
+  --ion-item-background: transparent;
+  display: flex;
+}
+// .custom-flex-content {
+//   display: flex;
+//   flex-wrap: wrap;
+// }

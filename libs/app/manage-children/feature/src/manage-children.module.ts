@@ -8,4 +8,7 @@ import { ManageChildrenPage } from './manage-children.page';
   imports: [CommonModule, IonicModule,ManageChildrenRouting],
   declarations: [ManageChildrenPage],
 })
-export class ManageChildrenModule {}
+export class ManageChildrenModule {
+
+  children: string[] = ["apple", "banana", "cherry"];
+}

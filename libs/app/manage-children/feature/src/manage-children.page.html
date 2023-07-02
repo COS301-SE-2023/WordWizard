@@ -22,12 +22,20 @@
 </ion-header>
 
 <ion-content>
-    <div class="circle">
+    <ion-grid>
+        <ion-row>
+          <ion-col *ngFor="let child of children" size="6">
+            <button class="circle" [style.background-image]="'url(' + child.image + ')'" ></button>
+          </ion-col>
+        </ion-row>
+    </ion-grid>
 
-    </div>
+        <!-- <button class="circle"> +</button> -->
 
-
-    <!-- <ion-item *ngFor="let child of children">
-        <ion-label>{{child.name}}</ion-label>
-    </ion-item> -->
 </ion-content>
+
+<!-- <ion-content class="custom-flex-content">
+    <ion-item class="custom-ion-item" *ngFor="let child of children">
+      <button class="circle" [style.background-image]="'url(' + child.image + ')'" ></button>
+    </ion-item>
+  </ion-content> -->
