@@ -25,8 +25,15 @@
     <ion-grid>
         <ion-row>
           <ion-col *ngFor="let child of children" size="6">
-            <button class="circle" [style.background-image]="'url(' + child.image + ')'" ></button>
+            <button class="circle" [style.background-image]="'url(' + child.image + ')'" (ionButton)="setChild(child)"></button>
           </ion-col>
+          <ion-col size="6">
+            <!-- <button class="circle" (ionButton)="addNewChild()"> -->
+            <button class="circle">
+
+                <div class="plus">+</div>
+            </button>
+            </ion-col>
         </ion-row>
     </ion-grid>
 
@@ -34,8 +41,3 @@
 
 </ion-content>
 
-<!-- <ion-content class="custom-flex-content">
-    <ion-item class="custom-ion-item" *ngFor="let child of children">
-      <button class="circle" [style.background-image]="'url(' + child.image + ')'" ></button>
-    </ion-item>
-  </ion-content> -->

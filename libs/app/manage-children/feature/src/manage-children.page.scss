@@ -12,7 +12,7 @@ ion-header {
   width: 80%;
   height: 0;
   padding-bottom:80%;
-  background-color: black;
+  background-color: transparent;
   border: 3px solid white;
   border-radius: 50%;
   left: 5%;
@@ -20,6 +20,8 @@ ion-header {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  color: white;
+  font-size: 800%;
 }
 
 .plus {
