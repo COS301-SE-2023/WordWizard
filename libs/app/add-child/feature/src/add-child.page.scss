@@ -1,3 +1,7 @@
+ion-content {
+    --background: #070527;
+}
+
 .submit-btn {
     --background: #861486;
     color: #FFF;
@@ -9,10 +13,6 @@
     width:7rem;
     --border-radius: 1.25rem;
     margin-top: 6.5rem;
-  }
-
-ion-content {
-    --background: #070527;
 }
 
 input {
@@ -63,7 +63,6 @@ label {
     border-radius: 1em;
     position: absolute;
     z-index:1;
-
 }
 
 .overlay-container {
@@ -71,12 +70,37 @@ label {
     justify-content: center;
 }
 
+.overlay-animation {
+    animation: fadeIn 1s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+}
+
+@keyframes fadeOut{
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+}
+.hidden-overlay {
+    // animation: fadeOut 1s ease-in forwards;
+    display: none;
+}
 .close {
     display: flex;
     justify-content: flex-end;
     color:black;
     font-size: 2.5rem;
-  }
+}
 
 .selected-outer {
     position: absolute;
@@ -87,10 +111,6 @@ label {
     height: 6.2rem;
     background-color: white;
     border-radius: 50%;
-}
-
-.hidden-overlay {
-    display: none;
 }
 
 .selected-image {
@@ -106,28 +126,23 @@ label {
     height: var(--size);
 }
 
+.custom-avatar-button {
+    --size: 10rem;
+    width: var(--size);
+    height: var(--size);
+}
+
 .check-img {
     --size: 4.35rem;
     width: var(--size);
     height: var(--size);
 }
 
-ion-item {
+.img-item {
     --color: #fff;
-  
-    --border-color: #fff;
-    --border-style: dashed;
-    --border-width: 2px;
-  
-    --border-radius: 20px;
-  
-    --ripple-color: #fff;
-  
-    --detail-icon-color: white;
-    --detail-icon-opacity: 1;
-    --detail-icon-font-size: 20px;
+    --border-color: none;
     width: 6.4rem;
-  }
+}
 
 .pick-text {
     color: #861486;
@@ -141,4 +156,25 @@ ion-item {
 .modal-header {
     display: flex;
     justify-content: center;
+}
+
+.unselected {
+    width: 5.6rem;
+    height: 5.6rem;
+    border-radius: 50%;
+    background-color: purple;
+    color: white;
+    font-size: 3.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hidden-radio {
+    display: none;
+}
+
+.avatar-label {
+    display: inline-block;
+    cursor: pointer;
 }
