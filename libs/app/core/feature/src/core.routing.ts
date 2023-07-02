@@ -25,6 +25,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('@word-wizard/app/stage/feature').then((m) => m.StageModule),
   },
+  {
+    path: 'add-child',
+    loadChildren: () =>
+      import('@word-wizard/app/add-child/feature').then((m) => m.AddChildModule),
+  }
 ];
 
 @NgModule({
