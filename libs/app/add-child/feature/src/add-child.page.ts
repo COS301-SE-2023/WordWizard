@@ -10,6 +10,7 @@ export class AddChildPage {
   form: FormGroup = this.fb.group({
     name: ['', Validators.required],
     age: ['', Validators.required],
+    pictures: this.fb.array([], [Validators.required]),
   });
   visible = false;
 

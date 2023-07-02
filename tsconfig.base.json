@@ -15,6 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@word-wizard/app/add-child/data-access": [
+        "libs/app/add-child/data-access/src/index.ts"
+      ],
       "@word-wizard/app/add-child/feature": [
         "libs/app/add-child/feature/src/index.ts"
       ],
