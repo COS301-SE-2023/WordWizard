@@ -25,19 +25,14 @@
     <ion-grid>
         <ion-row>
           <ion-col *ngFor="let child of children" size="6">
-            <button class="circle" [style.background-image]="'url(' + child.image + ')'" (ionButton)="setChild(child)"></button>
+            <button class="circle" [style.background-image]="'url(' + child.image + ')'" (click)="setChild(child)"></button>
           </ion-col>
           <ion-col size="6">
-            <!-- <button class="circle" (ionButton)="addNewChild()"> -->
-            <button class="circle">
-
+            <button class="circle" (click)="addNewChild()">
                 <div class="plus">+</div>
             </button>
             </ion-col>
         </ion-row>
     </ion-grid>
-
-        <!-- <button class="circle"> +</button> -->
-
 </ion-content>
 
