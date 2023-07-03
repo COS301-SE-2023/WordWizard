@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
 import { Browser } from '@capacitor/browser';
-import { App } from '@capacitor/app';
 import { Router } from '@angular/router';
 
 @Component({
@@ -23,11 +22,24 @@ export class WelcomePage implements OnInit{
   }
 
   ngOnInit(): void {
+    // MAKE USE OF data ATTRIBUTE IN CORE ROUTING TO REDIRECT INSTEAD
+    // Tomorrows work
     this.auth.isAuthenticated$.subscribe((isAuthenticated) => {
-      if (isAuthenticated) {
-        this.router.navigate(['/library']);
-      }
+      // if (isAuthenticated) {
+      //   this.router.navigate(['/library']);
+      // }
     });
 
   }
+  // This is an example of how to fetch the users information when needed
+  // checkAuth() {
+  //   this.auth.user$.subscribe((user) => {
+  //     console.table(user);
+  //     if (user) {
+  //         console.error('user is logged in');
+  //     } else {
+  //         console.error('user is not logged in');
+  //     }
+  //   });
+  // }
 }
