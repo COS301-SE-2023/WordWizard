@@ -84,6 +84,13 @@ ion-header {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
 
+.background {
+    padding-top: 5%;
+    margin: 0;
+    background-color: rgba($color: #000000, $alpha: 0.7);
+    height: 100%;
+}
+
 ww-progress-potion{
     position: relative;
     display: grid;
@@ -100,5 +107,5 @@ ww-progress-potion{
   height: fit-content;
   display: grid;
   place-items: center;
-  margin-top: 10%;
+//   margin-top: 3%;
 }
