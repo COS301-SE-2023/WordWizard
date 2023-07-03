@@ -10,5 +10,4 @@ import { ManageChildrenPage } from './manage-children.page';
 })
 export class ManageChildrenModule {
 
-  children: string[] = ["apple", "banana", "cherry"];
 }

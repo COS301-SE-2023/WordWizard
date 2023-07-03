@@ -1,11 +1,14 @@
 ion-content {
-    --background: linear-gradient(to right, #5975CF, #070527);
+    --background: linear-gradient(to right, #861486, #070527);
 
   }
 
 ion-header {
     ion-toolbar {
-        --background: linear-gradient(to right, #8297DB, #5E6384);
+        --background: #861486;
+    color: white;
+
+
     }
 }
 
@@ -48,4 +51,19 @@ ion-header {
 
 .children-grid {
   margin-top: 10%;; 
+}
+
+.sign-out{
+  margin-top: 80%;
+  width: 30%;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  --background: #070527; 
+  --border-radius: 20px;
+  --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  --border-width: 4px;
+  --border-color: #ffffff;
 }
