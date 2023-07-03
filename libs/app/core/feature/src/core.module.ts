@@ -8,13 +8,13 @@ import { RouteReuseStrategy } from '@angular/router';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxsModule } from '@ngxs/store';
 // eslint-disable-next-line @nx/enforce-module-boundaries
-import { SharedAuthModule } from '@word-wizard/app/auth/feature';
-import { SocialLoginModule,
-  SocialAuthServiceConfig,
-  SocialAuthService, 
- } from '@abacritt/angularx-social-login';
- import { GoogleLoginProvider } from '@abacritt/angularx-social-login';
- import {  GoogleSigninButtonModule } from '@abacritt/angularx-social-login';
+// import { SharedAuthModule } from '@word-wizard/app/auth/feature';
+// import { SocialLoginModule,
+//   SocialAuthServiceConfig,
+//   SocialAuthService, 
+//  } from '@abacritt/angularx-social-login';
+//  import { GoogleLoginProvider } from '@abacritt/angularx-social-login';
+//  import {  GoogleSigninButtonModule } from '@abacritt/angularx-social-login';
 
 @NgModule({
   declarations: [CoreShell],
@@ -31,24 +31,24 @@ import { SocialLoginModule,
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, 
-    SocialAuthService,
-    {
-      provide: 'SocialAuthServiceConfig',
-      useValue: {
-          autoLogin: false,
-          providers: [
-              {
-                  id: GoogleLoginProvider.PROVIDER_ID,
-                  provider: new GoogleLoginProvider(
-                      '1087444262358-q2vf35q1tko61lrba0vfcpgfvghfjnql.apps.googleusercontent.com'
-                  ),
-              },
-          ],
-          onError: (err) => {
-              console.error(err);
-          },
-      } as SocialAuthServiceConfig,
-    },
+    // SocialAuthService,
+    // {
+    //   provide: 'SocialAuthServiceConfig',
+    //   useValue: {
+    //       autoLogin: false,
+    //       providers: [
+    //           {
+    //               id: GoogleLoginProvider.PROVIDER_ID,
+    //               provider: new GoogleLoginProvider(
+    //                   '1087444262358-q2vf35q1tko61lrba0vfcpgfvghfjnql.apps.googleusercontent.com'
+    //               ),
+    //           },
+    //       ],
+    //       onError: (err) => {
+    //           console.error(err);
+    //       },
+    //   } as SocialAuthServiceConfig,
+    // },
   ],
   bootstrap: [CoreShell],
 })

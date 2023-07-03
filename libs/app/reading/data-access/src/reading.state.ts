@@ -13,6 +13,7 @@ import {
 
 import {
   Word,
+  Content
 } from './interfaces/reading.interfaces';
 
 import { ReadingService } from './reading.service';
@@ -78,7 +79,13 @@ export class ReadingState {
       readingLevel: '',
     } as PassageRequest;
 
-    const passage = await this.readingService.getPassage(rqst).toPromise();
+    const defaultVal: Content = {
+      passage: [],
+      focusWordsIndex: [],
+      done: false
+    };
+
+    const passage: Content = await this.readingService.getPassage(rqst).toPromise() ?? defaultVal;
     try{
       ctx.setState(
         produce((draft: ReadingStateModel) => {
