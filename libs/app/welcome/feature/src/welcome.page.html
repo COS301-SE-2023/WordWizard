@@ -1,8 +1,19 @@
 <ion-content>
-    <div id="background">
-        <div id="container">
-            <ion-title>Welcome to Word-Wizard</ion-title>
-            <ion-button (click)="login()">Login</ion-button>
-        </div>
+    <div id="container">
+        <img src="assets/img/bg/welcome_background.jpg">
+        <ion-card>
+            <ion-card-header>
+                <ion-card-title>Word Wizard</ion-card-title>
+                <!-- <p className="welcome-text">Word Wizard</p> -->
+            </ion-card-header>
+            
+            <ion-card-content>
+                Click the button below to login/signup and start using the app
+            </ion-card-content>
+            
+            <div id="button-container">
+                <ion-button (click)="getStarted()">Get Started</ion-button>
+            </div>
+        </ion-card>
     </div>
 </ion-content>

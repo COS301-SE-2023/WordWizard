@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class WelcomePage implements OnInit{
   constructor(public auth: AuthService, private readonly router: Router) {}
 
-  login() {
+  getStarted() {
     this.auth
     .loginWithRedirect({
       async openUrl(url: string) {

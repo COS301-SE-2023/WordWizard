@@ -1,17 +1,32 @@
-#background {
-    background-image: url('/assets/img/bg/welcome_background.jpg');
-    background-size: cover;
-    background-position: center;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-#container {
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+#container{
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  place-items: center;
 }
-  
+
+#container>img{
+  height: 100vh;
+  min-width: 100vw;
+  object-fit: cover;
+  position: absolute;
+  z-index: -1;
+
+}
+
+#button-container{
+  width:100%;
+  display:flex;
+  justify-content:center;
+  margin-bottom:2rem;
+
+}
+
+.welcome-text {
+  color: #070527;
+  font-size: 2.5rem;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
