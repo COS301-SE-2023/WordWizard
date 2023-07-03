@@ -1,23 +1,23 @@
 {
-  "name": "app-auth-feature",
+  "name": "app-auth-data-access",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/app/auth/feature/src",
+  "sourceRoot": "libs/app/auth/data-access/src",
   "prefix": "word-wizard",
-  "tags": ["shell"],
+  "tags": ["state"],
   "projectType": "library",
   "targets": {
     "build": {
       "executor": "@nx/angular:ng-packagr-lite",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
-        "project": "libs/app/auth/feature/ng-package.json"
+        "project": "libs/app/auth/data-access/ng-package.json"
       },
       "configurations": {
         "production": {
-          "tsConfig": "libs/app/auth/feature/tsconfig.lib.prod.json"
+          "tsConfig": "libs/app/auth/data-access/tsconfig.lib.prod.json"
         },
         "development": {
-          "tsConfig": "libs/app/auth/feature/tsconfig.lib.json"
+          "tsConfig": "libs/app/auth/data-access/tsconfig.lib.json"
         }
       },
       "defaultConfiguration": "production"
@@ -26,7 +26,7 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "libs/app/auth/feature/jest.config.ts",
+        "jestConfig": "libs/app/auth/data-access/jest.config.ts",
         "passWithNoTests": true
       },
       "configurations": {
@@ -41,8 +41,8 @@
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": [
-          "libs/app/auth/feature/**/*.ts",
-          "libs/app/auth/feature/**/*.html"
+          "libs/app/auth/data-access/**/*.ts",
+          "libs/app/auth/data-access/**/*.html"
         ]
       }
     }

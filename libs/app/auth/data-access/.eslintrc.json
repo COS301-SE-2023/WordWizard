@@ -17,7 +17,7 @@
           "error",
           {
             "type": "element",
-            "prefix": "ww",
+            "prefix": "word-wizard",
             "style": "kebab-case"
           }
         ]
@@ -26,17 +26,6 @@
         "plugin:@nx/angular",
         "plugin:@angular-eslint/template/process-inline-templates"
       ]
-    },
-    {
-      "files": ["*.ts"],
-      "rules": {
-        "@angular-eslint/component-class-suffix": [
-          "error",
-          {
-            "suffixes": ["Page"]
-          }
-        ]
-      }
     },
     {
       "files": ["*.html"],

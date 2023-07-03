@@ -16,15 +16,15 @@ const routes: Routes = [
       import('@word-wizard/app/library/feature').then((m) => m.LibraryModule),
   },
   {
-    path: 'signup',
-    loadChildren: () =>
-      import('@word-wizard/app/auth/feature').then((m) => m.SignupModule),
-  },
-  {
     path: 'stage',
     loadChildren: () =>
       import('@word-wizard/app/stage/feature').then((m) => m.StageModule),
   },
+  {
+    path: '',
+    loadChildren: () =>
+      import('@word-wizard/app/welcome/feature').then((m) => m.WelcomeModule),
+  }
 ];
 
 @NgModule({
