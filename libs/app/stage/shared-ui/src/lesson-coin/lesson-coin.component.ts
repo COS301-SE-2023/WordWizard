@@ -1,4 +1,4 @@
-import { Component, Input, SimpleChanges } from '@angular/core';
+import { Component, Input, AfterViewInit } from '@angular/core';
 import { Coin } from '@word-wizard/app/stage/data-access';
 
 interface Line {
@@ -16,42 +16,28 @@ interface Line {
   templateUrl: './lesson-coin.component.html',
   styleUrls: ['./lesson-coin.component.scss'],
 })
-export class LessonCoinComponent{
+export class LessonCoinComponent implements AfterViewInit{
 
   @Input() coins: Array<Coin> = [];
   lines: Array<Line> = [];
 
   ngOnInit() {
 
-
     this.coins.forEach((coin) => {
       coin.leftPosition = window.innerWidth - ((window.innerWidth/3)* (Math.floor(Math.random() * 3) + 1));
     });
 
-
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    if(changes['coins']){
-      this.lines.forEach((line, index) => {
-        // const tempCoins = changes['coins'].currentValue as Coin[];
-        line.filled = (changes['coins'].currentValue[index+1].filledStars) >= 2;
-      });
-    }
-    console.log('change'+ this.lines);
-  }
-
-  ngAfterViewInit() {
+   ngAfterViewInit() {
 
     let widthOffset = document.getElementById(this.coins[1].name)?.offsetWidth || 0;
     let heightOffset = document.getElementById(this.coins[1].name)?.offsetHeight || 0;
-    console.log(widthOffset, heightOffset);
     widthOffset = widthOffset/2;
     heightOffset = heightOffset/2;
 
 
     this.coins.forEach((coin, index) => {
-      console.log(coin.leftPosition);
       if(index < this.coins.length - 1){
         const x1= (coin.leftPosition || 0) + widthOffset;
         const y1= (document.getElementById(coin.name)?.getBoundingClientRect().y) || 0 - heightOffset;
@@ -76,7 +62,6 @@ export class LessonCoinComponent{
 
   startAnimation() {
     const lines = document.getElementsByClassName('line');
-    console.log(lines)
     let i = 0;
       const animate = setInterval(() => {
         const line = lines[i];
@@ -85,5 +70,6 @@ export class LessonCoinComponent{
         if(i === 4)clearInterval(animate);
       }, 1000);
   }
+
 
 }

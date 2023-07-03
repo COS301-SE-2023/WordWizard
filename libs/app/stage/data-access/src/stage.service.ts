@@ -23,7 +23,7 @@ export class StageService {
 
     const tempStage: stage = {
       name: 'Stage 1',
-      levels: [3, 3, 2, 0, 0],
+      levels: [3, 3, 2, 1, 0],
       background: 'assets/images/stage1.png'
     }
 
@@ -31,7 +31,6 @@ export class StageService {
       observer.next(tempStage);
       observer.complete();
     });
-    //uncomment above code when backend is ready
 
     return this.http.post<stage>(tempEndpoint, rqst, {headers});
 

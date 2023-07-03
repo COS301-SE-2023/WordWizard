@@ -3,6 +3,7 @@ import { Select, Store } from '@ngxs/store';
 import { SetStage, StageState } from '@word-wizard/app/stage/data-access';
 import { Observable } from 'rxjs';
 import { stage, Coin} from '@word-wizard/app/stage/data-access';
+
 @Component({
   selector: 'stage',
   templateUrl: './stage.page.html',
@@ -21,21 +22,16 @@ export class StagePage {
   constructor(private store: Store) {}
 
   ngOnInit() {
-    //dispatch action to get stage
     this.store.dispatch(new SetStage());
 
     this.stage$.subscribe((data) => {
       this.name = data.name;
       this.background = data.background;
       this.coins.forEach((coin:Coin, index:number) => {
-        coin.filledStars = data.levels[index] ?? 0;
+        coin.filledStars = data.levels[index];
         coin.name = 'level ' + (index+1);
-        });
-
-        console.table(this.coins);
+      });
     });
-
-
 
   }
 }
