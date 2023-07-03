@@ -47,7 +47,12 @@ export class StageState {
       userID: '1'
     }
 
-    const stage: stage = await this.stageService.getStage(rqst).toPromise();
+    const defaultVal: stage = {
+      name: '',
+      levels: [0,0,0,0,0],
+      background: ''
+    };
+    const stage: stage = (await this.stageService.getStage(rqst).toPromise()) ?? defaultVal;
     try{
       console.log('sdfsdf', stage);
       ctx.setState(
