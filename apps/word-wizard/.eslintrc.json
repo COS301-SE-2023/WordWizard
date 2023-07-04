@@ -20,7 +20,15 @@
             "prefix": "word-wizard",
             "style": "kebab-case"
           }
-        ]
+        ],
+        "@angular-eslint/component-class-suffix": [
+          "error",
+          {
+            "suffixes": ["Page", "Component"]
+          }
+        ],
+        "@angular-eslint/no-empty-lifecycle-method": 0,
+        "@typescript-eslint/no-empty-function": 0
       },
       "extends": [
         "plugin:@nx/angular",
