@@ -1,32 +1,74 @@
 #container{
   height: 100vh;
   width: 100vw;
-  display: grid;
-  place-items: center;
-}
-
-#container>img{
-  height: 100vh;
-  min-width: 100vw;
-  object-fit: cover;
-  position: absolute;
-  z-index: -1;
-
-}
-
-#button-container{
-  width:100%;
-  display:flex;
-  justify-content:center;
-  margin-bottom:2rem;
-
-}
-
-.welcome-text {
-  color: #070527;
-  font-size: 2.5rem;
-  font-family: Inter;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url('../../../../../apps/word-wizard/src/assets/img/bg/welcome_background.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  .welcome {
+    width: 20rem;
+    background-color: white;
+    height: 33rem;
+    border-radius: 1.8rem;
+    border: 3px solid #070527;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    .logo {
+      margin-top:1.3rem;
+      img{
+        width: 15rem;
+        height: 15rem;
+      }
+    }
+    .hat {
+      position: absolute;
+      top:-30%;
+      left:50%;
+      transform: translate(3%);
+      img {
+        transform: rotate(24deg);
+      }
+      width: 15rem;
+      height: 12rem;
+      border-radius: 50%;
+      z-index:2;
+    }
+    .title {
+      color: #070527;
+      font-size: 2.5rem;
+      font-family: Inter;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 0;
+      margin-bottom: 1rem;
+      margin-top: 1rem;
+    }
+    .subtext {
+      color: #070527;
+      font-size: 1.5rem;
+      font-family: Inter;
+      font-style: normal;
+      font-weight: 700;
+      text-align: center;
+    }
+    .button-container {
+      margin-bottom: 2rem;
+      ion-button {
+        --background: #070527;
+        width: 18.5rem;
+        height: 3.5rem;
+        color: #FFF;
+        font-size: 1.5rem;
+        font-family: Inter;
+        font-style: normal;
+        font-weight: 400;
+      }
+    }
+  }
 }

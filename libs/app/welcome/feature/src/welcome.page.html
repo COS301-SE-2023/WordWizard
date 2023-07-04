@@ -1,19 +1,17 @@
-<ion-content>
+<ion-content scrollY="false">
     <div id="container">
-        <img src="assets/img/bg/welcome_background.jpg">
-        <ion-card>
-            <ion-card-header>
-                <ion-card-title>Word Wizard</ion-card-title>
-                <!-- <p className="welcome-text">Word Wizard</p> -->
-            </ion-card-header>
-            
-            <ion-card-content>
-                Click the button below to login/signup and start using the app
-            </ion-card-content>
-            
-            <div id="button-container">
-                <ion-button (click)="getStarted()">Get Started</ion-button>
+        <div class="welcome">
+            <div class="hat">
+                <img src="assets/img/wizzard_hat.png">
             </div>
-        </ion-card>
+            <div class="logo">
+                <img src="assets/icon/favicon.png">
+            </div>
+            <p class="title">Word Wizard</p>
+            <p class="subtext">Click the button below to login/signup and start using the app</p>
+            <div class="button-container">
+               <ion-button (click)="getStarted()">Get Started</ion-button> 
+            </div>
+        </div>
     </div>
 </ion-content>
