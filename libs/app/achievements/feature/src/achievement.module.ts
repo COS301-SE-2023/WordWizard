@@ -5,9 +5,10 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { AchievementPage } from './achievement.page';
+import { AchievementRouting } from './achievement.routing';
 
 @NgModule({
-  imports: [ CommonModule, FormsModule, IonicModule,],
+  imports: [ CommonModule, FormsModule, IonicModule, AchievementRouting],
   declarations: [AchievementPage ],
   exports: [AchievementPage ]
 })

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, } from '@angular/core';
 
 @Component({
   selector: 'ww-achievement',
@@ -7,6 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AchievementPage  {
 
+  constructor() {
+    console.log('Achievement Page');
+   }
 
+  ngOnInit() {
+    console.log('Achievement Page');
+  }
 
 }
