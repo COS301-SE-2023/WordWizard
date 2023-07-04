@@ -32,7 +32,7 @@ const routes: Routes = [
       import('@word-wizard/app/welcome/feature').then((m) => m.WelcomeModule),
   },
   {
-    path: 'child-settings',
+    path: 'settings',
     loadChildren: () =>
       import('@word-wizard/app/child-settings/feature').then((m) => m.ChildSettingsModule),
   }

@@ -21,9 +21,6 @@
       "@word-wizard/app/child-settings/feature": [
         "libs/app/child-settings/feature/src/index.ts"
       ],
-      "@word-wizard/app/child/data-access": [
-        "libs/app/child/data-access/src/index.ts"
-      ],
       "@word-wizard/app/core/feature": ["libs/app/core/feature/src/index.ts"],
       "@word-wizard/app/library/data-access": [
         "libs/app/library/data-access/src/index.ts"

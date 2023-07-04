@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { child } from '@word-wizard/app/child/data-access';
 
 @Component({
   selector: 'word-wizard-child-settings',
