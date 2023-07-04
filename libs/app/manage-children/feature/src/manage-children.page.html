@@ -9,10 +9,10 @@
 <ion-content>
     <div class="overlay-container" [class.hidden-overlay]="!visible"> 
         <div class="overlay">
-            <ion-button class="continue-child">
+            <ion-button class="continue-child" (click)="continueChild()">
                 Continue as {{selectedChild.name}}
             </ion-button>
-            <ion-button class="continue-child">
+            <ion-button class="continue-parent" (click)="continueParent()">
                 Continue as Parent
             </ion-button>
         </div>

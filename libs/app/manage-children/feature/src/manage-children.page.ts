@@ -16,7 +16,6 @@ export class ManageChildrenPage {
 
   // Set visible to true to debug modal
   visible = false;
-  selectedImage!: string;
   selectedChild: { name: string, image: string };
 
 
@@ -42,7 +41,15 @@ export class ManageChildrenPage {
     this.visible = !this.visible;
   }
 
-  chooseImage(image: string) {
-    this.selectedImage = image;
+  continueChild() {
+    console.log("Continuing as child");
+    //set state to selected child
+    //route to dashboard page
+  }
+
+  continueParent() {
+    console.log("Continuing as parent");
+    //set state to selected child
+    //route to child statistics page
   }
 }
