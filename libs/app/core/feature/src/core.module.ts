@@ -4,17 +4,10 @@ import { CoreRouting } from './core.routing';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { CoreShell } from './core.shell';
 import { RouteReuseStrategy } from '@angular/router';
-// import { SharedUiModule } from '@word-wizard/app/shared-ui';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxsModule } from '@ngxs/store';
-// eslint-disable-next-line @nx/enforce-module-boundaries
-// import { SharedAuthModule } from '@word-wizard/app/auth/feature';
-// import { SocialLoginModule,
-//   SocialAuthServiceConfig,
-//   SocialAuthService, 
-//  } from '@abacritt/angularx-social-login';
-//  import { GoogleLoginProvider } from '@abacritt/angularx-social-login';
-//  import {  GoogleSigninButtonModule } from '@abacritt/angularx-social-login';
+import { AuthModule } from '@auth0/auth0-angular';
+const redirect_uri = `${window.location.origin}`;
 
 @NgModule({
   declarations: [CoreShell],
@@ -22,33 +15,22 @@ import { NgxsModule } from '@ngxs/store';
     BrowserModule,
     IonicModule.forRoot(),
     CoreRouting,
-    // SharedUiModule,
     NoopAnimationsModule,
     NgxsModule.forRoot([
 
     ]),
-    // SharedAuthModule,
+    AuthModule.forRoot({
+      domain: `${process.env['WW_AUTH0_DOMAIN']}`,
+      clientId: `${process.env['WW_AUTH0_CLIENT_ID']}`,
+      useRefreshTokens: true,
+      useRefreshTokensFallback: false,
+      authorizationParams: {
+        redirect_uri
+      }
+    }),
   ],
   providers: [
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, 
-    // SocialAuthService,
-    // {
-    //   provide: 'SocialAuthServiceConfig',
-    //   useValue: {
-    //       autoLogin: false,
-    //       providers: [
-    //           {
-    //               id: GoogleLoginProvider.PROVIDER_ID,
-    //               provider: new GoogleLoginProvider(
-    //                   '1087444262358-q2vf35q1tko61lrba0vfcpgfvghfjnql.apps.googleusercontent.com'
-    //               ),
-    //           },
-    //       ],
-    //       onError: (err) => {
-    //           console.error(err);
-    //       },
-    //   } as SocialAuthServiceConfig,
-    // },
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],
   bootstrap: [CoreShell],
 })
