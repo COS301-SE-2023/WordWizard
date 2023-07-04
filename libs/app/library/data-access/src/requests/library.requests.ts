@@ -5,3 +5,8 @@ export interface VocabRequest {
 export interface PracticeRequest {
     userID: string;
 }
+
+export interface UpdateRequest {
+    userID: string;
+    word: string;
+}

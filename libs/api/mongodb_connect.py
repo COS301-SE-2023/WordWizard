@@ -50,8 +50,8 @@ collection = db["Parents"]  # Replace "user" with your actual collection name
 documents = collection.find()
 
 # Print the documents
-for document in documents:
-    print(document)
+# for document in documents:
+#     print(document)
 
 # Close the connection
 client.close()

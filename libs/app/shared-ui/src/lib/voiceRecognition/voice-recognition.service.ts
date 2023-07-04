@@ -1,5 +1,7 @@
 /* eslint-disable */
 import { Injectable, EventEmitter } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 declare let webkitSpeechRecognition: any;
 
 @Injectable({
@@ -11,10 +13,9 @@ export class VoiceRecognitionService {
   isStoppedSpeechRecog = false;
   public text = '';
   tempWords!: string;
-
   wordChanged: EventEmitter<string> = new EventEmitter<string>();
 
-  constructor(){
+  constructor(private http: HttpClient) {
     this.recognition.interimResults = true;
     this.recognition.lang = 'en-ZA';
     this.recognition.addEventListener('result', (e: any) => {
@@ -28,15 +29,12 @@ export class VoiceRecognitionService {
     })
   }
 
-
   start(){
     this.isStoppedSpeechRecog = false;
     this.recognition.start();
-    // console.log("Active");
     this.recognition.addEventListener('end', (condition: any) => {
       if (this.isStoppedSpeechRecog) {
         this.recognition.stop();
-        // console.log("stop");
       } else {
         this.recognition.start();
       }
@@ -47,7 +45,6 @@ export class VoiceRecognitionService {
     this.isStoppedSpeechRecog = true;
     this.wordConcat();
     this.recognition.stop();
-    // console.log("Stoped");
   }
 
   wordConcat() {
@@ -55,5 +52,10 @@ export class VoiceRecognitionService {
     this.tempWords = '';
   }
 
+  convertSpeechToText(file: Blob): Observable<any> {
+    const formData = new FormData();
+    formData.append('file', file, 'audio.wav');
+    return this.http.post('http://localhost:8000/speech/speech-to-text', formData);
+  }
 }
 /* eslint:enable */

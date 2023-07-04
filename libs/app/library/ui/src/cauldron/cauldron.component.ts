@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Word } from '@word-wizard/app/library/data-access';
 
 @Component({
   selector: 'ww-cauldron',
@@ -6,36 +7,17 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./cauldron.component.scss']
 })
 export class CauldronComponent {
-
-  @Input () vocab!: any;
+  @Input () vocab!: Word;
   @Input () number!: number;
-
+  @Output() textChanged: EventEmitter<string> = new EventEmitter<string>();
+  textFromMicrophone = '';
   bottleClass = "empty-bottle no-padding";
   isCorrect = false;
 
-  textToSpeech(phrase: string, rate: number) {
-    // speechSynthesis.cancel();
-    const utterance = new SpeechSynthesisUtterance(phrase);
-    //Remove volume, this voice is apparently the loudest thing on earth
-    utterance.rate = rate;
-    utterance.volume = 0.9;
-    utterance.lang = 'en-EU';
-    speechSynthesis.speak(utterance);
-  }
-
-  test() {
-
-    this.bottleClass = "full-bottle no-padding";
-    this.isCorrect = true;
-
-  }
-
-  textFromMicrophone = '';
-
   handleTextChange(text: string) {
     this.textFromMicrophone = text;
-    console.log('Text from microphone:', text);
-    // Handle the text as needed
+    console.warn('Text from microphone:', text);
+    if(text.toLocaleLowerCase() === this.vocab.word.toLocaleLowerCase())
+      this.textChanged.emit(text);
   }
-
 }

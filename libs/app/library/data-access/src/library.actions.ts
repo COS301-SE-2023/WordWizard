@@ -1,7 +1,12 @@
 export class SetPractice{
-  static readonly type = '[Reading] Set Practice';
+  static readonly type = '[Library] Set Practice';
 }
 
 export class SetVocab{
-  static readonly type = '[Reading] Set Vocab';
+  static readonly type = '[Library] Set Vocab';
+}
+
+export class UpdatePractice{
+  static readonly type = '[Library] Update Practice';
+  constructor(public payload: { userID: string, word: string }){}
 }

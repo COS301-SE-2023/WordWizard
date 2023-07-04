@@ -1,6 +1,6 @@
 export interface Word {
     word: string;
-    definition?: string;
+    img?: string;
 }
 
 export interface WordList{

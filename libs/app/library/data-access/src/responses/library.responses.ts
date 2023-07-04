@@ -7,3 +7,7 @@ export interface PracticeResponse {
 export interface VocabResponse {
     vocabList: WordList;
 }
+
+export interface UpdateResponse {
+    status: string;
+}
