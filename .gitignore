@@ -44,7 +44,6 @@ Thumbs.db
 
 #Sensitive files
 .env
-enviroment.ts
 
 #Python
 __pycache__

@@ -7,7 +7,7 @@ import { RouteReuseStrategy } from '@angular/router';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxsModule } from '@ngxs/store';
 import { AuthModule } from '@auth0/auth0-angular';
-import { enviroment } from './enviroment'
+const redirect_uri = `${window.location.origin}`;
 
 @NgModule({
   declarations: [CoreShell],
@@ -19,7 +19,15 @@ import { enviroment } from './enviroment'
     NgxsModule.forRoot([
 
     ]),
-    AuthModule.forRoot(enviroment.auth),
+    AuthModule.forRoot({
+      domain: `${process.env['WW_AUTH0_DOMAIN']}`,
+      clientId: `${process.env['WW_AUTH0_CLIENT_ID']}`,
+      useRefreshTokens: true,
+      useRefreshTokensFallback: false,
+      authorizationParams: {
+        redirect_uri
+      }
+    }),
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },

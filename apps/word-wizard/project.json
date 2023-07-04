@@ -7,7 +7,7 @@
   "tags": [],
   "targets": {
     "build": {
-      "executor": "@angular-devkit/build-angular:browser",
+      "executor": "@nrwl/angular:webpack-browser",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/word-wizard",
@@ -29,7 +29,13 @@
             "input": "apps/word-wizard/src/theme/variables.scss"
           }
         ],
-        "scripts": []
+        "scripts": [],
+        "customWebpackConfig": {
+          "path": "apps/word-wizard/webpack.config.js"
+        },
+        "allowedCommonJsDependencies": ["moment"],
+        "serviceWorker": true,
+        "ngswConfigPath": "apps/word-wizard/ngsw-config.json"
       },
       "configurations": {
         "production": {
@@ -59,7 +65,7 @@
       "defaultConfiguration": "production"
     },
     "serve": {
-      "executor": "@angular-devkit/build-angular:dev-server",
+      "executor": "@nrwl/angular:webpack-dev-server",
       "configurations": {
         "production": {
           "browserTarget": "word-wizard:build:production"
