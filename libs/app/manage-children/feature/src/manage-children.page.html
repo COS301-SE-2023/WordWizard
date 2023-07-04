@@ -9,12 +9,20 @@
 <ion-content>
     <div class="overlay-container" [class.hidden-overlay]="!visible"> 
         <div class="overlay">
-            <ion-button class="continue-child" (click)="continueChild()">
-                Continue as {{selectedChild.name}}
-            </ion-button>
-            <ion-button class="continue-parent" (click)="continueParent()">
-                Continue as Parent
-            </ion-button>
+            <ww-button 
+            text="Continue as {{selectedChild.name}}" 
+            color="#861486" 
+            activate="#05041b"
+            border="#fff"
+            (event)="continueChild()"
+        ></ww-button>
+            <ww-button 
+            text="Continue as Parent" 
+            color="#070527" 
+            activate="#05041b"
+            border="#fff"
+            (event)="continueParent()"
+        ></ww-button>
         </div>
     </div>
     <ion-grid class="children-grid">
@@ -25,7 +33,7 @@
           </ion-col>
           <ion-col size="6">
             <button class="circle" (click)="addNewChild()">
-                <ion-icon name="add-outline"></ion-icon>
+                <ion-icon class="plus" name="add-outline"></ion-icon>
             </button>
             </ion-col>
         </ion-row>

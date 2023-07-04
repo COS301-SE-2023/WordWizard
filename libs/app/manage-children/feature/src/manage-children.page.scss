@@ -33,6 +33,16 @@ ion-header {
   align-items: center;
 }
 
+.plus {
+  height: 100%;
+  color: white;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .custom-ion-item {
   --ion-item-background: transparent;
   display: flex;
@@ -91,7 +101,6 @@ ion-header {
   position: absolute;
   z-index:1;
 }
-
 
 .hidden-overlay {
   // animation: fadeOut 1s ease-in forwards;

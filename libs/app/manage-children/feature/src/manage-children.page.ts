@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { SharedUiModule } from '@word-wizard/app/shared-ui';
 
 @Component({
   selector: 'word-wizard-manage-children',

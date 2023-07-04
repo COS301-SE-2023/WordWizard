@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ManageChildrenPage } from './manage-children.page';
+import { SharedUiModule } from '@word-wizard/app/shared-ui';
 
 describe('ManageChildrenPage', () => {
   let component: ManageChildrenPage;
@@ -7,7 +8,7 @@ describe('ManageChildrenPage', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ManageChildrenPage],
+      declarations: [ManageChildrenPage, SharedUiModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ManageChildrenPage);
