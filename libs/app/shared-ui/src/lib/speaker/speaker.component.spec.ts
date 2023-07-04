@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 import { SpeakerComponent } from './speaker.component';
+import { SpeakerService } from './speaker.service';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('SpeakerComponent', () => {
   let component: SpeakerComponent;
@@ -9,7 +11,8 @@ describe('SpeakerComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [SpeakerComponent],
-      imports: [IonicModule.forRoot()]
+      imports: [IonicModule.forRoot(), HttpClientModule],
+      providers: [SpeakerService]
     }).compileComponents();
   });
 

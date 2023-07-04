@@ -6,10 +6,9 @@ import { SpeakerModule } from './speaker/speaker.module';
 import { InfoModule } from './info';
 import { HeaderModule } from './header/header.module';
 
-
 @NgModule({
   imports: [CommonModule, IonicModule, MicrophoneModule, SpeakerModule, HeaderModule, InfoModule],
-  exports: [MicrophoneModule, SpeakerModule, InfoModule, HeaderModule],
+  exports: [MicrophoneModule, SpeakerModule, InfoModule, HeaderModule]
 
 })
 export class SharedUiModule {}

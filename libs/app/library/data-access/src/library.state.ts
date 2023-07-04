@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
-import { Word } from './interfaces/library.interfaces';
+import { Word, WordList } from './interfaces/library.interfaces';
 import { SetPractice, SetVocab, UpdatePractice } from './library.actions';
 import { VocabRequest, PracticeRequest, UpdateRequest } from './requests/library.requests';
+import { UpdateResponse } from './responses/library.responses';
 import { LibraryService } from './library.service';
 import { produce } from 'immer';
 
@@ -61,7 +62,7 @@ export class LibraryState {
       userID: payload.userID,
       word: payload.word
     } as UpdateRequest;
-    const rsps = await this.libraryService.UpdatePractice(rqst).toPromise();
+    const rsps: UpdateResponse = await this.libraryService.UpdatePractice(rqst).toPromise() ?? {status: 'error'};
     if(rsps.status === 'success'){
       ctx.setState(
         produce((draft: LibraryStateModel) => {
@@ -79,7 +80,7 @@ export class LibraryState {
     const rqst: PracticeRequest = {
       userID: '64784f19bdfa8f92954b9d78', // Grab id from where? Auth state or what?
     } as PracticeRequest;
-    const practice = await this.libraryService.getPractice(rqst).toPromise();
+    const practice: WordList = await this.libraryService.getPractice(rqst).toPromise() ?? {words: []};
     ctx.setState(
       produce((draft: LibraryStateModel) => {
         draft.Library.model.Practice = practice;
@@ -92,7 +93,7 @@ export class LibraryState {
     const rqst: VocabRequest = {
       userID: '64784f19bdfa8f92954b9d78',
     } as VocabRequest;
-    const vocab = await this.libraryService.getVocab(rqst).toPromise();
+    const vocab:WordList = await this.libraryService.getVocab(rqst).toPromise() ?? {words: []};
     ctx.setState(
       produce((draft: LibraryStateModel) => {
         draft.Library.model.Vocab = vocab;
