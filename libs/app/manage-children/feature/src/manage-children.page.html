@@ -7,6 +7,16 @@
 </ion-header>
 
 <ion-content>
+    <div class="overlay-container" [class.hidden-overlay]="!visible"> 
+        <div class="overlay">
+            <ion-button class="continue-child">
+                Continue as {{selectedChild.name}}
+            </ion-button>
+            <ion-button class="continue-child">
+                Continue as Parent
+            </ion-button>
+        </div>
+    </div>
     <ion-grid class="children-grid">
         <ion-row>
           <ion-col *ngFor="let child of children" size="6">

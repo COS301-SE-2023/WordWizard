@@ -26,7 +26,6 @@ ion-header {
   background-position: center;
   color: white;
 
-
   margin-left: auto;
   margin-right: auto;
   display: flex;
@@ -66,4 +65,95 @@ ion-header {
   --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
   --border-width: 4px;
   --border-color: #ffffff;
+}
+
+.overlay-container {
+  display: flex;
+  justify-content: center;
+}
+
+.overlay-animation {
+  animation: fadeIn 1s ease-in;
+}
+
+.container {
+  margin-top: 6.5rem;
+  margin-bottom: 4rem;
+  display: flex;
+  justify-content: center;
+}
+
+.overlay {
+  margin-top: 12.7rem;
+  width: 20rem;
+  background-color: #FFFFFF;
+  border-radius: 1em;
+  position: absolute;
+  z-index:1;
+}
+
+
+.hidden-overlay {
+  // animation: fadeOut 1s ease-in forwards;
+  display: none;
+}
+.close {
+  display: flex;
+  justify-content: flex-end;
+  color:black;
+  font-size: 2.5rem;
+}
+
+.selected-outer {
+  position: absolute;
+  top: -15%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6.2rem;
+  height: 6.2rem;
+  background-color: white;
+  border-radius: 50%;
+}
+
+.selected-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 6.2rem;
+}
+
+.custom-avatar {
+  --size: 5.5rem;
+  width: var(--size);
+  height: var(--size);
+}
+
+.custom-avatar-button {
+  --size: 10rem;
+  width: var(--size);
+  height: var(--size);
+}
+
+
+.img-item {
+  --color: #fff;
+  --border-color: none;
+  width: 6.4rem;
+  --background: #fff;
+}
+
+.unselected {
+  width: 5.6rem;
+  height: 5.6rem;
+  border-radius: 50%;
+  background-color: purple;
+  color: white;
+  font-size: 3.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hidden-radio {
+  display: none;
 }
