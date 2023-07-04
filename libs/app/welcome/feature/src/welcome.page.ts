@@ -22,8 +22,6 @@ export class WelcomePage implements OnInit{
   }
 
   ngOnInit(): void {
-    // MAKE USE OF data ATTRIBUTE IN CORE ROUTING TO REDIRECT INSTEAD
-    // Tomorrows work
     this.auth.isAuthenticated$.subscribe((isAuthenticated) => {
       // if (isAuthenticated) {
       //   this.router.navigate(['/library']);
