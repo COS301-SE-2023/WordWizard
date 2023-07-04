@@ -1,1 +1,2 @@
-export * from './lib/app-achievements-feature';
+export * from './achievement.page';
+export * from './achievement.module';
