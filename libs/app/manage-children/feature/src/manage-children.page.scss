@@ -75,6 +75,7 @@ ion-header {
   --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
   --border-width: 4px;
   --border-color: #ffffff;
+
 }
 
 .overlay-container {
@@ -96,10 +97,13 @@ ion-header {
 .overlay {
   margin-top: 12.7rem;
   width: 20rem;
-  background-color: #FFFFFF;
   border-radius: 1em;
   position: absolute;
   z-index:1;
+  background-image: url(../../../../../apps/word-wizard/src/assets/img/bg/welcome_background.jpg);
+  background-size: cover; /* Adjust the size of the image to cover the element */
+  background-position: center;
+  border: 3px solid white;
 }
 
 .hidden-overlay {
@@ -165,4 +169,22 @@ ion-header {
 
 .hidden-radio {
   display: none;
+}
+
+.continueChild{
+  margin-top: 15%;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.continueParent{
+  margin-bottom: 15%;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

@@ -9,14 +9,14 @@
 <ion-content>
     <div class="overlay-container" [class.hidden-overlay]="!visible"> 
         <div class="overlay">
-            <ww-button 
+            <ww-button class="continueChild"
             text="Continue as {{selectedChild.name}}" 
             color="#861486" 
             activate="#05041b"
             border="#fff"
             (event)="continueChild()"
         ></ww-button>
-            <ww-button 
+            <ww-button class="continueParent"
             text="Continue as Parent" 
             color="#070527" 
             activate="#05041b"
