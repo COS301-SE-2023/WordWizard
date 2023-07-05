@@ -25,6 +25,11 @@ export class ReadingPage {
 
   visible = false;
 
+  star1 = 'assets/img/item/greystar.png';
+  star2 = 'assets/img/item/greystar.png';
+  star3 = 'assets/img/item/greystar.png';
+  congratularyMessage = 'Well Tried!';
+
   readingPageData = {
     word : '',
     imageSrc : '',
@@ -131,5 +136,20 @@ export class ReadingPage {
 
   controlModal() {
     this.visible = !this.visible;
+  }
+
+  setStars(){  
+    if (this.progressPercentage > '50%'){
+      this.star1 = 'assets/img/item/goldstar.png';
+      this.congratularyMessage = 'Well Done!';
+    }
+    if (this.progressPercentage > '75%'){
+      this.star2 = 'assets/img/item/goldstar.png';
+      this.congratularyMessage = 'Great Job!';
+    }
+    if (this.progressPercentage > '90%'){
+      this.star3 = 'assets/img/item/goldstar.png';
+      this.congratularyMessage = 'Amazing!';
+    }
   }
 }
