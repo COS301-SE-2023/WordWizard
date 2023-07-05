@@ -1,17 +1,28 @@
 <ion-content>
     <div class="dashboard">
         <div class="background">
-            <!-- SETTINGS BUTTON - RIGHT ALIGNED -->
-            <!-- <div class="settings">
+            <!-- EXIT BUTTON - RIGHT ALIGNED -->
+            <div class="exit">
                 <ion-img>
                     <img src="assets/svg/settings.svg">
                 </ion-img>
-            </div> -->
+            </div>
             
             <!-- PROFILE IMAGE - CENTER -->
             <div class="pfp">
                 <ion-avatar>
                     <img [src]="pfp">
+                    <div class="edit-pfp">
+                        <ion-grid>
+                            <ion-row>
+                                <ion-col>
+                                    <ion-button>
+                                        <ion-icon name="pencil-outline"></ion-icon>
+                                    </ion-button>
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
+                    </div>
                 </ion-avatar>
             </div>
 
