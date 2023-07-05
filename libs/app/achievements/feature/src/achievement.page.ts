@@ -7,6 +7,10 @@ import { Component, } from '@angular/core';
 })
 export class AchievementPage  {
 
+  childProfilePictureSrc = 'https://ww-img-bucket.s3.amazonaws.com/Dragon4-testProfile.png';
+  awardImageSrc = 'https://ww-img-bucket.s3.amazonaws.com/Dragon4-testProfile.png';
+  
+  
   constructor() {
     console.log('Achievement Page');
    }

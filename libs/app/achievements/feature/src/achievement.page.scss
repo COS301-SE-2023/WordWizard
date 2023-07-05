@@ -1,14 +1,62 @@
-.top-container{
-    width: 100%;
-    height: 15%;
-    flex-shrink: 0;
-    background: #070527;
-}
-
-.name-container{
-    top: 0px !important;
-    width: 100%;
-    height: 5%;
-    flex-shrink: 0;
-    background: #861486;
-}
+.page-container {
+    padding: 20px;
+  }
+  
+  .profile-picture-container {
+    text-align: center;
+  }
+  
+  .profile-picture {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 2px solid #AAAAAA;
+  }
+  
+  .page-heading-container {
+    margin-top: 20px;
+  }
+  
+  .page-heading {
+    text-align: center;
+  }
+  
+  .awards-section-container {
+    overflow-y: auto;
+    max-height: calc(100vh - 400px); /* Adjust the height as needed */
+  }
+  
+  .section-container {
+    margin-top: 40px;
+    background-color: #861486;
+    padding: 20px;
+  }
+  
+  .section-header {
+    color: #FFFFFF;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .awards-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  
+  .award-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFFFFF;
+    border-radius: 50%;
+    padding: 10px;
+  }
+  
+  .award-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+  }
+  
