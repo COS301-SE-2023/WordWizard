@@ -24,10 +24,7 @@
     font-size: 24px;
   }
   
-  .section-container {
-    margin-bottom: 40px;
-  }
-  
+
   .section-header {
     background-color: #861486;
     color: white;
@@ -48,8 +45,8 @@
     background-size: cover;
     background-position: center;
     border-radius: 50%;
-    width: 150px;
-    height: 150px;
+    width: 90%;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -63,6 +60,6 @@
   }
 
   .awards-section-container{
-    background-image: url('assets\img\LibraryAchievements.png');
+    background-image: url('../../../../../apps/word-wizard/src/assets/img/LibraryAchievements.png');
   }
   
