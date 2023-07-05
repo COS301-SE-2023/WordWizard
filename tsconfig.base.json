@@ -36,6 +36,12 @@
         "libs/app/library/feature/src/index.ts"
       ],
       "@word-wizard/app/library/ui": ["libs/app/library/ui/src/index.ts"],
+      "@word-wizard/app/manage-children/feature": [
+        "libs/app/manage-children/feature/src/index.ts"
+      ],
+      "@word-wizard/app/manage-children/shared-ui": [
+        "libs/app/manage-children/shared-ui/src/index.ts"
+      ],
       "@word-wizard/app/reading/data-access": [
         "libs/app/reading/data-access/src/index.ts"
       ],
