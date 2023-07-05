@@ -4,7 +4,7 @@ import { SetStage, StageState } from '@word-wizard/app/stage/data-access';
 import { Observable } from 'rxjs';
 import { stage, Coin} from '@word-wizard/app/stage/data-access';
 @Component({
-  selector: 'stage',
+  selector: 'ww-stage',
   templateUrl: './stage.page.html',
   styleUrls: ['./stage.page.scss'],
 })
