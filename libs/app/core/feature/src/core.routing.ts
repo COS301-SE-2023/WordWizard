@@ -30,6 +30,7 @@ const routes: Routes = [
     path: 'add-child',
     loadChildren: () =>
       import('@word-wizard/app/add-child/feature').then((m) => m.AddChildModule),
+    canActivate: [AuthGuard],
   },
   {
     path: 'welcome',
