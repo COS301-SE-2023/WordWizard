@@ -1,1 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+*{
+  margin: 0px;
+  padding: 0px;
+}
+
+body{
+  height: 100vh;
+  width: 100vw;
+  background-color: black;
+  overflow: hidden;
+  display: grid;
+  position: relative;
+  place-items: center;
+}
+
+ww-core{
+  width: 100vw;
+  max-width: 600px;
+  overflow: hidden;
+  height: 100vh;
+  position: relative;
+}

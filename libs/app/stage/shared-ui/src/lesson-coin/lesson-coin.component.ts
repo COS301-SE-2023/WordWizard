@@ -23,8 +23,10 @@ export class LessonCoinComponent implements AfterViewInit{
 
   ngOnInit() {
 
+    const windowWidth = (window.innerWidth > 600) ? 600 : window.innerWidth; ;
+
     this.coins.forEach((coin) => {
-      coin.leftPosition = window.innerWidth - ((window.innerWidth/3)* (Math.floor(Math.random() * 3) + 1));
+      coin.leftPosition = windowWidth - ((windowWidth/3)* (Math.floor(Math.random() * 3) + 1));
     });
 
   }
