@@ -4,27 +4,33 @@
 <ion-content class="page-container">
   <div class="overlay-container" [class.hidden-overlay]="!visible"> 
     <div class="overlay">
-      <ion-title>
-        {{progressPercentage}}
-      </ion-title>
       <ion-grid>
+        <ion-row class="top-modal">
+          <div class="title">{{progressPercentage}}</div>
+        </ion-row>
         <ion-row>
-          <ion-col size="4" class="close">
+          <ion-col size="4">
             <img [src]="star1">
           </ion-col>
-          <ion-col size="4" class="close">
-            <img [src]="star1">
+          <ion-col size="4">
+            <img [src]="star2">
           </ion-col>
-          <ion-col size="4" class="close">
-            <img [src]="star1">
+          <ion-col size="4">
+            <img [src]="star3">
           </ion-col>
         </ion-row>
+        <ion-row class="bottom-modal">
+          <div class="title">{{congratularyMessage}}</div>
+        </ion-row>
       </ion-grid>
-      <ion-title>
-        {{congratularyMessage}}
-      </ion-title>
     </div>
-</div>
+
+    <div class="image-container">
+      <img [src]="backButton" alt="Image 1" (click)="back()"  class="back-button">
+      <img [src]="wizardImg" alt="Image 2" class="wizard-image">
+    </div>
+  </div>
+
   <div id="potion-container">
     <ww-progress-potion [percentage]="progressPercentage"></ww-progress-potion>
   </div>

@@ -100,7 +100,7 @@ ww-progress-potion{
   height: fit-content;
   display: grid;
   place-items: center;
-  margin-top: 10%;
+  margin-top: 3vh;
 }
 
 .overlay-container {
@@ -112,16 +112,11 @@ ww-progress-potion{
     animation: fadeIn 1s ease-in;
   }
   
-  .container {
-    margin-top: 6.5rem;
-    margin-bottom: 4rem;
-    display: flex;
-    justify-content: center;
-  }
   
   .overlay {
-    margin-top: 17rem;
-    width: 20rem;
+    margin-top: 16vh;
+
+    width: 90vw;
     border-radius: 1em;
     position: absolute;
     z-index:1;
@@ -129,9 +124,56 @@ ww-progress-potion{
     background-size: cover; /* Adjust the size of the image to cover the element */
     background-position: center;
     border: 3px solid white;
+    font-size: 6vh;
+    color: #ffffff;
+    text-align: center;
   }
   
   .hidden-overlay {
     // animation: fadeOut 1s ease-in forwards;
     display: none;
   }
+
+  .title{
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .bottom-modal{
+    padding-bottom: 20vh;
+  }
+
+  .top-modal{
+    padding-top: 4vh;
+  }
+
+  .menu-buttons{
+    margin-top: 50vh;
+    z-index: 1;
+  }
+
+
+  .image-container {
+    // position: relative;
+  }
+  
+  .back-button {
+    width: 40vw;
+    margin-left: 30vw;
+    margin-top: 65.6vh;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+  }
+  
+  .wizard-image {
+    position: absolute;
+    width: 50vw;
+    margin-left: 43vw;
+    margin-top: 51vh;
+    z-index: 2;
+    top: 20px;
+    left: 20px;
+  }
+  

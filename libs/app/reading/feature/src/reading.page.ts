@@ -22,12 +22,14 @@ export class ReadingPage {
   @Select(ReadingState.getCurrent) getCurrent$!: Observable<number>;
 
   backgroundImage = 'assets/img/CastleBackground.png';
+  backButton = 'assets/img/item/backbutton.png';
 
   visible = false;
 
   star1 = 'assets/img/item/greystar.png';
   star2 = 'assets/img/item/greystar.png';
   star3 = 'assets/img/item/greystar.png';
+  wizardImg = 'assets/img/item/wizzy.png';
   congratularyMessage = 'Well Tried!';
 
   readingPageData = {
@@ -151,5 +153,10 @@ export class ReadingPage {
       this.star3 = 'assets/img/item/goldstar.png';
       this.congratularyMessage = 'Amazing!';
     }
+  }
+
+  back(){
+    console.log("back");
+    //return back to levels page
   }
 }
