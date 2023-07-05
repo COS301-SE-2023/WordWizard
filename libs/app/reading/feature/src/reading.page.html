@@ -2,6 +2,11 @@
 
 
 <ion-content class="page-container">
+  <div class="overlay-container" [class.hidden-overlay]="!visible"> 
+    <div class="overlay">
+
+    </div>
+</div>
   <div id="potion-container">
     <ww-progress-potion [percentage]="progressPercentage"></ww-progress-potion>
   </div>
@@ -44,7 +49,7 @@
     <div class="button-group">
       <ww-microphone (textChanged)="handleTextChange($event)"></ww-microphone>
     </div>
-    <div class="button-group">
+    <div class="button-group" (click)="controlModal()">
       <ww-info></ww-info>
     </div>
   </div>

@@ -102,3 +102,36 @@ ww-progress-potion{
   place-items: center;
   margin-top: 10%;
 }
+
+.overlay-container {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .overlay-animation {
+    animation: fadeIn 1s ease-in;
+  }
+  
+  .container {
+    margin-top: 6.5rem;
+    margin-bottom: 4rem;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .overlay {
+    margin-top: 17rem;
+    width: 20rem;
+    border-radius: 1em;
+    position: absolute;
+    z-index:1;
+    background-color: #070527;
+    background-size: cover; /* Adjust the size of the image to cover the element */
+    background-position: center;
+    border: 3px solid white;
+  }
+  
+  .hidden-overlay {
+    // animation: fadeOut 1s ease-in forwards;
+    display: none;
+  }

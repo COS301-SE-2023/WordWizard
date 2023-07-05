@@ -23,6 +23,8 @@ export class ReadingPage {
 
   backgroundImage = 'assets/img/CastleBackground.png';
 
+  visible = false;
+
   readingPageData = {
     word : '',
     imageSrc : '',
@@ -125,5 +127,9 @@ export class ReadingPage {
       scalar: 0.75,
       shapes: ['circle']
     });
+  }
+
+  controlModal() {
+    this.visible = !this.visible;
   }
 }
