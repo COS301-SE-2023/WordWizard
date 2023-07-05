@@ -1,0 +1,45 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>
+            Manage Children
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="overlay-container" [class.hidden-overlay]="!visible"> 
+        <div class="overlay">
+            <ww-button class="continueChild"
+                text="Continue as {{selectedChild.name}}" 
+                color="#861486" 
+                activate="#510E51"
+                border="#fff"
+                (event)="continueChild()"   
+            ></ww-button>
+            <ww-button class="continueParent"
+                text="View Progress" 
+                color="#070527" 
+                activate="#000000"
+                border="#fff"
+                (event)="continueParent()"
+             ></ww-button>
+        </div>
+    </div>
+    <ion-grid class="children-grid">
+        <ion-row>
+            <ion-col *ngFor="let child of children" size="6">
+                <button class="circle" [style.background-image]="'url(' + child.image + ')'" (click)="setChild(child)"></button>
+                <div class="child-name">{{child.name}}</div>
+            </ion-col>
+            <ion-col size="6">
+                <button class="circle" (click)="addNewChild()">
+                    <ion-icon class="plus" name="add-outline"></ion-icon>
+                </button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-button class="sign-out" (click)="signOut()">
+        Sign out
+    </ion-button>
+</ion-content>
+

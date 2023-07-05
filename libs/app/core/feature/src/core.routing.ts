@@ -27,6 +27,11 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
+    path: 'manage-children',
+    loadChildren: () =>
+      import('@word-wizard/app/manage-children/feature').then((m) => m.ManageChildrenModule),
+  },
+  {
     path: 'welcome',
     loadChildren: () =>
       import('@word-wizard/app/welcome/feature').then((m) => m.WelcomeModule),
