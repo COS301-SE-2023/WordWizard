@@ -1,0 +1,51 @@
+<ion-content [scrollY]="false">
+    <div class="header-container">
+        <ion-grid>
+            <ion-row>
+                <ion-col size="6" (click)="modal()">
+                    <div class="profile-img">
+                        <img src="{{devImage}}"/>
+                        <div class="pencil">
+                            <ion-icon name="create-outline"></ion-icon>
+                        </div>
+                    </div>
+                </ion-col>
+                <ion-col size="1">
+                    <div class="cancel">
+                       <ion-icon name="close-sharp"></ion-icon> 
+                    </div>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+        <div>
+            <label htmlFor="name" class="input-lbl">Name:</label><br>
+            <input type="text" id="name" formControlName="name" class="test"/>
+        </div> 
+        <div>
+            <label htmlFor="age" class="input-lbl">Age:</label><br>
+            <input type="text" id="age" formControlName="age" class="test"/>
+        </div> 
+        <div>
+            <label htmlFor="stage" class="input-lbl">Stage:</label><br>
+            <input type="text" id="stage" formControlName="stage" class="test"/>
+        </div> 
+        <ww-button 
+            text="Save Changes" 
+            color="#861486" 
+            [submit]="true" 
+            activate="#6b106b"
+            border="#111"
+        ></ww-button>
+    </form>
+    <div class="delete-container">
+        <ww-button 
+            text="Delete Profile" 
+            color="#070527" 
+            activate="#05041b"
+            border="#111"
+            (event)="deleteProfile()"
+        ></ww-button>
+    </div>
+</ion-content>
