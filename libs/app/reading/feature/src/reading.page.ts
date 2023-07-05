@@ -47,6 +47,7 @@ export class ReadingPage {
   sentence = "";
 
   constructor(private store: Store) {
+    this.setStars();
     this.store.dispatch(new SetPassage());
     this.getCurrent$.subscribe((data) => {;
       this.currentWord = data;

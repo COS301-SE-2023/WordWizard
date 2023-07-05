@@ -104,8 +104,15 @@ ww-progress-potion{
 }
 
 .overlay-container {
+    position: absolute;
     display: flex;
     justify-content: center;
+    background-color: rgba(0, 0, 0, 0.6); 
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 1;
   }
   
   .overlay-animation {
@@ -119,7 +126,7 @@ ww-progress-potion{
     width: 90vw;
     border-radius: 1em;
     position: absolute;
-    z-index:1;
+    z-index:2;
     background-color: #070527;
     background-size: cover; /* Adjust the size of the image to cover the element */
     background-position: center;
@@ -149,20 +156,16 @@ ww-progress-potion{
 
   .menu-buttons{
     margin-top: 50vh;
-    z-index: 1;
+    z-index: 3;
   }
 
-
-  .image-container {
-    // position: relative;
-  }
   
   .back-button {
     width: 40vw;
-    margin-left: 30vw;
-    margin-top: 65.6vh;
+    margin-left: 29vw;
+    margin-top: 65.7vh;
     position: absolute;
-    z-index: 1;
+    z-index: 3;
     top: 0;
     left: 0;
   }
@@ -170,10 +173,10 @@ ww-progress-potion{
   .wizard-image {
     position: absolute;
     width: 50vw;
-    margin-left: 43vw;
-    margin-top: 51vh;
-    z-index: 2;
-    top: 20px;
-    left: 20px;
+    margin-left: 46vw;
+    margin-top: 55vh;
+    z-index: 4;
+    top: 0;
+    left: 0;
   }
   
