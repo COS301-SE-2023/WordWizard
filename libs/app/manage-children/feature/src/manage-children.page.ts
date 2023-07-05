@@ -53,4 +53,9 @@ export class ManageChildrenPage {
     //set state to selected child
     //route to child statistics page
   }
+
+  signOut() {
+    console.log("Signing out");
+    //sign parent out
+  }
 }

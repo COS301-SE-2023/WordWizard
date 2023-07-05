@@ -13,9 +13,9 @@ ion-header {
 }
 
 .circle {
-  width: 75%;
+  width: 40vw;
   height: 0;
-  padding-bottom:75%;
+  padding-bottom:40vw;
   background-color: transparent;
   border: 3px solid white;
   border-radius: 50%;
@@ -33,7 +33,7 @@ ion-header {
 }
 
 .plus {
-  font-size: 130px;
+  font-size: 40vw;
   color: white;
   margin-left: auto;
   margin-right: auto;
@@ -62,13 +62,15 @@ ion-header {
 }
 
 .sign-out{
-  margin-top: 70%;
-  width: 30%;
+  margin-top: 22vh;
+  height: 5vh;
+  width: 30vw;
   margin-left: auto;
   margin-right: auto;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 5vw;
   --background: #070527; 
   --border-radius: 20px;
   --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
