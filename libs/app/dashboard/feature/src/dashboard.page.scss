@@ -10,7 +10,7 @@
 }
 
 .background {
-    padding-top: 30%;
+    // padding-top: 30%;
     margin: 0;
     background-color: rgba($color: #000000, $alpha: 0.4);
     height: 100%;
@@ -48,7 +48,7 @@ ion-img {
     height: 150px;
 
     margin: auto;
-    margin-top: 0;
+    margin-top: 10%;
     margin-bottom: 10%;
 }
 
@@ -61,7 +61,8 @@ ion-avatar {
 .edit-pfp {
     background-color: #861486;
     border-radius: 50%;
-    // border: 5px solid rgb(63, 63, 63);
+    // border: 1px solid rgb(63, 63, 63);
+    border: 1px solid white;
     box-shadow: 0 0 10px black;
     margin-right: 0px;
     width: 40px;
@@ -69,11 +70,29 @@ ion-avatar {
     float: right;
     justify-content: center;
     text-align: center;
-    // margin-bottom: 20px;
+    margin-top: -25%;
+
 }
 
 .edit-pfp ion-button {
     margin: auto;
+    // color: rgb(63, 63, 63);
+    z-index: 1 !important;
+
+}
+
+.exit {
+    width: 80px;
+    height: 80px;
+}
+
+.exit ion-button {
+    width: 100%;
+    height: 100%;
+}
+
+.exit ion-icon {
+    font-size: 100px;
 }
 
 .spellbook ion-img {
@@ -97,6 +116,7 @@ ion-avatar {
     margin-left: 30%;
     text-decoration: none;
     color: white;
+    
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -127,8 +147,8 @@ ion-avatar {
 }
 
 .stage {
-    width: 150px;
-    height: 50px;
+    width: fit-content;
+    height: fit-content;
     background-color: #861486;
     // border: #000000 solid 1px;
     border-radius: 10px;
@@ -140,7 +160,10 @@ ion-avatar {
     color: white;
     text-align: center;
     align-content: center;
-    padding-top: 4px;
+    padding-right: 5%;
+    padding-left: 5%;
+    padding-top: 3%;
+    padding-bottom: 3%;
     font-size: xx-large;
 
     margin-top: 5%;
