@@ -36,6 +36,14 @@
                     </ion-row>
                     <ion-row>
                         <ion-col>
+                            <!-- STAGE INDICATOR -->
+                            <div class="stage">
+                                Stage {{stage}}
+                            </div>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col>
                             <a class="map" routerLink="/">
                                 <ion-img src="assets/icon/map-cropped.png"></ion-img>
                                 Levels
@@ -44,10 +52,7 @@
                     </ion-row>
                 </ion-grid>
             </ion-content>
-            <!-- STAGE INDICATOR -->
-            <div class="stage">
-                Stage {{stage}}
-            </div>
+            
 
             <!-- MAP BUTTON
             <ion-button class="trophy" href="">

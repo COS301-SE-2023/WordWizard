@@ -4,6 +4,7 @@
 }
 
 .links {
+    // padding-top: 5% !important;
     --background: transparent;
 }
 
@@ -47,6 +48,7 @@ ion-img {
 
     margin: auto;
     margin-top: 0;
+    margin-bottom: 10%;
 }
 
 ion-avatar {
@@ -100,6 +102,18 @@ ion-avatar {
     flex-direction: column;
     justify-content: center;
     text-align: center;
+}
+
+.stage {
+    width: 100px;
+    height: 40px;
+    background-color: purple;
+    border: #000000 solid 1px;
+    border-radius: 10px;
+    color: white;
+    text-align: center;
+    align-content: center;
+    padding-top: 7px;
 }
 
 ion-col {
