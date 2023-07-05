@@ -1,59 +1,60 @@
 <ion-content>
     <div class="dashboard">
-        <!-- SETTINGS BUTTON - RIGHT ALIGNED -->
-        <div class="settings">
-            <ion-img>
-                <img src="assets/svg/settings.svg">
-            </ion-img>
-        </div>
-        
-        <!-- PROFILE IMAGE - CENTER -->
-        <div class="pfp">
-            <ion-avatar>
-                <img [src]="pfp">
-            </ion-avatar>
-        </div>
+        <div class="background">
+            <!-- SETTINGS BUTTON - RIGHT ALIGNED -->
+            <!-- <div class="settings">
+                <ion-img>
+                    <img src="assets/svg/settings.svg">
+                </ion-img>
+            </div> -->
+            
+            <!-- PROFILE IMAGE - CENTER -->
+            <div class="pfp">
+                <ion-avatar>
+                    <img [src]="pfp">
+                </ion-avatar>
+            </div>
 
-        <!-- SPELLBOOK BUTTON     |    TROPHY BUTTON -->
-        <ion-content class="links">
-            <ion-grid>
-                <ion-row>
-                    <ion-col size="6">
-                        <!-- <div> -->
-                            <a class="spellbook" routerLink="/library">
-                                <ion-img src="assets/icon/spellbook-cropped.png"></ion-img>
-                                Library
+            <!-- SPELLBOOK BUTTON     |    TROPHY BUTTON -->
+            <ion-content class="links">
+                <ion-grid>
+                    <ion-row>
+                        <ion-col size="6">
+                            <!-- <div> -->
+                                <a class="spellbook" routerLink="/library">
+                                    <ion-img src="assets/icon/spellbook-cropped.png"></ion-img>
+                                    Library
+                                </a>
+                            <!-- </div> -->
+                        </ion-col>
+                        <ion-col size="6">
+                            <a class="trophy" routerLink="/">
+                                <ion-img src="assets/icon/trophy-cropped.png"></ion-img>
+                                Badges
                             </a>
-                        <!-- </div> -->
-                    </ion-col>
-                    <ion-col size="6">
-                        <a class="trophy" routerLink="/">
-                            <ion-img src="assets/icon/trophy-cropped.png"></ion-img>
-                            Badges
-                        </a>
-                    </ion-col>
-                </ion-row>
-                <ion-row>
-                    <ion-col>
-                        <a class="map" routerLink="/">
-                            <ion-img src="assets/icon/map-cropped.png"></ion-img>
-                            Levels
-                        </a>
-                    </ion-col>
-                </ion-row>
-            </ion-grid>
-        </ion-content>
-        <!-- STAGE INDICATOR -->
-        <div class="stage">
-            Stage {{stage}}
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col>
+                            <a class="map" routerLink="/">
+                                <ion-img src="assets/icon/map-cropped.png"></ion-img>
+                                Levels
+                            </a>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-content>
+            <!-- STAGE INDICATOR -->
+            <div class="stage">
+                Stage {{stage}}
+            </div>
+
+            <!-- MAP BUTTON
+            <ion-button class="trophy" href="">
+                <ion-img src="assets/icon/map.png"></ion-img>
+                Levels
+            </ion-button> -->
         </div>
-
-        <!-- MAP BUTTON
-        <ion-button class="trophy" href="">
-            <ion-img src="assets/icon/map.png"></ion-img>
-            Levels
-        </ion-button> -->
-
     </div>
 </ion-content>
 
