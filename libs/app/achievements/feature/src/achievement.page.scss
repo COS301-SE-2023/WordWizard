@@ -2,13 +2,13 @@
     width: 100%;
     height: 100%;
     overflow-y: scroll;
-    padding: 20px;
   }
   
   .profile-picture-container {
     display: flex;
     justify-content: center;
-    margin-bottom: 20px;
+    background-color: #070527;
+    padding: 5%;
   }
   
   .profile-picture {
@@ -16,13 +16,6 @@
     height: 150px;
     border-radius: 50%;
     border: 2px solid #AAAAAA;
-  }
-  
-  .page-heading-container {
-    background-color: #861486;
-    padding: 10px;
-    text-align: center;
-    margin-bottom: 20px;
   }
   
   .page-heading {
@@ -40,14 +33,15 @@
     color: white;
     font-weight: bold;
     padding: 10px;
+    margin-left: 0%;
     text-align: center;
-    margin-bottom: 10px;
   }
   
   .awards-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 10px;
+    margin-left: 10%;
   }
   
   .award-item {
@@ -62,8 +56,8 @@
   }
   
   .award-image {
-    width: 100px;
-    height: 100px;
+    width: 85%;
+    height: 85%;
     border-radius: 50%;
     border: 2px solid #AAAAAA;
   }

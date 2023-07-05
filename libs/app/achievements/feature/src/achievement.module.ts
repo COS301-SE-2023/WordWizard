@@ -6,9 +6,11 @@ import { IonicModule } from '@ionic/angular';
 
 import { AchievementPage } from './achievement.page';
 import { AchievementRouting } from './achievement.routing';
+import { SharedUiModule } from '@word-wizard/app/shared-ui';
+
 
 @NgModule({
-  imports: [ CommonModule, FormsModule, IonicModule, AchievementRouting],
+  imports: [ CommonModule, FormsModule, IonicModule, AchievementRouting, SharedUiModule],
   declarations: [AchievementPage ],
   exports: [AchievementPage ]
 })
