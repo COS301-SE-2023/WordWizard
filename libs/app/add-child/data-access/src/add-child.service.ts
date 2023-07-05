@@ -10,9 +10,10 @@ export class AddChildService {
 
   constructor(private readonly http: HttpClient) { }
 
-  addChild(parentEmail: string, name: string, age: number, image: string) {
+  addChild(parentName: string, parentEmail: string, name: string, age: number, image: string) {
     const request: AddChildRqst = {
       parent_email: parentEmail,
+      parent_name: parentName,
       name: name,
       age: age,
       profile_picture: image
