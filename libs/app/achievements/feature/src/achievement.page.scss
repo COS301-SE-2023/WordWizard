@@ -1,15 +1,14 @@
 .top-container{
-    width: 24.4375rem;
-    height: 1.125rem;
+    width: 100%;
+    height: 15%;
     flex-shrink: 0;
     background: #070527;
-    margin-bottom: 0%;
 }
 
 .name-container{
-    width: 24.4375rem;
-    height: 2.9375rem;
-    margin-top: 0%;
+    top: 0px !important;
+    width: 100%;
+    height: 5%;
     flex-shrink: 0;
     background: #861486;
 }
