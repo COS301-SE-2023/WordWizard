@@ -1,6 +1,7 @@
 .container {
     height: 100vh;
     width: 100vw;
+    // If using style with card - use flex - else comment out
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -10,3 +11,55 @@
     background-position: center center;
     background-size: cover;
 }
+
+.background {
+    margin-top: 0%;
+    height: 100%;
+    background-color: rgba($color: #000000, $alpha: 0.3);
+}
+
+
+// White card
+.splash {
+    width: 20rem;
+    background-color: white;
+    height: 33rem;
+    border-radius: 1.8rem;
+    border: 3px solid #070527;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+}
+
+.hat {
+    // margin-top: 10%;
+    position: relative;
+    top: 10vw;
+}
+
+.name {
+    font-size: 15vw;
+    font-family: Inter;
+    color: gold;
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-top: 5vw;
+    // position: absolute;
+    // bottom: 15vw;
+}
+
+#wizard {
+    position: relative;
+    left: 10%;
+    margin-top: 2%;
+}
+
+#word {
+    position: relative;
+    right: 10%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
