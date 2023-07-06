@@ -3,3 +3,4 @@ export * from './lib/microphone';
 export * from './lib/speaker';
 export * from './lib/info';
 export * from './lib/header';
+export * from './lib/button';
