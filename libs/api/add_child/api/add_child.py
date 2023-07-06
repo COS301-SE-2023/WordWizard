@@ -14,19 +14,12 @@ client = MongoClient(connection_string)
 db = client["WordWizardDB"]
 
 @router.post('/')
-def create_reading(rqst: AddChildRqst):
-    print(rqst)
-
-# # Connect to MongoDB
-
-# # Define the parent user data
+def add_create(rqst: AddChildRqst):
     parent_data = {
         'username': rqst.parent_name,
         'email': rqst.parent_email,
         'children': []
     }
-
-    # Define the child user data
     child_data = {
         'username': rqst.name,
         'age': rqst.age,
@@ -35,31 +28,38 @@ def create_reading(rqst: AddChildRqst):
         'progress': ''
     }
 
-#     # Get the Parents collection
-    parents_collection = db['Parent']
-
-#     # Check if the parent user already exists based on the email
+    parents_collection = db['Parents']
     existing_parent = parents_collection.find_one({'email': parent_data['email']})
 
     if existing_parent:
-        parent_id = existing_parent['_id']
-        child_data['parent'] = parent_id
-
         children_collection = db['Children']
-        children_collection.insert_one(child_data)
-
+        result_child = children_collection.insert_one({
+            'username': rqst.name,
+            'age': rqst.age,
+            'parent': existing_parent['_id'],
+            'vocab_list': '',
+            'practice_list': '',
+            'progress': ''
+        })
         parents_collection.update_one(
-            {'_id': parent_id},
-            {'$push': {'children': child_data['_id']}}
+            {'_id': existing_parent['_id']},
+            {'$push': {'children': result_child.inserted_id}}
         )
-    else:
-        children = [child_data['_id']]
-        parent_data['children'] = children
 
-        parents_collection.insert_one(parent_data)
-
-        child_data['parent'] = parent_data['_id']
+    else: 
+        result_parent = parents_collection.insert_one(parent_data)
         children_collection = db['Children']
-        children_collection.insert_one(child_data)
+        result_child = children_collection.insert_one({
+            'username': rqst.name,
+            'age': rqst.age,
+            'parent': result_parent.inserted_id,
+            'vocab_list': '',
+            'practice_list': '',
+            'progress': ''
+        })
+        parents_collection.update_one(
+            {'_id': result_parent.inserted_id},
+            {'$push': {'children': result_child.inserted_id}}
+        )
 
     return { 'status': 'success' }
