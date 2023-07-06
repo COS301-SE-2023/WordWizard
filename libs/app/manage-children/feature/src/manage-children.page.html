@@ -9,20 +9,24 @@
 <ion-content>
     <div class="overlay-container" [class.hidden-overlay]="!visible"> 
         <div class="overlay">
-            <ww-button class="continueChild"
-                text="Continue as {{selectedChild?.username}}" 
-                color="#861486" 
-                activate="#510E51"
-                border="#fff"
-                (event)="continueChild()"   
-            ></ww-button>
-            <ww-button class="continueParent"
-                text="View Progress" 
-                color="#070527" 
-                activate="#000000"
-                border="#fff"
-                (event)="continueParent()"
-             ></ww-button>
+            <ion-nav-link routerLink="/dashboard">
+                <ww-button class="continueChild"
+                    text="Continue as {{selectedChild?.username}}" 
+                    color="#861486" 
+                    activate="#510E51"
+                    border="#fff"
+                    (event)="continueChild(selectedChild)"   
+                ></ww-button>
+            </ion-nav-link>
+            <ion-nav-link routerLink="/child-statistics">
+                <ww-button class="continueParent"
+                    text="View Progress" 
+                    color="#070527" 
+                    activate="#000000"
+                    border="#fff"
+                    (event)="continueParent(selectedChild)"
+                ></ww-button>
+            </ion-nav-link>
         </div>
     </div>
     <ion-grid class="children-grid">
@@ -40,8 +44,10 @@
             </ion-col>
         </ion-row>
     </ion-grid>
-    <ion-button class="sign-out" (click)="signOut()">
-        Sign out
-    </ion-button>
+    <ion-nav-link routerLink="/welcome">
+        <ion-button class="sign-out">
+            Sign out
+        </ion-button>
+    </ion-nav-link>
 </ion-content>
 

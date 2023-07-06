@@ -45,34 +45,20 @@ export class ManageChildrenPage {
     console.log("Selected child:", child);
     this.selectedChild = child;
     this.controlModal();
-    this.store.dispatch(new SetChild({childId:child._id}));
-    // this.router.navigate(['library']); //chanfe to child statistics page
-    // Add your logic here to handle the selection of a child
   }
-
-  // addNewChild() {
-  //   console.log("Adding new child");
-  //   // Add your logic here to handle adding a new child
-  // }
 
   controlModal() {
     this.visible = !this.visible;
   }
 
-  continueChild() {
+  continueChild(child: Child) {
     console.log("Continuing as child");
-    //set state to selected child
-    //route to dashboard page
+    this.store.dispatch(new SetChild({childId:child._id}));
   }
 
-  continueParent() {
+  continueParent(child: Child) {
     console.log("Continuing as parent");
-    //set state to selected child
-    //route to child statistics page
+    this.store.dispatch(new SetChild({childId:child._id}));
   }
 
-  signOut() {
-    console.log("Signing out");
-    //sign parent out
-  }
 }
