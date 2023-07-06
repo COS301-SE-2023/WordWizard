@@ -2,7 +2,7 @@
     height: 100vh;
     width: 100vw;
     // If using style with card - use flex - else comment out
-    display: flex;
+    // display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -15,7 +15,7 @@
 .background {
     margin-top: 0%;
     height: 100%;
-    background-color: rgba($color: #000000, $alpha: 0.3);
+    background-color: rgba($color: rgb(113, 113, 113), $alpha: 0.1);
 }
 
 
@@ -42,6 +42,10 @@
     font-size: 15vw;
     font-family: Inter;
     color: gold;
+    text-shadow:    -1px 1px 0 #000,
+                    1px 1px 0 #000,
+                    1px -1px 0 #000,
+                    -1px -1px 0 #000;
     display: block;
     width: 100%;
     text-align: center;
