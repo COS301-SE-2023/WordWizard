@@ -80,11 +80,15 @@ ion-header {
 }
 
 .overlay-container {
-  height: 100vh;
-  width: 100vw;
-  background-color: rgba(0, 0, 0, 0.2);
+  position: absolute;
   display: flex;
   justify-content: center;
+  background-color: rgba(0, 0, 0, 0.6); 
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: 1;
 }
 
 .overlay {
