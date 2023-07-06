@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { NgxsModule } from '@ngxs/store';
 // import { DashboardState, DashboardService } from '@word-wizard/app/library/data-access';
+import { SharedUiModule } from '@word-wizard/app/shared-ui';
 
 @NgModule({
   imports: [
@@ -19,6 +20,7 @@ import { NgxsModule } from '@ngxs/store';
     RouterModule,
     // DashboardUiModule,
     // NgxsModule.forFeature([DashboardState]),
+    SharedUiModule,
     HttpClientModule
   ],
   declarations: [DashboardPage],

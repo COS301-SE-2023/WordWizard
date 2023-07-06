@@ -83,8 +83,10 @@ ion-avatar img {
     border: 1px solid white;
     box-shadow: 0 0 10px black;
     margin-right: 0px;
-    width: 40px;
-    height: 40px;
+    width: 10vw;
+    height: 10vw;
+    // width: 40px;
+    // height: 40px;
     // float: right;
     justify-content: center;
     text-align: center;
@@ -101,7 +103,7 @@ ion-avatar img {
     margin: auto;
     // color: rgb(63, 63, 63);
     z-index: 1 !important;
-
+    font-size: 4vw;
 }
 
 .exit {
