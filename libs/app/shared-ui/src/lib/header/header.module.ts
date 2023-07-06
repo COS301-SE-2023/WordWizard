@@ -5,9 +5,10 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { HeaderComponent } from './header.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
-  imports: [ CommonModule, FormsModule, IonicModule,],
+  imports: [ CommonModule, FormsModule, IonicModule, RouterModule],
   declarations: [HeaderComponent],
   exports: [HeaderComponent]
 })

@@ -1,7 +1,9 @@
 <ion-header>
   <div id="header-content">
-    <ion-icon [routerLink]="{{backRoute}}" size="large" name="arrow-back-outline" src="assets/svg/arrow-back-outline.svg" *ngIf="backActive"></ion-icon>
-
+    <a [routerLink]="backRoute" *ngIf="backActive">
+      <ion-icon size="large" name="arrow-back-outline" src="assets/svg/arrow-back-outline.svg"></ion-icon>
+    </a>
+    
     <ion-title>{{title}}</ion-title>
 
     <ion-icon size="large" name="settings-sharp" src="assets/svg/settings-sharp.svg" *ngIf="settingsActive"></ion-icon>
