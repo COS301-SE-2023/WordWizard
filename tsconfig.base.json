@@ -21,10 +21,10 @@
       "@word-wizard/app/add-child/feature": [
         "libs/app/add-child/feature/src/index.ts"
       ],
-      "@word-wizard/app/auth/feature": ["libs/app/auth/feature/src/index.ts"],
       "@word-wizard/app/auth/data-access": [
         "libs/app/auth/data-access/src/index.ts"
       ],
+      "@word-wizard/app/auth/feature": ["libs/app/auth/feature/src/index.ts"],
       "@word-wizard/app/child-settings/feature": [
         "libs/app/child-settings/feature/src/index.ts"
       ],
@@ -52,6 +52,9 @@
         "libs/app/reading/shared-ui/src/index.ts"
       ],
       "@word-wizard/app/shared-ui": ["libs/app/shared-ui/src/index.ts"],
+      "@word-wizard/app/splash/feature": [
+        "libs/app/splash/feature/src/index.ts"
+      ],
       "@word-wizard/app/stage/data-access": [
         "libs/app/stage/data-access/src/index.ts"
       ],

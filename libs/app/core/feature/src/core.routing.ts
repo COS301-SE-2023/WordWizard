@@ -46,7 +46,12 @@ const routes: Routes = [
     path: 'settings',
     loadChildren: () =>
       import('@word-wizard/app/child-settings/feature').then((m) => m.ChildSettingsModule),
-  }
+  },
+  {
+    path: 'splash',
+    loadChildren: () =>
+      import('@word-wizard/app/splash/feature').then((m) => m.SplashModule),
+  },
 ];
 
 @NgModule({
