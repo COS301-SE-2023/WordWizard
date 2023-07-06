@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AddChildRqst } from './requests/add-child.requests';
 import { status } from './responses/add-child.responses';
+import { images } from './interfaces/add-child.interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -23,5 +24,12 @@ export class AddChildService {
       'Content-Type': 'application/json'
     });
     return this.http.post<status>(`${process.env['WW_API_ENDPOINT']}/add-child`, request, { headers });
+  }
+
+  getImages() {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.http.get<images>(`${process.env['WW_API_ENDPOINT']}/add-child`,{ headers });
   }
 }

@@ -13,53 +13,52 @@ connection_string = os.getenv("MONGODB_CONNECTION_STRING")
 client = MongoClient(connection_string)
 db = client["WordWizardDB"]
 
+@router.get('/')
+def get_photos():
+    devImage = 'https://img.freepik.com/free-vector/cute-shiba-inu-dog-wearing-dragon-costume-cartoon-vector-icon-illustration-animal-holiday-isolated_138676-7105.jpg?size=626&ext=jpg&ga=GA1.2.772846284.1688291417&semt=ais'
+    devImage2 = 'https://img.freepik.com/free-vector/cute-young-dragon-cartoon-vector-icon-illustration-animal-nature-icon-concept-isolated-premium-vector-flat-cartoon-style_138676-3544.jpg?size=626&ext=jpg&ga=GA1.2.772846284.1688291417&semt=ais'
+    return { 'images': [devImage, devImage2, devImage, devImage2, devImage, devImage2, devImage, devImage2, devImage]}
+
+
 @router.post('/')
-def create_reading(rqst: AddChildRqst):
-    print(rqst)
-
-# # Connect to MongoDB
-
-# # Define the parent user data
+def add_create(rqst: AddChildRqst):
     parent_data = {
         'username': rqst.parent_name,
         'email': rqst.parent_email,
         'children': []
     }
-
-    # Define the child user data
-    child_data = {
-        'username': rqst.name,
-        'age': rqst.age,
-        'vocab_list': '',
-        'practice_list': '',
-        'progress': ''
-    }
-
-#     # Get the Parents collection
-    parents_collection = db['Parent']
-
-#     # Check if the parent user already exists based on the email
+    parents_collection = db['Parents']
     existing_parent = parents_collection.find_one({'email': parent_data['email']})
-
     if existing_parent:
-        parent_id = existing_parent['_id']
-        child_data['parent'] = parent_id
-
         children_collection = db['Children']
-        children_collection.insert_one(child_data)
-
+        result_child = children_collection.insert_one({
+            'username': rqst.name,
+            'age': rqst.age,
+            'parent': existing_parent['_id'],
+            'profile_photo': rqst.profile_picture,
+            'vocab_list': '',
+            'practice_list': '',
+            'progress': ''
+        })
         parents_collection.update_one(
-            {'_id': parent_id},
-            {'$push': {'children': child_data['_id']}}
+            {'_id': existing_parent['_id']},
+            {'$push': {'children': result_child.inserted_id}}
         )
-    else:
-        children = [child_data['_id']]
-        parent_data['children'] = children
 
-        parents_collection.insert_one(parent_data)
-
-        child_data['parent'] = parent_data['_id']
+    else: 
+        result_parent = parents_collection.insert_one(parent_data)
         children_collection = db['Children']
-        children_collection.insert_one(child_data)
-
+        result_child = children_collection.insert_one({
+            'username': rqst.name,
+            'age': rqst.age,
+            'parent': result_parent.inserted_id,
+            'profile_photo': rqst.profile_picture,
+            'vocab_list': '',
+            'practice_list': '',
+            'progress': ''
+        })
+        parents_collection.update_one(
+            {'_id': result_parent.inserted_id},
+            {'$push': {'children': result_child.inserted_id}}
+        )
     return { 'status': 'success' }
