@@ -58,7 +58,7 @@ ion-header {
 }
 
 .children-grid {
-  margin-top: 10%;; 
+  margin-top: 10%; 
 }
 
 .sign-out{
@@ -80,17 +80,9 @@ ion-header {
 }
 
 .overlay-container {
-  display: flex;
-  justify-content: center;
-}
-
-.overlay-animation {
-  animation: fadeIn 1s ease-in;
-}
-
-.container {
-  margin-top: 6.5rem;
-  margin-bottom: 4rem;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.2);
   display: flex;
   justify-content: center;
 }
@@ -113,7 +105,6 @@ ion-header {
 }
 
 .continueChild{
-  margin-top: 15%;
   margin-left: auto;
   margin-right: auto;
   display: flex;
@@ -122,10 +113,20 @@ ion-header {
 }
 
 .continueParent{
-  margin-bottom: 15%;
+  margin-bottom: 20vw;
   margin-left: auto;
   margin-right: auto;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.close{
+  background-color: #0C0330;
+  height: 20vw;
+  width: 20vw;
+  margin-left: 60vw;
+  color: white;
+  font-size: 20vw;
+  z-index: 2;
 }
