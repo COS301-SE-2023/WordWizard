@@ -1,6 +1,6 @@
 export class GetChildren {
     static readonly type = '[Child] Get Children';
-    constructor(public payload: { parent_email: string }){}
+    constructor(public payload: { parent_email: string, parent_name: string }){}
 }
 
 export class SetChild {

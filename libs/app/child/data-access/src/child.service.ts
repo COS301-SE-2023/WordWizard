@@ -9,9 +9,10 @@ import { Child } from './interfaces/child.interfaces';
 export class ChildService {
 
   constructor(private readonly http: HttpClient) { }
-  getChildren(email: string) {
+  getChildren(email: string, name: string) {
     const request : GetChildrenRqst = {
-      parent_email: email
+      parent_email: email,
+      parent_name: name
     }
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'

@@ -6,4 +6,5 @@ export interface Child {
     profile_photo: string;
     vocab_list: string;
     practice_list: string;
+    progress: string;
 }

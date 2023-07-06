@@ -17,6 +17,7 @@ export interface ChildStateModel {
             profile_photo: string;
             vocab_list: string;
             practice_list: string;
+            progress: string;
         }
     };
   }
@@ -36,6 +37,7 @@ export interface ChildStateModel {
             profile_photo: '',
             vocab_list: '',
             practice_list: '',
+            progress: '',
         }
       }
     }
@@ -52,7 +54,7 @@ export class ChildState {
 
   @Action(GetChildren)
   async GetChildren(ctx: StateContext<ChildStateModel>, {payload}:GetChildren) {
-    const rsps: Child[] = await this.childService.getChildren(payload.parent_email).toPromise() ?? [];
+    const rsps: Child[] = await this.childService.getChildren(payload.parent_email, payload.parent_name).toPromise() ?? [];
     ctx.setState(
         produce((draft: ChildStateModel) => {
             draft.Children.model.children = rsps;
