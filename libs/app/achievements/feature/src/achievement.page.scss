@@ -12,32 +12,26 @@
   }
   
   .profile-picture {
-    width: 150px;
-    height: 150px;
+    width: 60%;
+    height: 60%;
     border-radius: 50%;
-    border: 2px solid #AAAAAA;
+    border: 3px solid #AAAAAA;
   }
-  
-  .page-heading {
-    color: white;
-    font-weight: bold;
-    font-size: 24px;
-  }
-  
 
   .section-header {
     background-color: #861486;
     color: white;
     font-weight: bold;
-    padding: 10px;
+    padding: 3%;
     margin-left: 0%;
     text-align: center;
+    font-size: 150%;
   }
   
   .awards-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-gap: 10px;
+    grid-gap: 1%;
     margin-left: 10%;
   }
   
@@ -56,7 +50,7 @@
     width: 85%;
     height: 85%;
     border-radius: 50%;
-    border: 2px solid #AAAAAA;
+    border: 3px solid #000000;
   }
 
   .awards-section-container{
