@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
 import { Child } from './interfaces/child.interfaces';
-import { GetChildren } from './child.actions';
-// import { GetChildrenRqst } from './requests/child.requests';
+import { GetChildren, SetChild } from './child.actions';
 import { ChildService } from './child.service';
 import { produce } from 'immer';
 
@@ -11,6 +10,7 @@ export interface ChildStateModel {
     model:{
         children: Child[];
         currentChild:{
+            _id: string;
             username: string;
             age: number;
             parent: string;
@@ -29,6 +29,7 @@ export interface ChildStateModel {
       model: {
         children: [],
         currentChild: {
+            _id: '',
             username: '',
             age: 0,
             parent: '',
@@ -49,36 +50,30 @@ export class ChildState {
     private readonly childService: ChildService
   ){}
 
-  // @Action(Example)
-  // example(ctx: StateContext<ReadingStateModel>, action: Example) {
-  //   const request = {
-  //     word: this.word,
-  //     definition: 'A fruit that grows on trees'
-  //   } as ReadingRequest;
-
-  //   this.readingService.getVocab(request).subscribe((data) => {
-  //     console.log(data);
-  //   });
-  // }
-
   @Action(GetChildren)
   async GetChildren(ctx: StateContext<ChildStateModel>, {payload}:GetChildren) {
-    // const rqst: UpdateRequest = {
-    //   userID: payload.userID,
-    //   word: payload.word
-    // } as UpdateRequest;
-    // const rsps: UpdateResponse = await this.libraryService.UpdatePractice(rqst).toPromise() ?? {status: 'error'};
-    // if(rsps.status === 'success'){
-    //   ctx.setState(
-    //     produce((draft: LibraryStateModel) => {
-    //       const practiceList = draft.Library.model.Practice;
-    //       const wordIndex = practiceList.words.findIndex((word) => word.word === payload.word);
-    //       if (wordIndex !== -1) 
-    //         practiceList.words.splice(wordIndex, 1);
-    //     })
-    //   );
-    // }
     const rsps: Child[] = await this.childService.getChildren(payload.parent_email).toPromise() ?? [];
+    ctx.setState(
+        produce((draft: ChildStateModel) => {
+            draft.Children.model.children = rsps;
+        })
+    );
+  }
+
+  @Action(SetChild)
+  async SetChild(ctx: StateContext<ChildStateModel>, {payload}:SetChild) {
+    const state = ctx.getState();
+    const child = state.Children.model.children.find(c => c._id === payload.childId);
+    if(child) {
+      ctx.patchState({
+        Children: {
+          model: {
+            ...state.Children.model,
+            currentChild: child
+          }
+        }
+      });
+    }
   }
 
   @Selector()

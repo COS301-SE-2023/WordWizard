@@ -1,4 +1,5 @@
 export interface Child {
+    _id: string;
     username: string;
     age: number;
     parent: string;

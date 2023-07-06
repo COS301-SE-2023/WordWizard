@@ -1,3 +1,3 @@
 export interface GetChildrenRqst {
-    email: string;
+    parent_email: string;
 }

@@ -24,7 +24,6 @@ export class LibraryPage {
   @Select(LibraryState.vocab) vocab$!: Observable<WordList>;
 
   constructor(private store: Store){
-    // throw new Error("I fucking hate testing");
     this.store.dispatch(new SetPractice());
     this.store.dispatch(new SetVocab());
     this.practice$.subscribe((data) => {;
