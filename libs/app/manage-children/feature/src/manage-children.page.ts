@@ -32,8 +32,8 @@ export class ManageChildrenPage {
 
   constructor(private router: Router, private store: Store, private readonly auth: AuthService) {
     this.auth.user$.subscribe((user) => {
-      if (user) {
-        this.store.dispatch(new GetChildren({parent_email:user.email || '', parent_name: user.nickname || ''}));
+      if(user) {
+        this.store.dispatch(new GetChildren({parent_email:user?.email || '', parent_name: user?.nickname || ''}));
         this.Children$.subscribe((data) => {
           this.children = data;
         });

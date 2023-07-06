@@ -6,7 +6,7 @@ import { ManageChildrenPage } from './manage-children.page';
 import { SharedUiModule } from '@word-wizard/app/shared-ui';
 import { NgxsModule } from '@ngxs/store';
 import { HttpClientModule } from '@angular/common/http';
-import { ChildState } from '@word-wizard/app/child/data-access';
+import { ChildState, ChildService } from '@word-wizard/app/child/data-access';
 
 @NgModule({
   imports: [
@@ -18,6 +18,7 @@ import { ChildState } from '@word-wizard/app/child/data-access';
     HttpClientModule
   ],
   declarations: [ManageChildrenPage],
+  providers: [ChildService]
 })
 export class ManageChildrenModule {
 

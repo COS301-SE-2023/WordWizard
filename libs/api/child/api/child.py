@@ -23,10 +23,10 @@ def get_children(rqst: GetChildrenReq):
         children = []
         for id in existing_parent['children']:
             children.append(get_child(id))
-        return {'Children': children}
+        return children
     else:
         result_parent = parents_collection.insert_one(parent_data)
-        return {'Children': []}
+        return []
 
 def get_child(child_id):
     children_collection = db['Children']

@@ -4,6 +4,7 @@ import { Child } from './interfaces/child.interfaces';
 import { GetChildren, SetChild } from './child.actions';
 import { ChildService } from './child.service';
 import { produce } from 'immer';
+import { take } from 'rxjs/operators';
 
 export interface ChildStateModel {
   Children: {
@@ -54,11 +55,20 @@ export class ChildState {
 
   @Action(GetChildren)
   async GetChildren(ctx: StateContext<ChildStateModel>, {payload}:GetChildren) {
-    const rsps: Child[] = await this.childService.getChildren(payload.parent_email, payload.parent_name).toPromise() ?? [];
-    ctx.setState(
-        produce((draft: ChildStateModel) => {
+    
+    this.childService.getChildren(payload.parent_email, payload.parent_name)
+    .pipe(take(1)) // Potential issue later, omly seems to take first 5 results?
+    .subscribe(
+      (rsps: Child[]) => {
+        ctx.setState(
+          produce((draft: ChildStateModel) => {
             draft.Children.model.children = rsps;
-        })
+          })
+        );
+      },
+      (error) => {
+        console.error('An error occurred:', error);
+      }
     );
   }
 

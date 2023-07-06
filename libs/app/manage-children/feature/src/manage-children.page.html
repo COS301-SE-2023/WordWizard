@@ -10,7 +10,7 @@
     <div class="overlay-container" [class.hidden-overlay]="!visible"> 
         <div class="overlay">
             <ww-button class="continueChild"
-                text="Continue as {{selectedChild.username}}" 
+                text="Continue as {{selectedChild?.username}}" 
                 color="#861486" 
                 activate="#510E51"
                 border="#fff"
@@ -29,7 +29,7 @@
         <ion-row>
             <ion-col *ngFor="let child of children" size="6">
                 <button class="circle" [style.background-image]="'url(' + child.profile_photo + ')'" (click)="setChild(child)"></button>
-                <div class="child-name">{{child.username}}</div>
+                <div class="child-name">{{child?.username}}</div>
             </ion-col>
             <ion-col size="6">
                 <ion-nav-link routerLink="/add-child">

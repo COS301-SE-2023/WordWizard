@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '@auth0/auth0-angular';
 import { AddChildService } from '@word-wizard/app/add-child/data-access';
 import { ToastController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ww-add-child',
@@ -18,7 +19,7 @@ export class AddChildPage {
   visible = false;
   selectedImage!: string;
   pictures: string[] = [];
-  constructor(private readonly fb: FormBuilder, private auth: AuthService, private addChildService: AddChildService, public toastController: ToastController) {
+  constructor(private readonly fb: FormBuilder, private auth: AuthService, private addChildService: AddChildService, public toastController: ToastController, private router: Router) {
     this.addChildService.getImages().subscribe((res) => {
       this.pictures = res.images;
     });
@@ -46,6 +47,7 @@ export class AddChildPage {
           console.error('user is not logged in');
       }
     });
+    this.router.navigate(['/manage-children']);
   }
 
   async presentToast(text:string, color:string) {
