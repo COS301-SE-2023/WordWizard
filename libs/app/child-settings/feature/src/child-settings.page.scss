@@ -1,0 +1,98 @@
+ion-content {
+    --background: #fff;
+    .header-container {
+        display: flex;
+        justify-content: center;
+        width:150%;
+        height:20.5rem;
+        border-radius:150%;
+        margin-top: -5.25rem;
+        transform: translateX(-18%);
+        background-color: #070527;
+        ion-grid {
+            margin-top:7em;
+            @media(min-width: 300px) {
+                margin-left:36%;
+            }
+            @media(min-width: 700px) {
+                margin-left:44%;
+            }
+            .profile-img {
+                position: absolute;
+                .pencil {
+                    color: #000;
+                    font-size: 1.3rem;
+                    width:2rem;
+                    height:2rem;
+                    background-color: #861486;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border: 1px solid #000;
+                    border-radius: 50%;
+
+                    position: absolute;
+                    top: 70%;
+                    left: 50%;
+                    transform: translateX(135%);
+                }
+            }
+
+            .cancel {
+                color: #464646;
+                font-size: 3rem;
+                width:3.5rem;
+                height:3.5rem;
+                background-color: white;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border: 1px solid #000;
+                border-radius: 50%;
+                margin-top: -1.5rem;
+            }
+        }
+        img {
+            width: 10rem;
+            height: 10rem;
+            border-radius: 50%;
+            border: 2px solid #070527;
+        }
+    }
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top:3rem;
+        .input-lbl {
+            color: #000;
+            font-size: 24px;
+            font-family: Inter;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+        }
+        input {
+            border-radius: 10px;
+            border: 2px solid #070527;
+            background: #F8F8F8;
+            // box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+            height: 3rem;
+            width: 17rem;
+            margin-top:0.5rem;
+            margin-bottom: 1.3rem;
+            font-size:1.5rem;
+            color:black;
+            &:focus {
+                outline: none;
+                border-color: #007bff
+            };
+        }
+    }
+    .delete-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top:22px;
+    }
+}
