@@ -1,2 +1,2 @@
-export * from './achievement.page';
 export * from './achievement.module';
+export * from './achievement.page';

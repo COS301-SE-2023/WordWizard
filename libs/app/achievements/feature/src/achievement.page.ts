@@ -114,12 +114,4 @@ export class AchievementPage {
       }
     }
   };
-
-  constructor() {
-    console.log('Achievement Page');
-  }
-
-  ngOnInit() {
-    console.log('Achievement Page');
-  }
 }
