@@ -1,0 +1,221 @@
+.view-child {
+    // background: url(../../../../../apps/word-wizard/src/assets/img/bg/library-background.jpg) 0 0/100% 100% no-repeat;
+    background: url(../../../../../apps/word-wizard/src/assets/img/wizardhousebg.png) 0 0/100% 100% no-repeat;
+    height: 100%;
+
+    display: flex;
+  flex-direction: column;
+  justify-content: center;
+//   align-items: center;
+}
+
+.name {
+    color: white;
+    text-align: center;
+    text-shadow:    -1px 1px 0 #000,
+                    1px 1px 0 #000,
+                    1px -1px 0 #000,
+                    -1px -1px 0 #000;
+    font-size: 2rem;
+}
+
+.name p {
+    margin-top: 2%;
+    margin-bottom: 5%;
+}
+
+.links {
+    // padding-top: 5% !important;
+    --background: transparent;
+}
+
+.background {
+    // padding-top: 30%;
+    margin: 0;
+    background-color: rgba($color: #000000, $alpha: 0.4);
+    height: 100%;
+}
+
+.settings {
+    --background: transparent;
+    width: 75px;
+    height: fit-content;
+    margin-right: 0px !important;
+}
+
+.settings ion-img {
+    width: 75px;
+    height: 75px;
+}
+
+ion-button {
+    --background: none;
+    width: fit-content;
+    height: fit-content;
+}
+
+// ion-img {
+//     width: 100px;
+//     height: 100px;
+// }
+
+.pfp {
+    background-color: rgb(62, 110, 200);
+    border-radius: 50%;
+    border: 5px solid rgb(63, 63, 63);
+    box-shadow: 0 0 10px black;
+    width: fit-content;
+    height: fit-content;
+
+    margin: auto;
+    margin-top: 10%;
+    margin-bottom: 2%;
+    // position: absolute;
+    // top: 20%;
+    // left: 20%;
+    display: block;
+    // overflow: hidden;
+    position: relative;
+}
+
+ion-avatar {
+    // width: 150px;
+    // height: 150px;
+    width: 40vw;
+    height: 40vw;
+    margin: auto;
+}
+
+ion-avatar img {
+    z-index: -1;
+}
+
+
+.edit-pfp {
+    background-color: #861486;
+    border-radius: 50%;
+    // border: 1px solid rgb(63, 63, 63);
+    border: 1px solid white;
+    box-shadow: 0 0 10px black;
+    margin-right: 0px;
+    width: 10vw;
+    height: 10vw;
+    // width: 40px;
+    // height: 40px;
+    // float: right;
+    justify-content: center;
+    text-align: center;
+    position: absolute;
+    // top: 28%;
+    // left: 60%;
+    bottom: 0;
+    right: 0;
+    // margin-top: -25%;
+    // z-index: 10;
+}
+
+.edit-pfp ion-button {
+    margin: auto;
+    // color: rgb(63, 63, 63);
+    z-index: 1 !important;
+    font-size: 4vw;
+}
+
+.exit {
+    width: 80px;
+    height: 80px;
+}
+
+.exit ion-button {
+    width: 100%;
+    height: 100%;
+}
+
+.exit ion-icon {
+    font-size: 100px;
+}
+
+.spellbook ion-img {
+    width: 100px;
+    height: 100px;
+}
+
+.trophy ion-img {
+    width: 100px;
+    height: 100px;
+    margin: auto;
+}
+
+.map ion-img {
+    width: 100px;
+    height: 100px;
+    margin: auto;
+}
+
+.spellbook {
+    margin-left: 30%;
+    text-decoration: none;
+    color: white;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    font-size: large;
+}
+
+.trophy {
+    margin-right: 30%;
+    text-decoration: none;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    font-size: large;
+}
+
+.map {
+    margin: auto;
+    text-decoration: none;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    font-size: large;
+}
+
+.stage {
+    width: fit-content;
+    height: fit-content;
+    background-color: #861486;
+    // border: #000000 solid 1px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px black;
+    text-shadow:    -1px 1px 0 #000,
+                    1px 1px 0 #000,
+                    1px -1px 0 #000,
+                    -1px -1px 0 #000;
+    color: white;
+    text-align: center;
+    align-content: center;
+    padding-right: 5%;
+    padding-left: 5%;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    font-size: xx-large;
+
+    margin-top: 5%;
+}
+
+ion-col {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+
+

@@ -5,4 +5,8 @@ import { Component } from '@angular/core';
   templateUrl: './view-child.page.html',
   styleUrls: ['./view-child.page.scss'],
 })
-export class ViewChildPage {}
+export class ViewChildPage {
+  stage: number = 1;
+  pfp : string = 'assets/img/item/cauldron-cropped.png';
+  name: string = "Martie";
+}

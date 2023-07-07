@@ -1,15 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import { appViewChildFeatureRoutes } from './lib.routes';
 import { ViewChildPage } from './view-child.page';
 import { ViewChildRouting } from './view-child.routing';
+import { IonicModule } from '@ionic/angular';
+import { SharedUiModule } from '@word-wizard/app/shared-ui';
+
 
 @NgModule({
   imports: [
     CommonModule, 
     // RouterModule.forChild(appViewChildFeatureRoutes)
-    ViewChildRouting
+    ViewChildRouting,
+    IonicModule,
+    SharedUiModule
   ],
   declarations: [ViewChildPage],
   exports: [ViewChildPage],
