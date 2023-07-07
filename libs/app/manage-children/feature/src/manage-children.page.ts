@@ -25,7 +25,6 @@ export class ManageChildrenPage {
   children: Child[] = [];
 
 
-  // Set visible to true to debug modal
   visible = false;
   selectedChild!: Child;
 
