@@ -5,6 +5,11 @@ import { ChildSettingsPage } from './child-settings.page';
 import { IonicModule } from '@ionic/angular';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedUiModule } from '@word-wizard/app/shared-ui';
+import { NgxsModule } from '@ngxs/store';
+import { HttpClientModule } from '@angular/common/http';
+import { ChildState, ChildService } from '@word-wizard/app/child/data-access';
+import { AddChildService } from '@word-wizard/app/add-child/data-access';
+
 
 @NgModule({
   imports: [
@@ -12,9 +17,11 @@ import { SharedUiModule } from '@word-wizard/app/shared-ui';
     ChildSettingsRouting, 
     IonicModule, 
     ReactiveFormsModule, 
-    SharedUiModule
+    SharedUiModule,
+    NgxsModule.forFeature([ChildState]),
+    HttpClientModule,
   ],
   declarations: [ChildSettingsPage],
-  exports: [ChildSettingsPage],
+  providers: [ChildService, AddChildService],
 })
 export class ChildSettingsModule {}

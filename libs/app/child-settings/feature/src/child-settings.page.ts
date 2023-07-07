@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-export interface child {
-  id: number;
-  name: string;
-  age: number;
-  profilePicture: string;
-}
+import {
+  ChildState,
+  Child
+} from '@word-wizard/app/child/data-access';
+import { Select, Store } from '@ngxs/store';
+import { Observable } from 'rxjs';
+import { AuthService } from '@auth0/auth0-angular';
+import { AddChildService } from '@word-wizard/app/add-child/data-access';
 
 @Component({
   selector: 'word-wizard-child-settings',
@@ -14,15 +16,28 @@ export interface child {
 })
 export class ChildSettingsPage {
   devImage = 'https://img.freepik.com/free-vector/cute-shiba-inu-dog-wearing-dragon-costume-cartoon-vector-icon-illustration-animal-holiday-isolated_138676-7105.jpg?size=626&ext=jpg&ga=GA1.2.772846284.1688291417&semt=ais';
-  devImage2 = 'https://img.freepik.com/free-vector/cute-young-dragon-cartoon-vector-icon-illustration-animal-nature-icon-concept-isolated-premium-vector-flat-cartoon-style_138676-3544.jpg?size=626&ext=jpg&ga=GA1.2.772846284.1688291417&semt=ais';
   visible = false;
-  form: FormGroup= this.fb.group({
-    name: ['', Validators.required],
-    age: ['', Validators.required],
-    stage: ['', Validators.required],
-  });
+  form!: FormGroup;
+  selectedImage!: string;
+  pictures: string[] = [];
+  @Select(ChildState.currentChild) currentChild$!: Observable<Child>;
 
-  constructor(private readonly fb: FormBuilder) {}
+  constructor(private readonly fb: FormBuilder, private auth: AuthService, private addChildService: AddChildService) {
+    this.currentChild$.subscribe((data) => {
+      if(data.profile_photo == '') 
+        this.selectedImage  = this.devImage;
+      else
+        this.selectedImage = data.profile_photo;
+      this.form = this.fb.group({
+        name: [data.username, Validators.required],
+        age: [data.age, Validators.required],
+        stage: ['', Validators.required],
+      });
+    });
+    this.addChildService.getImages().subscribe((res) => {
+      this.pictures = res.images;
+    });
+  }
 
   submit() {
     // console.log('submit');
@@ -34,5 +49,9 @@ export class ChildSettingsPage {
 
   modal() {
     this.visible = !this.visible;
+  }
+
+  chooseImage(image: string) {
+    this.selectedImage = image;
   }
 }
