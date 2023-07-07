@@ -21,12 +21,15 @@
       "@word-wizard/app/add-child/feature": [
         "libs/app/add-child/feature/src/index.ts"
       ],
-      "@word-wizard/app/auth/feature": ["libs/app/auth/feature/src/index.ts"],
       "@word-wizard/app/auth/data-access": [
         "libs/app/auth/data-access/src/index.ts"
       ],
+      "@word-wizard/app/auth/feature": ["libs/app/auth/feature/src/index.ts"],
       "@word-wizard/app/child-settings/feature": [
         "libs/app/child-settings/feature/src/index.ts"
+      ],
+      "@word-wizard/app/child/data-access": [
+        "libs/app/child/data-access/src/index.ts"
       ],
       "@word-wizard/app/core/feature": ["libs/app/core/feature/src/index.ts"],
       "@word-wizard/app/library/data-access": [
