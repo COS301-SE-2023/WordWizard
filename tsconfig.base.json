@@ -25,6 +25,9 @@
         "libs/app/auth/data-access/src/index.ts"
       ],
       "@word-wizard/app/auth/feature": ["libs/app/auth/feature/src/index.ts"],
+      "@word-wizard/app/child-settings/data-access": [
+        "libs/app/child-settings/data-access/src/index.ts"
+      ],
       "@word-wizard/app/child-settings/feature": [
         "libs/app/child-settings/feature/src/index.ts"
       ],
