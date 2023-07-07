@@ -6,8 +6,6 @@ class GetChildrenReq(BaseModel):
 
 class EditChildReq(BaseModel):
     child_id: str
-    parent_email: str
-    parent_name: str
     name: str
     age: int
     profile_picture: str

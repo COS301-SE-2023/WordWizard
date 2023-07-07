@@ -1,1 +1,1 @@
-export * from './lib/app-child-settings-data-access.module';
+export * from './app-child-settings-data-access.module';
