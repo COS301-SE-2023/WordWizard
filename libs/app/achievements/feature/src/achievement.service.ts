@@ -12,6 +12,6 @@ export class AchievementService {
 
   getAwards(userId: string): Observable<AwardSection[]> {
     const requestPayload = { userID: userId };
-    return this.http.post<AwardSection[]>( `${process.env}`, requestPayload);
+    return this.http.post<AwardSection[]>( `${process.env['WW_API_ENDPOINT']}/achievements`, requestPayload);
   }
 }
