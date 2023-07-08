@@ -25,7 +25,7 @@ export class ChildSettingsPage {
   pictures: string[] = [];
   @Select(ChildState.currentChild) currentChild$!: Observable<Child>;
 
-  constructor(private readonly fb: FormBuilder, private auth: AuthService, private addChildService: AddChildService) {
+  constructor(private readonly fb: FormBuilder, private auth: AuthService, private addChildService: AddChildService,  private childSettingsService: ChildSettingsService) {
     this.currentChild$.subscribe((data) => {
       if(data.profile_photo == '') 
         this.selectedImage  = this.devImage;
@@ -43,12 +43,18 @@ export class ChildSettingsPage {
   }
 
   submit() {
-    // this.ChildSettingsService.editChlid(this.form.value.name, this.form.value.age, this.selectedImage).subscribe((res) => {
-    // });
-    // console.log('submit');
+
+    this.currentChild$.subscribe((data) => {
+      this.childSettingsService.editChild(data._id, this.form.value.name, this.form.value.age, this.selectedImage).subscribe((res) => {
+        console.log(res);
+      });
+    });
+
+    console.log('submit');
   }
 
   deleteProfile() {
+
     // console.log('delete profile');
   }
 
@@ -58,5 +64,6 @@ export class ChildSettingsPage {
 
   chooseImage(image: string) {
     this.selectedImage = image;
+    
   }
 }

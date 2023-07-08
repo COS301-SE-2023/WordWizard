@@ -10,7 +10,7 @@ export class ChildSettingsService {
 
   constructor(private readonly http: HttpClient) { }
 
-  addChild(id:string, name: string, age: number, image: string) {
+  editChild(id:string, name: string, age: number, image: string) {
     const request: EditChildRqst = {
       child_id: id,
       name: name,
@@ -21,6 +21,6 @@ export class ChildSettingsService {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
-    return this.http.post<status>(`${process.env['WW_API_ENDPOINT']}/child-settings/edit-child`, request, { headers });
+    return this.http.post<status>(`${process.env['WW_API_ENDPOINT']}/child/edit-child`, request, { headers });
   }
 }

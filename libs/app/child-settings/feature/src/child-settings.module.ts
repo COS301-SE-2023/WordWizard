@@ -8,6 +8,7 @@ import { SharedUiModule } from '@word-wizard/app/shared-ui';
 import { NgxsModule } from '@ngxs/store';
 import { HttpClientModule } from '@angular/common/http';
 import { ChildState, ChildService } from '@word-wizard/app/child/data-access';
+import { ChildSettingsService } from '@word-wizard/app/child-settings/data-access';
 import { AddChildService } from '@word-wizard/app/add-child/data-access';
 
 
@@ -22,6 +23,6 @@ import { AddChildService } from '@word-wizard/app/add-child/data-access';
     HttpClientModule,
   ],
   declarations: [ChildSettingsPage],
-  providers: [ChildService, AddChildService],
+  providers: [ChildService, AddChildService, ChildSettingsService],
 })
 export class ChildSettingsModule {}

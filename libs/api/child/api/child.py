@@ -43,6 +43,8 @@ def get_child(child_id):
 
 @router.post('/edit-child')
 def edit(rqst: EditChildReq):
+    if (rqst.child_id == ''):
+        return { 'status': 'error', 'message': 'No Child id' }
     children_collection = db['Children']
     object_id = ObjectId(rqst.child_id)
     existing_child = children_collection.find_one({'_id': object_id})

@@ -7,3 +7,8 @@ export class SetChild {
     static readonly type = '[Child] Set Child';
     constructor(public payload: { childId: string }){}
 }
+
+export class EditChild{
+    static readonly type = '[Child] Edit Child';
+    constructor(public payload: { childId: string, name: string, image: string }){}
+}
