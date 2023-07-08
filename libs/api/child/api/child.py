@@ -62,15 +62,26 @@ def edit(rqst: EditChildReq):
         return { 'status': 'error', 'message': 'Child not found' }
     
 
+
 @router.post('/delete-child')
 def delete(rqst: DeleteChildReq):
-    if (rqst.child_id == ''):
-        return { 'status': 'error', 'message': 'No Child id' }
+    if rqst.child_id == '':
+        return {'status': 'error', 'message': 'No Child id'}
+
     children_collection = db['Children']
+    parents_collection = db['Parents']  
+
     object_id = ObjectId(rqst.child_id)
     existing_child = children_collection.find_one({'_id': object_id})
+
     if existing_child:
         children_collection.delete_one({'_id': object_id})
-        return { 'status': 'success' }
+
+        parent_id = ObjectId(existing_child['parent'])
+        parents_collection.update_one(
+            {'_id': parent_id},
+            {'$pull': {'children': object_id}}
+        )
+        return {'status': 'success'}
     else:
-        return { 'status': 'error', 'message': 'Child not found' }
+        return {'status': 'error', 'message': 'Child not found'}
