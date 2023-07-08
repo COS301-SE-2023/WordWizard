@@ -4,3 +4,7 @@ export interface EditChildRqst {
     age: number;
     profile_picture: string;
 }
+
+export interface DeleteChildRqst {
+    child_id: string;
+}

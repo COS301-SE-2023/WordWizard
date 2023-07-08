@@ -58,7 +58,12 @@ export class ChildSettingsPage {
 
   deleteProfile() {
 
-    // console.log('delete profile');
+    this.currentChild$.subscribe((data) => {
+      this.childSettingsService.deleteChild(data._id).subscribe((res) => {
+        console.log(res);
+      });
+      this.store.dispatch(new SetChild({childId:data._id}));
+    });
   }
 
   modal() {
