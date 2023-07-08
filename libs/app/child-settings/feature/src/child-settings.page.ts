@@ -62,7 +62,6 @@ export class ChildSettingsPage {
       this.childSettingsService.deleteChild(data._id).subscribe((res) => {
         console.log(res);
       });
-      this.store.dispatch(new SetChild({childId:data._id}));
     });
   }
 
