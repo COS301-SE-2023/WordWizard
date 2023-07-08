@@ -1,16 +1,17 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Award, AwardSection } from './achievement.model';
+import { AwardSection } from '../src/achievement.model';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class AchievementService {
-  private baseUrl = 'https://your-backend-api.com'; // Replace with your backend API URL
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  getAwards(): Observable<AwardSection[]> {
-    const url = `${this.baseUrl}/achievements/practice`; // Replace with your API endpoint
-    return this.http.get<AwardSection[]>(url);
+  getAwards(userId: string): Observable<AwardSection[]> {
+    const requestPayload = { userID: userId };
+    return this.http.post<AwardSection[]>( `${process.env}`, requestPayload);
   }
 }
