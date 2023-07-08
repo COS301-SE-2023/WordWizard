@@ -4,9 +4,10 @@
     height: 100%;
 
     display: flex;
-  flex-direction: column;
-  justify-content: center;
+    flex-direction: column;
+    justify-content: center;
 //   align-items: center;
+    overflow: scroll;
 }
 
 .name {
@@ -34,6 +35,8 @@
     margin: 0;
     background-color: rgba($color: #000000, $alpha: 0.4);
     height: 100%;
+    // height: fit-content;
+    overflow: scroll;
 }
 
 .settings {
@@ -146,12 +149,6 @@ ion-avatar img {
     margin: auto;
 }
 
-.map ion-img {
-    width: 100px;
-    height: 100px;
-    margin: auto;
-}
-
 .spellbook {
     margin-left: 30%;
     text-decoration: none;
@@ -166,17 +163,6 @@ ion-avatar img {
 
 .trophy {
     margin-right: 30%;
-    text-decoration: none;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    font-size: large;
-}
-
-.map {
-    margin: auto;
     text-decoration: none;
     color: white;
     display: flex;
@@ -213,6 +199,13 @@ ion-col {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.graph {
+    width: 75%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
 }
 
 
