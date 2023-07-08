@@ -13,7 +13,7 @@ client = MongoClient(connection_string)
 db = client["WordWizardDB"]
 
 
-@router.post('/practice')
+@router.post('/achievements')
 def get_Awards(rqst: AwardsRqst):
     progress_collection = db["Progress"]
     result = progress_collection.find_one({"child_id": rqst.userID})
