@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ChildSettingsService } from '@word-wizard/app/child-settings/data-access';
 import { 
+  SetChild,
   ChildState,
   Child
 } from '@word-wizard/app/child/data-access';
@@ -25,7 +26,7 @@ export class ChildSettingsPage {
   pictures: string[] = [];
   @Select(ChildState.currentChild) currentChild$!: Observable<Child>;
 
-  constructor(private readonly fb: FormBuilder, private auth: AuthService, private addChildService: AddChildService,  private childSettingsService: ChildSettingsService) {
+  constructor(private readonly fb: FormBuilder, private auth: AuthService, private addChildService: AddChildService,  private childSettingsService: ChildSettingsService, private store: Store) {
     this.currentChild$.subscribe((data) => {
       if(data.profile_photo == '') 
         this.selectedImage  = this.devImage;
@@ -48,7 +49,9 @@ export class ChildSettingsPage {
       this.childSettingsService.editChild(data._id, this.form.value.name, this.form.value.age, this.selectedImage).subscribe((res) => {
         console.log(res);
       });
+      this.store.dispatch(new SetChild({childId:data._id}));
     });
+
 
     console.log('submit');
   }

@@ -9,3 +9,6 @@ class EditChildReq(BaseModel):
     name: str
     age: int
     profile_picture: str
+
+class DeleteChildReq(BaseModel):
+    child_id: str

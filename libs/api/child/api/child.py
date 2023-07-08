@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from ..util.child_models import GetChildrenReq, EditChildReq
+from ..util.child_models import GetChildrenReq, EditChildReq, DeleteChildReq
 import os
 from dotenv import load_dotenv
 from pymongo import MongoClient
@@ -59,5 +59,18 @@ def edit(rqst: EditChildReq):
         )
         return { 'status': 'success' }
     else:
-        # Child with the specified child_id not found
+        return { 'status': 'error', 'message': 'Child not found' }
+    
+
+@router.post('/delete-child')
+def delete(rqst: DeleteChildReq):
+    if (rqst.child_id == ''):
+        return { 'status': 'error', 'message': 'No Child id' }
+    children_collection = db['Children']
+    object_id = ObjectId(rqst.child_id)
+    existing_child = children_collection.find_one({'_id': object_id})
+    if existing_child:
+        children_collection.delete_one({'_id': object_id})
+        return { 'status': 'success' }
+    else:
         return { 'status': 'error', 'message': 'Child not found' }
