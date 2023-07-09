@@ -4,6 +4,11 @@ import { AchievementService } from './achievement.service';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+import { 
+  SetChild,
+  ChildState,
+  Child
+} from '@word-wizard/app/child/data-access';
 
 @Component({
   selector: 'ww-achievement',
@@ -11,6 +16,9 @@ import { Observable } from 'rxjs';
   styleUrls: ['./achievement.page.scss'],
 })
 export class AchievementPage implements OnInit {
+
+  @Select(ChildState.Children) Children$!: Observable<Child[]>; 
+
   childProfilePictureSrc = 'https://ww-img-bucket.s3.amazonaws.com/Dragon4-testProfile.png';
   
   awards: AwardSection[] = [];
