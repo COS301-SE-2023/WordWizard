@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Award, AwardSection } from './achievement.model';
 import { AchievementService } from './achievement.service';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -13,6 +14,9 @@ export class AchievementPage implements OnInit {
   childProfilePictureSrc = 'https://ww-img-bucket.s3.amazonaws.com/Dragon4-testProfile.png';
   
   awards: AwardSection[] = [];
+
+  @Select(ChildState.currentChild) currentChild$!: Observable<Child>;
+
 
   constructor(private achievementService: AchievementService) {}
 
