@@ -55,7 +55,7 @@ export class VoiceRecognitionService {
   convertSpeechToText(file: Blob): Observable<any> {
     const formData = new FormData();
     formData.append('file', file, 'audio.wav');
-    return this.http.post('http://localhost:8000/speech/speech-to-text', formData);
+    return this.http.post(`${process.env["WW_API_ENDPOINT"]}speech/speech-to-text`, formData);
   }
 }
 /* eslint:enable */

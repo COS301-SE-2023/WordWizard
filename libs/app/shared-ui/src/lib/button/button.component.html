@@ -1,0 +1,20 @@
+<!-- <ion-button (click)="click()">{{text}}</ion-button> -->
+<div *ngIf="submit; else normal">
+    <ion-button 
+        [disabled]="disabled" 
+        type="submit" 
+        [style.--background]="color" 
+        [style.--background-activated]="activate"
+        [style.--border-color]="border"
+    >{{text}}</ion-button>
+</div>
+
+<ng-template #normal>
+    <ion-button 
+        (click)="click()" 
+        [disabled]="disabled" 
+        [style.--background]="color" 
+        [style.--background-activated]="activate"
+        [style.--border-color]="border"
+    >{{text}}</ion-button>
+</ng-template>

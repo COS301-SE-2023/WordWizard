@@ -32,10 +32,33 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
+    path: 'add-child',
+    loadChildren: () =>
+      import('@word-wizard/app/add-child/feature').then((m) => m.AddChildModule),
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'manage-children',
+    loadChildren: () =>
+      import('@word-wizard/app/manage-children/feature').then((m) => m.ManageChildrenModule),
+    canActivate: [AuthGuard],
+  },
+  {
     path: 'welcome',
     loadChildren: () =>
       import('@word-wizard/app/welcome/feature').then((m) => m.WelcomeModule),
+  },
+  {
+    path: 'achievements',
+    loadChildren: () =>
+      import('@word-wizard/app/achievements/feature').then((m) => m.AchievementModule),
+  },
+  {
+    path: 'settings',
+    loadChildren: () =>
+      import('@word-wizard/app/child-settings/feature').then((m) => m.ChildSettingsModule),
   }
+  
 ];
 
 @NgModule({
