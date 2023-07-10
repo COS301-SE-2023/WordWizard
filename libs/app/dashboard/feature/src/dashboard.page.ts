@@ -21,7 +21,7 @@ export class DashboardPage {
   @Select(ChildState.currentChild) currentChild$!: Observable<Child>;
 
   child: any = {
-    username: '',
+    username: 'Martie',
     pfp : 'assets/img/item/cauldron-cropped.png',
     stage: 0,
     title: 'Journeyman'

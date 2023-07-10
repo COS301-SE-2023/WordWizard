@@ -1,4 +1,4 @@
-<ww-header [title]="child.title" [settingsActive]="false" [backRoute]="[./manage-children]"></ww-header>
+<ww-header [title]="child.title" [settingsActive]="false" [backRoute]="'./'"></ww-header>
 
 <ion-content>
     <div class="dashboard">
@@ -26,9 +26,9 @@
                         </ion-grid>
                     </div>
                 </ion-avatar>
-                <div class="name">
-                    <p>{{child.username}}</p>
-                </div>
+            </div>
+            <div class="name">
+                <p>{{child.username}}</p>
             </div>
 
             <!-- SPELLBOOK BUTTON     |    TROPHY BUTTON -->
