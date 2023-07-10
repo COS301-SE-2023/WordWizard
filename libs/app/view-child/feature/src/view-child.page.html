@@ -1,4 +1,4 @@
-<ww-header [title]="'Journeyman'" [settingsActive]="true" [backRoute]="'./'"></ww-header>
+<ww-header [title]="child.state" [settingsActive]="true" [backRoute]="'./manage-children'"></ww-header>
 
 <ion-content>
     <div class="view-child">
@@ -6,11 +6,11 @@
             <!-- PROFILE IMAGE - CENTER -->
             <div class="pfp">
                 <ion-avatar>
-                    <img [src]="pfp">
+                    <img [src]="child.pfp">
                 </ion-avatar>
             </div>
             <div class="name">
-                <p>{{name}}</p>
+                <p>{{child.username}}</p>
             </div>
 
             <!-- SPELLBOOK BUTTON     |    TROPHY BUTTON -->
@@ -36,7 +36,7 @@
                         <ion-col>
                             <!-- STAGE INDICATOR -->
                             <div class="stage">
-                                Stage {{stage}}
+                                Stage {{child.stage}}
                             </div>
                         </ion-col>
                     </ion-row>
