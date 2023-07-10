@@ -1,4 +1,4 @@
-<ww-header [title]="'Journeyman'" [settingsActive]="true" [backRoute]="'./'"></ww-header>
+<ww-header [title]="child.title" [settingsActive]="false" [backRoute]="[./manage-children]"></ww-header>
 
 <ion-content>
     <div class="dashboard">
@@ -13,7 +13,7 @@
             <!-- PROFILE IMAGE - CENTER -->
             <div class="pfp">
                 <ion-avatar>
-                    <img [src]="pfp">
+                    <img [src]="child.pfp">
                     <div class="edit-pfp">
                         <ion-grid>
                             <ion-row>
@@ -51,7 +51,7 @@
                         <ion-col>
                             <!-- STAGE INDICATOR -->
                             <div class="stage">
-                                Stage {{stage}}
+                                Stage {{child.stage}}
                             </div>
                         </ion-col>
                     </ion-row>
