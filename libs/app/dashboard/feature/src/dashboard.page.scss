@@ -9,6 +9,21 @@
 //   align-items: center;
 }
 
+.name {
+    color: white;
+    text-align: center;
+    text-shadow:    -1px 1px 0 #000,
+                    1px 1px 0 #000,
+                    1px -1px 0 #000,
+                    -1px -1px 0 #000;
+    font-size: 2rem;
+}
+
+.name p {
+    margin-top: 2%;
+    margin-bottom: 5%;
+}
+
 .links {
     // padding-top: 5% !important;
     --background: transparent;
