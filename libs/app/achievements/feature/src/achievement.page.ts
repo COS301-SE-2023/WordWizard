@@ -3,7 +3,9 @@ import { Award, AwardSection } from './achievement.model';
 import { AchievementService } from './achievement.service';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Select, Store } from '@ngxs/store';
+import { AuthService } from '@auth0/auth0-angular';
 import { 
   SetChild,
   ChildState,
@@ -26,20 +28,26 @@ export class AchievementPage implements OnInit {
   @Select(ChildState.currentChild) currentChild$!: Observable<Child>;
 
 
-  constructor(private achievementService: AchievementService) {}
+  constructor(private achievementService: AchievementService, private store: Store) {
+    this.currentChild$.subscribe((child) => {
+      if (child) {
+        console.log('child', child);
+      }
+    });
+  }
 
   ngOnInit() {
     this.loadAwards();
   }
 
   loadAwards() {
-    this.achievementService.getAwards().subscribe(
-      (awards: AwardSection[]) => {
-        this.awards = awards;
-      },
-      (error) => {
-        console.error('Error loading awards:', error);
-      }
-    );
+    // this.achievementService.getAwards().subscribe(
+    //   (awards: AwardSection[]) => {
+    //     this.awards = awards;
+    //   },
+    //   (error) => {
+    //     console.error('Error loading awards:', error);
+    //   }
+    // );
   }
 }
