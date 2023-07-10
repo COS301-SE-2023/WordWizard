@@ -5,10 +5,11 @@ import { IonicModule } from '@ionic/angular';
 import { AchievementPage } from './achievement.page';
 import { AchievementRouting } from './achievement.routing';
 import { SharedUiModule } from '@word-wizard/app/shared-ui';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
-  imports: [ CommonModule, FormsModule, IonicModule, AchievementRouting, SharedUiModule],
+  imports: [ CommonModule, FormsModule, IonicModule, AchievementRouting, SharedUiModule, HttpClientModule],
   declarations: [AchievementPage ],
   exports: [AchievementPage ]
 })

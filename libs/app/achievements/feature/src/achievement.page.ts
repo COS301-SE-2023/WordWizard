@@ -41,13 +41,14 @@ export class AchievementPage implements OnInit {
   }
 
   loadAwards() {
-    // this.achievementService.getAwards().subscribe(
-    //   (awards: AwardSection[]) => {
-    //     this.awards = awards;
-    //   },
-    //   (error) => {
-    //     console.error('Error loading awards:', error);
-    //   }
-    // );
+    this.achievementService.getAwards("00001").subscribe(
+      (awards: AwardSection[]) => {
+        this.awards = awards;
+      },
+      (error) => {
+        console.error('Error loading awards:', error);
+      }
+    );
   }
+  
 }
