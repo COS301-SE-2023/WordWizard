@@ -52,11 +52,6 @@ const routes: Routes = [
     path: 'settings',
     loadChildren: () =>
       import('@word-wizard/app/child-settings/feature').then((m) => m.ChildSettingsModule),
-  },
-  {
-    path: 'view-child',
-    loadChildren: () =>
-      import('@word-wizard/app/view-child/feature').then((m) => m.ViewChildModule),
   }
   
 ];
