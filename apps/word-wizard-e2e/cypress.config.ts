@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { defineConfig } from 'cypress';
 import { nxE2EPreset } from '@nx/cypress/plugins/cypress-preset';
 
