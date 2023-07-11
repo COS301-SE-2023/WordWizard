@@ -5,22 +5,20 @@
     <div class="profile-picture-container">
       <img [src]="childProfilePictureSrc" alt="Profile Picture" class="profile-picture">
     </div>
-    <ion-content>
-      <div class="awards-section-container">
-        <div class="section-container" *ngFor="let catagory of awards">
-          <div class="section-header">{{ catagory.name }}</div>
-          <div class="awards-container">
-            <div class="award-item" *ngFor="let award of catagory.awards">
-              <img
-                [src]="award.completed ? 'https://ww-img-bucket.s3.amazonaws.com/Dragon4-testProfile.png' : 'https://ww-img-bucket.s3.amazonaws.com/ww-awards/Blankbadge.png'"
-                alt="Award Image"
-                class="award-image"
-                loading="lazy"
-              > 
-            </div>
+    <div class="awards-section-container">
+      <div class="section-container" *ngFor="let catagory of awards">
+        <div class="section-header">{{ catagory.name }}</div>
+        <div class="awards-container">
+          <div class="award-item" *ngFor="let award of catagory.awards">
+            <img
+              [src]="award.completed ? 'https://ww-img-bucket.s3.amazonaws.com/Dragon4-testProfile.png' : 'https://ww-img-bucket.s3.amazonaws.com/ww-awards/Blankbadge.png'"
+              alt="Award Image"
+              class="award-image"
+              loading="lazy"
+            > 
           </div>
         </div>
       </div>
-  </ion-content>
+    </div>
   </div>
 </ion-content>
