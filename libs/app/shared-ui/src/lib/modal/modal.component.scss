@@ -46,7 +46,7 @@
                 width: 80%;
                 display:grid;
                 place-items: center;
-                
+
                 h2{
                     font-size: 1.5rem;
                     margin: 0px;
@@ -57,18 +57,20 @@
 
             }
 
-            ion-button{
+            button{
                 width: 10%;
+                height: auto;
+                position: relative;
+                background-color: transparent;
             }
 
             ion-icon {
                 color: white;
                 font-size: 2rem;
+                width: 100%;
             }
 
         }
-
-
 
         .content {
             padding: 5%;
