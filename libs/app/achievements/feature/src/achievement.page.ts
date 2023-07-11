@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 // import { Award, AwardSection } from './achievement.model';
 // import { AchievementService } from './achievement.service';
 import { Award, AwardSection, AchievementService } from '@word-wizard/app/achievements/data-access';
@@ -23,7 +23,7 @@ export interface achievement {
   templateUrl: './achievement.page.html',
   styleUrls: ['./achievement.page.scss'],
 })
-export class AchievementPage implements OnInit {
+export class AchievementPage {
 
   @Select(ChildState.Children) Children$!: Observable<Child[]>; 
 
@@ -39,24 +39,22 @@ export class AchievementPage implements OnInit {
   constructor(private achievementService: AchievementService, private store: Store) {
     this.currentChild$.subscribe((child) => {
       if (child) {
-        console.log('child', child);
+        // this.loadAwards(child._id);
+        // this.childProfilePictureSrc = child.profile_photo;
+        this.loadAwards('64adbd15f021795e969d4076');
       }
     });
   }
 
-  ngOnInit() {
-    this.loadAwards();
-  }
-
-  loadAwards() {
-    this.achievementService.getAwards("00001").subscribe(
-      (awards: AwardSection[]) => {
-        this.awards = awards;
+  loadAwards(id:string) {
+    this.achievementService.getAwards(id).subscribe(
+      (data: AwardSection[]) => {
+            
+        this.awards = data;
       },
       (error) => {
         console.error('Error loading awards:', error);
       }
     );
   }
-  
 }

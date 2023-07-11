@@ -33,4 +33,4 @@ def get_Awards(rqst: AwardsRqst):
             award = Award(goal=goal, progress=progress, description=description, completed=completed, img=img)
             award_section.add_award(award)
         awards_list.add_section(award_section)
-    return awards_list
+    return awards_list.awardSections
