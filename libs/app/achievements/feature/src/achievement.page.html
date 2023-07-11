@@ -18,7 +18,7 @@
         </div>
       </div>
     </div>
+    <ww-modal [isModalOpen]="open" modalType="Badge" title="Achievement" (close)="open=false"></ww-modal>
+    <ion-button (click)="open=true">Open Badge Modal</ion-button>
   </div>
-  <ion-button (click)="open= !open">Open Badge Modal</ion-button>
-            <ww-modal [isModalOpen]="open" type="Badge" title="Achievement"></ww-modal>
 </div>

@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+
 
 @Component({
   selector: 'ww-modal',
@@ -10,10 +11,15 @@ export class ModalComponent  implements OnInit {
 
   @Input() modalType: string = '';
   @Input() title: string = '';
-  @Input() items: string[] = [];
   @Input() isModalOpen: boolean = false;
 
+  @Output() close: EventEmitter<Boolean> = new EventEmitter();
+
   constructor(private modalController: ModalController) {}
+
+  closeModal(){
+    this.close.emit(false);
+  }
 
   ngOnInit(): void {
     
