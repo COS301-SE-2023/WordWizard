@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Award, AwardSection } from './achievement.model';
-import { AchievementService } from './achievement.service';
+// import { Award, AwardSection } from './achievement.model';
+// import { AchievementService } from './achievement.service';
+import { Award, AwardSection, AchievementService } from '@word-wizard/app/achievements/data-access';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -11,6 +12,11 @@ import {
   ChildState,
   Child
 } from '@word-wizard/app/child/data-access';
+
+export interface achievement {
+  levelName:string;
+
+}
 
 @Component({
   selector: 'ww-achievement',
@@ -26,6 +32,8 @@ export class AchievementPage implements OnInit {
   awards: AwardSection[] = [];
 
   @Select(ChildState.currentChild) currentChild$!: Observable<Child>;
+
+
 
 
   constructor(private achievementService: AchievementService, private store: Store) {

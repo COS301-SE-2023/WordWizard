@@ -10,4 +10,3 @@ export interface AwardSection {
     name: string;
     awards: Award[];
 }
-  

@@ -3,7 +3,7 @@ from typing import Optional
 
 
 class AwardsRqst(BaseModel):
-    userID: str
+    child_id: str
 
 
 class Award:
