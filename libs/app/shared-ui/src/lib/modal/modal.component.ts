@@ -1,3 +1,4 @@
+/* eslint-disable @angular-eslint/no-output-native */
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 
@@ -9,11 +10,12 @@ import { ModalController } from '@ionic/angular';
 })
 export class ModalComponent  implements OnInit {
 
-  @Input() modalType: string = '';
-  @Input() title: string = '';
-  @Input() isModalOpen: boolean = false;
+  @Input() modalType = '';
+  @Input() title = '';
+  @Input() isModalOpen = false;
+  @Input() awardIMG! : string;
 
-  @Output() close: EventEmitter<Boolean> = new EventEmitter();
+  @Output() close: EventEmitter<boolean> = new EventEmitter();
 
   constructor(private modalController: ModalController) {}
 
@@ -22,7 +24,7 @@ export class ModalComponent  implements OnInit {
   }
 
   ngOnInit(): void {
-    
+    console.log('modalType', this.modalType);
   }
 
   dismiss() {

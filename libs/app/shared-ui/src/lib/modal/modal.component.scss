@@ -70,6 +70,27 @@
                 width: 100%;
             }
 
+            .imgContainer {
+                width: 10px !important;
+                max-width: 50% !important;
+                height: 2px;
+                overflow: none;
+            }
+
+            .Award-picture {
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                border: 3px solid #AAAAAA;
+            }
+
+            .Award-picture-container {
+                display: flex;
+                justify-content: center;
+                background-color: #070527;
+                padding: 5%;
+            }
+
         }
 
         .content {

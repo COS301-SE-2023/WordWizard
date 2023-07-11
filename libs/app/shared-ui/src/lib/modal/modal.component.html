@@ -1,52 +1,42 @@
-<!-- <div *ngIf="isOpen"> -->
-  <div class="container" *ngIf="isModalOpen">
-  <!-- <ion-content> -->
-    <div class="modal">
-      
-      <!-- <ion-modal [isOpen]="isModalOpen" [initialBreakpoint]="0.25"> -->
+<div class="container" *ngIf="isModalOpen">
+  <div class="modal">
+    
+    <!-- <ion-modal [isOpen]="isModalOpen" [initialBreakpoint]="0.25"> -->
 
-        <div class="header">
-          <div class="filler"></div>
-          <div class="title"><h2>{{title}}</h2></div>
-            <button (click)="closeModal()">
-              <ion-icon name="close"></ion-icon>
-            </button>
-        </div>
+      <div class="header">
+        <div class="filler"></div>
+        <div class="title"><h2>{{title}}</h2></div>
+          <button (click)="closeModal()">
+            <ion-icon name="close"></ion-icon>
+          </button>
+      </div>
 
-        <!-- <ion-header >
-          <ion-toolbar >
-          </ion-toolbar>
-        </ion-header> -->
-        <div class="content">
-            <div *ngIf="modalType === 'Badge'" class="BadgeModal">
-              <!-- Badge specific content -->
-              <p>Badge!</p>
-            </div>
-            
-            <div *ngIf="modalType === 'Reading'" class="ReadingModal">
-              <!-- Reading specific content -->
-              <p>Reading!</p>
-            </div>
-            
-            <div *ngIf="modalType === 'Picture'" class="PictureModal">
-              <!-- Picture specific content -->
-              <p>Picture!</p>
-            </div>
-            
-            <div *ngIf="modalType === 'View'" class="ViewModal">
-              <!-- View specific content -->
-              <p>View!</p>
+      <div class="content">
+          <div *ngIf="modalType === 'Badge'" class="BadgeModal">
+            <!-- Badge specific content -->
+            <p>Badge!</p>
+            <div class="Award-picture-container">
+              <img [src]="awardIMG" alt="Award Picture" class="Award-picture" >
             </div>
           </div>
-    </div>
-  </div>
-  <!-- </ion-content> -->
-  
-  <!-- <ion-footer>
-    <ion-toolbar>
-      <ion-buttons slot="end">
-        <ion-button (click)="dismiss()">Close</ion-button>
-      </ion-buttons>
-    </ion-toolbar>
-  </ion-footer> -->
-<!-- </div> -->
+          
+          <div *ngIf="modalType === 'Reading'" class="ReadingModal">
+            <!-- Reading specific content -->
+            <p>Reading!</p>
+          </div>
+          
+          <div *ngIf="modalType === 'Picture'" class="PictureModal">
+            <!-- Picture specific content -->
+            <p>Picture!</p>
+          </div>
+          
+          <div *ngIf="modalType === 'View'" class="ViewModal">
+            <!-- View specific content -->
+            <p>View!</p>
+          </div>
+      </div>
+
+
+      <!-- <img [src]="https://ww-img-bucket.s3.amazonaws.com/WizzyFlipped.png" alt="WizzyFlipped" />    -->
+  </div> 
+</div>
