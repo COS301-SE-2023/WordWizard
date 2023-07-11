@@ -11,4 +11,4 @@ import { ModalComponent } from './modal.component';
   declarations: [ModalComponent ],
   exports: [ModalComponent ]
 })
-export class ModalComponent Module {}
+export class ModalModule {}

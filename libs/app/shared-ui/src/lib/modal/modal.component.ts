@@ -11,6 +11,7 @@ export class ModalComponent  implements OnInit {
   @Input() modalType: string = '';
   @Input() title: string = '';
   @Input() items: string[] = [];
+  @Input() isModalOpen: boolean = false;
 
   constructor(private modalController: ModalController) {}
 

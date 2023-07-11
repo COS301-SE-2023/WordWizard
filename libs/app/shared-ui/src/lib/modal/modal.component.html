@@ -1,31 +1,47 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>{{ title }}</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
-  <div *ngIf="modalType === 'Badge'">
-    <!-- Badge specific content -->
-  </div>
-
-  <div *ngIf="modalType === 'Reading'">
-    <!-- Reading specific content -->
-  </div>
-
-  <div *ngIf="modalType === 'Picture'">
-    <!-- Picture specific content -->
-  </div>
-
-  <div *ngIf="modalType === 'View'">
-    <!-- View specific content -->
-  </div>
-</ion-content>
-
-<ion-footer>
-  <ion-toolbar>
-    <ion-buttons slot="end">
-      <ion-button (click)="dismiss()">Close</ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-footer>
+<!-- <div *ngIf="isOpen"> -->
+  
+  <ion-content>
+    <ion-modal [isOpen]="isModalOpen">
+      <ng-template>
+        <ion-header>
+          <ion-toolbar>
+            <ion-title>{{title}}</ion-title>
+            <ion-buttons slot="end">
+              <ion-button (click)="isModalOpen = false">Close</ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content class="ion-padding">
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni illum quidem recusandae ducimus quos
+            reprehenderit. Veniam, molestias quos, dolorum consequuntur nisi deserunt omnis id illo sit cum qui. Eaque,
+            dicta.
+          </p>
+          <div *ngIf="modalType === 'Badge'">
+            <!-- Badge specific content -->
+          </div>
+        
+          <div *ngIf="modalType === 'Reading'">
+            <!-- Reading specific content -->
+          </div>
+        
+          <div *ngIf="modalType === 'Picture'">
+            <!-- Picture specific content -->
+          </div>
+        
+          <div *ngIf="modalType === 'View'">
+            <!-- View specific content -->
+          </div>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
+  </ion-content>
+  
+  <!-- <ion-footer>
+    <ion-toolbar>
+      <ion-buttons slot="end">
+        <ion-button (click)="dismiss()">Close</ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-footer> -->
+<!-- </div> -->
