@@ -37,6 +37,9 @@
       "@word-wizard/app/child-settings/feature": [
         "libs/app/child-settings/feature/src/index.ts"
       ],
+      "@word-wizard/app/child-statistics/data-access": [
+        "libs/app/child-statistics/data-access/src/index.ts"
+      ],
       "@word-wizard/app/child-statistics/feature": [
         "libs/app/child-statistics/feature/src/index.ts"
       ],
