@@ -58,6 +58,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('@word-wizard/app/child-statistics/feature').then((m) => m.ChildStatisticsModule),
     canActivate: [AuthGuard],
+  },
+  {
+    path: 'view-child',
+    loadChildren: () =>
+      import('@word-wizard/app/view-child/feature').then((m) => m.ViewChildModule),
   }
   
 ];

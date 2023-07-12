@@ -74,6 +74,9 @@
       "@word-wizard/app/stage/shared-ui": [
         "libs/app/stage/shared-ui/src/index.ts"
       ],
+      "@word-wizard/app/view-child/feature": [
+        "libs/app/view-child/feature/src/index.ts"
+      ],
       "@word-wizard/app/welcome/feature": [
         "libs/app/welcome/feature/src/index.ts"
       ]
