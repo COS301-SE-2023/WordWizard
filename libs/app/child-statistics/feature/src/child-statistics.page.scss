@@ -1,0 +1,35 @@
+ion-content {
+    --background: #070527;
+    .chart {
+        background: #131041;
+        border-radius: 5%;   
+    }
+    .text-stat-container {
+        margin-top: 2em;
+        ion-col {
+            background: #131041;
+            border-radius: 5%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            .stat-text {
+                color: #FFF;
+                font-size: 1.25rem;
+                font-style: normal;
+                font-weight: 700;
+                line-height: normal;
+                margin-top: -1rem;
+            }
+            .stat {
+                color: #FFF;
+                font-size: 2.5rem;
+                font-style: normal;
+                font-weight: 700;
+                line-height: normal;
+                margin-top: 1.8rem;
+            }
+        }
+    }
+}
