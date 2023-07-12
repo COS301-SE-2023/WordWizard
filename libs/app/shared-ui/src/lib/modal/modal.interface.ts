@@ -17,6 +17,6 @@ export interface Picture {
 
 // For Reading Modal
 export interface Stats {
-    //add later
-    sumting: string;
+    score: number;
+    stars: number;
 }
