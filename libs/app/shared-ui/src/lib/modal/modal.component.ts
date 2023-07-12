@@ -1,5 +1,5 @@
 /* eslint-disable @angular-eslint/no-output-native */
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 
 import {
@@ -14,7 +14,7 @@ import {
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.scss'],
 })
-export class ModalComponent {
+export class ModalComponent implements OnInit {
 
   @Input() badge? : Badge;
   @Input() child? : Child;
@@ -27,6 +27,9 @@ export class ModalComponent {
   @Output() close: EventEmitter<boolean> = new EventEmitter();
 
   constructor(private modalController: ModalController) {
+  }
+  
+  ngOnInit() {
     if (this.badge)
     {
       this.title = "Achievement";
@@ -36,16 +39,17 @@ export class ModalComponent {
     {
       this.title = this.child.name;
     }
-
+  
     if (this.picture)
     {
       this.title = "Choose a picture";
     }
-
+  
     if (this.stats)
     {
       this.title = "Results";
     }
+    
   }
 
   closeModal(){
