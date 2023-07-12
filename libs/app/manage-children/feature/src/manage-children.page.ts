@@ -25,7 +25,6 @@ export class ManageChildrenPage {
   children: Child[] = [];
 
 
-  // Set visible to true to debug modal
   visible = false;
   selectedChild!: Child;
 
@@ -44,21 +43,12 @@ export class ManageChildrenPage {
   setChild(child: Child) {
     console.log("Selected child:", child);
     this.selectedChild = child;
+    this.store.dispatch(new SetChild({childId:child._id}));
+
     this.controlModal();
   }
 
   controlModal() {
     this.visible = !this.visible;
   }
-
-  continueChild(child: Child) {
-    console.log("Continuing as child");
-    this.store.dispatch(new SetChild({childId:child._id}));
-  }
-
-  continueParent(child: Child) {
-    console.log("Continuing as parent");
-    this.store.dispatch(new SetChild({childId:child._id}));
-  }
-
 }
