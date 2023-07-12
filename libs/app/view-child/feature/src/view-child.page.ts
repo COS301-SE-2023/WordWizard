@@ -38,7 +38,7 @@ export class ViewChildPage {
       // Set the child object's stage
     })
   }
-  stage: number = 1;
-  pfp : string = 'assets/img/item/cauldron-cropped.png';
-  name: string = "Martie";
+  stage=  1;
+  pfp = 'assets/img/item/cauldron-cropped.png';
+  name = "Martie";
 }
