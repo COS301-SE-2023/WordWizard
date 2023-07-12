@@ -20,9 +20,9 @@ export class ModalComponent implements OnInit {
   @Input() child? : Child;
   @Input() picture? : Picture;
   @Input() stats? : Stats;
-  @Input() isModalOpen : boolean = false;
+  @Input() isModalOpen = false;
 
-  title : string = "";
+  title = "";
 
   @Output() close: EventEmitter<boolean> = new EventEmitter();
 
@@ -37,7 +37,8 @@ export class ModalComponent implements OnInit {
     
     if (this.child)
     {
-      this.title = this.child.name;
+      // this.title = this.child.username;
+      this.title = "Manage Child";
     }
   
     if (this.picture)

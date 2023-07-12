@@ -8,7 +8,6 @@ export interface Badge {
 // For View Modal
 export interface Child {
     username: string;
-    name: string;
 }
 
 // For Picture modal

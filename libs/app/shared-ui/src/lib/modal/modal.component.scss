@@ -13,31 +13,29 @@
     margin: 0px;
 
 
-    .wizard-bottom{
-        position: absolute;
-        left: 0px;
-        top: 0px;
-        width: 30%;
-        height: auto;
-        margin-top: 30%;
-        z-index: 1000;
-    }
+
 
     .modal{
         width: 80%;
         height: fit-content;
-        min-height: 40%;
         z-index: 999;
-        background-color: white;
         border-radius: 20px;
-        overflow: hidden;
         border: 2px solid white;
         color: white;
         background-image: url('../../../../../../apps/word-wizard/src/assets/img/bg/welcome_background.jpg');
         background-size: cover;
         background-repeat: repeat;
         position: relative;
-
+        
+        .wizard-bottom{
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            width: 40%;
+            height: auto;
+            z-index: 1000;
+            transform: translate(-30%, -20%);
+        }
 
 
         .header{
@@ -47,8 +45,9 @@
             justify-content: space-between;
             align-items: center;
             position: relative;
-            background-color: rgba(0,0,0,0.7);
+            background-color: rgba(0,0,0,0.6);
             padding: 10px;
+            border-radius: 20px 20px 0px 0px;
 
             .filler{
                 width: 10%;
@@ -64,6 +63,7 @@
                     margin: 0px;
                     padding: 0px;
                     font-weight: 400;
+                    text-align: center;
                     
                 }
 
@@ -88,8 +88,8 @@
 
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: start;
+            justify-content: space-evenly;
+            align-items: center;
     
             .award-picture-container {
                 display: flex;
@@ -103,10 +103,42 @@
                 }
             }
 
+            h2 {
+                text-align: center;
+            }
+
+        }
+
+        .child-modal{
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+            // height: 100%;
+            //height: 25vh;
+
+            .continue-btn{
+                // position: absolute;
+                // top: 40%;
+                --background: #861486;  
+                // margin-top: 5%
+            }
+            
+            .progress-btn {
+                margin-top: 5%;
+                --background: #070527;
+            }
+
+            
         }
 
         .content {
             padding: 5%;
+            background-color: rgba(0,0,0,0.6);
+            position: relative;
+            border-radius: 0px 0px 20px 20px;
+            // border-radius
         }
 
     }
