@@ -1,6 +1,6 @@
 <ww-header [title]="child.state" [settingsActive]="true" [backRoute]="'../manage-children'"></ww-header>
 
-<ion-content>
+<ion-content [scrollY]="false">
     <div class="view-child">
         <div class="background">
             <!-- PROFILE IMAGE - CENTER -->
@@ -14,7 +14,7 @@
             </div>
 
             <!-- SPELLBOOK BUTTON     |    TROPHY BUTTON -->
-            <ion-content class="links">
+            <ion-content class="links" [scrollY]="false">
                 <ion-grid>
                     <ion-row>
                         <ion-col size="6">
@@ -42,18 +42,12 @@
                     </ion-row>
                     <ion-row>
                         <ion-col>
-                            <div class="graph">
-                                <!-- GRAPH 1 -->
-                                <img src="assets/img/bar-chart.png" alt="bar-chart">
-                            </div>
-                        </ion-col>
-                    </ion-row>
-                    <ion-row>
-                        <ion-col>
-                            <div class="graph">
-                                <!-- GRAPH 2 -->
-                                <img src="assets/img/pie-chart.png" alt="pie-chart">
-                            </div>
+                            <!-- <div> -->
+                                <a class="stats" routerLink="/">
+                                    <ion-img src="assets/img/stats-logo.png"></ion-img>
+                                    Stats
+                                </a>
+                            <!-- </div> -->
                         </ion-col>
                     </ion-row>
                 </ion-grid>

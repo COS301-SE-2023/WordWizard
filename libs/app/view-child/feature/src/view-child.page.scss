@@ -149,6 +149,12 @@ ion-avatar img {
     margin: auto;
 }
 
+.stats ion-img {
+    width: 100px;
+    height: 100px;
+    margin: auto;
+}
+
 .spellbook {
     margin-left: 30%;
     text-decoration: none;
@@ -163,6 +169,17 @@ ion-avatar img {
 
 .trophy {
     margin-right: 30%;
+    text-decoration: none;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    font-size: large;
+}
+
+.stats {
+    margin: auto;
     text-decoration: none;
     color: white;
     display: flex;
