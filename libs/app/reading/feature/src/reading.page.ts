@@ -22,6 +22,15 @@ export class ReadingPage {
   @Select(ReadingState.getCurrent) getCurrent$!: Observable<number>;
 
   backgroundImage = 'assets/img/CastleBackground.png';
+  backButton = 'assets/img/item/backbutton.png';
+
+  visible = false;
+
+  star1 = 'assets/img/item/greystar.png';
+  star2 = 'assets/img/item/greystar.png';
+  star3 = 'assets/img/item/greystar.png';
+  wizardImg = 'assets/img/item/wizzy.png';
+  congratularyMessage = 'Well Tried!';
 
   readingPageData = {
     word : '',
@@ -38,6 +47,7 @@ export class ReadingPage {
   sentence = "";
 
   constructor(private store: Store) {
+    this.setStars();
     this.store.dispatch(new SetPassage());
     this.getCurrent$.subscribe((data) => {;
       this.currentWord = data;
@@ -125,5 +135,29 @@ export class ReadingPage {
       scalar: 0.75,
       shapes: ['circle']
     });
+  }
+
+  controlModal() {
+    this.visible = !this.visible;
+  }
+
+  setStars(){  
+    if (this.progressPercentage > '50%'){
+      this.star1 = 'assets/img/item/goldstar.png';
+      this.congratularyMessage = 'Well Done!';
+    }
+    if (this.progressPercentage > '75%'){
+      this.star2 = 'assets/img/item/goldstar.png';
+      this.congratularyMessage = 'Great Job!';
+    }
+    if (this.progressPercentage > '90%'){
+      this.star3 = 'assets/img/item/goldstar.png';
+      this.congratularyMessage = 'Amazing!';
+    }
+  }
+
+  back(){
+    console.log("back");
+    //return back to levels page
   }
 }
