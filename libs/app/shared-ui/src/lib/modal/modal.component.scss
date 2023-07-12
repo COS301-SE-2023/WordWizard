@@ -31,7 +31,7 @@
             position: absolute;
             left: 0px;
             top: 0px;
-            width: 40%;
+            width: 37%;
             height: auto;
             z-index: 1000;
             transform: translate(-30%, -20%);
@@ -115,19 +115,16 @@
             flex-direction: column;
             justify-content: space-evenly;
             align-items: center;
-            // height: 100%;
-            //height: 25vh;
 
             .continue-btn{
-                // position: absolute;
-                // top: 40%;
-                --background: #861486;  
-                // margin-top: 5%
+                --background: #861486;
+                --background-activated: #a53ba5;
             }
             
             .progress-btn {
                 margin-top: 5%;
-                --background: #070527;
+                --background: #0f0c46;
+                --background-activated: #1d1864;
             }
 
             
@@ -138,7 +135,7 @@
             background-color: rgba(0,0,0,0.6);
             position: relative;
             border-radius: 0px 0px 20px 20px;
-            // border-radius
+            
         }
 
     }
