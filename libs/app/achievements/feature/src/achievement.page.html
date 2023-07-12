@@ -18,7 +18,13 @@
         </div>
       </div>
     </div>
-    <ww-modal awardIMG="https://ww-img-bucket.s3.amazonaws.com/ww-awards/Blankbadge.png" [isModalOpen]="open" modalType="Badge" title="Achievement" (close)="open=false"></ww-modal>
+    <ww-modal 
+            [isModalOpen]="open" 
+            (close)="open=false"
+            [badge]="{ picture: 'https://ww-img-bucket.s3.amazonaws.com/ww-awards/Blankbadge.png',
+                       name: 'Practice Champion', 
+                       description: 'You have 20 words in your practice list'}"
+    ></ww-modal>
     <ion-button (click)="open=true">Open Badge Modal</ion-button>
   </div>
 </div>

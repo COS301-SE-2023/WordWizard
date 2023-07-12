@@ -4,7 +4,7 @@
     height: 100vh;
     display:grid;
     place-items: center;
-    background-color: transparent;
+    background-color: rgba(0,0,0,0.4);
     position: fixed;
     left: 0px;
     top: 0px;
@@ -13,11 +13,21 @@
     margin: 0px;
 
 
+    .wizard-bottom{
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        width: 30%;
+        height: auto;
+        margin-top: 35%;
+        z-index: 1000;
+    }
+
     .modal{
         width: 80%;
         height: fit-content;
         min-height: 40%;
-        z-index: 1000;
+        z-index: 999;
         background-color: white;
         border-radius: 20px;
         overflow: hidden;
@@ -27,6 +37,8 @@
         background-size: cover;
         background-repeat: repeat;
         position: relative;
+
+
 
         .header{
             height: fit-content;
@@ -70,25 +82,25 @@
                 width: 100%;
             }
 
-            .imgContainer {
-                width: 10px !important;
-                max-width: 50% !important;
-                height: 2px;
-                overflow: none;
-            }
+        }
+        
+        .badge-modal{
 
-            .Award-picture {
-                width: 10px;
-                height: 10px;
-                border-radius: 50%;
-                border: 3px solid #AAAAAA;
-            }
-
-            .Award-picture-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: start;
+    
+            .award-picture-container {
                 display: flex;
                 justify-content: center;
-                background-color: #070527;
-                padding: 5%;
+
+                .award-picture {
+                    width: 50%;
+                    height: auto;
+                    border-radius: 50%;
+                    border: 3px solid #AAAAAA;
+                }
             }
 
         }

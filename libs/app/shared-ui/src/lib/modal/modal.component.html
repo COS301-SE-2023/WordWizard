@@ -5,38 +5,39 @@
 
       <div class="header">
         <div class="filler"></div>
-        <div class="title"><h2>{{title}}</h2></div>
+        <div class="title"><h2></h2></div>
           <button (click)="closeModal()">
             <ion-icon name="close"></ion-icon>
           </button>
       </div>
 
       <div class="content">
-          <div *ngIf="modalType === 'Badge'" class="BadgeModal">
+          <div *ngIf="badge" class="badge-modal">
             <!-- Badge specific content -->
-            <p>Badge!</p>
-            <div class="Award-picture-container">
-              <img [src]="awardIMG" alt="Award Picture" class="Award-picture" >
+            <div class="award-picture-container">
+              <img [src]="badge.picture" alt="Award Picture" class="award-picture" >
             </div>
+            <h2>You completed : <br> Pratice Champion</h2>
+            <!-- <h2>You completed : <br> {{achievement}}</h2> -->
+            <p>Have 20 words in your practice list</p>
           </div>
           
-          <div *ngIf="modalType === 'Reading'" class="ReadingModal">
+          <div *ngIf="child" class="stats-modal">
             <!-- Reading specific content -->
             <p>Reading!</p>
           </div>
           
-          <div *ngIf="modalType === 'Picture'" class="PictureModal">
+          <div *ngIf="picture" class="picture-modal">
             <!-- Picture specific content -->
             <p>Picture!</p>
           </div>
           
-          <div *ngIf="modalType === 'View'" class="ViewModal">
+          <div *ngIf="stats" class="child-modal">
             <!-- View specific content -->
             <p>View!</p>
           </div>
       </div>
-
-
-      <!-- <img [src]="https://ww-img-bucket.s3.amazonaws.com/WizzyFlipped.png" alt="WizzyFlipped" />    -->
+   
   </div> 
+  <img class="wizard-bottom" [src]="'https://ww-img-bucket.s3.amazonaws.com/WizzyFlipped.png'" alt="WizzyFlipped" />
 </div>
