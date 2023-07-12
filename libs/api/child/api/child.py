@@ -1,10 +1,12 @@
 from fastapi import APIRouter
-from ..util.child_models import GetChildrenReq
+from ..util.child_models import GetChildrenReq, EditChildReq, DeleteChildReq
 import os
 from dotenv import load_dotenv
 from pymongo import MongoClient
 from dataclasses import dataclass
+from bson import ObjectId
 load_dotenv()
+
 router = APIRouter()
 
 client = MongoClient(os.getenv("MONGODB_CONNECTION_STRING"))
@@ -37,3 +39,49 @@ def get_child(child_id):
         return child
     else:
         return None
+    
+
+@router.post('/edit-child')
+def edit(rqst: EditChildReq):
+    if (rqst.child_id == ''):
+        return { 'status': 'error', 'message': 'No Child id' }
+    children_collection = db['Children']
+    object_id = ObjectId(rqst.child_id)
+    existing_child = children_collection.find_one({'_id': object_id})
+    if existing_child:
+        children_collection.update_one(
+            {'_id': object_id},
+            {'$set': {
+                'username': rqst.name,
+                'age': rqst.age,
+                'profile_photo': rqst.profile_picture,
+            }}
+        )
+        return { 'status': 'success' }
+    else:
+        return { 'status': 'error', 'message': 'Child not found' }
+    
+
+
+@router.post('/delete-child')
+def delete(rqst: DeleteChildReq):
+    if rqst.child_id == '':
+        return {'status': 'error', 'message': 'No Child id'}
+
+    children_collection = db['Children']
+    parents_collection = db['Parents']  
+
+    object_id = ObjectId(rqst.child_id)
+    existing_child = children_collection.find_one({'_id': object_id})
+
+    if existing_child:
+        children_collection.delete_one({'_id': object_id})
+
+        parent_id = ObjectId(existing_child['parent'])
+        parents_collection.update_one(
+            {'_id': parent_id},
+            {'$pull': {'children': object_id}}
+        )
+        return {'status': 'success'}
+    else:
+        return {'status': 'error', 'message': 'Child not found'}
