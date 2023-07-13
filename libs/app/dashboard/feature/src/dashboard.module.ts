@@ -5,11 +5,11 @@ import { IonicModule } from '@ionic/angular';
 import { DashboardPage } from './dashboard.page';
 import { DashboardRouting } from './dashboard.routing';
 import { HttpClientModule } from '@angular/common/http';
-// import { DashboardModule as DashboardUiModule }  from '@word-wizard/app/Dashboard/ui';
 import { RouterModule } from '@angular/router';
 import { NgxsModule } from '@ngxs/store';
-// import { DashboardState, DashboardService } from '@word-wizard/app/library/data-access';
 import { SharedUiModule } from '@word-wizard/app/shared-ui';
+import { AddChildService } from '@word-wizard/app/add-child/data-access';
+import { ChildSettingsService } from '@word-wizard/app/child-settings/data-access';
 
 @NgModule({
   imports: [
@@ -18,12 +18,11 @@ import { SharedUiModule } from '@word-wizard/app/shared-ui';
     IonicModule,
     DashboardRouting,
     RouterModule,
-    // DashboardUiModule,
-    // NgxsModule.forFeature([DashboardState]),
     SharedUiModule,
     HttpClientModule
   ],
   declarations: [DashboardPage],
-  // providers: [DashboardService]
+  providers: [AddChildService, ChildSettingsService]
+  
 })
 export class DashboardModule { }
