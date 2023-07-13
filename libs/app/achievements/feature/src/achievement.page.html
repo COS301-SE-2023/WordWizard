@@ -27,7 +27,9 @@
     ></ww-modal> -->
     <!-- <ww-modal [isModalOpen]="open" (close)="open=false" [child]="{username: 'YaBoy'}"></ww-modal> -->
 
-    <ww-modal [isModalOpen]="open" (close)="open=false" [picture]="{name: ''}"></ww-modal>
+    <!-- <ww-modal [isModalOpen]="open" (close)="open=false" [picture]="{name: ''}">Picture modal</ww-modal> -->
+    <ww-modal [isModalOpen]="open" (close)="open=false" [child]="{username: 'Martie'}">Child modal</ww-modal>
+    <!-- <ww-modal [isModalOpen]="open" (close)="open=false" [badge]="{picture: '', name: 'Practice Champion', description: 'You have 20 words.'}">Badge modal</ww-modal> -->
 
 
     <ion-button (click)="open=true">Open Badge Modal</ion-button>
