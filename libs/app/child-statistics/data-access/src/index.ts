@@ -1,1 +1,2 @@
-export * from './lib/app-child-statistics-data-access.module';
+export * from './child-statistics.service';
+export * from './interfaces/child-statistics.interfaces';
