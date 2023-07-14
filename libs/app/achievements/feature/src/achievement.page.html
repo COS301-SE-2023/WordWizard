@@ -18,5 +18,20 @@
         </div>
       </div>
     </div>
+    <!-- <ww-modal 
+            [isModalOpen]="open" 
+            (close)="open=false"
+            [badge]="{ picture: 'https://ww-img-bucket.s3.amazonaws.com/ww-awards/Blankbadge.png',
+                       name: 'Practice Champion', 
+                       description: 'You have 20 words in your practice list'}"
+    ></ww-modal> -->
+    <!-- <ww-modal [isModalOpen]="open" (close)="open=false" [child]="{username: 'YaBoy'}"></ww-modal> -->
+
+    <!-- <ww-modal [isModalOpen]="open" (close)="open=false" [picture]="{name: ''}">Picture modal</ww-modal> -->
+    <ww-modal [isModalOpen]="open" (close)="open=false" [child]="{username: 'Martie'}">Child modal</ww-modal>
+    <!-- <ww-modal [isModalOpen]="open" (close)="open=false" [badge]="{picture: '', name: 'Practice Champion', description: 'You have 20 words.'}">Badge modal</ww-modal> -->
+
+
+    <ion-button (click)="open=true">Open Badge Modal</ion-button>
   </div>
 </div>

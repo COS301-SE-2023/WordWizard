@@ -6,8 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./achievement.page.scss'],
 })
 export class AchievementPage {
+  open = false;
   childProfilePictureSrc = 'https://ww-img-bucket.s3.amazonaws.com/Dragon4-testProfile.png';
-  
+
   awards = {
     'Level Master': {
       'Level 1 Conqueror': {
