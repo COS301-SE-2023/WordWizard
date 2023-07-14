@@ -11,10 +11,6 @@ client = MongoClient(os.getenv("MONGODB_CONNECTION_STRING"))
 db = client["WordWizardDB"]
 router = APIRouter()
 
-@router.get('/')
-def get_reading():
-    return {'reading': 'reading'}
-
 @router.post('/passage')
 def create_reading(reading: PassageRqst):
     lesson_collection = db['Lessons']
