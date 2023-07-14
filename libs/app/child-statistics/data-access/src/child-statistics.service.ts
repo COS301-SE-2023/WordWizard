@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { StatisticsReq } from './requests/child-statistics.requests';
-import { statistics } from './responses/child-statistics.responses';
+import { Statistics } from './responses/child-statistics.responses';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +18,6 @@ export class ChildStatisticsService {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
-    return this.http.post<statistics>(`${process.env['WW_API_ENDPOINT']}/add-child`, request, { headers });
+    return this.http.post<Statistics>(`${process.env['WW_API_ENDPOINT']}/statistics/get-stats`, request, { headers });
   }
 }

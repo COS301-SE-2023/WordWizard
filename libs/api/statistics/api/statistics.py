@@ -13,7 +13,7 @@ connection_string = os.getenv("MONGODB_CONNECTION_STRING")
 client = MongoClient(connection_string)
 db = client["WordWizardDB"]
 
-@router.post('/')
+@router.post('/get-stats')
 def get_stats(rqst: StatisticsReq):
     collection = db["Progress"]
     user = collection.find_one(

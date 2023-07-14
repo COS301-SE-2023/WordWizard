@@ -1,6 +1,6 @@
 import { levelStats } from '../interfaces/child-statistics.interfaces';
 
-export interface statistics {
+export interface Statistics {
     total_words: number;
     incorrect_words_by_level: number;
     average_score: number;
