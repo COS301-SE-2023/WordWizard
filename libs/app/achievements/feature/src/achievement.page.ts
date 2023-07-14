@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 // import { Award, AwardSection } from './achievement.model';
 // import { AchievementService } from './achievement.service';
 import { Award, AwardSection, AchievementService } from '@word-wizard/app/achievements/data-access';
-import { HttpClient } from '@angular/common/http';
+// import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Select, Store } from '@ngxs/store';
-import { AuthService } from '@auth0/auth0-angular';
+// import { AuthService } from '@auth0/auth0-angular';
 import { 
   SetChild,
   ChildState,
@@ -25,6 +25,8 @@ export interface achievement {
 })
 export class AchievementPage {
   @Select(ChildState.Children) Children$!: Observable<Child[]>; 
+
+  open = false;
 
   childProfilePictureSrc = 'https://ww-img-bucket.s3.amazonaws.com/Dragon4-testProfile.png';
   
