@@ -1,7 +1,7 @@
 import { Component, AfterViewInit} from '@angular/core';
 import { Chart, registerables } from 'chart.js';
 import { ChildStatisticsService } from '@word-wizard/app/child-statistics/data-access';
-import { Statistics } from '@word-wizard/app/child-statistics/data-access';
+import { Statistics, levelStats } from '@word-wizard/app/child-statistics/data-access';
 import { 
   ChildState,
   Child
@@ -22,17 +22,6 @@ export class ChildStatisticsPage implements AfterViewInit{
 
   constructor(private readonly childStatisticsService: ChildStatisticsService, private store: Store) {
     
- 
-
-    this.currentChild$.subscribe((data) => {
-      this.childStatisticsService.getStats("64aea0695102acb3adb889ad").subscribe((res) => {
-        this.childStats = res;
-        this.averageScore = res.average_score;
-        this.incorrectCount = res.incorrect_words_by_level;
-        this.lessonCount = res.progress_history.length;
-        this.wordsLearned = res.total_words;
-      });
-    });
   }
 
   childStats!: Statistics;
@@ -40,21 +29,50 @@ export class ChildStatisticsPage implements AfterViewInit{
   lessonCount!: number;
   incorrectCount!: number;
   wordsLearned!: number;
+  chartData! : levelStats[];
+  highestScore!: number;
 
 
 
 
   ngAfterViewInit(): void {
-    // this.renderChart();
-    this.renderChart();
+    
+    this.currentChild$.subscribe((data) => {
+      this.childStatisticsService.getStats("64aea0695102acb3adb889ad").subscribe((res) => {
+        this.childStats = res;
+        this.averageScore = res.average_score;
+        this.incorrectCount = res.incorrect_words_by_level;
+        this.lessonCount = res.progress_history.length;
+        this.wordsLearned = res.total_words;
+        this.chartData = res.progress_history;
+        this.highestScore = res.highest_score;
+        console.table(this.chartData);
+        this.renderChart();
+      });
+    });
+
   }
   renderChart() {
-    const labels = ['Red', '', '', '', '', 'Orange'];
+    const labels: string[] = [];
+    const dataset: number[] = [];
+
+    console.log(this.chartData);
+    for (let i = 0; i < this.chartData.length; i++) {
+      labels.push("");
+      dataset.push(this.chartData[i].score);
+
+    }
+
+    labels[0] = this.chartData[0].date;
+    labels[this.chartData.length-1] = this.chartData[this.chartData.length-1].date;
+
+
+
     const data = {
       labels: labels,
       datasets: [{
-        label: 'My Second Dataset',
-        data: [65, 59, 80, 81, 56, 55, 40],
+        label: 'Lesson Progress',
+        data: dataset,
         borderColor: 'rgb(134, 20, 134)',
         borderWidth: 3
       }]
