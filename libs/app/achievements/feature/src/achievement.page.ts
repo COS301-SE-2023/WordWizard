@@ -24,7 +24,6 @@ export interface achievement {
   styleUrls: ['./achievement.page.scss'],
 })
 export class AchievementPage {
-
   @Select(ChildState.Children) Children$!: Observable<Child[]>; 
 
   childProfilePictureSrc = 'https://ww-img-bucket.s3.amazonaws.com/Dragon4-testProfile.png';
