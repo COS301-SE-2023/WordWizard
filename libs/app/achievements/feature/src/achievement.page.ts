@@ -42,7 +42,7 @@ export class AchievementPage {
       if (child) {
         // this.loadAwards(child._id);
         // this.childProfilePictureSrc = child.profile_photo;
-        this.loadAwards('64adbd15f021795e969d4076');
+        this.loadAwards('64aea4e9116f3e6a544202ba');
       }
     });
   }
@@ -50,7 +50,6 @@ export class AchievementPage {
   loadAwards(id:string) {
     this.achievementService.getAwards(id).subscribe(
       (data: AwardSection[]) => {
-            
         this.awards = data;
       },
       (error) => {
