@@ -75,8 +75,7 @@ export class ReadingState {
   @Action(SetPassage)
   async setPassage(ctx: StateContext<ReadingStateModel>) {
     const rqst: PassageRequest = {
-      userID: '',
-      readingLevel: '',
+      level: 1
     } as PassageRequest;
 
     const defaultVal: Content = {
