@@ -1,4 +1,22 @@
 import { Component } from '@angular/core';
+// import { Award, AwardSection } from './achievement.model';
+// import { AchievementService } from './achievement.service';
+import { Award, AwardSection, AchievementService } from '@word-wizard/app/achievements/data-access';
+// import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Select, Store } from '@ngxs/store';
+// import { AuthService } from '@auth0/auth0-angular';
+import { 
+  SetChild,
+  ChildState,
+  Child
+} from '@word-wizard/app/child/data-access';
+
+export interface achievement {
+  levelName:string;
+
+}
 
 @Component({
   selector: 'ww-achievement',
@@ -6,113 +24,38 @@ import { Component } from '@angular/core';
   styleUrls: ['./achievement.page.scss'],
 })
 export class AchievementPage {
-  open = false;
-  childProfilePictureSrc = 'https://ww-img-bucket.s3.amazonaws.com/Dragon4-testProfile.png';
+  @Select(ChildState.Children) Children$!: Observable<Child[]>; 
 
-  awards = {
-    'Level Master': {
-      'Level 1 Conqueror': {
-        goal: 1,
-        progress: 3,
-        description: 'Complete level 1',
-        completed: true
-      },
-      'Level 5 Prodigy': {
-        goal: 5,
-        progress: 3,
-        description: 'Complete level 5',
-        completed: false
-      },
-      'Level 10 Guru': {
-        goal: 10,
-        progress: 3,
-        description: 'Complete level 10',
-        completed: false
-      },
-      'WordWizard Legend': {
-        goal: 20,
-        progress: 3,
-        description: 'Complete level 20',
-        completed: false
+  open = false;
+
+  childProfilePictureSrc = 'https://ww-img-bucket.s3.amazonaws.com/Dragon4-testProfile.png';
+  
+  awards: AwardSection[] = [];
+
+  @Select(ChildState.currentChild) currentChild$!: Observable<Child>;
+
+
+
+
+  constructor(private achievementService: AchievementService, private store: Store) {
+    this.currentChild$.subscribe((child) => {
+      if (child) {
+        // this.loadAwards(child._id);
+        // this.childProfilePictureSrc = child.profile_photo;
+        this.loadAwards('64adbd15f021795e969d4076');
       }
-    },
-    'Word Learner': {
-      'Word Novice': {
-        goal: 10,
-        progress: 6,
-        description: 'Learn 10 new words',
-        completed: false
+    });
+  }
+
+  loadAwards(id:string) {
+    this.achievementService.getAwards(id).subscribe(
+      (data: AwardSection[]) => {
+            
+        this.awards = data;
       },
-      'Word Apprentice': {
-        goal: 14,
-        progress: 6,
-        description: 'Learn 14 new words',
-        completed: false
-      },
-      'Word Connoisseur': {
-        goal: 18,
-        progress: 6,
-        description: 'Learn 18 new words',
-        completed: false
-      },
-      'Word Wizard': {
-        goal: 22,
-        progress: 6,
-        description: 'Learn 22 new words',
-        completed: false
+      (error) => {
+        console.error('Error loading awards:', error);
       }
-    },
-    'Practice Enthusiast': {
-      'Practice Starter': {
-        goal: 5,
-        progress: 5,
-        description: 'Have 5 words in your practice list',
-        completed: true
-      },
-      'Practice Explorer': {
-        goal: 10,
-        progress: 5,
-        description: 'Have 10 words in your practice list',
-        completed: false
-      },
-      'Practice Devotee': {
-        goal: 15,
-        progress: 5,
-        description: 'Have 15 words in your practice list',
-        completed: false
-      },
-      'Practice Champion': {
-        goal: 20,
-        progress: 5,
-        description: 'Have 20 words in your practice list',
-        completed: false
-      }
-    },
-    'Vocabulary Builder': {
-      'Vocabulary Starter': {
-        goal: 5,
-        progress: 5,
-        description: 'Build a vocabulary of 5 words',
-        completed: true
-      },
-      'Vocabulary Explorer': {
-        goal: 10,
-        progress: 5,
-        description: 'Build a vocabulary of 10 words',
-        completed: false
-      },
-      'Vocabulary Devotee': {
-        goal: 15,
-        progress: 5,
-        description: 'Build a vocabulary of 15 words',
-        completed: false
-      },
-      'Vocabulary Champion': {
-        goal: 20,
-        progress: 5,
-        description: 'Build a vocabulary of 20 words',
-        completed: false
-      }
-    }
-  };
+    );
+  }
 }

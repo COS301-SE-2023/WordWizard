@@ -1,20 +1,22 @@
 <ww-header backRoute="../welcome" backActive="true" title="Magical Treasures"></ww-header>
 
-<div class="page-container">
-  <div class="profile-picture-container">
-    <img [src]="childProfilePictureSrc" alt="Profile Picture" class="profile-picture">
-  </div>
-
-  <div class="awards-section-container">
-    <div class="section-container" *ngFor="let category of awards | keyvalue">
-      <div class="section-header">{{ category.key }}</div>
-      <div class="awards-container">
-        <div class="award-item" *ngFor="let award of category.value | keyvalue">
-          <img
-            [src]="award.value.completed ? 'https://ww-img-bucket.s3.amazonaws.com/Dragon4-testProfile.png' : 'https://ww-img-bucket.s3.amazonaws.com/ww-awards/Blankbadge.png'"
-            alt="Award Image"
-            class="award-image"
-          >
+<ion-content [scrollY]="false">
+  <div class="page-container">
+    <div class="profile-picture-container">
+      <img [src]="childProfilePictureSrc" alt="Profile Picture" class="profile-picture">
+    </div>
+    <div class="awards-section-container">
+      <div class="section-container" *ngFor="let catagory of awards">
+        <div class="section-header">{{ catagory.name }}</div>
+        <div class="awards-container">
+          <div class="award-item" *ngFor="let award of catagory.awards">
+            <img
+              [src]="award.completed ? 'https://ww-img-bucket.s3.amazonaws.com/Dragon4-testProfile.png' : 'https://ww-img-bucket.s3.amazonaws.com/ww-awards/Blankbadge.png'"
+              alt="Award Image"
+              class="award-image"
+              loading="lazy"
+            > 
+          </div>
         </div>
       </div>
     </div>
@@ -34,4 +36,4 @@
 
     <ion-button (click)="open=true">Open Badge Modal</ion-button>
   </div>
-</div>
+</ion-content>

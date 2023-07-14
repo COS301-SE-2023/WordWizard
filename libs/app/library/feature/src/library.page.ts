@@ -40,11 +40,6 @@ export class LibraryPage {
     });
   }
 
-  test(t:boolean){
-    // throw new Error("I fucking hate testing");
-    return t;
-  }
-
   handleTextChange(text: string) {
     this.store.dispatch(new UpdatePractice({userID:"64784f19bdfa8f92954b9d78", word: text}));
   }
