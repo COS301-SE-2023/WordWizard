@@ -20,10 +20,17 @@ export class ChildStatisticsPage implements AfterViewInit{
 
   @Select(ChildState.currentChild) currentChild$!: Observable<Child>; 
 
-  constructor(private readonly childStatisticsService: ChildStatisticsService, private store: Store) { 
+  constructor(private readonly childStatisticsService: ChildStatisticsService, private store: Store) {
+    
+ 
+
     this.currentChild$.subscribe((data) => {
       this.childStatisticsService.getStats("64aea0695102acb3adb889ad").subscribe((res) => {
-        console.log(res);
+        this.childStats = res;
+        this.averageScore = res.average_score;
+        this.incorrectCount = res.incorrect_words_by_level;
+        this.lessonCount = res.progress_history.length;
+        this.wordsLearned = res.total_words;
       });
     });
   }
@@ -34,12 +41,15 @@ export class ChildStatisticsPage implements AfterViewInit{
   incorrectCount!: number;
   wordsLearned!: number;
 
+
+
+
   ngAfterViewInit(): void {
     // this.renderChart();
     this.renderChart();
   }
   renderChart() {
-    const labels = ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'];
+    const labels = ['Red', '', '', '', '', 'Orange'];
     const data = {
       labels: labels,
       datasets: [{

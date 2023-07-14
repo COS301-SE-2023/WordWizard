@@ -1,23 +1,39 @@
 <ion-content [scrollY]="false">
     <ww-header title="Journeyman" [settingsActive]="true" backRoute="./"/>
     <ion-grid>
-        <ion-row>
+        <ion-row class="chart-container">
             <ion-col class="chart">
                 <canvas id="bar-chart"></canvas>
             </ion-col>
         </ion-row>
         <ion-row class="text-stat-container">
-            <ion-col size="1">
+            <ion-col size="0.1">
             </ion-col>
-            <ion-col size="4">
-                <p class="stat">8</p>
+            <ion-col class="stat-element" size="5.5">
+                <p class="stat">{{lessonCount}}</p>
                 <p class="stat-text">Lessons</p>
             </ion-col>
+            <ion-col size="0.5">
+            </ion-col>
+            <ion-col class="stat-element" size="5.4">
+                <p class="stat">{{averageScore}}%</p>
+                <p class="stat-text">Average</p>
+            </ion-col>
             <ion-col size="1">
             </ion-col>
-            <ion-col size="4">
-                <p class="stat">79%</p>
-                <p class="stat-text">Average</p>
+        </ion-row>
+        <ion-row class="text-stat-container">
+            <ion-col size="0.1">
+            </ion-col>
+            <ion-col class="stat-element" size="5.4">
+                <p class="stat">3</p>
+                <p class="stat-text">Incorrect</p>
+            </ion-col>
+            <ion-col size="0.5">
+            </ion-col>
+            <ion-col class="stat-element" size="5.5">
+                <p class="stat">{{wordsLearned}}</p>
+                <p class="stat-text">Words learned</p>
             </ion-col>
             <ion-col size="1">
             </ion-col>
