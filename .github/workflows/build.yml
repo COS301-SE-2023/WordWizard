@@ -1,9 +1,10 @@
 name: Build
 
 on:
+  push:
+    branches: [ dev, main ]
   pull_request:
-    branches:
-      - dev
+    branches: [ dev, main ]
 
 jobs:
   build:
@@ -43,10 +44,8 @@ jobs:
       - name: Build app
         run: npm run build:app:dev
       
-      - name: Upload coverage reports to Codecov
+      - name: Upload codecov report
         uses: codecov/codecov-action@v3
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-        
-      - name: Check if build succeeded
-        run: |
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          directory: ./coverage
