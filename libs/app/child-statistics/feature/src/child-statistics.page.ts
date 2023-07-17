@@ -39,15 +39,28 @@ export class ChildStatisticsPage implements AfterViewInit{
     
     this.currentChild$.subscribe((data) => {
       this.childStatisticsService.getStats(data._id).subscribe((res) => {
-        this.childStats = res;
-        this.averageScore = res.average_score;
-        this.incorrectCount = res.incorrect_words_by_level;
-        this.lessonCount = res.progress_history.length;
-        this.wordsLearned = res.total_words;
-        this.chartData = res.progress_history;
-        this.highestScore = res.highest_score;
-        console.table(this.chartData);
-        this.renderChart();
+        if (res.progress_history.length !== 0) {
+          this.childStats = res;
+          this.averageScore = res.average_score;
+          this.incorrectCount = res.incorrect_words_by_level;
+          this.lessonCount = res.progress_history.length;
+          this.wordsLearned = res.total_words;
+          this.chartData = res.progress_history;
+          this.highestScore = res.highest_score;
+          console.table(this.chartData);
+          this.renderChart();
+        }
+        else {
+          this.childStats = res;
+          this.averageScore = 0;
+          this.incorrectCount = 0;
+          this.lessonCount = res.progress_history.length;
+          this.wordsLearned = 0;
+          this.chartData = res.progress_history;
+          this.highestScore = 0;
+          this.renderChart();
+        }
+
       });
     });
 
@@ -63,8 +76,10 @@ export class ChildStatisticsPage implements AfterViewInit{
 
     }
 
-    labels[0] = this.chartData[0].date;
-    labels[this.chartData.length-1] = this.chartData[this.chartData.length-1].date;
+    if (this.chartData.length > 0) {
+      labels[0] = this.chartData[0].date;
+      labels[this.chartData.length-1] = this.chartData[this.chartData.length-1].date;
+    }
 
     const data = {
       labels: labels,
