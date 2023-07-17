@@ -17,3 +17,7 @@ def create_reading(rqst: LevelRequest):
     if result:
         return result.get("progress_history")
     return {"message": "Progress not found"}
+
+@router.get("/test")
+def test():
+    return {"message": "Hello World"}

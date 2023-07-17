@@ -1,4 +1,4 @@
-import { Component, Input, AfterViewInit } from '@angular/core';
+import { Component, Input, AfterViewInit, OnInit } from '@angular/core';
 import { Coin } from '@word-wizard/app/stage/data-access';
 
 interface Line {
@@ -16,7 +16,7 @@ interface Line {
   templateUrl: './lesson-coin.component.html',
   styleUrls: ['./lesson-coin.component.scss'],
 })
-export class LessonCoinComponent implements AfterViewInit{
+export class LessonCoinComponent implements AfterViewInit, OnInit{
 
   @Input() coins: Array<Coin> = [];
   lines: Array<Line> = [];
@@ -24,9 +24,11 @@ export class LessonCoinComponent implements AfterViewInit{
   ngOnInit() {
 
     const windowWidth = (window.innerWidth > 600) ? 600 : window.innerWidth; ;
+    const verticalOffset = window.innerHeight/5; //space between coins, since 5 coins on a page
 
-    this.coins.forEach((coin) => {
+    this.coins.forEach((coin, index) => {
       coin.leftPosition = windowWidth - ((windowWidth/3)* (Math.floor(Math.random() * 3) + 1));
+      coin.topPosition = verticalOffset * (index);
     });
 
   }
@@ -35,6 +37,9 @@ export class LessonCoinComponent implements AfterViewInit{
 
     let widthOffset = document.getElementById(this.coins[1].name)?.offsetWidth || 0;
     let heightOffset = document.getElementById(this.coins[1].name)?.offsetHeight || 0;
+
+
+
     widthOffset = widthOffset/2;
     heightOffset = heightOffset/2;
 

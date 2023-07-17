@@ -23,7 +23,7 @@ export class StageService {
 
     const tempStage: stage = {
       name: 'Stage 1',
-      levels: [3, 3, 2, 1, 0],
+      levels: [3, 3, 2, 1, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
       background: 'assets/images/stage1.png'
     }
 

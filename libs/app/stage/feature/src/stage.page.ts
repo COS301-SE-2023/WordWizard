@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { SetStage, StageState } from '@word-wizard/app/stage/data-access';
 import { Observable } from 'rxjs';
@@ -9,7 +9,7 @@ import { stage, Coin} from '@word-wizard/app/stage/data-access';
   templateUrl: './stage.page.html',
   styleUrls: ['./stage.page.scss'],
 })
-export class StagePage {
+export class StagePage implements OnInit{
 
   //get stage from state
   @Select(StageState.getStage) stage$!: Observable<stage>;
@@ -17,7 +17,7 @@ export class StagePage {
   name= '';
   background='';
 
-  coins : Coin[] = [{name:''} as Coin, {name:''}as Coin, {name:''}as Coin, {name:''}as Coin, {name:''}as Coin];
+  coins : Coin[] = [{name:''} as Coin, {name:''}as Coin, {name:''}as Coin, {name:''}as Coin, {name:''}as Coin, {name:''} as Coin, {name:''}as Coin, {name:''}as Coin, {name:''}as Coin, {name:''}as Coin, {name:''} as Coin, {name:''}as Coin, {name:''}as Coin, {name:''}as Coin, {name:''}as Coin, {name:''} as Coin, {name:''}as Coin, {name:''}as Coin, {name:''}as Coin, {name:''}as Coin];
 
   constructor(private store: Store) {}
 
