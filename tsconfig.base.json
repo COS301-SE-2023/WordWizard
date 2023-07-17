@@ -15,6 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@word-wizard/app/achievements/data-access": [
+        "libs/app/achievements/data-access/src/index.ts"
+      ],
       "@word-wizard/app/add-child/data-access": [
         "libs/app/add-child/data-access/src/index.ts"
       ],
@@ -28,6 +31,12 @@
       "@word-wizard/app/achievements/data-access": [
         "libs/app/achievements/data-access/src/index.ts"
       ],
+      "@word-wizard/app/add-child/data-access": [
+        "libs/app/add-child/data-access/src/index.ts"
+      ],
+      "@word-wizard/app/add-child/feature": [
+        "libs/app/add-child/feature/src/index.ts"
+      ],
       "@word-wizard/app/auth/data-access": [
         "libs/app/auth/data-access/src/index.ts"
       ],
@@ -37,6 +46,12 @@
       ],
       "@word-wizard/app/child-settings/feature": [
         "libs/app/child-settings/feature/src/index.ts"
+      ],
+      "@word-wizard/app/child-statistics/data-access": [
+        "libs/app/child-statistics/data-access/src/index.ts"
+      ],
+      "@word-wizard/app/child-statistics/feature": [
+        "libs/app/child-statistics/feature/src/index.ts"
       ],
       "@word-wizard/app/child/data-access": [
         "libs/app/child/data-access/src/index.ts"
@@ -71,6 +86,9 @@
       "@word-wizard/app/stage/feature": ["libs/app/stage/feature/src/index.ts"],
       "@word-wizard/app/stage/shared-ui": [
         "libs/app/stage/shared-ui/src/index.ts"
+      ],
+      "@word-wizard/app/view-child/feature": [
+        "libs/app/view-child/feature/src/index.ts"
       ],
       "@word-wizard/app/welcome/feature": [
         "libs/app/welcome/feature/src/index.ts"
