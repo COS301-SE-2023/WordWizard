@@ -38,7 +38,7 @@ export class ChildStatisticsPage implements AfterViewInit{
   ngAfterViewInit(): void {
     
     this.currentChild$.subscribe((data) => {
-      this.childStatisticsService.getStats("64aea0695102acb3adb889ad").subscribe((res) => {
+      this.childStatisticsService.getStats(data._id).subscribe((res) => {
         this.childStats = res;
         this.averageScore = res.average_score;
         this.incorrectCount = res.incorrect_words_by_level;
@@ -66,8 +66,6 @@ export class ChildStatisticsPage implements AfterViewInit{
     labels[0] = this.chartData[0].date;
     labels[this.chartData.length-1] = this.chartData[this.chartData.length-1].date;
 
-
-
     const data = {
       labels: labels,
       datasets: [{
@@ -89,33 +87,6 @@ export class ChildStatisticsPage implements AfterViewInit{
           }
         }
       },
-    });
-  }
-
-  rednerPieChart() {
-    const data = {
-      labels: [
-        'Red',
-        'Blue',
-        'Yellow'
-      ],
-      datasets: [{
-        label: 'My First Dataset',
-        data: [300, 50, 100],
-        fill: false,
-        borderColor: 'rgba(75, 192, 192, 0)',
-        backgroundColor: [
-          'rgb(255, 99, 132)',
-          'rgb(54, 162, 235)',
-          'rgb(255, 205, 86)'
-        ],
-        hoverOffset: 4
-      }]
-    };
-    const ctx = document.getElementById('pie-chart') as HTMLCanvasElement;
-    new Chart(ctx, {
-      type: 'pie',
-      data: data,
     });
   }
 }
