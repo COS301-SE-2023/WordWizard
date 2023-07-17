@@ -2,16 +2,16 @@
   <div class="coin-map">
     <div class="coin" *ngFor="let coin of coins" id="{{coin.name}}" [ngStyle]="{'left':coin.leftPosition + 'px'}">
 
-    <div class="coin-image-container">
-      <img *ngIf="coin.filledStars==0" src="assets/img/item/grey_coin.png" alt="">
-      <img *ngIf="coin.filledStars==1" src="assets/img/item/coin_third.png" alt="">
-      <img *ngIf="coin.filledStars==2" src="assets/img/item/coin_two_thirds.png" alt="">
+    <!-- <div class="coin-image-container"> -->
+      <img *ngIf="coin.filledStars==0" src="assets/img/item/gold_coin.png" alt="">
+      <img *ngIf="coin.filledStars==1" src="assets/img/item/gold_coin.png" alt="">
+      <img *ngIf="coin.filledStars==2" src="assets/img/item/gold_coin.png" alt="">
       <img *ngIf="coin.filledStars==3" src="assets/img/item/gold_coin.png" alt="">
-    </div>
+    <!-- </div> -->
 
-    <div class="level-name-container">
+    <!-- <div class="level-name-container">
       <p>{{coin.name}}</p>
-    </div>
+    </div> -->
 
   </div>
 

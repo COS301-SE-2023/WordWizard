@@ -1,4 +1,4 @@
-import { Component, Input, AfterViewInit, OnInit } from '@angular/core';
+import { Component, Input, AfterViewInit, OnInit, ElementRef, Renderer2 } from '@angular/core';
 import { Coin } from '@word-wizard/app/stage/data-access';
 
 interface Line {
@@ -21,6 +21,8 @@ export class LessonCoinComponent implements AfterViewInit, OnInit{
   @Input() coins: Array<Coin> = [];
   lines: Array<Line> = [];
 
+  constructor(private elementRef: ElementRef, private renderer: Renderer2) { }
+
   ngOnInit() {
 
     const windowWidth = (window.innerWidth > 600) ? 600 : window.innerWidth; ;
@@ -35,21 +37,23 @@ export class LessonCoinComponent implements AfterViewInit, OnInit{
 
    ngAfterViewInit() {
 
-    let widthOffset = document.getElementById(this.coins[1].name)?.offsetWidth || 0;
-    let heightOffset = document.getElementById(this.coins[1].name)?.offsetHeight || 0;
+    setTimeout(() => {
+    const element: HTMLElement = this.elementRef.nativeElement.querySelector('#level1');
 
-
+    let widthOffset = element.offsetWidth;
+    let heightOffset = element.offsetHeight;
 
     widthOffset = widthOffset/2;
-    heightOffset = heightOffset/2;
+    heightOffset = (heightOffset/2);
 
+    console.log(heightOffset);
 
     this.coins.forEach((coin, index) => {
       if(index < this.coins.length - 1){
-        const x1= (coin.leftPosition || 0) + widthOffset;
-        const y1= (coin.topPosition || 0) + heightOffset ;
+        const x1= ((coin.leftPosition || 0) + widthOffset);
+        const y1= ((coin.topPosition || 0) + heightOffset) ;
         const x2= ((this.coins[index+1].leftPosition || 0) + widthOffset);
-        const y2=  (this.coins[index+1].topPosition || 0) + heightOffset;
+        const y2=  ((this.coins[index+1].topPosition || 0) + heightOffset);
         const filled= (this.coins[index+1].filledStars)>=2;
         this.lines.push({
           x1 : x1,
@@ -63,7 +67,10 @@ export class LessonCoinComponent implements AfterViewInit, OnInit{
       }
     });
 
+    console.table(this.lines)
+
     this.startAnimation();
+  }, 1000);
 
   }
 
@@ -74,7 +81,7 @@ export class LessonCoinComponent implements AfterViewInit, OnInit{
         const line = lines[i];
         i++;
         line.classList.add('line-animation');
-        if(i === 20)clearInterval(animate);
+        if(i === 19)clearInterval(animate);
       }, 1000);
   }
 

@@ -29,7 +29,7 @@ export class StagePage implements OnInit{
       this.background = data.background;
       this.coins.forEach((coin:Coin, index:number) => {
         coin.filledStars = data.levels[index];
-        coin.name = 'level ' + (index+1);
+        coin.name = 'level' + (index+1);
       });
     });
 
