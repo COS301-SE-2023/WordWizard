@@ -4,3 +4,4 @@ export * from './lib/speaker';
 export * from './lib/info';
 export * from './lib/header';
 export * from './lib/button';
+export * from './lib/modal';
