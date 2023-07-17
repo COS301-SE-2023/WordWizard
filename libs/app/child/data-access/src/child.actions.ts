@@ -12,3 +12,8 @@ export class EditChild{
     static readonly type = '[Child] Edit Child';
     constructor(public payload: { childId: string, name: string, image: string }){}
 }
+
+export class ChangeActive{
+    static readonly type = '[Child] Change Active';
+    constructor(public payload: { parentActive: boolean }){}
+}
