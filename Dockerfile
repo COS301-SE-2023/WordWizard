@@ -5,9 +5,7 @@ WORKDIR /app
 COPY . .
 
 RUN pip install --upgrade pip && \
-    pip install poetry && \
-    poetry config virtualenvs.create false && \
-    poetry install --no-dev --no-root
+    pip install -r requirements.txt 
 
 EXPOSE 8000
 
