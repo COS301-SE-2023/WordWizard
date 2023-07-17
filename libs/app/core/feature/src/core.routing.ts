@@ -4,6 +4,11 @@ import { AuthGuard } from '@auth0/auth0-angular';
 
 const routes: Routes = [
   {
+    path: 'dashboard',
+    loadChildren: () =>
+      import('@word-wizard/app/dashboard/feature').then((m) => m.DashboardModule),
+  },
+  {
     path:'',
     redirectTo: 'welcome',
     pathMatch: 'full'
