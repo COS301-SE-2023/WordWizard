@@ -26,12 +26,16 @@ export class LessonCoinComponent implements AfterViewInit, OnInit{
   ngOnInit() {
 
     const windowWidth = (window.innerWidth > 600) ? 600 : window.innerWidth; ;
-    const verticalOffset = window.innerHeight/5; //space between coins, since 5 coins on a page
+    const verticalOffset = window.innerHeight/7; //space between coins, since 5 coins on a page
+
+    console.log(verticalOffset)
 
     this.coins.forEach((coin, index) => {
       coin.leftPosition = windowWidth - ((windowWidth/3)* (Math.floor(Math.random() * 3) + 1));
       coin.topPosition = verticalOffset * (index);
     });
+
+    console.table(this.coins)
 
   }
 
@@ -41,20 +45,25 @@ export class LessonCoinComponent implements AfterViewInit, OnInit{
     const element: HTMLElement = this.elementRef.nativeElement.querySelector('#level1');
 
     let widthOffset = element.offsetWidth;
-    let heightOffset = element.offsetHeight;
+    const heightOffset = element.offsetHeight;
 
-    widthOffset = widthOffset/2;
-    heightOffset = (heightOffset/2);
+     widthOffset = widthOffset/2;
+    // heightOffset = (heightOffset/2);
 
     console.log(heightOffset);
 
     this.coins.forEach((coin, index) => {
       if(index < this.coins.length - 1){
         const x1= ((coin.leftPosition || 0) + widthOffset);
-        const y1= ((coin.topPosition || 0) + heightOffset) ;
+        const y1= ((coin.topPosition || 0) + (heightOffset*(index))) + (heightOffset/2) ;
         const x2= ((this.coins[index+1].leftPosition || 0) + widthOffset);
-        const y2=  ((this.coins[index+1].topPosition || 0) + heightOffset);
+        const y2=  ((this.coins[index+1].topPosition || 0) + (heightOffset*(index+1))) + (heightOffset/2);
         const filled= (this.coins[index+1].filledStars)>=2;
+
+        // if(index == 0){
+        //   y1 =(coin.topPosition || 0) + (heightOffset)
+        // }
+
         this.lines.push({
           x1 : x1,
           y1 : y1,

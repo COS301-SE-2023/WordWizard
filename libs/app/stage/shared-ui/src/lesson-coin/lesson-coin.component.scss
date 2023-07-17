@@ -3,7 +3,7 @@
   padding: 0px;
   font-family: sans-serif;
 }
-#coin-mapping-container{
+.coin-mapping-container{
   position: relative;
   height: fit-content;
   width: 100%;
@@ -14,6 +14,7 @@
   height: fit-content;
   width: 100%;
   position: relative;
+  overflow-x: hidden;
   z-index: 10;
 }
 
@@ -56,6 +57,7 @@ img{
   width: 100%;
   height: 100%;
   z-index: 0;
+  overflow: visible;
 }
 
 .line-animation{
