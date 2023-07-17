@@ -18,11 +18,18 @@
       "@word-wizard/app/achievements/data-access": [
         "libs/app/achievements/data-access/src/index.ts"
       ],
+      "@word-wizard/app/add-child/data-access": [
+        "libs/app/add-child/data-access/src/index.ts"
+      ],
+      "@word-wizard/app/add-child/feature": [
+        "libs/app/add-child/feature/src/index.ts"
+      ],
+      "@word-wizard/app/auth/feature": ["libs/app/auth/feature/src/index.ts"],
       "@word-wizard/app/achievements/feature": [
         "libs/app/achievements/feature/src/index.ts"
       ],
-      "@word-wizard/app/achievements/shared-ui": [
-        "libs/app/achievements/shared-ui/src/index.ts"
+      "@word-wizard/app/achievements/data-access": [
+        "libs/app/achievements/data-access/src/index.ts"
       ],
       "@word-wizard/app/add-child/data-access": [
         "libs/app/add-child/data-access/src/index.ts"

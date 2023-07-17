@@ -1,22 +1,39 @@
 <ww-header backRoute="../welcome" backActive="true" title="Magical Treasures"></ww-header>
 
-<div class="page-container">
-  <div class="profile-picture-container">
-    <img [src]="childProfilePictureSrc" alt="Profile Picture" class="profile-picture">
-  </div>
-
-  <div class="awards-section-container">
-    <div class="section-container" *ngFor="let category of awards | keyvalue">
-      <div class="section-header">{{ category.key }}</div>
-      <div class="awards-container">
-        <div class="award-item" *ngFor="let award of category.value | keyvalue">
-          <img
-            [src]="award.value.completed ? 'https://ww-img-bucket.s3.amazonaws.com/Dragon4-testProfile.png' : 'https://ww-img-bucket.s3.amazonaws.com/ww-awards/Blankbadge.png'"
-            alt="Award Image"
-            class="award-image"
-          >
+<ion-content [scrollY]="false">
+  <div class="page-container">
+    <div class="profile-picture-container">
+      <img [src]="childProfilePictureSrc" alt="Profile Picture" class="profile-picture">
+    </div>
+    <div class="awards-section-container">
+      <div class="section-container" *ngFor="let catagory of awards">
+        <div class="section-header">{{ catagory.name }}</div>
+        <div class="awards-container">
+          <div class="award-item" *ngFor="let award of catagory.awards">
+            <img
+              [src]="award.completed ? 'https://ww-img-bucket.s3.amazonaws.com/Dragon4-testProfile.png' : 'https://ww-img-bucket.s3.amazonaws.com/ww-awards/Blankbadge.png'"
+              alt="Award Image"
+              class="award-image"
+              loading="lazy"
+            > 
+          </div>
         </div>
       </div>
     </div>
+    <!-- <ww-modal 
+            [isModalOpen]="open" 
+            (close)="open=false"
+            [badge]="{ picture: 'https://ww-img-bucket.s3.amazonaws.com/ww-awards/Blankbadge.png',
+                       name: 'Practice Champion', 
+                       description: 'You have 20 words in your practice list'}"
+    ></ww-modal> -->
+    <!-- <ww-modal [isModalOpen]="open" (close)="open=false" [child]="{username: 'YaBoy'}"></ww-modal> -->
+
+    <!-- <ww-modal [isModalOpen]="open" (close)="open=false" [picture]="{name: ''}">Picture modal</ww-modal> -->
+    <ww-modal [isModalOpen]="open" (close)="open=false" [child]="{username: 'Martie'}">Child modal</ww-modal>
+    <!-- <ww-modal [isModalOpen]="open" (close)="open=false" [badge]="{picture: '', name: 'Practice Champion', description: 'You have 20 words.'}">Badge modal</ww-modal> -->
+
+
+    <ion-button (click)="open=true">Open Badge Modal</ion-button>
   </div>
-</div>
+</ion-content>
