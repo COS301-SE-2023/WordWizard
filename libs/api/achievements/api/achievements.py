@@ -8,9 +8,13 @@ import mongomock
 load_dotenv()
 from bson import ObjectId
 
+import certifi
+
+client = MongoClient(os.getenv("MONGODB_CONNECTION_STRING"),tlsCAFile=certifi.where())
+
 router = APIRouter()
-connection_string = os.getenv("MONGODB_CONNECTION_STRING")
-client = MongoClient(connection_string)
+# connection_string = os.getenv("MONGODB_CONNECTION_STRING")
+# client = MongoClient(connection_string)
 db = client["WordWizardDB"]
 
 
