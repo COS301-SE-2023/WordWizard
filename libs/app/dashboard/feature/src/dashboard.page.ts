@@ -1,12 +1,5 @@
 import { Component } from '@angular/core';
-import { 
-  SetVocab,
-  SetPractice,
-  LibraryState,
-  WordList,
-} from '@word-wizard/app/library/data-access';
 import {
-  SetChild,
   ChildState,
   Child
 } from '@word-wizard/app/child/data-access';
@@ -16,7 +9,7 @@ import { AddChildService } from '@word-wizard/app/add-child/data-access';
 import { ChildSettingsService } from '@word-wizard/app/child-settings/data-access';
 
 @Component({
-  selector: 'dashboard',
+  selector: 'ww-dashboard',
   templateUrl: './dashboard.page.html',
   styleUrls: ['./dashboard.page.scss']
 })

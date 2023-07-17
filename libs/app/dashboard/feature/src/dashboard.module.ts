@@ -6,7 +6,6 @@ import { DashboardPage } from './dashboard.page';
 import { DashboardRouting } from './dashboard.routing';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-import { NgxsModule } from '@ngxs/store';
 import { SharedUiModule } from '@word-wizard/app/shared-ui';
 import { AddChildService } from '@word-wizard/app/add-child/data-access';
 import { ChildSettingsService } from '@word-wizard/app/child-settings/data-access';

@@ -1,12 +1,10 @@
 .dashboard {
-    // background: url(../../../../../apps/word-wizard/src/assets/img/bg/library-background.jpg) 0 0/100% 100% no-repeat;
     background: url(../../../../../apps/word-wizard/src/assets/img/wizardhousebg.png) 0 0/100% 100% no-repeat;
     height: 100%;
 
     display: flex;
-  flex-direction: column;
-  justify-content: center;
-//   align-items: center;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .name {
@@ -25,12 +23,10 @@
 }
 
 .links {
-    // padding-top: 5% !important;
     --background: transparent;
 }
 
 .background {
-    // padding-top: 30%;
     margin: 0;
     background-color: rgba($color: #000000, $alpha: 0.4);
     height: 100%;
@@ -54,11 +50,6 @@ ion-button {
     height: fit-content;
 }
 
-// ion-img {
-//     width: 100px;
-//     height: 100px;
-// }
-
 .pfp {
     background-color: rgb(62, 110, 200);
     border-radius: 50%;
@@ -70,17 +61,11 @@ ion-button {
     margin: auto;
     margin-top: 10%;
     margin-bottom: 10%;
-    // position: absolute;
-    // top: 20%;
-    // left: 20%;
     display: block;
-    // overflow: hidden;
     position: relative;
 }
 
 ion-avatar {
-    // width: 150px;
-    // height: 150px;
     width: 40vw;
     height: 40vw;
     margin: auto;
@@ -94,29 +79,20 @@ ion-avatar img {
 .edit-pfp {
     background-color: #861486;
     border-radius: 50%;
-    // border: 1px solid rgb(63, 63, 63);
     border: 1px solid white;
     box-shadow: 0 0 10px black;
     margin-right: 0px;
     width: 10vw;
     height: 10vw;
-    // width: 40px;
-    // height: 40px;
-    // float: right;
     justify-content: center;
     text-align: center;
     position: absolute;
-    // top: 28%;
-    // left: 60%;
     bottom: 0;
     right: 0;
-    // margin-top: -25%;
-    // z-index: 10;
 }
 
 .edit-pfp ion-button {
     margin: auto;
-    // color: rgb(63, 63, 63);
     z-index: 1 !important;
     font-size: 4vw;
 }
@@ -190,7 +166,6 @@ ion-avatar img {
     width: fit-content;
     height: fit-content;
     background-color: #861486;
-    // border: #000000 solid 1px;
     border-radius: 10px;
     box-shadow: 0 0 10px black;
     text-shadow:    -1px 1px 0 #000,
@@ -294,7 +269,6 @@ ion-content {
 .overlay-container {
     display: flex;
     justify-content: center;
-    // margin-bottom:50px;
 }
 
 .overlay-animation {
@@ -319,7 +293,6 @@ ion-content {
     }
 }
 .hidden-overlay {
-    // animation: fadeOut 1s ease-in forwards;
     display: none;
 }
 .close {

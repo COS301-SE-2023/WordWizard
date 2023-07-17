@@ -1,5 +1,12 @@
 {
   "name": "@word-wizard/app/dashboard/feature",
   "version": "0.0.1",
-  "type": "commonjs"
+  "peerDependencies": {
+    "@angular/common": "^16.1.0",
+    "@angular/core": "^16.1.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false
 }

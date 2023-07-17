@@ -2,24 +2,25 @@
   "name": "app-dashboard-feature",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/app/dashboard/feature/src",
+  "prefix": "word-wizard",
+  "tags": ["page"],
   "projectType": "library",
   "targets": {
     "build": {
-      "executor": "@nx/js:tsc",
-      "outputs": ["{options.outputPath}"],
+      "executor": "@nx/angular:ng-packagr-lite",
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
-        "outputPath": "dist/libs/app/dashboard/feature",
-        "main": "libs/app/dashboard/feature/src/index.ts",
-        "tsConfig": "libs/app/dashboard/feature/tsconfig.lib.json",
-        "assets": ["libs/app/dashboard/feature/*.md"]
-      }
-    },
-    "lint": {
-      "executor": "@nx/linter:eslint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["libs/app/dashboard/feature/**/*.ts"]
-      }
+        "project": "libs/app/dashboard/feature/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/app/dashboard/feature/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/app/dashboard/feature/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
     },
     "test": {
       "executor": "@nx/jest:jest",
@@ -34,7 +35,16 @@
           "codeCoverage": true
         }
       }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/app/dashboard/feature/**/*.ts",
+          "libs/app/dashboard/feature/**/*.html"
+        ]
+      }
     }
-  },
-  "tags": []
+  }
 }

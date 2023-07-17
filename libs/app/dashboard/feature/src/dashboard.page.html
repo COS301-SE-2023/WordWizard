@@ -1,16 +1,7 @@
 <ww-header [title]="title" [settingsActive]="false" [backRoute]="'../manage-children'"></ww-header>
-
 <ion-content [scrollY]="false">
     <div class="dashboard">
         <div class="background">
-            <!-- EXIT BUTTON - RIGHT ALIGNED -->
-            <!-- <div class="exit">
-                <ion-button>
-                    <ion-icon name="exit-outline" size="large"></ion-icon>
-                </ion-button>
-            </div> -->
-            
-            <!-- PROFILE IMAGE - CENTER -->
             <div class="pfp">
                 <ion-avatar (click)="modal()">
                     <img [src]="child?.profile_photo">
@@ -19,7 +10,6 @@
                             <ion-row>
                                 <ion-col>
                                     <ion-button>
-                                        <!-- <ion-icon name="pencil-outline"></ion-icon> -->
                                         <ion-icon name="create-outline"></ion-icon>
                                     </ion-button>
                                 </ion-col>
@@ -31,8 +21,6 @@
             <div class="name">
                 <p>{{child?.username}}</p>
             </div>
-
-            <!-- SPELLBOOK BUTTON     |    TROPHY BUTTON -->
             <ion-content class="links" [scrollY]="false">
                 <ion-grid>
                     <ion-row>
@@ -51,7 +39,6 @@
                     </ion-row>
                     <ion-row>
                         <ion-col>
-                            <!-- STAGE INDICATOR -->
                             <div class="stage">
                                 Stage {{stage}}
                             </div>
@@ -67,9 +54,6 @@
                     </ion-row>
                 </ion-grid>
             </ion-content>
-            
-
-            <!-- MAP BUTTON -->
             <ion-button class="trophy" href="">
                 <ion-img src="assets/icon/map.png"></ion-img>
                 Levels
@@ -119,29 +103,6 @@
         </div>
     </div>
 </ion-content>
-
-
-<!-- <ion-content [scrollY]="false"> -->
-    <!-- <div class="header-container">
-        <ion-grid>
-            <ion-row>
-                <ion-col size="6" (click)="modal()">
-                    <div class="profile-img">
-                        <img src="{{child?.profile_photo}}"/>
-                        <div class="pencil">
-                            <ion-icon name="create-outline"></ion-icon>
-                        </div>
-                    </div>
-                </ion-col>
-                <ion-col size="1">
-                    <div class="cancel">
-                       <ion-icon name="close-sharp"></ion-icon> 
-                    </div>
-                </ion-col>
-            </ion-row>
-        </ion-grid>
-    </div> -->
-<!-- </ion-content> -->
 
 
 
