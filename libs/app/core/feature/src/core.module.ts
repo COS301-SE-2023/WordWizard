@@ -7,11 +7,13 @@ import { RouteReuseStrategy } from '@angular/router';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxsModule } from '@ngxs/store';
 import { AuthModule } from '@auth0/auth0-angular';
+import { HttpClientModule } from '@angular/common/http';
 const redirect_uri = `${window.location.origin}`;
 
 @NgModule({
   declarations: [CoreShell],
   imports: [
+    HttpClientModule,
     BrowserModule,
     IonicModule.forRoot(),
     CoreRouting,

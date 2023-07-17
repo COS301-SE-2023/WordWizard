@@ -25,7 +25,6 @@ export class ManageChildrenPage {
   children: Child[] = [];
 
 
-  // Set visible to true to debug modal
   visible = false;
   selectedChild!: Child;
 
@@ -33,6 +32,7 @@ export class ManageChildrenPage {
   constructor(private router: Router, private store: Store, private readonly auth: AuthService) {
     this.auth.user$.subscribe((user) => {
       if(user) {
+        console.table(user);
         this.store.dispatch(new GetChildren({parent_email:user?.email || '', parent_name: user?.nickname || ''}));
         this.Children$.subscribe((data) => {
           this.children = data;
@@ -44,21 +44,12 @@ export class ManageChildrenPage {
   setChild(child: Child) {
     console.log("Selected child:", child);
     this.selectedChild = child;
+    this.store.dispatch(new SetChild({childId:child._id}));
+
     this.controlModal();
   }
 
   controlModal() {
     this.visible = !this.visible;
   }
-
-  continueChild(child: Child) {
-    console.log("Continuing as child");
-    this.store.dispatch(new SetChild({childId:child._id}));
-  }
-
-  continueParent(child: Child) {
-    console.log("Continuing as parent");
-    this.store.dispatch(new SetChild({childId:child._id}));
-  }
-
 }
