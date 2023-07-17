@@ -38,8 +38,11 @@ jobs:
       - name: Run linting
         run: npm run lint
 
-      - name: Run tests
-        run: npm run test
+      - name: Test
+        working-directory: ./
+        run: |
+          npx nx run-many --target=test --all --skip-nx-cache --parallel --coverage
+          npx nx run-many --target=test --all --skip-nx-cache --parallel
 
       - name: Build app
         run: npm run build:app:dev
