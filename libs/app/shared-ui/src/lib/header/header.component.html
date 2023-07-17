@@ -6,6 +6,9 @@
     
     <ion-title>{{title}}</ion-title>
 
-    <ion-icon size="large" name="settings-sharp" src="assets/svg/settings-sharp.svg" *ngIf="settingsActive"></ion-icon>
+    <ion-nav-link [routerLink]="settingsRoute" *ngIf="settingsActive">
+      <ion-icon size="large" name="settings-sharp" src="assets/svg/settings-sharp.svg"></ion-icon>
+    </ion-nav-link>
+    
   </div>
 </ion-header>

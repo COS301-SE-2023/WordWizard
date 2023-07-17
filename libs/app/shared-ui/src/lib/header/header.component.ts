@@ -10,6 +10,7 @@ export class HeaderComponent {
   @Input() title! : string;
   @Input() backRoute! : string;
   @Input() settingsActive! : boolean;
+  @Input() settingsRoute! : string;
   backActive! : boolean;
 
   ngOnInit() {
