@@ -47,9 +47,9 @@ export class LessonCoinComponent implements AfterViewInit, OnInit{
     this.coins.forEach((coin, index) => {
       if(index < this.coins.length - 1){
         const x1= (coin.leftPosition || 0) + widthOffset;
-        const y1= (document.getElementById(coin.name)?.getBoundingClientRect().y) || 0 - heightOffset;
+        const y1= window.innerHeight/5 * index + heightOffset;
         const x2= ((this.coins[index+1].leftPosition || 0) + widthOffset);
-        const y2= (document.getElementById(this.coins[index+1].name)?.getBoundingClientRect().y) || 0 - heightOffset;
+        const y2=  window.innerHeight/5 * (index+1) - heightOffset;
         const filled= (this.coins[index+1].filledStars)>=2;
         this.lines.push({
           x1 : x1,
