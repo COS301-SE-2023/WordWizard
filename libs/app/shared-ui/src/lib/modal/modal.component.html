@@ -15,10 +15,9 @@
           <div *ngIf="badge" class="badge-modal">
             <!-- Badge specific content -->
             <div class="award-picture-container">
-              <img [src]="badge.picture" alt="Award Picture" class="award-picture" >
+              <img [src]="badge.img" alt="Award Picture" class="award-picture" >
             </div>
-            <h2>You completed : <br> Pratice Champion</h2>
-            <!-- <h2>You completed : <br> {{achievement}}</h2> -->
+            <h2>{{badge.name}} </h2>
             <p> {{badge.description}} </p>
           </div>
           
