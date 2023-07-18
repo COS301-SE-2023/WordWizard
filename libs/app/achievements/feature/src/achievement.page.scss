@@ -9,59 +9,58 @@
   justify-content: center;
   background-color: #070527;
   padding: 5%;
-  position: fixed;
-  z-index: 999;
-  width: 100vw;
-  height: 22vh;
+
 }
 
 .profile-picture {
-  width: 38vw;
-  height: 38vw;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
-  border: 3px solid #AAAAAA;
+  border: 2px solid #AAAAAA;
 }
+
+.page-heading {
+  color: white;
+  font-weight: bold;
+  font-size: 24px;
+}
+
 
 .section-header {
   background-color: #861486;
   color: white;
   font-weight: bold;
-  padding: 3%;
+  padding: 10px;
   margin-left: 0%;
   text-align: center;
-  font-size: 150%;
 }
 
 .awards-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-gap: 1%;
+  grid-gap: 10px;
   margin-left: 10%;
-  margin-bottom: 5vw;
-
 }
 
 .award-item {
-  width: 35vw;
-  height: 35vw;
-  margin-top: 5vw;
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+  width: 90%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .award-image {
+  width: 85%;
+  height: 85%;
   border-radius: 50%;
-  border: 1px solid #000000;
 }
 
-ion-content {
-  --background: url('../../../../../apps/word-wizard/src/assets/img/LibraryAchievements.png') no-repeat center center / cover;
+.awards-section-container{
+  background-image: url('../../../../../apps/word-wizard/src/assets/img/bg/welcome_background.jpg');
+  background-repeat: repeat;
 }
-
-.awards-section-container {
-  margin-top:22vh;
-  overflow-y: scroll;
-}
-  .awards-section-container{
-    background-image: url('../../../../../apps/word-wizard/src/assets/img/bg/welcome_background.jpg');
-    background-repeat: repeat;
-  }
   
