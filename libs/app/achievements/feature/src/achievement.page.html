@@ -26,7 +26,7 @@
                        name: category.name, 
                        description: award.description}"
             ></ww-modal> -->
-            <ww-modal [isModalOpen]="open" (close)="open=false" [badge]="{picture: award.completed ? award.img : 'https://ww-img-bucket.s3.amazonaws.com/ww-awards/Blankbadge.png', name: category.name, description: 'You have 20 words.'}">Badge modal</ww-modal>
+            <ww-modal [isModalOpen]="open" (close)="open=false" [badge]="{picture: award.completed ? award.img : 'https://ww-img-bucket.s3.amazonaws.com/ww-awards/Blankbadge.png', name: category.name, description: award.description}"></ww-modal>
 
           </div>
         </div>
