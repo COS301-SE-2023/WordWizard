@@ -3,7 +3,7 @@ export interface Award {
     progress: number;
     description: string;
     completed: boolean;
-    image: string;
+    img: string;
 }
 
 export interface AwardSection {
