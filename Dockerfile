@@ -5,7 +5,10 @@ WORKDIR /app
 COPY . .
 
 RUN pip install --upgrade pip && \
-    pip install -r libs/api/requirements.txt 
+    cd libs/api && \
+    python3 -m venv venv && \
+    venv/Scripts/Activate.ps1 && \
+    pip install -r requirements.txt 
 
 EXPOSE 8000
 
