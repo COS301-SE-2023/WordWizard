@@ -8,7 +8,7 @@ RUN pip install --upgrade pip && \
     # cd libs/api && \
     # python3 -m venv venv && \
     # venv/Scripts/Activate.ps1 && \
-    pip install -r requirements.txt 
+    pip install -r libs/api/requirements.txt 
 
 EXPOSE 8000
 
