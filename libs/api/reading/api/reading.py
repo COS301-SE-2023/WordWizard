@@ -23,4 +23,5 @@ def create_reading(reading: PassageRqst):
     return data
 
 
-@router.post('')
+@router.post('/update-progress')
+def update_progress()
