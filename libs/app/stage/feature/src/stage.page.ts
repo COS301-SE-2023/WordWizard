@@ -26,8 +26,6 @@ export class StagePage implements OnInit{
     this.store.dispatch(new SetStage());
 
     this.stage$.subscribe((data) => {
-      this.name = data.name;
-      this.background = data.background;
       this.coins.forEach((coin:Coin, index:number) => {
         coin.filledStars = data.levels[index];
         coin.name = 'level' + (index+1);

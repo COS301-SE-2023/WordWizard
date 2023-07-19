@@ -3,14 +3,14 @@ import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { SetStage, SetSelectedStage } from './stage.actions';
 import {produce} from 'immer';
 import { StageService } from './stage.service';
-import { stage, stageRequest } from './interfaces/stage.interface';
+import { stage } from './interfaces/stage.interface';
+import { levelsRequest } from './requests/stage.requests';
+import { getLevelsResponse } from './responses/stage.responses';
 
 export interface StageStateModel {
   Stage:{
     model:{
-      name: string;
       levels: number[];
-      background: string;
       selectedLevel: number;
     }
   }
@@ -21,9 +21,7 @@ export interface StageStateModel {
   defaults: {
     Stage:{
       model:{
-        name: '',
         levels: [0,0,0,0,0],
-        background: '',
         selectedLevel: 0
       }
     }
@@ -56,23 +54,20 @@ export class StageState {
   @Action(SetStage)
   async setStage(ctx: StateContext<StageStateModel>) {
 
-    const rqst: stageRequest = {
-      userID: '1'
+    const rqst: levelsRequest = {
+      progress_id: '64aea0695102acb3adb889ad'
     }
 
-    const defaultVal: stage = {
-      name: '',
+    const defaultVal: getLevelsResponse = {
       levels: [0,0,0,0,0],
-      background: '',
-      selectedLevel: 0
     };
-    const stage: stage = (await this.stageService.getStage(rqst).toPromise()) ?? defaultVal;
+    const stage: getLevelsResponse = (await this.stageService.getStage(rqst).toPromise()) ?? defaultVal;
+    console.log(' ', stage);
     try{
       ctx.setState(
         produce((draft: StageStateModel) => {
-          draft.Stage.model.background = stage.background;
           draft.Stage.model.levels = stage.levels;
-          draft.Stage.model.name = stage.name;
+          draft.Stage.model.selectedLevel = 0;
         }))
     }catch(error){
       console.log(error);
