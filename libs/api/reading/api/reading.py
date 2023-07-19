@@ -50,7 +50,48 @@ def update_progress(updtProgress: UpdateProgressRqst):
         "completed": updtProgress.progress.content.done,
         "date" : updtProgress.progress.date
     }
+    progress.progress_history.append(newScore)
 
+    # Find awards earned
+    awards = progress.awards
+
+    # Level Master
+    lvlMaster = awards.get("Level Master")
+    for award in lvlMaster:
+        if award["goal"] <= len(updtProgress.progress.level_scores):
+            award["completed"] = True
+
+    # Word Learner
+    wordLearner = awards.get("Word Learner")
+    for award in wordLearner:
+        if award["goal"] <= progress.total_words:
+            award["completed"] = True
+
+    Practice_collection = db['Practice']
+    Practice = Practice_collection.find_one({'_id': updtProgress.childId})
+
+    # Practice Enthusiast
+    practiceEnth = awards.get("Practice Enthusiast")
+    for award in practiceEnth:
+        if award["goal"] <= len(Practice.words):
+            award["completed"] = True
+
+    Vocabulary_collection = db['Vocabulary']
+    Vocabulary = Vocabulary_collection.find_one({'_id': updtProgress.childId})
+
+    # Vocabulary Builder
+    vocabBuilder = awards.get("Vocabulary Builder")
+    for award in vocabBuilder:
+        if award["goal"] <= len(Vocabulary.words):
+            award["completed"] = True
+
+    # Update awards object
+    awards["Level Master"] = lvlMaster
+    awards["Word Learner"] = wordLearner
+    awards["Practice Enthusiast"] = practiceEnth
+    awards["Vocabulary Builder"] = vocabBuilder
+
+    progress.awards = awards
 
     # Update object in DB based on updated object
     progress_collection.insert_one(progress)
