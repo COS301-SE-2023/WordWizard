@@ -45,7 +45,6 @@ export class ChildStatisticsPage implements AfterViewInit{
           this.wordsLearned = res.total_words;
           this.chartData = res.progress_history;
           this.highestScore = res.highest_score;
-          this.renderChart();
         }
         else {
           this.childStats = res;
@@ -55,14 +54,18 @@ export class ChildStatisticsPage implements AfterViewInit{
           this.wordsLearned = 0;
           this.chartData = res.progress_history;
           this.highestScore = 0;
-          this.renderChart();
         }
-
+        this.renderChart();
       });
     });
 
   }
   renderChart() {
+    const canvas: HTMLCanvasElement = document.getElementById('bar-chart') as HTMLCanvasElement;
+    const existingChart = Chart.getChart(canvas);
+    if (existingChart) {
+      existingChart.destroy();
+    }
     const labels: string[] = [];
     const dataset: number[] = [];
 
@@ -87,6 +90,7 @@ export class ChildStatisticsPage implements AfterViewInit{
         borderWidth: 3
       }]
     };
+
     const ctx = document.getElementById('bar-chart') as HTMLCanvasElement;
     new Chart(ctx, {
       type: 'line',
