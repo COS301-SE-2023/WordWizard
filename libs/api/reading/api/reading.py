@@ -21,3 +21,6 @@ def create_reading(reading: PassageRqst):
     words[passage.index((lesson['part2'])['hard_word'])].imageURL = (lesson['part2'])['image']
     data = Content(passage=words, focusWordsIndex=[passage.index((lesson['part1'])['hard_word']), passage.index((lesson['part2'])['hard_word'])])
     return data
+
+
+@router.post('')
