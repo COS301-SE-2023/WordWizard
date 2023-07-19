@@ -13,4 +13,6 @@ export interface Content {
 export interface Progress {
   level: number;
   content: Content;
+  score: number;
+  date: Date;
 }

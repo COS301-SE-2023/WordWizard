@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
 import {
   SetPassage,
-  MakeAttempt
+  MakeAttempt,
+  UpdateProgress
  } from './reading.actions';
 
  import {produce} from 'immer';
 
 import {
-  PassageRequest,
+  PassageRequest, UpdateProgressRequest,
 } from './requests/reading.request';
 
 import {
@@ -140,6 +141,35 @@ export class ReadingState {
         }
       })
     )
+  }
+
+  @Action(UpdateProgress)
+  async updateProgress(ctx: StateContext<ReadingStateModel>, {payload}:UpdateProgress) {
+    // Store content and level
+    const content = payload.content;
+    const level = 0;
+
+    // Calculate score from content
+    const totalWords = content.passage.length;
+    const correctWords = content.passage.filter((word) => word.correct).length;
+
+    const score = correctWords/totalWords;
+    
+
+    // Create request
+    const rqst: UpdateProgressRequest = {
+      progress:{
+        level: level,
+        content: payload.content,
+        score: score,
+        date: new Date()
+      }
+    } as UpdateProgressRequest;
+
+    // Make request via service to update progress
+    this.readingService.updateProgress(rqst);
+
+    // Check if update successful??
   }
 
 
