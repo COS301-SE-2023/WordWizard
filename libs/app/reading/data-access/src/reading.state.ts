@@ -30,7 +30,8 @@ export interface ReadingStateModel {
       Word: {
         current:number;
         attemptsRemaining: number;
-      }
+      },
+      level: number;
 //Fair enough
     };
   }
@@ -49,7 +50,8 @@ export interface ReadingStateModel {
         Word: {
           current: 0,
           attemptsRemaining: 5,
-        }
+        },
+        level: 1
       }
     }
   }
@@ -76,7 +78,7 @@ export class ReadingState {
   @Action(SetPassage)
   async setPassage(ctx: StateContext<ReadingStateModel>) {
     const rqst: PassageRequest = {
-      level: 1
+      level: ctx.getState().Passage.model.level
     } as PassageRequest;
 
     const defaultVal: Content = {
@@ -147,7 +149,7 @@ export class ReadingState {
   async updateProgress(ctx: StateContext<ReadingStateModel>, {payload}:UpdateProgress) {
     // Store content and level
     const content = payload.content;
-    const level = 0;
+    const level = ctx.getState().Passage.model.level;
 
     // Calculate score from content
     const totalWords = content.passage.length;
@@ -160,7 +162,7 @@ export class ReadingState {
     const rqst: UpdateProgressRequest = {
       progress:{
         level: level,
-        content: payload.content,
+        content: content,
         score: score,
         date: new Date()
       }

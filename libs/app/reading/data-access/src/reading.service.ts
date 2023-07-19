@@ -30,9 +30,9 @@ export class ReadingService {
       'Content-Type': 'application/json'
     });
     const tempEndpoint = this.endpoint + "/update-progress";
-    
+
     // Figure out if necessary to return something
-    // return this.http.post<Content>(tempEndpoint, request, { headers });
+    this.http.post<Content>(tempEndpoint, request, { headers });
   }
 
 }
