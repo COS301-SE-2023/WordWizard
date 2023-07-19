@@ -13,5 +13,5 @@ export class MakeAttempt{
 
 export class UpdateProgress{
   static readonly type = '[Reading] Update Progress';
-  constructor(public payload: { content: Content }) { }
+  constructor(public payload: { content: Content, childId: string }) { }
 }

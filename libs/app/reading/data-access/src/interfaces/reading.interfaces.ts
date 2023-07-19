@@ -14,5 +14,6 @@ export interface Progress {
   level: number;
   content: Content;
   score: number;
+  incorrectWords: number;
   date: Date;
 }

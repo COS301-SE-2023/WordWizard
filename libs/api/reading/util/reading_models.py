@@ -20,6 +20,8 @@ class Progress(BaseModel):
     content: Content
     score: int
     date: datetime
+    incorrect_words : int
 
 class UpdateProgressRqst(BaseModel):
+    child_id: str
     progress: Progress

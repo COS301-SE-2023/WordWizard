@@ -150,6 +150,7 @@ export class ReadingState {
     // Store content and level
     const content = payload.content;
     const level = ctx.getState().Passage.model.level;
+    const childId = payload.childId;
 
     // Calculate score from content
     const totalWords = content.passage.length;
@@ -160,10 +161,12 @@ export class ReadingState {
 
     // Create request
     const rqst: UpdateProgressRequest = {
+      childId: childId,
       progress:{
         level: level,
         content: content,
         score: score,
+        incorrectWords: totalWords - correctWords,
         date: new Date()
       }
     } as UpdateProgressRequest;

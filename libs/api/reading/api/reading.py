@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from ..util.reading_models import PassageRqst, Content, Word
+from ..util.reading_models import PassageRqst, Content, Word, Progress, UpdateProgressRqst
 import os
 from dotenv import load_dotenv
 from pymongo import MongoClient
@@ -24,4 +24,37 @@ def create_reading(reading: PassageRqst):
 
 
 @router.post('/update-progress')
-def update_progress()
+def update_progress(updtProgress: UpdateProgressRqst):
+    progress_collection = db['Progress']
+    progress = progress_collection.find_one({'_id': updtProgress.childId})
+
+    # Update the data
+    # Update level_scores
+    progress.level_scores.append(updtProgress.progress.score)
+    # Update Total Words
+    progress.total_words += len(updtProgress.progress.content.passage) - updtProgress.progress.incorrect_words
+    # Update Incorrect_words_by_level
+    progress.incorrect_words_by_level.append(updtProgress.progress.incorrect_words)
+    # Update Average Score
+    for score in progress.level_scores:
+        progress.average_score += score
+    progress.average_score = progress.average_score / len(progress.level_scores)
+    # Update Highest Score
+    if updtProgress.progress.score > progress.highest_score:
+        progress.highest_score = updtProgress.progress.score
+    
+    # Update Progress History
+    newScore = {
+        "level": updtProgress.progress.level,
+        "score": updtProgress.progress.score,
+        "completed": updtProgress.progress.content.done,
+        "date" : updtProgress.progress.date
+    }
+
+
+    # Update object in DB based on updated object
+    progress_collection.insert_one(progress)
+    return {"status": "success"}
+    
+    
+    
