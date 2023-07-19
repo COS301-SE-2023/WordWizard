@@ -15,9 +15,17 @@ db = client["WordWizardDB"]
 
 @router.get('/')
 def get_photos():
-    devImage = 'https://img.freepik.com/free-vector/cute-shiba-inu-dog-wearing-dragon-costume-cartoon-vector-icon-illustration-animal-holiday-isolated_138676-7105.jpg?size=626&ext=jpg&ga=GA1.2.772846284.1688291417&semt=ais'
-    devImage2 = 'https://img.freepik.com/free-vector/cute-young-dragon-cartoon-vector-icon-illustration-animal-nature-icon-concept-isolated-premium-vector-flat-cartoon-style_138676-3544.jpg?size=626&ext=jpg&ga=GA1.2.772846284.1688291417&semt=ais'
-    return { 'images': [devImage, devImage2, devImage, devImage2, devImage, devImage2, devImage, devImage2, devImage]}
+    return { 'images': [
+        "https://ww-img-bucket.s3.amazonaws.com/ww-ProfilePics/dragon_1.png",
+        "https://ww-img-bucket.s3.amazonaws.com/ww-ProfilePics/dragon_11.png",
+        "https://ww-img-bucket.s3.amazonaws.com/ww-ProfilePics/dragon_2.png",
+        "https://ww-img-bucket.s3.amazonaws.com/ww-ProfilePics/dragon_3.png",
+        "https://ww-img-bucket.s3.amazonaws.com/ww-ProfilePics/dragon_4.png",
+        "https://ww-img-bucket.s3.amazonaws.com/ww-ProfilePics/dragon_6.png",
+        "https://ww-img-bucket.s3.amazonaws.com/ww-ProfilePics/dragon_7.png",
+        "https://ww-img-bucket.s3.amazonaws.com/ww-ProfilePics/dragon_8.png",
+        "https://ww-img-bucket.s3.amazonaws.com/ww-ProfilePics/dragon_9.png",
+            ]}
 
 
 @router.post('/')
