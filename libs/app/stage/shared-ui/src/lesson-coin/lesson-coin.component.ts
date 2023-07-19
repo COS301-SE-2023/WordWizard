@@ -1,5 +1,7 @@
-import { Component, Input, AfterViewInit, OnInit, ElementRef, Renderer2 } from '@angular/core';
+import { Component, Input, AfterViewInit, OnInit, ElementRef} from '@angular/core';
+import { Router } from '@angular/router';
 import { Coin } from '@word-wizard/app/stage/data-access';
+
 
 interface Line {
   x1: number;
@@ -21,7 +23,7 @@ export class LessonCoinComponent implements AfterViewInit, OnInit{
   @Input() coins: Array<Coin> = [];
   lines: Array<Line> = [];
 
-  constructor(private elementRef: ElementRef, private renderer: Renderer2) { }
+  constructor( private router: Router, private elementRef: ElementRef) { }
 
   ngOnInit() {
 
@@ -48,7 +50,6 @@ export class LessonCoinComponent implements AfterViewInit, OnInit{
     const heightOffset = element.offsetHeight;
 
      widthOffset = widthOffset/2;
-    // heightOffset = (heightOffset/2);
 
     console.log(heightOffset);
 
@@ -59,10 +60,6 @@ export class LessonCoinComponent implements AfterViewInit, OnInit{
         const x2= ((this.coins[index+1].leftPosition || 0) + widthOffset);
         const y2=  ((this.coins[index+1].topPosition || 0) + (heightOffset*(index+1))) + (heightOffset/2);
         const filled= (this.coins[index+1].filledStars)>=2;
-
-        // if(index == 0){
-        //   y1 =(coin.topPosition || 0) + (heightOffset)
-        // }
 
         this.lines.push({
           x1 : x1,
@@ -92,6 +89,11 @@ export class LessonCoinComponent implements AfterViewInit, OnInit{
         line.classList.add('line-animation');
         if(i === 19)clearInterval(animate);
       }, 1000);
+  }
+
+  goToReading(level : string){
+    console.log(level);
+    this.router.navigate(['/reading']);
   }
 
 
