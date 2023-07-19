@@ -1,17 +1,10 @@
 from fastapi import APIRouter
 from ..util.achievements_models import AwardsRqst, AwardSection, Award, AwardsList
-import os
-from dotenv import load_dotenv
-from pymongo import MongoClient
-from dataclasses import dataclass
-import mongomock
-load_dotenv()
 from bson import ObjectId
+from ...deps import Database
+db = Database.getInstance().db
 
 router = APIRouter()
-connection_string = os.getenv("MONGODB_CONNECTION_STRING")
-client = MongoClient(connection_string)
-db = client["WordWizardDB"]
 
 
 

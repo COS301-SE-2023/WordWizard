@@ -1,14 +1,9 @@
 from fastapi import APIRouter
 from ..util.stage_models import LevelRequest
-import os
-from dotenv import load_dotenv
-from pymongo import MongoClient
-load_dotenv()
+from ...deps import Database
+db = Database.getInstance().db
 
 router = APIRouter()
-connection_string = os.getenv("MONGODB_CONNECTION_STRING")
-client = MongoClient(connection_string)
-db = client["WordWizardDB"]
 
 @router.post("/get-levels")
 def create_reading(rqst: LevelRequest):

@@ -1,35 +1,9 @@
 from fastapi import APIRouter
 from ..util.library_models import PracticeRqst, VocabRqst, Word, WordList, UpdateRqst
-import os
-from dotenv import load_dotenv
-from pymongo import MongoClient
-from dataclasses import dataclass
-import mongomock
-load_dotenv()
+from ...deps import Database
 
-
+db = Database.getInstance().db
 router = APIRouter()
-connection_string = os.getenv("MONGODB_CONNECTION_STRING")
-client = MongoClient(connection_string)
-db = client["WordWizardDB"]
-
-# client = mongomock.MongoClient()
-# db = client['WordWizardDB']
-# users_collection = db['users']
-
-def assign__mock_client():
-    global client
-    client = mongomock.MongoClient()
-    global db
-    db = client["WordWizardDB"]
-
-def assign_actual_client():
-    global client
-    connection_string = os.getenv("MONGODB_CONNECTION_STRING")
-    client = MongoClient(connection_string)
-    global db
-    db = client["WordWizardDB"]
-
 
 @router.post('/practice')
 def create_reading(rqst: PracticeRqst):
