@@ -5,7 +5,7 @@ import {
   Content,
 } from './interfaces/reading.interfaces';
 import {
-  PassageRequest,
+  PassageRequest, UpdateProgressRequest,
 } from './requests/reading.request';
 
 @Injectable({
@@ -23,6 +23,16 @@ export class ReadingService {
     });
     const tempEndpoint = this.endpoint + "/passage";
     return this.http.post<Content>(tempEndpoint, request, { headers });
+  }
+
+   updateProgress(request: UpdateProgressRequest) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    const tempEndpoint = this.endpoint + "/update-progress";
+
+    // Figure out if necessary to return something
+    this.http.post<Content>(tempEndpoint, request, { headers });
   }
 
 }

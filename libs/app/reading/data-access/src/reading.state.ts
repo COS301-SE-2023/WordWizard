@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
 import {
   SetPassage,
-  MakeAttempt
+  MakeAttempt,
+  UpdateProgress
  } from './reading.actions';
 
  import {produce} from 'immer';
 
 import {
-  PassageRequest,
+  PassageRequest, UpdateProgressRequest,
 } from './requests/reading.request';
 
 import {
@@ -29,7 +30,8 @@ export interface ReadingStateModel {
       Word: {
         current:number;
         attemptsRemaining: number;
-      }
+      },
+      level: number;
 //Fair enough
     };
   }
@@ -48,7 +50,8 @@ export interface ReadingStateModel {
         Word: {
           current: 0,
           attemptsRemaining: 5,
-        }
+        },
+        level: 1
       }
     }
   }
@@ -75,7 +78,7 @@ export class ReadingState {
   @Action(SetPassage)
   async setPassage(ctx: StateContext<ReadingStateModel>) {
     const rqst: PassageRequest = {
-      level: 1
+      level: ctx.getState().Passage.model.level
     } as PassageRequest;
 
     const defaultVal: Content = {
@@ -138,8 +141,45 @@ export class ReadingState {
             draft.Passage.model.Content.done = true;
           }
         }
+
+        // When done
+        // Get child Id from child state
+        // Invoke update progress 
+
       })
     )
+  }
+
+  @Action(UpdateProgress)
+  async updateProgress(ctx: StateContext<ReadingStateModel>, {payload}:UpdateProgress) {
+    // Store content and level
+    const content = payload.content;
+    const level = ctx.getState().Passage.model.level;
+    const childId = payload.childId;
+
+    // Calculate score from content
+    const totalWords = content.passage.length;
+    const correctWords = content.passage.filter((word) => word.correct).length;
+
+    const score = correctWords/totalWords;
+    
+
+    // Create request
+    const rqst: UpdateProgressRequest = {
+      childId: childId,
+      progress:{
+        level: level,
+        content: content,
+        score: score,
+        incorrectWords: totalWords - correctWords,
+        date: new Date()
+      }
+    } as UpdateProgressRequest;
+
+    // Make request via service to update progress
+    this.readingService.updateProgress(rqst);
+
+    // Check if update successful??
   }
 
 
