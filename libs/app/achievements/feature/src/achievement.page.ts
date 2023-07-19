@@ -24,18 +24,16 @@ export interface achievement {
   styleUrls: ['./achievement.page.scss'],
 })
 export class AchievementPage {
-  @Select(ChildState.Children) Children$!: Observable<Child[]>; 
 
   open = false;
 
   childProfilePictureSrc = 'https://ww-img-bucket.s3.amazonaws.com/Dragon4-testProfile.png';
   
   awards: AwardSection[] = [];
+  parentActive!: boolean;
 
   @Select(ChildState.currentChild) currentChild$!: Observable<Child>;
-
-
-
+  @Select(ChildState.parentActive) parentActive$!: Observable<boolean>;
 
   constructor(private achievementService: AchievementService, private store: Store) {
     this.currentChild$.subscribe((child) => {
@@ -44,6 +42,11 @@ export class AchievementPage {
         // this.childProfilePictureSrc = child.profile_photo;
         this.loadAwards('64adbd15f021795e969d4076');
       }
+    });
+
+    this.parentActive$.subscribe((data) => {
+      if(data === true) this.parentActive = true;
+      else this.parentActive = data;
     });
   }
 
@@ -58,4 +61,5 @@ export class AchievementPage {
       }
     );
   }
+  
 }

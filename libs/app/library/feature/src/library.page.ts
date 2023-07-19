@@ -26,7 +26,7 @@ export class LibraryPage {
   @Select(LibraryState.practice) practice$!: Observable<WordList>;
   @Select(LibraryState.vocab) vocab$!: Observable<WordList>;
 
-  @Select(ChildState.parentActive) parentActive$!: Observable<string>;
+  @Select(ChildState.parentActive) parentActive$!: Observable<boolean>;
 
   constructor(private store: Store){
     this.store.dispatch(new SetPractice());
@@ -45,10 +45,10 @@ export class LibraryPage {
     });
 
     this.parentActive$.subscribe((data) => {
-      if(data === 'true') this.parentActive = true;
-      else this.parentActive = false;
+      if(data === true) this.parentActive = true;
+      else this.parentActive = data;
     });
-  }
+  } 
 
   handleTextChange(text: string) {
     this.store.dispatch(new UpdatePractice({userID:"64784f19bdfa8f92954b9d78", word: text}));
