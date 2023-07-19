@@ -141,6 +141,11 @@ export class ReadingState {
             draft.Passage.model.Content.done = true;
           }
         }
+
+        // When done
+        // Get child Id from child state
+        // Invoke update progress 
+
       })
     )
   }
