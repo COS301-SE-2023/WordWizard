@@ -24,7 +24,8 @@ export class StageService {
     const tempStage: stage = {
       name: 'Stage 1',
       levels: [3, 3, 2, 1, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-      background: 'assets/images/stage1.png'
+      background: 'assets/images/stage1.png',
+      selectedLevel: 0
     }
 
     return new Observable<stage>(observer => {

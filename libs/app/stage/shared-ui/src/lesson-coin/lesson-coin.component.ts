@@ -1,4 +1,4 @@
-import { Component, Input, AfterViewInit, OnInit, ElementRef} from '@angular/core';
+import { Component, Input, AfterViewInit, OnInit, ElementRef, Output, EventEmitter} from '@angular/core';
 import { Router } from '@angular/router';
 import { Coin } from '@word-wizard/app/stage/data-access';
 
@@ -19,6 +19,8 @@ interface Line {
   styleUrls: ['./lesson-coin.component.scss'],
 })
 export class LessonCoinComponent implements AfterViewInit, OnInit{
+
+  @Output() coinClicked = new EventEmitter<string>();
 
   @Input() coins: Array<Coin> = [];
   lines: Array<Line> = [];
@@ -92,7 +94,10 @@ export class LessonCoinComponent implements AfterViewInit, OnInit{
   }
 
   goToReading(level : string){
-    console.log(level);
+
+
+    this.coinClicked.emit(level);
+
     this.router.navigate(['/reading']);
   }
 

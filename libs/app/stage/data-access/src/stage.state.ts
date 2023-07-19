@@ -11,6 +11,7 @@ export interface StageStateModel {
       name: string;
       levels: number[];
       background: string;
+      selectedLevel: number;
     }
   }
 }
@@ -22,7 +23,8 @@ export interface StageStateModel {
       model:{
         name: '',
         levels: [0,0,0,0,0],
-        background: ''
+        background: '',
+        selectedLevel: 0
       }
     }
   }
@@ -35,14 +37,14 @@ export class StageState {
 
   @Selector()
   static getSelectedStage(state: StageStateModel) {
-    return state.Stage.model.name;
+    return state.Stage.model.selectedLevel;
   }
 
   @Action(SetSelectedStage)
   setSelectedStage(ctx: StateContext<StageStateModel>, { payload }: SetSelectedStage) {
     ctx.setState(
       produce((draft: StageStateModel) => {
-        draft.Stage.model.name = payload;
+        draft.Stage.model.selectedLevel = payload;
       }))
   }
 
@@ -61,7 +63,8 @@ export class StageState {
     const defaultVal: stage = {
       name: '',
       levels: [0,0,0,0,0],
-      background: ''
+      background: '',
+      selectedLevel: 0
     };
     const stage: stage = (await this.stageService.getStage(rqst).toPromise()) ?? defaultVal;
     try{

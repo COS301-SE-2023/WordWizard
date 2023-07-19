@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
-import { SetStage, StageState } from '@word-wizard/app/stage/data-access';
+import { SetStage, StageState, SetSelectedStage } from '@word-wizard/app/stage/data-access';
 import { Observable } from 'rxjs';
 import { stage, Coin} from '@word-wizard/app/stage/data-access';
 
@@ -13,6 +13,7 @@ export class StagePage implements OnInit{
 
   //get stage from state
   @Select(StageState.getStage) stage$!: Observable<stage>;
+  @Select(StageState.getSelectedStage) selectedStage$!: Observable<number>;
 
   name= '';
   background='';
@@ -33,5 +34,23 @@ export class StagePage implements OnInit{
       });
     });
 
+    this.selectedStage$.subscribe((data) => {
+      console.log(data);
+    });
+
   }
+
+  levelSet($event: string){
+    this.store.dispatch(new SetSelectedStage(this.extractNumberFromString($event) || 0));
+  }
+
+  extractNumberFromString(inputString: string): number | null {
+    const regex = /\d+/;
+    const matches = inputString.match(regex);
+    if (matches && matches.length > 0) {
+      return parseInt(matches[0], 10);
+    }
+    return null;
+  }
+
 }

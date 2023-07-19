@@ -4,5 +4,5 @@ export class SetStage{
 
 export class SetSelectedStage{
   static readonly type = '[Stage] Set Selected Stage';
-  constructor(public payload: string) {}
+  constructor(public payload: number) {}
 }
