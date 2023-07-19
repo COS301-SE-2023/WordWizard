@@ -38,11 +38,12 @@ export class AddChildPage {
       console.table(user);
       if (user) {
           this.addChildService.addChild(user.nickname || '', user.email || '', this.form.value.name, this.form.value.age, this.selectedImage).subscribe((res) => {
-            if(res.status != 'success') {
+            if(!res) {
               this.presentToast('Error adding child', 'danger');
-              //redirect to manage children
+              
             }
           });
+          
       } else {
           console.error('user is not logged in');
       }

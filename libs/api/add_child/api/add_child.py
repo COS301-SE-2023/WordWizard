@@ -55,26 +55,26 @@ def add_create(rqst: AddChildRqst):
         create_practice_list(result_child.inserted_id)
         create_progress(result_child.inserted_id)
         create_vocab_list(result_child.inserted_id)
-    else: 
-        result_parent = parents_collection.insert_one(parent_data)
-        children_collection = db['Children']
-        result_child = children_collection.insert_one({
-            'username': rqst.name,
-            'age': rqst.age,
-            'parent': result_parent.inserted_id,
-            'profile_photo': rqst.profile_picture,
-            'vocab_list': '',
-            'practice_list': '',
-            'progress': ''
-        })
-        parents_collection.update_one(
-            {'_id': result_parent.inserted_id},
-            {'$push': {'children': result_child.inserted_id}}
-        )
-        create_practice_list(result_child.inserted_id)
-        create_progress(result_child.inserted_id)
-        create_vocab_list(result_child.inserted_id)
-    return { 'status': 'success' }
+        return result_child
+    result_parent = parents_collection.insert_one(parent_data)
+    children_collection = db['Children']
+    result_child = children_collection.insert_one({
+        'username': rqst.name,
+        'age': rqst.age,
+        'parent': result_parent.inserted_id,
+        'profile_photo': rqst.profile_picture,
+        'vocab_list': '',
+        'practice_list': '',
+        'progress': ''
+    })
+    parents_collection.update_one(
+        {'_id': result_parent.inserted_id},
+        {'$push': {'children': result_child.inserted_id}}
+    )
+    create_practice_list(result_child.inserted_id)
+    create_progress(result_child.inserted_id)
+    create_vocab_list(result_child.inserted_id)
+    return result_child
 
 
 def create_progress(child_id):
