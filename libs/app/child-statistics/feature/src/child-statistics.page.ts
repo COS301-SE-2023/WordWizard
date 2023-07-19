@@ -20,9 +20,7 @@ export class ChildStatisticsPage implements AfterViewInit{
 
   @Select(ChildState.currentChild) currentChild$!: Observable<Child>; 
 
-  constructor(private readonly childStatisticsService: ChildStatisticsService, private store: Store) {
-    
-  }
+  constructor(private readonly childStatisticsService: ChildStatisticsService, private store: Store) {}
 
   childStats!: Statistics;
   averageScore!: number;
@@ -47,7 +45,6 @@ export class ChildStatisticsPage implements AfterViewInit{
           this.wordsLearned = res.total_words;
           this.chartData = res.progress_history;
           this.highestScore = res.highest_score;
-          console.table(this.chartData);
           this.renderChart();
         }
         else {

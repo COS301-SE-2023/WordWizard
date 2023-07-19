@@ -18,7 +18,8 @@
                     color="#861486" 
                     activate="#510E51"
                     border="#fff"
-                ></ww-button>
+                    (click)="setActive(false)"
+                />
             </ion-nav-link>
             <ion-nav-link routerLink="/view-child">
                 <ww-button class="continueParent"
@@ -26,7 +27,8 @@
                     color="#070527" 
                     activate="#000000"
                     border="#fff"
-                ></ww-button>
+                    (click)="setActive(false)"
+                />
             </ion-nav-link>
         </div>
     </div>
@@ -45,10 +47,8 @@
             </ion-col>
         </ion-row>
     </ion-grid>
-    <ion-nav-link routerLink="/welcome">
-        <ion-button class="sign-out">
-            Sign out
-        </ion-button>
-    </ion-nav-link>
+    <ion-button class="sign-out" (click)="logout()">
+        Sign out
+    </ion-button>
 </ion-content>
 

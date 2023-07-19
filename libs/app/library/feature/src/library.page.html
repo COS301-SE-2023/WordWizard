@@ -1,4 +1,8 @@
 <ion-header>
+    <ww-header *ngIf="parentActive; else childActive" title="Library" [backRoute]="'../view-child'"/>
+    <ng-template #childActive>
+        <ww-header title="Library" [backRoute]="'../dashboard'"/>
+    </ng-template>
     <ion-toolbar>
       <ion-segment value="vocab" #toolbarSegment>
             <ion-segment-button value="vocab">
