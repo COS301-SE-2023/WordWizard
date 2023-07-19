@@ -57,5 +57,6 @@ export class ManageChildrenPage {
 
   setActive(val: boolean) {
     this.store.dispatch(new ChangeActive({parentActive: val}));
+    this.controlModal();
   }
 }
