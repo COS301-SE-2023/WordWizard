@@ -7,7 +7,7 @@ import {
   ChildState,
   Child
 } from '@word-wizard/app/child/data-access';
-import { Badge } from '../../../shared-ui/src/lib/modal/modal.interface';
+import { Badge } from '@word-wizard/app/shared-ui';
 
 export interface achievement {
   levelName:string;
