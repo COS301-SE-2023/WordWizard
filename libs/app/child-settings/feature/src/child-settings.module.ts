@@ -20,7 +20,7 @@ import { AddChildService } from '@word-wizard/app/add-child/data-access';
     ReactiveFormsModule, 
     SharedUiModule,
     NgxsModule.forFeature([ChildState]),
-    HttpClientModule,
+    HttpClientModule
   ],
   declarations: [ChildSettingsPage],
   providers: [ChildService, AddChildService, ChildSettingsService],

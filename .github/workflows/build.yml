@@ -38,11 +38,15 @@ jobs:
       - name: Run linting
         run: npm run lint
 
-      - name: Run tests
-        run: npm run test
+      - name: Test
+        working-directory: ./
+        run: npx nx run-many --target=test --all --skip-nx-cache --parallel=5 --coverage
 
-      - name: Build app
+      - name: Build app dev
         run: npm run build:app:dev
+
+      - name: Build app prod
+        run: npm run build:app:prod
       
       - name: Upload codecov report
         uses: codecov/codecov-action@v3

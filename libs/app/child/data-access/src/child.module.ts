@@ -9,4 +9,4 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [CommonModule, NgxsModule.forFeature([ChildState]), HttpClientModule],
   providers: [ChildService],
 })
-export class AppChildDataAccessModule {}
+export class ChildModule {}

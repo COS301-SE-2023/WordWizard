@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
 import { Child } from './interfaces/child.interfaces';
-import { GetChildren, SetChild } from './child.actions';
+import { GetChildren, SetChild, ChangeActive } from './child.actions';
 import { ChildService } from './child.service';
 import { produce } from 'immer';
 import { take } from 'rxjs/operators';
@@ -11,15 +11,16 @@ export interface ChildStateModel {
     model:{
         children: Child[];
         currentChild:{
-            _id: string;
-            username: string;
-            age: number;
-            parent: string;
-            profile_photo: string;
-            vocab_list: string;
-            practice_list: string;
-            progress: string;
+          _id: string;
+          username: string;
+          age: number;
+          parent: string;
+          profile_photo: string;
+          vocab_list: string;
+          practice_list: string;
+          progress: string;
         }
+        parentActive: boolean;  
     };
   }
 }
@@ -31,15 +32,16 @@ export interface ChildStateModel {
       model: {
         children: [],
         currentChild: {
-            _id: '',
-            username: '',
-            age: 0,
-            parent: '',
-            profile_photo: '',
-            vocab_list: '',
-            practice_list: '',
-            progress: '',
-        }
+          _id: '',
+          username: '',
+          age: 0,
+          parent: '',
+          profile_photo: '',
+          vocab_list: '',
+          practice_list: '',
+          progress: '',
+        },
+        parentActive: true  
       }
     }
   }
@@ -88,6 +90,19 @@ export class ChildState {
     }
   }
 
+  @Action(ChangeActive)
+  async ChangeActive(ctx: StateContext<ChildStateModel>, {payload}:ChangeActive) {
+    const state = ctx.getState();
+    ctx.patchState({
+      Children: {
+        model: {
+          ...state.Children.model,
+          parentActive: payload.parentActive
+        }
+      }
+    });
+  }
+
   @Selector()
   static Children(state: ChildStateModel) {
     return state.Children.model.children;
@@ -96,6 +111,11 @@ export class ChildState {
   @Selector()
   static currentChild(state: ChildStateModel) {
     return state.Children.model.currentChild;
+  }
+
+  @Selector()
+  static parentActive(state: ChildStateModel) {
+    return state.Children.model.parentActive;
   }
 }
 
