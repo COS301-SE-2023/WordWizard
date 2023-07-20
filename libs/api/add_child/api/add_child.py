@@ -55,7 +55,16 @@ def add_create(rqst: AddChildRqst):
         create_practice_list(result_child.inserted_id)
         create_progress(result_child.inserted_id)
         create_vocab_list(result_child.inserted_id)
-        return result_child
+        return {
+            '_id': str(result_child.inserted_id),
+            'username': rqst.name,
+            'age': rqst.age,
+            'parent': str(existing_parent['_id']),
+            'profile_photo': rqst.profile_picture,
+            'vocab_list': '',
+            'practice_list': '',
+            'progress': ''
+        }
     result_parent = parents_collection.insert_one(parent_data)
     children_collection = db['Children']
     result_child = children_collection.insert_one({
@@ -74,7 +83,16 @@ def add_create(rqst: AddChildRqst):
     create_practice_list(result_child.inserted_id)
     create_progress(result_child.inserted_id)
     create_vocab_list(result_child.inserted_id)
-    return result_child
+    return {
+        '_id': str(result_child.inserted_id),
+        'username': rqst.name,
+        'age': rqst.age,
+        'parent': str(existing_parent['_id']),
+        'profile_photo': rqst.profile_picture,
+        'vocab_list': '',
+        'practice_list': '',
+        'progress': ''
+    }
 
 
 def create_progress(child_id):

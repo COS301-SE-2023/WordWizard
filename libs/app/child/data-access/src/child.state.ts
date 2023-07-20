@@ -107,13 +107,13 @@ export class ChildState {
 
   @Action(AddChild)
   async AddChild(ctx: StateContext<ChildStateModel>, {payload}:AddChild) {
-    const rsps = this.addChildService.addChild(payload.parentName, payload.parentEmail, payload.name, payload.age, payload.image);
-    console.table(rsps);
-    // ctx.setState(
-    //   produce((draft: ChildStateModel) => {
-    //     draft.Children.model.children.push(rsps);
-    //   }
-    // ));
+    this.addChildService.addChild(payload.parentName, payload.parentEmail, payload.name, payload.age, payload.image).subscribe((res) => {
+      ctx.setState(
+        produce((draft: ChildStateModel) => {
+          draft.Children.model.children.push(res);
+        }
+      ));
+    });
   }
 
 

@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AddChildRqst } from './requests/add-child.requests';
-import { status } from './responses/add-child.responses';
 import { images } from './interfaces/add-child.interfaces';
-import { Child } from '@word-wizard/app/child/data-access';
+import { Child } from './interfaces/add-child.interfaces';
 
 @Injectable({
   providedIn: 'root'
