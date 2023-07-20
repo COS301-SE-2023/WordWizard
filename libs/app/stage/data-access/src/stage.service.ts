@@ -17,8 +17,6 @@ export class StageService {
       'Content-Type': 'application/json'
     });
 
-    const tempEndpoint = this.endpoint + "/getStage";
-
     //return static data for now, placeholder for when backend is ready
 
     const tempStage: stage = {
@@ -33,7 +31,7 @@ export class StageService {
     });
     //uncomment above code when backend is ready
 
-    return this.http.post<stage>(tempEndpoint, rqst, {headers});
+    return this.http.post<stage>(`${process.env['WW_API_ENDPOINT']}/getStage`, rqst, {headers});
 
   }
 
