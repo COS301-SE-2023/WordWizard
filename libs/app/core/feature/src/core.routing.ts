@@ -4,6 +4,11 @@ import { AuthGuard } from '@auth0/auth0-angular';
 
 const routes: Routes = [
   {
+    path: 'dashboard',
+    loadChildren: () =>
+      import('@word-wizard/app/dashboard/feature').then((m) => m.DashboardModule),
+  },
+  {
     path:'',
     redirectTo: 'welcome',
     pathMatch: 'full'
@@ -52,6 +57,17 @@ const routes: Routes = [
     path: 'settings',
     loadChildren: () =>
       import('@word-wizard/app/child-settings/feature').then((m) => m.ChildSettingsModule),
+  },
+  {
+    path: 'child-statistics',
+    loadChildren: () =>
+      import('@word-wizard/app/child-statistics/feature').then((m) => m.ChildStatisticsModule)
+    // canActivate: [AuthGuard],
+  },
+  {
+    path: 'view-child',
+    loadChildren: () =>
+      import('@word-wizard/app/view-child/feature').then((m) => m.ViewChildModule),
   }
   
 ];

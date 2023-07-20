@@ -9,7 +9,7 @@
     "start:app:prod": "nx run word-wizard:serve --configuration=production",
     "start:api": "uvicorn libs.api.api:app --reload",
     "test:api": "python3 libs/api/run_tests.py",
-    "test": "nx run-many --target=test --all --skip-nx-cache --parallel=5",
+    "test": "nx run-many --target=test --all --skip-nx-cache --parallel=5 --coverage",
     "test:ci": "nx run-many --target=test --all --skip-nx-cache --parallel=5 --configuration=ci",
     "lint": "nx run-many --target=lint --all --skip-nx-cache --parallel=5",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,html,scss}\"",
