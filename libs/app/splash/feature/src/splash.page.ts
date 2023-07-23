@@ -11,7 +11,7 @@ export class SplashPage {
 
   ngAfterViewInit() {
     setTimeout(() => {
-      // this.route.navigate(['/welcome'])
+      this.route.navigate(['/welcome'])
     }, 2000);
   }
 }
