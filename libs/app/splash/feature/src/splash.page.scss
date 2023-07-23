@@ -15,37 +15,41 @@
 .background {
     margin-top: 0%;
     height: 100%;
-    background-color: rgba($color: rgb(113, 113, 113), $alpha: 0.1);
+    background-color: rgba($color: rgb(0, 0, 0), $alpha: 0.3);
 }
 
-
-// White card
+// Container to center contents vertically
 .splash {
-    width: 20rem;
-    background-color: white;
-    height: 33rem;
-    border-radius: 1.8rem;
-    border: 3px solid #070527;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    margin: 0;
     position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
 }
 
 .hat {
     // margin-top: 10%;
     position: relative;
-    top: 10vw;
+    // top: 10vw;
+    display: flex;
+    // align-items: center;
+
+    img {
+        width: 75%;
+        height: auto;
+        margin: auto;
+    }
 }
+
 
 .name {
     font-size: 15vw;
-    font-family: Inter;
+    font-family: Georgia, 'Times New Roman', Times, serif;
     color: gold;
-    text-shadow:    -1px 1px 0 #000,
-                    1px 1px 0 #000,
-                    1px -1px 0 #000,
-                    -1px -1px 0 #000;
+    text-shadow:    -2px 2px 2px #000,
+                    2px 2px 2px #000,
+                    2px -2px 2px #000,
+                    -2px -2px 2px #000;
     display: block;
     width: 100%;
     text-align: center;
