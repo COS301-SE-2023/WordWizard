@@ -22,7 +22,7 @@ import { SharedUiModule } from '@word-wizard/app/shared-ui';
     RouterModule,
     LibraryUiModule,
     NgxsModule.forFeature([LibraryState]),
-    SharedUiModule
+    SharedUiModule,
     HttpClientModule
   ],
   declarations: [LibraryPage],

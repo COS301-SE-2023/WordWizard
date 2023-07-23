@@ -1,5 +1,5 @@
-<ww-header [title]="'Library'" [settingsActive]="false" [backRoute]="'../dashboard'"></ww-header>
 <ion-header>
+    <ww-header [title]="'Library'" [settingsActive]="false" [backRoute]="'../dashboard'"></ww-header>
     <ion-toolbar>
       <ion-segment value="vocab" #toolbarSegment>
             <ion-segment-button value="vocab">
@@ -7,15 +7,15 @@
                 Vocabulary
             </ion-segment-button>
             <ion-segment-button value="practice">
-                <ion-img src="assets/icon/wand-and-glasses.PNG"></ion-img>
+                <ion-img src="assets/icon/wand-and-glasses-cropped.png"></ion-img>
                 Practice
             </ion-segment-button>
       </ion-segment>
     </ion-toolbar>
 </ion-header>
-<ion-content class="ion-padding">
+<ion-content >
     <!-- VOCABULARY LIST -->
-    <ion-content *ngIf="toolbarSegment.value === 'vocab'" ngClass="vocab-list"> 
+    <ion-content *ngIf="toolbarSegment.value === 'vocab'" ngClass="vocab-list" class="ion-padding"> 
         <ion-text *ngIf="!hasVocab">
             <h3>No spells yet :O</h3>
             <p>Complete some lessons to learn new spells</p>
@@ -29,7 +29,7 @@
           </ion-grid>
     </ion-content>
     <!-- PRACTICE LIST -->
-    <ion-content *ngIf="toolbarSegment.value === 'practice'" ngClass="practice-list"> 
+    <ion-content *ngIf="toolbarSegment.value === 'practice'" ngClass="practice-list" class="ion-padding"> 
         <ion-grid *ngIf="hasPractice">
             <ion-row>
               <ion-col *ngFor="let j of practice.words; let i = index" size="6">
