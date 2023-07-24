@@ -26,13 +26,19 @@ export class ModalComponent implements OnInit {
 
   @Output() close: EventEmitter<boolean> = new EventEmitter();
 
+
   constructor(private modalController: ModalController) {
   }
   
-  ngOnInit() {
+  async ngOnInit() {
+
+    await this.sleep(1000);
     if (this.badge)
     {
       this.title = "Achievement";
+      if (this.badge.img == "https://ww-img-bucket.s3.amazonaws.com/ww-awards/Blankbadge.png") {
+        this.badge.name = "Locked";    
+      }
     }
     
     if (this.child)
@@ -70,8 +76,13 @@ export class ModalComponent implements OnInit {
         items: ['Item 1', 'Item 2', 'Item 3'],
       },
     });
+
   
     await modal.present();
+  }
+
+  async sleep(ms: number) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
   }
 
 }

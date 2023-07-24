@@ -9,4 +9,4 @@ import { LessonCoinModule } from './lesson-coin/lesson-coin.module';
   exports: [LessonCoinModule],
 
 })
-export class SharedUiModule {}
+export class LocalSharedUi {}
