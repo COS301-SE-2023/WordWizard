@@ -5,9 +5,6 @@ from ...deps import Database
 db = Database.getInstance().db
 
 router = APIRouter()
-# connection_string = os.getenv("MONGODB_CONNECTION_STRING")
-# client = MongoClient(connection_string)
-db = client["WordWizardDB"]
 
 
 
@@ -21,12 +18,7 @@ def get_Awards(rqst: AwardsRqst):
     for section_name, section_data in result["awards"].items():
         award_section = AwardSection(name=section_name)
         for award_name, award_data in section_data.items():
-            goal = award_data["goal"]
-            progress = award_data["progress"]
-            description = award_data["description"]
-            completed = award_data["completed"]
-            img = award_data["img"]
-            award = Award(goal=goal, progress=progress, description=description, completed=completed, img=img)
+            award = Award(goal=award_data["goal"], progress=1, description=award_data["description"], completed=award_data["completed"], img=award_data["img"])
             award_section.add_award(award)
         awards_list.add_section(award_section)
     return awards_list.awardSections
