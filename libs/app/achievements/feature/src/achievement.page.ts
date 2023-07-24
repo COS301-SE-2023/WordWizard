@@ -72,7 +72,6 @@ export class AchievementPage {
     this.achievementService.getAwards(id).subscribe(
       (data: AwardSection[]) => {
         this.awards = data;
-        console.log('Awards loaded:', this.awards);
 
         
 
@@ -86,8 +85,6 @@ export class AchievementPage {
           this.badges.push(badge);
         });
       });
-
-      console.log(this.badges);
 
       },
       (error) => {
