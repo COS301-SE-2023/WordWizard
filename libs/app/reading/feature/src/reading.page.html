@@ -1,8 +1,5 @@
-<ww-header [title]="'Reading Page'" [settingsActive]="true" [backRoute]="'../stage'"></ww-header>
-
-
 <ion-content class="page-container">
-
+  <ww-header [title]="'Reading Page'" [settingsActive]="true" [backRoute]="'../stage'"></ww-header>
   <div class="overlay-container" [class.hidden-overlay]="!visible"> 
     <div class="overlay">
       <ion-grid>
@@ -56,9 +53,6 @@
       </div>
 
     </div>
-    <!-- <div class="content-container">
-      <img [src]="readingPageData.imageSrc" alt="Magic Image">
-    </div> -->
   </div>
   <div class="button-container">
     <div class="button-group">
@@ -68,8 +62,6 @@
       <ng-template #finishedTemplate>
         <ww-speaker [speakPhrase]="sentence"></ww-speaker>
       </ng-template>
-      
-      <!-- <ww-speaker *ngIf="done" [speakPhrase]="practice?.passage"></ww-speaker> -->
     </div>
     <div class="button-group">
       <ww-microphone (textChanged)="handleTextChange($event)"></ww-microphone>

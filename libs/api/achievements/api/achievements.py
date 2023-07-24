@@ -5,13 +5,16 @@ from ...deps import Database
 db = Database.getInstance().db
 
 router = APIRouter()
+# connection_string = os.getenv("MONGODB_CONNECTION_STRING")
+# client = MongoClient(connection_string)
+db = client["WordWizardDB"]
 
 
 
 @router.post('/')
 def get_Awards(rqst: AwardsRqst):
     progress_collection = db["Progress"]
-    result = progress_collection.find_one({"child_id": ObjectId(rqst.child_id)})
+    result = progress_collection.find_one({"_id": ObjectId(rqst.child_id)})
     if result is None:
         return { "Status": "Error" }
     awards_list = AwardsList() 
