@@ -5,9 +5,6 @@ db = Database.getInstance().db
 
 router = APIRouter()
 
-class LevelRequest(BaseModel):
-    progress_id: str
-
 def get_score_range(score: int) -> int:
     if 0 <= score < 25:
         return 0
