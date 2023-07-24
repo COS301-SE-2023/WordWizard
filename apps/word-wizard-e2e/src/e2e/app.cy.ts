@@ -3,11 +3,8 @@
 describe('login', () => {
 
   beforeEach(() => {
-
     cy.viewport('iphone-6');
-
     cy.visit('/');
-
   });
 
   // it('should load the welcome page', () => {
@@ -54,7 +51,7 @@ describe('login', () => {
     */
 
     cy.url().should('equal', 'http://localhost:4200/welcome');
-  })
+  });
 
 
 });
