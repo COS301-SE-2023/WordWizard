@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-describe('word-wizard/stage', () => {
+describe('word-wizard/reading', () => {
   beforeEach(() => {
     cy.viewport('iphone-6')
     cy.visit('/');
@@ -13,20 +13,10 @@ describe('word-wizard/stage', () => {
 
   });
 
-  it('should load the stage page', () => {
-    cy.visit('/stage');
+  it('should load the reading page', () => {
+    cy.visit('/reading');
   });
 
-  it('should display the header title', () => {
-    cy.visit('/stage');
-    cy.get('ion-title').should('contain', 'Stages');
-  });
 
-  it('should display 20 coins', () => {
-    cy.visit('/stage');
-    cy.get('ww-lesson-coin')
-      .find('.coin')
-      .should('have.length', 20);
-  });
 
 });
