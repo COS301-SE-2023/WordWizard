@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 from typing import Optional
-import datetime
+from datetime import datetime
 
 
 class PassageRqst(BaseModel):
