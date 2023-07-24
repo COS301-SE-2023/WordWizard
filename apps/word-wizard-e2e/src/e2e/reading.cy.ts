@@ -17,6 +17,15 @@ describe('word-wizard/reading', () => {
     cy.visit('/reading');
   });
 
+  it('should display the Reading Page with the correct header', () => {
+    cy.visit('/reading');
+    cy.get('ww-header').should('contain', 'Journeyman');
+    cy.get('ww-header').should('have.attr', 'settingsActive', 'true');
+    cy.get('ww-header').should('have.attr', 'backRoute', './');
+  });
+
+
+
 
 
 });
