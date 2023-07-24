@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
-import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
-import { SetStage } from './stage.actions';
+import { Action, Selector, State, StateContext } from '@ngxs/store';
+import { SetStage, SetSelectedStage } from './stage.actions';
 import {produce} from 'immer';
 import { StageService } from './stage.service';
-import { stage, stageRequest } from './interfaces/stage.interface';
+import { stage } from './interfaces/stage.interface';
+import { levelsRequest } from './requests/stage.requests';
+import { getLevelsResponse } from './responses/stage.responses';
 
 export interface StageStateModel {
   Stage:{
     model:{
-      name: string;//name of the stage
-      levels: [number,number,number,number,number];//array of each levels progress(out of 3)
-      background: string;//background image
+      levels: number[];
+      selectedLevel: number;
     }
   }
 }
@@ -20,9 +21,8 @@ export interface StageStateModel {
   defaults: {
     Stage:{
       model:{
-        name: '',
         levels: [0,0,0,0,0],
-        background: ''
+        selectedLevel: 0
       }
     }
   }
@@ -34,32 +34,40 @@ export class StageState {
   constructor(private readonly stageService: StageService) {}
 
   @Selector()
+  static getSelectedStage(state: StageStateModel) {
+    return state.Stage.model.selectedLevel;
+  }
+
+  @Action(SetSelectedStage)
+  setSelectedStage(ctx: StateContext<StageStateModel>, { payload }: SetSelectedStage) {
+    ctx.setState(
+      produce((draft: StageStateModel) => {
+        draft.Stage.model.selectedLevel = payload;
+      }))
+  }
+
+  @Selector()
   static getStage(state: StageStateModel) {
     return state.Stage.model;
   }
 
   @Action(SetStage)
   async setStage(ctx: StateContext<StageStateModel>) {
-    console.log('setStage action called')
-    //get current user from auth module and assign it to userID in rqst
 
-    const rqst: stageRequest = {
-      userID: '1'
+    const rqst: levelsRequest = {
+      progress_id: '64aea0695102acb3adb889ad'
     }
 
-    const defaultVal: stage = {
-      name: '',
+    const defaultVal: getLevelsResponse = {
       levels: [0,0,0,0,0],
-      background: ''
     };
-    const stage: stage = (await this.stageService.getStage(rqst).toPromise()) ?? defaultVal;
+    const stage: getLevelsResponse = (await this.stageService.getStage(rqst).toPromise()) ?? defaultVal;
+    console.log(' ', stage);
     try{
-      console.log('sdfsdf', stage);
       ctx.setState(
         produce((draft: StageStateModel) => {
-          draft.Stage.model.background = stage.background;
           draft.Stage.model.levels = stage.levels;
-          draft.Stage.model.name = stage.name;
+          draft.Stage.model.selectedLevel = 0;
         }))
     }catch(error){
       console.log(error);

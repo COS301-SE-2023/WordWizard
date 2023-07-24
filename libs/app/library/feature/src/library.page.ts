@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { 
+import {
   SetVocab,
   SetPractice,
   UpdatePractice,

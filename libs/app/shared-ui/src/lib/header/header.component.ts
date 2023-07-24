@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'ww-header',
   templateUrl: './header.component.html',
@@ -12,6 +12,8 @@ export class HeaderComponent {
   @Input() settingsActive! : boolean;
   @Input() settingsRoute! : string;
   backActive! : boolean;
+
+  constructor(private router: Router) { }
 
   ngOnInit() {
     if(this.backRoute != ''){
