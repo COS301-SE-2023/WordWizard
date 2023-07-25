@@ -48,7 +48,7 @@
           <ng-template #doneTemplate>
             <p>
               <span *ngFor="let word of practice?.passage; let last = last">
-                <span [ngStyle]="{ 'color': getWordColor(word) }" style="font-size: 100px;">{{ word?.word }}</span>{{ !last ? ' ' : '' }}
+                <span [ngStyle]="{ 'color': getWordColor(word), 'font-size': fontSize}" style="font-size: 100px;">{{ word?.word }}</span>{{ !last ? ' ' : '' }}
               </span>
             </p>
           </ng-template>
