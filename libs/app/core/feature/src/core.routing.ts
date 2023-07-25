@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from '@auth0/auth0-angular';
+import { AuthGuard, AuthService } from '@auth0/auth0-angular';
+import { Router } from '@angular/router';
 
 const routes: Routes = [
   {
@@ -47,6 +48,7 @@ const routes: Routes = [
     path: 'welcome',
     loadChildren: () =>
       import('@word-wizard/app/welcome/feature').then((m) => m.WelcomeModule),
+    canActivate: [AuthGuard],
   },
   {
     path: 'achievements',
@@ -78,4 +80,12 @@ const routes: Routes = [
   ],
   exports: [RouterModule],
 })
-export class CoreRouting {}
+export class CoreRouting {
+  constructor(private auth: AuthService, private router: Router) {
+    // Uncomment once routing has been merged
+    // this.auth.isAuthenticated$.subscribe((isAuthenticated) => {
+    //   if (isAuthenticated) this.router.navigate(['/manage-children']);
+    //   else this.router.navigate(['/welcome']);
+    // });
+  }
+}

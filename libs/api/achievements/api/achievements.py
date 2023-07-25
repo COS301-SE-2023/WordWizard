@@ -8,9 +8,13 @@ import mongomock
 load_dotenv()
 from bson import ObjectId
 
+import certifi
+
+client = MongoClient(os.getenv("MONGODB_CONNECTION_STRING"),tlsCAFile=certifi.where())
+
 router = APIRouter()
-connection_string = os.getenv("MONGODB_CONNECTION_STRING")
-client = MongoClient(connection_string)
+# connection_string = os.getenv("MONGODB_CONNECTION_STRING")
+# client = MongoClient(connection_string)
 db = client["WordWizardDB"]
 
 
@@ -18,7 +22,7 @@ db = client["WordWizardDB"]
 @router.post('/')
 def get_Awards(rqst: AwardsRqst):
     progress_collection = db["Progress"]
-    result = progress_collection.find_one({"child_id": ObjectId(rqst.child_id)})
+    result = progress_collection.find_one({"_id": ObjectId(rqst.child_id)})
     if result is None:
         return { "Status": "Error" }
     awards_list = AwardsList() 

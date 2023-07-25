@@ -55,7 +55,7 @@ export class ReadingPage {
     this.readingState$.subscribe((data) => {
       this.practice = data;
       if(data.passage.filter(word => word.correct === null).length !== 0){
-        this.progressPercentage = `${(data.passage.filter(word => word.correct !== null).length/(data.passage.length)) * 100}%`;
+        this.progressPercentage = `${((data.passage.filter(word => word.correct !== null).length/(data.passage.length)) * 100).toFixed(0)}%`;
       }
       if(data.done)
         this.sentence = data.passage.map((word) => word.word).join(" ");
