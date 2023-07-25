@@ -18,7 +18,7 @@ const routes: Routes = [
     path: 'reading',
     loadChildren: () =>
       import('@word-wizard/app/reading/feature').then((m) => m.ReadingModule),
-    canActivate: [AuthGuard],
+   // canActivate: [AuthGuard],
   },
   {
     path: 'library',
@@ -83,9 +83,9 @@ const routes: Routes = [
 export class CoreRouting {
   constructor(private auth: AuthService, private router: Router) {
     // Uncomment once routing has been merged
-    this.auth.isAuthenticated$.subscribe((isAuthenticated) => {
-      if (isAuthenticated) this.router.navigate(['/manage-children']);
-      else this.router.navigate(['/welcome']);
-    });
+    // this.auth.isAuthenticated$.subscribe((isAuthenticated) => {
+    //   if (isAuthenticated) this.router.navigate(['/manage-children']);
+    //   else this.router.navigate(['/welcome']);
+    // });
   }
 }

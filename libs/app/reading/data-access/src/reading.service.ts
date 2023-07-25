@@ -18,7 +18,7 @@ export class ReadingService {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
-    return this.http.post<Content>(`${process.env['WW_API_ENDPOINT']}/passage`, request, { headers });
+    return this.http.post<Content>(`${process.env['WW_API_ENDPOINT']}/reading/passage`, request, { headers });
   }
 
    updateProgress(request: UpdateProgressRequest) {
@@ -27,7 +27,7 @@ export class ReadingService {
     });
 
     // Figure out if necessary to return something
-    this.http.post<Content>(`${process.env['WW_API_ENDPOINT']}/update-progress`, request, { headers });
+    this.http.post<Content>(`${process.env['WW_API_ENDPOINT']}/reading/update-progress`, request, { headers });
   }
 
 }
