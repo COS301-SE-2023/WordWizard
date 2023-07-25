@@ -3,9 +3,11 @@ import { IonicModule } from '@ionic/angular';
 import { LibraryPage } from './library.page';
 import { NgxsModule, Store } from '@ngxs/store';
 import { LibraryState, LibraryService, LibraryStateModel, Word } from '@word-wizard/app/library/data-access';
+import { SharedUiModule } from '@word-wizard/app/shared-ui';
 import { HttpClientModule } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { ActivatedRoute } from '@angular/router';
 
 describe('LibraryPage', () => {
   let component: LibraryPage;
@@ -19,9 +21,21 @@ describe('LibraryPage', () => {
         IonicModule.forRoot(),
         NgxsModule.forRoot([LibraryState]),
         HttpClientModule,
-        HttpClientTestingModule
+        HttpClientTestingModule,
+        SharedUiModule
       ],
-      providers: [LibraryService]
+      providers: [LibraryService,
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            snapshot: {
+              paramMap: {
+                get: () => '1' // Set the value of the 'id' parameter
+              }
+            }
+          }
+        }
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(LibraryPage);
