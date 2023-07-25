@@ -1,4 +1,4 @@
-import { Component, AfterViewInit} from '@angular/core';
+import { Component, AfterViewInit, ElementRef, ViewChild} from '@angular/core';
 import { Chart, registerables } from 'chart.js';
 import { ChildStatisticsService } from '@word-wizard/app/child-statistics/data-access';
 import { Statistics, levelStats } from '@word-wizard/app/child-statistics/data-access';
@@ -19,6 +19,8 @@ Chart.register(...registerables);
 export class ChildStatisticsPage implements AfterViewInit{
 
   @Select(ChildState.currentChild) currentChild$!: Observable<Child>; 
+  @ViewChild('chartCanvas', {static:false}) chartCanvas!: ElementRef;
+  chart!: Chart;
 
   constructor(private readonly childStatisticsService: ChildStatisticsService, private store: Store) {}
 
@@ -61,15 +63,16 @@ export class ChildStatisticsPage implements AfterViewInit{
 
   }
   renderChart() {
-    const canvas: HTMLCanvasElement = document.getElementById('bar-chart') as HTMLCanvasElement;
-    const existingChart = Chart.getChart(canvas);
+    const ctx: CanvasRenderingContext2D = this.chartCanvas.nativeElement.getContext('2d');
+    // const canvas: HTMLCanvasElement = document.getElementById('bar-chart') as HTMLCanvasElement;
+    const existingChart = Chart.getChart(ctx);
     if (existingChart) {
       existingChart.destroy();
     }
     const labels: string[] = [];
     const dataset: number[] = [];
 
-    // console.log(this.chartData);
+    // // console.log(this.chartData);
     for (let i = 0; i < this.chartData.length; i++) {
       labels.push("");
       dataset.push(this.chartData[i].score);
@@ -90,12 +93,13 @@ export class ChildStatisticsPage implements AfterViewInit{
         borderWidth: 3
       }]
     };
-
-    const ctx = document.getElementById('bar-chart') as HTMLCanvasElement;
     new Chart(ctx, {
       type: 'line',
       data: data,
       options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        // height: 50,
         scales: {
           y: {
             type: 'linear',

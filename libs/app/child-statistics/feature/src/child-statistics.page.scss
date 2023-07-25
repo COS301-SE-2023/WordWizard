@@ -7,16 +7,20 @@ ion-content {
     .chart-container{
         margin-top: 4vh;
         margin-bottom: 3vh;
+        width: 87vw;
+        height: 42vh;
+        margin-left:5.5vw;
     }
     .text-stat-container {
         margin-top: 3vh;
         ion-col {
-            border-radius: 10%;
+            border-radius: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
+            margin-left: 5.5vw;
 
             .stat-text {
                 color: #FFF;
