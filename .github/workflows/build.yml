@@ -17,6 +17,9 @@ jobs:
       - name: Create .env file
         run: |
           echo "MONGODB_CONNECTION_STRING=${{ secrets.MONGODB_CONNECTION_STRING }}" >> .env
+          echo "WW_API_ENDPOINT=${{ secrets.WW_API_ENDPOINT }}" >> .env
+          echo "WW_AUTH0_DOMAIN=${{ secrets.WW_AUTH0_DOMAIN }}" >> .env
+          echo "WW_AUTH0_CLIENT_ID=${{ secrets.WW_AUTH0_CLIENT_ID }}" >> .env
 
       - name: Set up Python
         uses: actions/setup-python@v2
