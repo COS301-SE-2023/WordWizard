@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '@auth0/auth0-angular';
 import { AddChildService } from '@word-wizard/app/add-child/data-access';
+import { AddChild } from '@word-wizard/app/child/data-access';
+import { Store } from '@ngxs/store';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 
@@ -19,7 +21,14 @@ export class AddChildPage {
   visible = false;
   selectedImage!: string;
   pictures: string[] = [];
-  constructor(private readonly fb: FormBuilder, private auth: AuthService, private addChildService: AddChildService, public toastController: ToastController, private router: Router) {
+  constructor(
+      private readonly fb: FormBuilder, 
+      private auth: AuthService, 
+      private addChildService: AddChildService, 
+      public toastController: ToastController, 
+      private router: Router,
+      private store: Store,
+    ) {
     this.addChildService.getImages().subscribe((res) => {
       this.pictures = res.images;
     });
@@ -35,14 +44,14 @@ export class AddChildPage {
 
   submit() {
     this.auth.user$.subscribe((user) => {
-      console.table(user);
       if (user) {
-          this.addChildService.addChild(user.nickname || '', user.email || '', this.form.value.name, this.form.value.age, this.selectedImage).subscribe((res) => {
-            if(res.status != 'success') {
-              this.presentToast('Error adding child', 'danger');
-              //redirect to manage children
-            }
-          });
+          this.store.dispatch(new AddChild({
+              parentName: user.nickname || '',
+              parentEmail: user.email || '',
+              name: this.form.value.name,
+              age: this.form.value.age,
+              image: this.selectedImage
+          }));
       } else {
           console.error('user is not logged in');
       }

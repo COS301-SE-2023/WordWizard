@@ -1,17 +1,9 @@
 from fastapi import APIRouter
 from ..util.statistics_models import StatisticsReq
-import os
-from dotenv import load_dotenv
-from pymongo import MongoClient
-from dataclasses import dataclass
 from bson import ObjectId
-load_dotenv()
-
+from ...deps import Database
+db = Database.getInstance().db
 router = APIRouter()
-
-connection_string = os.getenv("MONGODB_CONNECTION_STRING")
-client = MongoClient(connection_string)
-db = client["WordWizardDB"]
 
 @router.post('/get-stats')
 def get_stats(rqst: StatisticsReq):

@@ -6,6 +6,7 @@ import { AddChildPage } from './add-child.page';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddChildService } from '@word-wizard/app/add-child/data-access';
 import { HttpClientModule } from '@angular/common/http';
+import { SharedUiModule } from '@word-wizard/app/shared-ui';
 
 @NgModule({
   imports: [
@@ -13,7 +14,8 @@ import { HttpClientModule } from '@angular/common/http';
     AddChildRouting,
     IonicModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    SharedUiModule,
   ],
   declarations: [AddChildPage],
   providers: [AddChildService]

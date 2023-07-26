@@ -1,4 +1,10 @@
+import { Progress } from "../interfaces/reading.interfaces";
+
 export interface PassageRequest {
-    userID: string;
-    readingLevel: string;
+    level:number;
+}
+
+export interface UpdateProgressRequest {
+    childId: string;
+    progress: Progress;
 }
