@@ -39,18 +39,19 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 10px;
-  margin-left: 10%;
+  // margin-left: 10%;
 }
 
 .award-item {
   background-size: cover;
   background-position: center;
   border-radius: 50%;
-  width: 90%;
-  height: 100%;
+  width: 42vw;
+  height: 42vw;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-left: 4vw;
 }
 
 .award-image {
@@ -62,6 +63,7 @@
 .awards-section-container{
   background-image: url('../../../../../apps/word-wizard/src/assets/img/bg/welcome_background.jpg');
   background-repeat: repeat;
+  background-attachment: fixed;
 }
 
 button{

@@ -1,4 +1,4 @@
-<ww-header [title]="child.state" [settingsActive]="true" [backRoute]="'../manage-children'"></ww-header>
+<ww-header title="View Chlid" [settingsActive]="true" [backRoute]="'../manage-children'" [settingsRoute]='"../settings"'></ww-header>
 
 <ion-content [scrollY]="false">
     <div class="view-child">
@@ -18,15 +18,13 @@
                 <ion-grid>
                     <ion-row>
                         <ion-col size="6">
-                            <!-- <div> -->
-                                <a class="spellbook" routerLink="/library">
-                                    <ion-img src="assets/icon/spellbook-cropped.png"></ion-img>
-                                    Library
-                                </a>
-                            <!-- </div> -->
+                            <a class="spellbook" routerLink="/library">
+                                <ion-img src="assets/icon/spellbook-cropped.png"></ion-img>
+                                Library
+                            </a>
                         </ion-col>
                         <ion-col size="6">
-                            <a class="trophy" routerLink="/badges">
+                            <a class="trophy" routerLink="/achievements">
                                 <ion-img src="assets/icon/trophy-cropped.png"></ion-img>
                                 Badges
                             </a>
@@ -42,12 +40,12 @@
                     </ion-row>
                     <ion-row>
                         <ion-col>
-                            <!-- <div> -->
+                            <ion-nav-link routerLink="/child-statistics">
                                 <a class="stats" routerLink="/">
                                     <ion-img src="assets/img/stats-logo.png"></ion-img>
                                     Stats
                                 </a>
-                            <!-- </div> -->
+                            </ion-nav-link>
                         </ion-col>
                     </ion-row>
                 </ion-grid>

@@ -11,9 +11,11 @@
                     </div>
                 </ion-col>
                 <ion-col size="1">
-                    <div class="cancel">
-                       <ion-icon name="close-sharp"></ion-icon> 
-                    </div>
+                    <ion-nav-link routerLink="/view-child">
+                        <div class="cancel">
+                            <ion-icon name="close-sharp"></ion-icon> 
+                        </div>
+                    </ion-nav-link>
                 </ion-col>
             </ion-row>
         </ion-grid>
@@ -73,22 +75,26 @@
             <label htmlFor="stage" class="input-lbl">Stage:</label><br>
             <input type="text" id="stage" formControlName="stage" class="test"/>
         </div> 
-        <ww-button 
-            text="Save Changes" 
-            color="#861486" 
-            [submit]="true" 
-            activate="#6b106b"
-            border="#111"
-            [disabled]="!form.valid || !selectedImage"
-        ></ww-button>
+        <ion-nav-link routerLink="/view-child">
+            <ww-button 
+                text="Save Changes" 
+                color="#861486" 
+                [submit]="true" 
+                activate="#6b106b"
+                border="#111"
+                [disabled]="!form.valid || !selectedImage"
+            ></ww-button>
+        </ion-nav-link>
     </form>
     <div class="delete-container">
-        <ww-button 
-            text="Delete Profile" 
-            color="#070527" 
-            activate="#05041b"
-            border="#111"
-            (event)="deleteProfile()"
-        ></ww-button>
+        <ion-nav-link routerLink="/manage-children">
+            <ww-button 
+                text="Delete Profile" 
+                color="#070527" 
+                activate="#05041b"
+                border="#111"
+                (event)="deleteProfile()"
+            ></ww-button>
+        </ion-nav-link>
     </div>
 </ion-content>

@@ -1,16 +1,11 @@
 from fastapi import APIRouter
 from ..util.child_models import GetChildrenReq, EditChildReq, DeleteChildReq
-import os
-from dotenv import load_dotenv
-from pymongo import MongoClient
 from dataclasses import dataclass
 from bson import ObjectId
-load_dotenv()
+from ...deps import Database
 
+db = Database.getInstance().db
 router = APIRouter()
-
-client = MongoClient(os.getenv("MONGODB_CONNECTION_STRING"))
-db = client["WordWizardDB"]
 
 @router.post('/')
 def get_children(rqst: GetChildrenReq):

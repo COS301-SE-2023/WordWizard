@@ -1,21 +1,9 @@
 from fastapi import APIRouter
 from ..util.stage_models import LevelRequest
-import os
-from dotenv import load_dotenv
-from pymongo import MongoClient
-from bson import ObjectId
-from pydantic import BaseModel
-from typing import List
-
-load_dotenv()
+from ...deps import Database
+db = Database.getInstance().db
 
 router = APIRouter()
-connection_string = os.getenv("MONGODB_CONNECTION_STRING")
-client = MongoClient(connection_string)
-db = client["WordWizardDB"]
-
-class LevelRequest(BaseModel):
-    progress_id: str
 
 def get_score_range(score: int) -> int:
     if 0 <= score < 25:

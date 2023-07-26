@@ -23,6 +23,8 @@ export class ReadingPage {
 
   backgroundImage = 'assets/img/CastleBackground.png';
   backButton = 'assets/img/item/backbutton.png';
+  fontSize = '1em';
+  value = 1;
 
   visible = false;
 
@@ -45,6 +47,7 @@ export class ReadingPage {
   practice!: Content;
   currentWord = 0;
   sentence = "";
+  font = false;
 
   constructor(private store: Store) {
     this.setStars();
@@ -78,7 +81,7 @@ export class ReadingPage {
     if(!this.practice.done) {
       if(words.includes(this.practice.passage[this.practice.focusWordsIndex[this.currentWord]].word.toLowerCase())){
         this.triggerConfetti();
-        setTimeout(() => this.store.dispatch(new MakeAttempt({newAttempt: this.practice.passage[this.practice.focusWordsIndex[this.currentWord]].word.toLowerCase()})), 1000);
+        setTimeout(() => this.store.dispatch(new MakeAttempt({newAttempt: this.practice.passage[this.practice.focusWordsIndex[this.currentWord]].word.toLowerCase()})), 500);
         // const count = this.practice.passage.filter((word) => word.correct !== null).length;
         // this.progress += (count+1)* this.increment;
         // this.progressPercentage = `${this.progress}%`;
@@ -159,5 +162,14 @@ export class ReadingPage {
   back(){
     console.log("back");
     //return back to levels page
+  }
+  // eslint-disable-next-line
+  updateFont(event:any) {
+    this.value = event.target.value;
+    this.fontSize = `${event.target.value}em`;
+  }
+
+  show() {
+    this.font = !this.font;
   }
 }

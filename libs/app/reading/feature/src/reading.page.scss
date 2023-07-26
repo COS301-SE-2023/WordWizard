@@ -177,13 +177,58 @@ ww-progress-potion{
     left: 0;
   }
   
-  .wizard-image {
-    position: absolute;
-    width: 50vw;
-    margin-left: 46vw;
-    margin-top: 55vh;
-    z-index: 4;
-    top: 0;
-    left: 0;
+.wizard-image {
+  position: absolute;
+  width: 50vw;
+  margin-left: 46vw;
+  margin-top: 55vh;
+  z-index: 4;
+  top: 0;
+  left: 0;
+}
+
+.slider-container {
+  height: 48px;
+  width: 20vh;
+  // flex-shrink: 0;
+  border-radius: 6px;
+  background: rgba(7, 5, 39, 0.50);
+  position: absolute;
+  z-index: 999;
+  display:grid;
+  place-items:center;
+  transform: rotateZ(-90deg);
+  
+  top: 13.5%;
+  right:-14%;
+  
+  
+  .slider {
+    -webkit-appearance: none;
+    width: 18vh;
+    height: 7px;
+    background: #1DD6FF;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
   }
   
+  .slider:hover {
+    opacity: 1;
+  }
+  
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    // appearance: none;
+    width: 19px;
+    height: 19px;
+    border-radius: 50%;
+    background: #1DD6FF;
+  }
+  
+  .slider::-moz-range-thumb {
+    width: 19px;
+    height: 19px;
+    border-radius: 50%;
+    background: #1DD6FF;
+  }
+}

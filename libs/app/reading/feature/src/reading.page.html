@@ -1,5 +1,5 @@
-<ion-content class="page-container">
-  <ww-header [title]="'Journeyman'" [settingsActive]="true" [backRoute]="'./'"/>
+<ion-content class="page-container" [scrollY]="false">
+  <ww-header [title]="'Reading Page'" [settingsActive]="false" [font]="true" (settingsClick)="show()" [backRoute]="'../stage'"/>
   <div class="overlay-container" [class.hidden-overlay]="!visible"> 
     <div class="overlay">
       <ion-grid>
@@ -28,7 +28,9 @@
       <img [src]="wizardImg" alt="Image 2" class="wizard-image">
     </div>
   </div>
-
+  <div class="slider-container" *ngIf="font">
+    <input type="range" min="1" max="3" value="{{value}}" class="slider" (change)="updateFont($event)">
+  </div>
   <div id="potion-container">
     <ww-progress-potion [percentage]="progressPercentage"></ww-progress-potion>
   </div>
@@ -37,7 +39,7 @@
       <div>
           <ng-container *ngIf="!practice.done; else doneTemplate">
             <p>
-              <span [ngStyle]="{ 'color': getWordColor(practice.passage[practice.focusWordsIndex[currentWord]]) }">{{ practice.passage[practice.focusWordsIndex[currentWord]]?.word }}</span>
+              <span [ngStyle]="{ 'color': getWordColor(practice.passage[practice.focusWordsIndex[currentWord]]), 'font-size': fontSize }">{{ practice.passage[practice.focusWordsIndex[currentWord]]?.word }}</span>
             </p>
             <div class="content-container">
               <img [src]="practice.passage[practice.focusWordsIndex[currentWord]]?.imageURL" alt="Magic Image"/>
@@ -46,7 +48,7 @@
           <ng-template #doneTemplate>
             <p>
               <span *ngFor="let word of practice?.passage; let last = last">
-                <span [ngStyle]="{ 'color': getWordColor(word) }">{{ word?.word }}</span>{{ !last ? ' ' : '' }}
+                <span [ngStyle]="{ 'color': getWordColor(word), 'font-size': fontSize}" style="font-size: 100px;">{{ word?.word }}</span>{{ !last ? ' ' : '' }}
               </span>
             </p>
           </ng-template>

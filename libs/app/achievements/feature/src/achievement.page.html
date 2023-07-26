@@ -1,6 +1,8 @@
-<ww-header backRoute="../welcome" backActive="true" title="Magical Treasures"></ww-header>
-
-<ion-content>
+<ww-header *ngIf="parentActive; else childActive" title="Magical Treasures" [backRoute]="'../view-child'"/>
+<ng-template #childActive>
+  <ww-header title="Magical Treasures" [backRoute]="'../dashboard'"/>
+</ng-template>
+<ion-content [scrollY]="false" [scrollX]="false">
   <div class="page-container">
     <div class="profile-picture-container">
       <img [src]="childProfilePictureSrc" alt="Profile Picture" class="profile-picture">

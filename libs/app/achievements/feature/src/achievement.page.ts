@@ -20,20 +20,18 @@ export interface achievement {
   styleUrls: ['./achievement.page.scss'],
 })
 export class AchievementPage {
-  @Select(ChildState.Children) Children$!: Observable<Child[]>; 
 
   open = false;
 
   childProfilePictureSrc = 'https://ww-img-bucket.s3.amazonaws.com/Dragon4-testProfile.png';
   
   awards: AwardSection[] = [];
+  parentActive!: boolean;
   selectedAward: any;
   badges: Badge[] = [];
 
   @Select(ChildState.currentChild) currentChild$!: Observable<Child>;
-
-
-  openModal(award: any, category: any) {
+  @Select(ChildState.parentActive) parentActive$!: Observable<boolean>;  openModal(award: any, category: any) {
 
     this.selectedAward = award;
     if (this.selectedAward.completed == false) {
@@ -54,6 +52,11 @@ export class AchievementPage {
         this.loadAwards('64aea0695102acb3adb889ad');
       }
     });
+
+    this.parentActive$.subscribe((data) => {
+      if(data === true) this.parentActive = true;
+      else this.parentActive = data;
+    });
   }
 
   // getBadge(categoryName: string, award: any): Badge {
@@ -69,7 +72,6 @@ export class AchievementPage {
     this.achievementService.getAwards(id).subscribe(
       (data: AwardSection[]) => {
         this.awards = data;
-        console.log('Awards loaded:', this.awards);
 
         
 
@@ -84,12 +86,11 @@ export class AchievementPage {
         });
       });
 
-      console.log(this.badges);
-
       },
       (error) => {
         console.error('Error loading awards:', error);
       }
     );
   }
+  
 }
