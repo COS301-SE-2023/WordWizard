@@ -33,7 +33,9 @@ describe('word-wizard/add-child', () => {
 
     cy.get('.img-item').first().click({force:true});
 
-    cy.get('.close').first().click();
+    cy.window().its('controlModal').then((controlModal) => {
+      controlModal();
+    });
 
     cy.get('.overlay').should('not.be.visible');
 
