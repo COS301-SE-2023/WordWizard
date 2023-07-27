@@ -74,13 +74,13 @@
             <label htmlFor="stage" class="input-lbl">Stage:</label><br>
             <input type="text" id="stage" formControlName="stage" class="test"/>
         </div>  -->
-        <ion-nav-link routerLink="/view-child">
+        <ion-nav-link routerLink="/view-child" class="smbt-btn">
             <ww-button 
                 text="Save Changes" 
                 color="#861486" 
                 [submit]="true" 
                 activate="#6b106b"
-                border="#111"
+                border="#111111"
                 [disabled]="!form.valid || !selectedImage"
             />
         </ion-nav-link>

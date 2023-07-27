@@ -6,9 +6,10 @@ ion-content {
         width:150%;
         height:20.5rem;
         border-radius:150%;
-        margin-top: -5.25rem;
+        margin-top: -3.25rem;
         transform: translateX(-18%);
         background-color: #070527;
+        // background-color: red;
         ion-grid {
             margin-top:7em;
             @media(min-width: 300px) {
@@ -37,7 +38,6 @@ ion-content {
                     transform: translateX(135%);
                 }
             }
-
             .cancel {
                 color: #464646;
                 font-size: 3rem;
@@ -49,7 +49,8 @@ ion-content {
                 align-items: center;
                 border: 1px solid #000;
                 border-radius: 50%;
-                margin-top: -1.5rem;
+                margin-left: 0.4rem;
+                margin-top: -2.5rem;
             }
         }
         img {
@@ -63,7 +64,7 @@ ion-content {
         display: flex;
         flex-direction: column;
         align-items: center;
-        margin-top:3rem;
+        margin-top:5.5rem;
         .input-lbl {
             color: #000;
             font-size: 24px;
@@ -219,4 +220,8 @@ ion-content {
 .avatar-label {
     display: inline-block;
     cursor: pointer;
+}
+
+.smbt-btn {
+    margin-top: 3rem;
 }
