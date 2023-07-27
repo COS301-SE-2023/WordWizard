@@ -1,7 +1,6 @@
 <ion-content scrollY="false">
+    <ww-header title="Add Child" [settingsActive]="false" [backRoute]="'../manage-children'"/>
     <form [formGroup]="form" (ngSubmit)="submit()">
-        <!-- Animations exist they're just funky currently -->
-        <!-- <div class="overlay-container" [class.hidden-overlay]="!visible" [class.overlay-animation]="visible">  -->
         <div class="overlay-container" [class.hidden-overlay]="!visible"> 
             <div class="overlay">
                 <div class="selected-outer">

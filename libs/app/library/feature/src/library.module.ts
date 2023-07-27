@@ -10,7 +10,7 @@ import { RouterModule } from '@angular/router';
 import { NgxsModule } from '@ngxs/store';
 import { LibraryState, LibraryService } from '@word-wizard/app/library/data-access';
 import { SharedUiModule } from '@word-wizard/app/shared-ui';
-
+import { ChildState } from '@word-wizard/app/child/data-access';
 
 
 @NgModule({
@@ -21,9 +21,9 @@ import { SharedUiModule } from '@word-wizard/app/shared-ui';
     LibraryRouting,
     RouterModule,
     LibraryUiModule,
-    NgxsModule.forFeature([LibraryState]),
+    NgxsModule.forFeature([LibraryState, ChildState]),
+    HttpClientModule,
     SharedUiModule,
-    HttpClientModule
   ],
   declarations: [LibraryPage],
   providers: [LibraryService]

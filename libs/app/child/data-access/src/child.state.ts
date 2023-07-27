@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
 import { Child } from './interfaces/child.interfaces';
-import { GetChildren, SetChild, ChangeActive } from './child.actions';
+import { GetChildren, SetChild, ChangeActive, AddChild } from './child.actions';
 import { ChildService } from './child.service';
 import { produce } from 'immer';
 import { take } from 'rxjs/operators';
+import { AddChildService } from '@word-wizard/app/add-child/data-access';
 
 export interface ChildStateModel {
   Children: {
@@ -52,7 +53,8 @@ export class ChildState {
 
   constructor(
     private readonly store: Store,
-    private readonly childService: ChildService
+    private readonly childService: ChildService,
+    private readonly addChildService: AddChildService
   ){}
 
   @Action(GetChildren)
@@ -102,6 +104,18 @@ export class ChildState {
       }
     });
   }
+
+  @Action(AddChild)
+  async AddChild(ctx: StateContext<ChildStateModel>, {payload}:AddChild) {
+    this.addChildService.addChild(payload.parentName, payload.parentEmail, payload.name, payload.age, payload.image).subscribe((res) => {
+      ctx.setState(
+        produce((draft: ChildStateModel) => {
+          draft.Children.model.children.push(res);
+        }
+      ));
+    });
+  }
+
 
   @Selector()
   static Children(state: ChildStateModel) {

@@ -1,6 +1,6 @@
 // For Badge Modal
 export interface Badge {
-    picture: string;
+    img: string;
     name: string;
     description: string;
 }

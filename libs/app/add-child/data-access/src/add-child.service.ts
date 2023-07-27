@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AddChildRqst } from './requests/add-child.requests';
-import { status } from './responses/add-child.responses';
 import { images } from './interfaces/add-child.interfaces';
+import { Child } from './interfaces/add-child.interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +23,7 @@ export class AddChildService {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
-    return this.http.post<status>(`${process.env['WW_API_ENDPOINT']}/add-child`, request, { headers });
+    return this.http.post<Child>(`${process.env['WW_API_ENDPOINT']}/add-child`, request, { headers });
   }
 
   getImages() {

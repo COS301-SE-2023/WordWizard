@@ -22,7 +22,6 @@ async def text_to_speech(rqst: AudioRqst):
 @router.post("/speech-to-text")
 async def speech_to_text(file: UploadFile = File(...)):
     audio_data = await file.read()
-    # print(audio_format)
     wav_data = io.BytesIO(audio_data)
     recognizer = sr.Recognizer()
     text = ""

@@ -1,6 +1,9 @@
-<ion-content >
-    <ww-header [title]="'Library'" [settingsActive]="false" [backRoute]="'../dashboard'"/>
-    <ion-segment value="vocab" #toolbarSegment color="primary"> 
+<ion-content>
+    <ww-header *ngIf="parentActive; else childActive" title="Library" [backRoute]="'../view-child'"/>
+    <ng-template #childActive>
+        <ww-header title="Library" [backRoute]="'../dashboard'"/>
+    </ng-template>
+    <ion-segment value="vocab" #toolbarSegment>
             <ion-segment-button value="vocab">
                 <ion-img src="assets/icon/spellbook-cropped.png"></ion-img>
                 Vocabulary
