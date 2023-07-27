@@ -33,14 +33,12 @@ describe('word-wizard/add-child', () => {
 
     cy.get('.img-item').first().click({force:true});
 
-    cy.window().its('controlModal').then((controlModal) => {
-      controlModal();
-    });
+    cy.get('#close-modal').click({force:true});
 
     cy.get('.overlay').should('not.be.visible');
 
-    cy.get('input name').type('test');
-    cy.get('input #age').type('5');
+    cy.get('#name').type('test');
+    cy.get('#age').type('5');
 
     cy.get('.submit-btn').click();
 
@@ -48,7 +46,7 @@ describe('word-wizard/add-child', () => {
 
     cy.get('ion-row').its('length').then((length) => {
       if (length >= 2) {
-        cy.get('.list-item').eq(length - 2).then((secondToLastElement) => {
+        cy.get('ion-col').eq(length - 2).then((secondToLastElement) => {
           cy.wrap(secondToLastElement).find('.child-name').should('contain', 'test');
         });
       } else {
