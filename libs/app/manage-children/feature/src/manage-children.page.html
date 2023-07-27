@@ -47,8 +47,18 @@
             </ion-col>
         </ion-row>
     </ion-grid>
-    <ion-button class="sign-out" (click)="logout()">
-        Sign out
-    </ion-button>
+    <ww-button class="continueChild"
+        text="Sign out" 
+        color="#861486" 
+        activate="#510E51"
+        border="#fff"
+        (click)="logout()"
+    />
+    <ww-button class="continueParent"
+        text="Delete Account" 
+        color="#070527" 
+        activate="#000000"
+        border="#fff"
+    />
 </ion-content>
 
