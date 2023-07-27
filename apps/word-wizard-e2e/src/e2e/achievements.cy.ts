@@ -36,13 +36,13 @@ describe('word-wizard/achievements', () => {
         cy.get('.continueChild').click();
         cy.url().should('equal', 'http://localhost:4200/dashboard');
 
-        cy.get('.trophy').click();
+        cy.get('.trophy').first().click();
         cy.url().should('equal', 'http://localhost:4200/achievements');
 
         cy.get('.award-item').first().click();
 
-        cy.get('ww-modal').should('be.visible');
-        cy.get('button').click();
+        cy.get('ww-modal').should('have.attr', 'ng-reflect-is-modal-open', 'true');
+        cy.get('button').first().click();
         cy.get('ww-modal').should('not.be.visible');
       }
     });

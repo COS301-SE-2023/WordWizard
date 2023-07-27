@@ -44,15 +44,17 @@ describe('word-wizard/add-child', () => {
 
     cy.url().should('equal', 'http://localhost:4200/manage-children');
 
-    cy.get('ion-row').its('length').then((length) => {
-      if (length >= 2) {
-        cy.get('ion-col').eq(length - 2).then((secondToLastElement) => {
-          cy.wrap(secondToLastElement).find('.child-name').should('contain', 'test');
-        });
-      } else {
-        cy.log('There are not enough elements to get the second-to-last element.');
-      }
-    });
+    // cy.get('ion-row').its('length').then((length) => {
+    //   if (length >= 2) {
+    //     cy.get('.child-item').eq(length - 2).then((secondToLastElement) => {
+    //       cy.wrap(secondToLastElement).find('.child-name').should('contain', 'test');
+    //     });
+    //   } else {
+    //     cy.log('There are not enough elements to get the second-to-last element.');
+    //   }
+    // });
+
+    cy.get('.child-item').last().find('.child-name').should('contain', 'test');
 
 
   });
