@@ -83,18 +83,16 @@
                 activate="#6b106b"
                 border="#111"
                 [disabled]="!form.valid || !selectedImage"
-            ></ww-button>
+            />
         </ion-nav-link>
     </form>
     <div class="delete-container">
-        <ion-nav-link routerLink="/manage-children">
-            <ww-button 
-                text="Delete Profile" 
-                color="#070527" 
-                activate="#05041b"
-                border="#111"
-                (event)="deleteProfile()"
-            ></ww-button>
-        </ion-nav-link>
+        <ww-button 
+            text="Delete Profile" 
+            color="#070527" 
+            activate="#05041b"
+            border="#111"
+            (event)="presentAlert()"
+        />
     </div>
 </ion-content>
