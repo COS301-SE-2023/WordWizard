@@ -43,7 +43,6 @@ export class ChildSettingsPage {
       this.form = this.fb.group({
         name: [data.username, Validators.required],
         age: [data.age, Validators.required],
-        stage: ['', Validators.required],
       });
     });
     this.addChildService.getImages().subscribe((res) => {
