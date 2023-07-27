@@ -1,22 +1,24 @@
 import { Injectable } from '@angular/core';
-import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
+import { Router } from '@angular/router';
+import { Action, Selector, State, StateContext, Store, Select } from '@ngxs/store';
 import {
   SetPassage,
   MakeAttempt,
   UpdateProgress
- } from './reading.actions';
-
+} from './reading.actions';
+import { 
+  ChildState,
+  Child
+} from '@word-wizard/app/child/data-access';
+import { Observable } from 'rxjs';
  import {produce} from 'immer';
-
 import {
   PassageRequest, UpdateProgressRequest,
 } from './requests/reading.request';
-
 import {
   Word,
   Content
 } from './interfaces/reading.interfaces';
-
 import { ReadingService } from './reading.service';
 
 export interface ReadingStateModel {
@@ -60,7 +62,9 @@ export interface ReadingStateModel {
 @Injectable()
 export class ReadingState {
 
-  constructor(private readonly readingService: ReadingService) {}
+  @Select(ChildState.currentChild) currentChild$!: Observable<Child>;
+
+  constructor(private readonly readingService: ReadingService, private readonly router: Router, private readonly store: Store ) {}
 
   // @Action(Example)
   // example(ctx: StateContext<ReadingStateModel>, action: Example) {
@@ -113,39 +117,35 @@ export class ReadingState {
         const currentWord = passage[focus[current]];
         attemptsRemaining--;
         if(draft.Passage.model.Content.done){
-          if(attemptsRemaining > 0){
+          if(attemptsRemaining > 0) {
             const foundIndex = passage.findIndex((word) => word.word.toLowerCase() === payload.newAttempt.toLowerCase());
             if(foundIndex !== -1)
               passage[foundIndex].correct = true;
             Word.attemptsRemaining = Word.attemptsRemaining - 1;
-          } else{
-            console.log("No attempts left");
-            //Get new passage or move onto next level
+          } else {
+            this.currentChild$.subscribe((data) => {
+              this.store.dispatch(new UpdateProgress({content: draft.Passage.model.Content, childId: data._id}));
+            })
           }
         } else{
           if (currentWord.word.toLowerCase() === payload.newAttempt.toLowerCase()) {
             currentWord.correct = true;
             Word.current++;
-            Word.attemptsRemaining = 5;
+            Word.attemptsRemaining = 2;
             passage[current].correct = true;
           } else if (attemptsRemaining <= 0) {
             currentWord.correct = false;
             Word.current++;
-            Word.attemptsRemaining = 5;
+            Word.attemptsRemaining = 2;
           } else {
             Word.attemptsRemaining = Word.attemptsRemaining - 1;
           }
 
           if(Word.current === focus.length){
-            Word.attemptsRemaining = 5*passage.length;
+            Word.attemptsRemaining = 2*passage.length;
             draft.Passage.model.Content.done = true;
           }
         }
-
-        // When done
-        // Get child Id from child state
-        // Invoke update progress 
-
       })
     )
   }

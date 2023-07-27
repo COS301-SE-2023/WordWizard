@@ -25,7 +25,6 @@ export class ReadingPage {
   backButton = 'assets/img/item/backbutton.png';
   fontSize = '1em';
   value = 1;
-
   visible = false;
 
   star1 = 'assets/img/item/greystar.png';
@@ -34,14 +33,7 @@ export class ReadingPage {
   wizardImg = 'assets/img/item/wizzy.png';
   congratularyMessage = 'Well Tried!';
 
-  readingPageData = {
-    word : '',
-    imageSrc : '',
-    level : 'Journeyman',
-  }
-
   progressPercentage = '0%';
-  progress = 0;
   increment!: number;
   textFromMicrophone: string[] = [];
   practice!: Content;
@@ -77,7 +69,6 @@ export class ReadingPage {
 
   handleTextChange(text: string) {
     const words = text.split(" ");
-    console.table(words);
     if(!this.practice.done) {
       if(words.includes(this.practice.passage[this.practice.focusWordsIndex[this.currentWord]].word.toLowerCase())){
         this.triggerConfetti();
@@ -86,9 +77,10 @@ export class ReadingPage {
         // this.progress += (count+1)* this.increment;
         // this.progressPercentage = `${this.progress}%`;
         // this.increment = 100/this.practice.passage.length;
+      } else {
+        this.store.dispatch(new MakeAttempt({newAttempt: ""}));
       }
-    }
-    else{
+    } else {
       this.practice.passage.every((word) => {
         if(words.includes(word.word.toLowerCase())){
           this.triggerConfetti();
@@ -159,9 +151,8 @@ export class ReadingPage {
     }
   }
 
-  back(){
+  back() {
     console.log("back");
-    //return back to levels page
   }
   // eslint-disable-next-line
   updateFont(event:any) {

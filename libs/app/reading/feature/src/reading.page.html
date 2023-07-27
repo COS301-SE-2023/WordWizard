@@ -22,7 +22,6 @@
         </ion-row>
       </ion-grid>
     </div>
-
     <div class="image-container">
       <img [src]="backButton" alt="Image 1" (click)="back()"  class="back-button">
       <img [src]="wizardImg" alt="Image 2" class="wizard-image">
@@ -53,25 +52,20 @@
             </p>
           </ng-template>
       </div>
-
     </div>
   </div>
   <div class="button-container">
     <div class="button-group">
       <ng-container *ngIf="!practice.done; else finishedTemplate">
-        <ww-speaker [speakPhrase]="practice.passage[practice.focusWordsIndex[currentWord]]?.word"></ww-speaker>
+        <ww-speaker [speakPhrase]="practice.passage[practice.focusWordsIndex[currentWord]]?.word"/>
       </ng-container>
       <ng-template #finishedTemplate>
-        <ww-speaker [speakPhrase]="sentence"></ww-speaker>
+        <ww-speaker [speakPhrase]="sentence"/>
       </ng-template>
     </div>
     <div class="button-group">
       <ww-microphone (textChanged)="handleTextChange($event)"></ww-microphone>
     </div>
-    <div class="button-group">
-      <ww-info></ww-info>
-    </div>
+    <!-- <div class="button-group"></div> -->
   </div>
 </ion-content>
-
-
