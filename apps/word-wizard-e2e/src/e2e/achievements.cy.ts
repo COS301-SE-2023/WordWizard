@@ -42,7 +42,7 @@ describe('word-wizard/achievements', () => {
         cy.get('.award-item').first().click();
 
         cy.get('ww-modal').should('have.attr', 'ng-reflect-is-modal-open', 'true');
-        cy.get('button').first().click();
+        cy.get('button').first().click({force: true});
         cy.get('ww-modal').should('not.be.visible');
       }
     });

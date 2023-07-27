@@ -60,7 +60,7 @@ describe('login', () => {
     });
 
 
-    cy.url().should('equal', 'http://localhost:4200/welcome');
+    cy.url().should('equal', 'http://localhost:4200/manage-children');
   });
 
 

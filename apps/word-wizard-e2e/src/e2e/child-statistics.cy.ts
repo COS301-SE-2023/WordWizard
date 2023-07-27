@@ -1,5 +1,4 @@
 /* eslint-disable */
-/* eslint-disable */
 describe('word-wizard/child-statistics', () => {
   beforeEach(() => {
     cy.viewport('iphone-6')
@@ -22,7 +21,6 @@ describe('word-wizard/child-statistics', () => {
     });
 
   });
-});
 
 it('should select a child, redirect to view-child, go to child statistics and view one', () => {
   cy.visit('/manage-children');
@@ -42,5 +40,5 @@ it('should select a child, redirect to view-child, go to child statistics and vi
     }
   });
 
-
+  });
 });
