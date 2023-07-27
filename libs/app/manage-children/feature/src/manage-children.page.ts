@@ -70,6 +70,12 @@ export class ManageChildrenPage {
   deleteAccount() {
     this.auth.user$.subscribe((user) => {
       if(user) {
+        try{
+          this.childService.deleteAuthAccount();
+        } catch(error) {
+          console.error(error);
+          return;
+        }
         this.childService.deleteAccount(user.email || '').subscribe((data) => {
           if(data.status === 'success') {
             this.router.navigate(['/welcome']);
@@ -99,10 +105,7 @@ export class ManageChildrenPage {
         {
           text: 'Cancel',
           role: 'cancel',
-          cssClass: 'secondary',
-          handler: () => {
-            console.log('Cancel clicked');
-          }
+          cssClass: 'secondary'
         },
         {
           text: 'OK',
