@@ -1,39 +1,41 @@
 <ion-content>
-    <ww-header *ngIf="parentActive; else childActive" title="Library" [backRoute]="'../view-child'"/>
-    <ng-template #childActive>
-        <ww-header title="Library" [backRoute]="'../dashboard'"/>
-    </ng-template>
-    <ion-segment value="vocab" #toolbarSegment>
-            <ion-segment-button value="vocab">
-                <ion-img src="assets/icon/spellbook-cropped.png"></ion-img>
-                Vocabulary
-            </ion-segment-button>
-            <ion-segment-button value="practice">
-                <ion-img src="assets/icon/wand-and-glasses-cropped.png"></ion-img>
-                Practice
-            </ion-segment-button>
-    </ion-segment>
+    <div class="page-container">
+        <ww-header *ngIf="parentActive; else childActive" title="Library" [backRoute]="'../view-child'"/>
+        <ng-template #childActive>
+            <ww-header title="Library" [backRoute]="'../dashboard'"/>
+        </ng-template>
+        <ion-segment value="vocab" #toolbarSegment>
+                <ion-segment-button value="vocab">
+                    <ion-img src="assets/icon/spellbook-cropped.png"></ion-img>
+                    Vocabulary
+                </ion-segment-button>
+                <ion-segment-button value="practice">
+                    <ion-img src="assets/icon/wand-and-glasses-cropped.png"></ion-img>
+                    Practice
+                </ion-segment-button>
+        </ion-segment>
 
-    <ion-content *ngIf="toolbarSegment.value === 'vocab'" ngClass="vocab-list" class="ion-padding"> 
-        <ion-text *ngIf="!hasVocab">
-            <h3>No spells yet :O</h3>
-            <p>Complete some lessons to learn new spells</p>
-          </ion-text>
-          <ion-grid *ngIf="hasVocab">
-              <ion-row>
-                <ion-col class="ion-text-center ion-align-items-center" *ngFor="let j of vocab?.words; let i = index" size="6">
-                    <ww-scroll [vocab]="j" [number]="i"></ww-scroll>
+        <ion-content *ngIf="toolbarSegment.value === 'vocab'" ngClass="vocab-list" class="ion-padding"> 
+            <ion-text *ngIf="!hasVocab">
+                <h3>No spells yet :O</h3>
+                <p>Complete some lessons to learn new spells</p>
+            </ion-text>
+            <ion-grid *ngIf="hasVocab">
+                <ion-row>
+                    <ion-col class="ion-text-center ion-align-items-center" *ngFor="let j of vocab?.words; let i = index" size="6">
+                        <ww-scroll [vocab]="j" [number]="i"></ww-scroll>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-content>
+        <ion-content *ngIf="toolbarSegment.value === 'practice'" ngClass="practice-list" class="ion-padding"> 
+            <ion-grid *ngIf="hasPractice">
+                <ion-row>
+                <ion-col *ngFor="let j of practice.words; let i = index" size="6">
+                    <ww-cauldron [vocab]="j" [number]="i" (textChanged)="handleTextChange($event)"></ww-cauldron>
                 </ion-col>
-              </ion-row>
-          </ion-grid>
-    </ion-content>
-    <ion-content *ngIf="toolbarSegment.value === 'practice'" ngClass="practice-list" class="ion-padding"> 
-        <ion-grid *ngIf="hasPractice">
-            <ion-row>
-              <ion-col *ngFor="let j of practice.words; let i = index" size="6">
-                  <ww-cauldron [vocab]="j" [number]="i" (textChanged)="handleTextChange($event)"></ww-cauldron>
-              </ion-col>
-            </ion-row>
-        </ion-grid>
-    </ion-content>
+                </ion-row>
+            </ion-grid>
+        </ion-content>
+    </div> 
 </ion-content>

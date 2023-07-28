@@ -8,3 +8,7 @@ export interface Child {
     practice_list: string;
     progress: string;
 }
+
+export interface DeleteAccountRsps {
+    status: string;
+}

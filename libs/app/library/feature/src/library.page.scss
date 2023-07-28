@@ -1,8 +1,23 @@
 .vocab-list {
-    --background: url(../../../../../apps/word-wizard/src/assets/img/bg/wizard_library.png) 0 0/100% 100% no-repeat;
+    // --background: url(../../../../../apps/word-wizard/src/assets/img/bg/wizard_library.png) 0 0/100% 100% no-repeat;
+    --background: transparent;
 }
 .practice-list {
-    --background: url(../../../../../apps/word-wizard/src/assets/img/bg/wizard_library.png) 0 0/100% 100% no-repeat;
+    // --background: url(../../../../../apps/word-wizard/src/assets/img/bg/wizard_library.png) center/cover no-repeat;
+    // overflow: hidden;
+    --background: transparent;
+}
+
+.page-container{
+    background: url("../../../../../apps/word-wizard/src/assets/img/bg/wizard_library.png") no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    width: 100%;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 ion-col {
@@ -14,10 +29,10 @@ ww-scroll-closed {
 }
 
 ion-segment-button {
-    --background-color:rgba(136, 136, 136, 0.60);
-    --indicator-color: rgba(217, 217, 217, 0.60);
+    --background-color:rgba(0, 255, 17, 1);
+    --indicator-color: rgba(99, 99, 99, 0.6);
 }
 
 ion-segment {
-    --background-color: rgba(136, 136, 136, 0.60);
+    --background-color: rgba(255, 0, 0, 1);
 }

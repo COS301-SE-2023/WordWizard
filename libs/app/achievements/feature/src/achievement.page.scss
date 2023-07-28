@@ -2,6 +2,18 @@
   width: 100%;
   height: 100%;
   overflow-y: scroll;
+
+  background: url("../../../../../apps/word-wizard/src/assets/img/bg/achievements-background.png") no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  width: 100%;
+  
+  // display: flex;
+  // flex-direction: column;
+  justify-content: center;
+
+  
 }
   
 .profile-picture-container {
@@ -61,9 +73,7 @@
 }
 
 .awards-section-container{
-  background-image: url('../../../../../apps/word-wizard/src/assets/img/bg/welcome_background.jpg');
-  background-repeat: repeat;
-  background-attachment: fixed;
+
 }
 
 button{

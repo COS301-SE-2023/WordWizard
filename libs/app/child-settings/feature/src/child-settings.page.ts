@@ -10,6 +10,7 @@ import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { AuthService } from '@auth0/auth0-angular';
 import { AddChildService } from '@word-wizard/app/add-child/data-access';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'word-wizard-child-settings',
@@ -26,7 +27,14 @@ export class ChildSettingsPage {
   pictures: string[] = [];
   @Select(ChildState.currentChild) currentChild$!: Observable<Child>;
 
-  constructor(private readonly fb: FormBuilder, private auth: AuthService, private addChildService: AddChildService,  private childSettingsService: ChildSettingsService, private store: Store) {
+  constructor(
+    private readonly fb: FormBuilder, 
+    private auth: AuthService, 
+    private addChildService: AddChildService,  
+    private childSettingsService: ChildSettingsService, 
+    private store: Store,
+    private alertController: AlertController
+  ) {
     this.currentChild$.subscribe((data) => {
       if(data.profile_photo == '') 
         this.selectedImage  = this.devImage;
@@ -35,7 +43,6 @@ export class ChildSettingsPage {
       this.form = this.fb.group({
         name: [data.username, Validators.required],
         age: [data.age, Validators.required],
-        stage: ['', Validators.required],
       });
     });
     this.addChildService.getImages().subscribe((res) => {
@@ -71,6 +78,30 @@ export class ChildSettingsPage {
 
   chooseImage(image: string) {
     this.selectedImage = image;
-    
+  }
+
+  async presentAlert() {
+    let name = '';
+    this.currentChild$.subscribe((data) => {
+      name = data.username;
+    });
+    const alert = await this.alertController.create({
+      header: 'Delete Profile',
+      message: `Are you sure you want to delete ${name}'s profile?`,
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary'
+        },
+        {
+          text: 'OK',
+          handler: () => {
+            this.deleteProfile();
+          }
+        }
+      ]
+    });
+    await alert.present();
   }
 }
