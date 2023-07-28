@@ -49,7 +49,7 @@ export class AchievementPage {
       if (child) {
         // this.loadAwards(child._id);
         // this.childProfilePictureSrc = child.profile_photo;
-        this.loadAwards('64aea0695102acb3adb889ad');
+        this.loadAwards(child._id);
       }
     });
 
