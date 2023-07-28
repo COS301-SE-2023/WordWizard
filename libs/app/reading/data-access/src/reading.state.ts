@@ -47,7 +47,7 @@ export interface ReadingStateModel {
         Content:{
           passage: [],
           focusWordsIndex: [],
-          done: false
+          done: true
         },
         Word: {
           current: 0,
@@ -65,19 +65,6 @@ export class ReadingState {
   @Select(ChildState.currentChild) currentChild$!: Observable<Child>;
 
   constructor(private readonly readingService: ReadingService, private readonly router: Router, private readonly store: Store ) {}
-
-  // @Action(Example)
-  // example(ctx: StateContext<ReadingStateModel>, action: Example) {
-  //   const request = {
-  //     word: this.word,
-  //     definition: 'A fruit that grows on trees'
-  //   } as ReadingRequest;
-
-  //   this.readingService.getVocab(request).subscribe((data) => {
-  //     console.log(data);
-  //   });
-  // }
-
 
   @Action(SetPassage)
   async setPassage(ctx: StateContext<ReadingStateModel>) {
@@ -145,7 +132,7 @@ export class ReadingState {
           }
 
           if(Word.current === focus.length){
-            Word.attemptsRemaining = 5;
+            Word.attemptsRemaining = 2;
             draft.Passage.model.Content.done = true;
           }
         }
@@ -158,41 +145,28 @@ export class ReadingState {
     // Store content and level
     ctx.setState(
       produce((draft: ReadingStateModel) => {
-        const content = draft.Passage.model.Content;
+        const content = draft.Passage.model.Content.passage;
         const level = draft.Passage.model.level;
-        let childId!:string;
+        const totalWords = content.length;
+        const correctWords = content.filter((word) => word.correct).length;
         this.currentChild$.subscribe((data) => {
-          childId = data._id;
-        });
-
-        // Calculate score from content
-        const totalWords = content.passage.length;
-        const correctWords = content.passage.filter((word) => word.correct).length;
-
-        const score = correctWords/totalWords;
-
-        // Create request
-        const rqst: UpdateProgressRequest = {
-          childId: childId,
-          progress:{
-            level: level,
-            content: content,
-            score: score,
-            incorrectWords: totalWords - correctWords,
-            date: new Date()
+          const rqst: UpdateProgressRequest = {
+            child_id: data._id,
+            progress:{
+              level: level,
+              content: content,
+              score: correctWords/totalWords,
+              date: `${new Date()}`,
+              incorrect_words: totalWords - correctWords,
+            }
           }
-        } as UpdateProgressRequest;
-
-        // Make request via service to update progress
-        // console.warn(childId);
-        // console.error("Call");
-        this.readingService.updateProgress(rqst).subscribe((data) => {
-          console.log(data);
+          this.readingService.updateProgress(rqst).subscribe((data) => {
+            //Do something else idk?
+            this.router.navigate(['/stage']);
+          });
         });
       })
     )
-
-    // Check if update successful??
   }
 
 
