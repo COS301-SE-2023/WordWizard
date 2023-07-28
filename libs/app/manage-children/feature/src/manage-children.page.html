@@ -12,21 +12,23 @@
             <div size="12" class="close">
                 <ion-icon src="assets/svg/close-outline.svg" class="close-icon" (click)="controlModal()"></ion-icon>
             </div>
-            <ion-nav-link routerLink="/achievements">
+            <ion-nav-link routerLink="/dashboard">
                 <ww-button class="continueChild"
                     text="Continue as {{selectedChild?.username}}" 
                     color="#861486" 
                     activate="#510E51"
                     border="#fff"
-                ></ww-button>
+                    (click)="setActive(false)"
+                />
             </ion-nav-link>
-            <ion-nav-link routerLink="/settings">
+            <ion-nav-link routerLink="/view-child">
                 <ww-button class="continueParent"
                     text="View Progress" 
                     color="#070527" 
                     activate="#000000"
                     border="#fff"
-                ></ww-button>
+                    (click)="setActive(true)"
+                />
             </ion-nav-link>
         </div>
     </div>
@@ -45,10 +47,8 @@
             </ion-col>
         </ion-row>
     </ion-grid>
-    <ion-nav-link routerLink="/welcome">
-        <ion-button class="sign-out">
-            Sign out
-        </ion-button>
-    </ion-nav-link>
+    <ion-button class="sign-out" (click)="logout()">
+        Sign out
+    </ion-button>
 </ion-content>
 

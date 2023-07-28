@@ -9,3 +9,11 @@ export interface Content {
   focusWordsIndex: number[];
   done: boolean;
 }
+
+export interface Progress {
+  level: number;
+  content: Content;
+  score: number;
+  incorrectWords: number;
+  date: Date;
+}

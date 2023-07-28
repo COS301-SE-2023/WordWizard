@@ -11,26 +11,25 @@ import { UpdateResponse } from './responses/library.responses';
 export class LibraryService {
 
   constructor(private http: HttpClient) {}
-  endpoint = "http://127.0.0.1:8000";
 
   getVocab(request: VocabRequest): Observable<WordList> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
-    return this.http.post<WordList>(`${this.endpoint}/library/vocab`, request, { headers });
+    return this.http.post<WordList>(`${process.env['WW_API_ENDPOINT']}/library/vocab`, request, { headers });
   }
 
   getPractice(request: PracticeRequest): Observable<WordList>{
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
-    return this.http.post<WordList>(`${this.endpoint}/library/practice`, request, { headers });
+    return this.http.post<WordList>(`${process.env['WW_API_ENDPOINT']}/library/practice`, request, { headers });
   }
 
   UpdatePractice(request: UpdateRequest): Observable<UpdateResponse>{
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
-    return this.http.post<UpdateResponse>(`${this.endpoint}/library/practice/remove`, request, { headers });
+    return this.http.post<UpdateResponse>(`${process.env['WW_API_ENDPOINT']}/library/practice/remove`, request, { headers });
   }
 }
