@@ -160,7 +160,7 @@ export class ReadingState {
       produce((draft: ReadingStateModel) => {
         const content = draft.Passage.model.Content;
         const level = draft.Passage.model.level;
-        let childId = "";
+        let childId!:string;
         this.currentChild$.subscribe((data) => {
           childId = data._id;
         });
@@ -184,7 +184,11 @@ export class ReadingState {
         } as UpdateProgressRequest;
 
         // Make request via service to update progress
-        this.readingService.updateProgress(rqst);
+        // console.warn(childId);
+        // console.error("Call");
+        this.readingService.updateProgress(rqst).subscribe((data) => {
+          console.log(data);
+        });
       })
     )
 

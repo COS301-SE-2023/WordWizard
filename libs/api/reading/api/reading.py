@@ -25,6 +25,7 @@ def create_reading(reading: PassageRqst):
 
 @router.post('/update-progress')
 def update_progress(updtProgress: UpdateProgressRqst):
+    print(f"{updtProgress=}")
     progress_collection = db['Progress']
     progress = progress_collection.find_one({'_id': updtProgress.childId})
 
