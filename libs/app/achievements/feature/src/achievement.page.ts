@@ -46,10 +46,15 @@ export class AchievementPage {
 
   constructor(private achievementService: AchievementService, private store: Store) {
     this.currentChild$.subscribe((child) => {
-      if (child) {
-        // this.loadAwards(child._id);
-        // this.childProfilePictureSrc = child.profile_photo;
+      if (child && child._id !== '') {
+        
         this.loadAwards(child._id);
+
+        if (child.profile_photo != ''){
+
+          this.childProfilePictureSrc = child.profile_photo;
+        }
+        // this.loadAwards('64aea0695102acb3adb889ad');
       }
     });
 

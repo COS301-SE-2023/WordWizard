@@ -1,8 +1,8 @@
 .vocab-list {
-    --background: url(../../../../../apps/word-wizard/src/assets/img/bg/library-background.jpg) 0 0/100% 100% no-repeat;
+    --background: url(../../../../../apps/word-wizard/src/assets/img/bg/wizard_library.png) 0 0/100% 100% no-repeat;
 }
 .practice-list {
-    --background: url(../../../../../apps/word-wizard/src/assets/img/bg/library-background.jpg) 0 0/100% 100% no-repeat;
+    --background: url(../../../../../apps/word-wizard/src/assets/img/bg/wizard_library.png) 0 0/100% 100% no-repeat;
 }
 
 ion-col {
@@ -11,4 +11,13 @@ ion-col {
 
 ww-scroll-closed {
     margin: 0px;
+}
+
+ion-segment-button {
+    --background-color:rgba(136, 136, 136, 0.60);
+    --indicator-color: rgba(217, 217, 217, 0.60);
+}
+
+ion-segment {
+    --background-color: rgba(136, 136, 136, 0.60);
 }
