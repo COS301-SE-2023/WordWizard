@@ -33,7 +33,7 @@ export class StageService {
     //   observer.complete();
     // });
 
-    return this.http.post<stage>(tempEndpoint, rqst, {headers});
+    return this.http.post<stage>(`${process.env['WW_API_ENDPOINT']}/stage/get-levels`, rqst, {headers});
 
   }
 
