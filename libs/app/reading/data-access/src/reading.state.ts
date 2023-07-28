@@ -122,10 +122,13 @@ export class ReadingState {
             if(foundIndex !== -1)
               passage[foundIndex].correct = true;
             Word.attemptsRemaining = Word.attemptsRemaining - 1;
+            if(passage.every((word) => word.correct !== null)) {
+              this.store.dispatch(new UpdateProgress());
+              console.log('done');
+            }
           } else {
-            this.currentChild$.subscribe((data) => {
-              this.store.dispatch(new UpdateProgress({content: draft.Passage.model.Content, childId: data._id}));
-            })
+            this.store.dispatch(new UpdateProgress());
+            console.log('done, out of attempts');
           }
         } else{
           if (currentWord.word.toLowerCase() === payload.newAttempt.toLowerCase()) {
@@ -142,7 +145,7 @@ export class ReadingState {
           }
 
           if(Word.current === focus.length){
-            Word.attemptsRemaining = 2*passage.length;
+            Word.attemptsRemaining = 5;
             draft.Passage.model.Content.done = true;
           }
         }
@@ -151,33 +154,39 @@ export class ReadingState {
   }
 
   @Action(UpdateProgress)
-  async updateProgress(ctx: StateContext<ReadingStateModel>, {payload}:UpdateProgress) {
+  async updateProgress(ctx: StateContext<ReadingStateModel>) {
     // Store content and level
-    const content = payload.content;
-    const level = ctx.getState().Passage.model.level;
-    const childId = payload.childId;
+    ctx.setState(
+      produce((draft: ReadingStateModel) => {
+        const content = draft.Passage.model.Content;
+        const level = draft.Passage.model.level;
+        let childId = "";
+        this.currentChild$.subscribe((data) => {
+          childId = data._id;
+        });
 
-    // Calculate score from content
-    const totalWords = content.passage.length;
-    const correctWords = content.passage.filter((word) => word.correct).length;
+        // Calculate score from content
+        const totalWords = content.passage.length;
+        const correctWords = content.passage.filter((word) => word.correct).length;
 
-    const score = correctWords/totalWords;
-    
+        const score = correctWords/totalWords;
 
-    // Create request
-    const rqst: UpdateProgressRequest = {
-      childId: childId,
-      progress:{
-        level: level,
-        content: content,
-        score: score,
-        incorrectWords: totalWords - correctWords,
-        date: new Date()
-      }
-    } as UpdateProgressRequest;
+        // Create request
+        const rqst: UpdateProgressRequest = {
+          childId: childId,
+          progress:{
+            level: level,
+            content: content,
+            score: score,
+            incorrectWords: totalWords - correctWords,
+            date: new Date()
+          }
+        } as UpdateProgressRequest;
 
-    // Make request via service to update progress
-    this.readingService.updateProgress(rqst);
+        // Make request via service to update progress
+        this.readingService.updateProgress(rqst);
+      })
+    )
 
     // Check if update successful??
   }

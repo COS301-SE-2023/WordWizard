@@ -25,7 +25,7 @@ def get_photos():
         "https://ww-img-bucket.s3.amazonaws.com/ww-ProfilePics/dragon_8.png",
         "https://ww-img-bucket.s3.amazonaws.com/ww-ProfilePics/dragon_7.png",
         "https://ww-img-bucket.s3.amazonaws.com/ww-ProfilePics/dragon_9.png",
-        ]}
+    ]}
 
 
 @router.post('/')
@@ -198,30 +198,30 @@ def create_progress(child_id):
             },
             "Vocabulary Builder": {
                 "Vocabulary Starter": {
-                    "goal": 5,
-                    "progress": 5,
-                    "description": "Build a vocabulary of 5 words",
-                    "completed": False,
-                    "img": ""
-                },
-                "Vocabulary Explorer": {
                     "goal": 10,
                     "progress": 5,
                     "description": "Build a vocabulary of 10 words",
                     "completed": False,
                     "img": ""
                 },
-                "Vocabulary Devotee": {
-                    "goal": 15,
+                "Vocabulary Explorer": {
+                    "goal": 20,
                     "progress": 5,
-                    "description": "Build a vocabulary of 15 words",
+                    "description": "Build a vocabulary of 20 words",
+                    "completed": False,
+                    "img": ""
+                },
+                "Vocabulary Devotee": {
+                    "goal": 50,
+                    "progress": 5,
+                    "description": "Build a vocabulary of 50 words",
                     "completed": False,
                     "img": ""
                 },
                 "Vocabulary Champion": {
-                    "goal": 20,
+                    "goal": 100,
                     "progress": 5,
-                    "description": "Build a vocabulary of 20 words",
+                    "description": "Build a vocabulary of 100 words",
                     "completed": False,
                     "img": ""
                 }

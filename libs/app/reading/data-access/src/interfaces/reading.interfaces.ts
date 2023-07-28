@@ -1,7 +1,7 @@
 export interface Word{
   word: string;
   imageURL: string;
-  correct: boolean;
+  correct: boolean | null;
 }
 
 export interface Content {
