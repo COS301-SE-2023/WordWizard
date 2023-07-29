@@ -16,15 +16,15 @@ db = client["WordWizardDB"]
 @router.get('/')
 def get_photos():
     return { 'images': [
-        "https://ww-img-bucket.s3.amazonaws.com/ww-ProfilePics/dragon_1.png",
-        "https://ww-img-bucket.s3.amazonaws.com/ww-ProfilePics/dragon_11.png",
-        "https://ww-img-bucket.s3.amazonaws.com/ww-ProfilePics/dragon_3.png",
-        "https://ww-img-bucket.s3.amazonaws.com/ww-ProfilePics/dragon_2.png",
-        "https://ww-img-bucket.s3.amazonaws.com/ww-ProfilePics/dragon_4.png",
-        "https://ww-img-bucket.s3.amazonaws.com/ww-ProfilePics/dragon_6.png",
-        "https://ww-img-bucket.s3.amazonaws.com/ww-ProfilePics/dragon_8.png",
-        "https://ww-img-bucket.s3.amazonaws.com/ww-ProfilePics/dragon_7.png",
-        "https://ww-img-bucket.s3.amazonaws.com/ww-ProfilePics/dragon_9.png",
+        "https://ww-img-bckt.s3.amazonaws.com/ww-ProfilePics/dragon_1.png",
+        "https://ww-img-bckt.s3.amazonaws.com/ww-ProfilePics/dragon_11.png",
+        "https://ww-img-bckt.s3.amazonaws.com/ww-ProfilePics/dragon_3.png",
+        "https://ww-img-bckt.s3.amazonaws.com/ww-ProfilePics/dragon_2.png",
+        "https://ww-img-bckt.s3.amazonaws.com/ww-ProfilePics/dragon_4.png",
+        "https://ww-img-bckt.s3.amazonaws.com/ww-ProfilePics/dragon_6.png",
+        "https://ww-img-bckt.s3.amazonaws.com/ww-ProfilePics/dragon_8.png",
+        "https://ww-img-bckt.s3.amazonaws.com/ww-ProfilePics/dragon_7.png",
+        "https://ww-img-bckt.s3.amazonaws.com/ww-ProfilePics/dragon_9.png",
     ]}
 
 
