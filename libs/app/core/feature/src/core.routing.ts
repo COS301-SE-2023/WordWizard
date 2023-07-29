@@ -61,6 +61,11 @@ const routes: Routes = [
       import('@word-wizard/app/child-settings/feature').then((m) => m.ChildSettingsModule),
   },
   {
+    path: 'splash',
+    loadChildren: () =>
+      import('@word-wizard/app/splash/feature').then((m) => m.SplashModule),
+  },
+  {
     path: 'child-statistics',
     loadChildren: () =>
       import('@word-wizard/app/child-statistics/feature').then((m) => m.ChildStatisticsModule),

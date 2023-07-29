@@ -73,6 +73,9 @@
         "libs/app/reading/shared-ui/src/index.ts"
       ],
       "@word-wizard/app/shared-ui": ["libs/app/shared-ui/src/index.ts"],
+      "@word-wizard/app/splash/feature": [
+        "libs/app/splash/feature/src/index.ts"
+      ],
       "@word-wizard/app/stage/data-access": [
         "libs/app/stage/data-access/src/index.ts"
       ],
