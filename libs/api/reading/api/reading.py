@@ -25,25 +25,44 @@ def create_reading(reading: PassageRqst):
 
 @router.post('/update-progress')
 def update_progress(updtProgress: UpdateProgressRqst):
+    # Get the current progress from DB
     progress_collection = db['Progress']
     progress = progress_collection.find_one({'_id': ObjectId(updtProgress.child_id)})
+
+    print("Level ", updtProgress.progress.level)
+    print("Score: ", updtProgress.progress.score)
+
+    # UPDATE THE VALUES 
     if progress:
+        # Level score
         if "level_scores" in progress:
             progress["level_scores"][str(updtProgress.progress.level)] = updtProgress.progress.score
         else:
             progress["level_scores"] = {str(updtProgress.progress.level): updtProgress.progress.score}
+
+        # Total words
         if "total_words" in progress:
             progress["total_words"] += len(updtProgress.progress.content) - updtProgress.progress.incorrect_words
         else:
             progress["total_words"] = len(updtProgress.progress.content) - updtProgress.progress.incorrect_words
+
+        # Incorrect words
         if "incorrect_words_by_level" in progress:
             progress["incorrect_words_by_level"][str(updtProgress.progress.level)] = updtProgress.progress.incorrect_words
         # else:
         #     progress["incorrect_words_by_level"] = {str(updtProgress.progress.level): updtProgress.progress.incorrect_words}
-        for score in progress["level_scores"]:
-            progress["average_score"] += int(score)
-        if updtProgress.progress.score > progress["highest_score"]:
+
+        # AVG score
+        for lvl in progress["level_scores"]:
+            # print(progress["level_scores"][lvl]) 
+            progress["average_score"] += int(progress["level_scores"][lvl])
+        progress["average_score"] = progress["average_score"]/len(progress["level_scores"])
+
+        # Highest score
+        if progress["highest_score"] == 0 or updtProgress.progress.score > progress["highest_score"]:
             progress["highest_score"] = updtProgress.progress.score
+
+        # Progress history
         newScore = {
             "level": updtProgress.progress.level,
             "score": updtProgress.progress.score,
@@ -51,6 +70,8 @@ def update_progress(updtProgress: UpdateProgressRqst):
             "date" : updtProgress.progress.date
         }
         progress["progress_history"].append(newScore)
+
+        # Awards
         awards = progress["awards"]
         lvlMaster = awards.get("Level Master")
         if lvlMaster  and isinstance(lvlMaster , dict):

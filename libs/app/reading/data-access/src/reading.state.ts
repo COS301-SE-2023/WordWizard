@@ -47,7 +47,7 @@ export interface ReadingStateModel {
         Content:{
           passage: [],
           focusWordsIndex: [],
-          done: true
+          done: false
         },
         Word: {
           current: 0,
@@ -136,7 +136,7 @@ export class ReadingState {
           }
 
           if(Word.current === focus.length){
-            Word.attemptsRemaining = 2;
+            Word.attemptsRemaining = 2*passage.length;
             draft.Passage.model.Content.done = true;
           }
         }
@@ -153,13 +153,16 @@ export class ReadingState {
         const level = draft.Passage.model.level;
         const totalWords = content.length;
         const correctWords = content.filter((word) => word.correct).length;
+        // console.log("Correct words: ", correctWords);
+        // console.log("Total words: ", totalWords);
+        // console.log("Score: ", (correctWords/totalWords)*100); // Think it needs to be multiplied by 100?
         this.currentChild$.subscribe((data) => {
           const rqst: UpdateProgressRequest = {
             child_id: data._id,
             progress:{
               level: level,
               content: content,
-              score: correctWords/totalWords,
+              score: (correctWords/totalWords)*100,
               date: `${new Date()}`,
               incorrect_words: totalWords - correctWords,
             }
