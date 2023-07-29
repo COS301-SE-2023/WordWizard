@@ -1,5 +1,5 @@
 import { Component, Input, AfterViewInit, OnInit, ElementRef, Output, EventEmitter} from '@angular/core';
-import { Router } from '@angular/router';
+
 import { Coin } from '@word-wizard/app/stage/data-access';
 
 
@@ -25,21 +25,19 @@ export class LessonCoinComponent implements AfterViewInit, OnInit{
   @Input() coins: Array<Coin> = [];
   lines: Array<Line> = [];
 
-  constructor( private router: Router, private elementRef: ElementRef) { }
+  constructor(private elementRef: ElementRef) { }
 
   ngOnInit() {
 
     const windowWidth = (window.innerWidth > 600) ? 600 : window.innerWidth; ;
     const verticalOffset = window.innerHeight/7; //space between coins, since 5 coins on a page
 
-    console.log(verticalOffset)
 
     this.coins.forEach((coin, index) => {
       coin.leftPosition = windowWidth - ((windowWidth/3)* (Math.floor(Math.random() * 3) + 1));
       coin.topPosition = verticalOffset * (index);
     });
 
-    console.table(this.coins)
 
   }
 
@@ -53,7 +51,6 @@ export class LessonCoinComponent implements AfterViewInit, OnInit{
 
      widthOffset = widthOffset/2;
 
-    console.log(heightOffset);
 
     this.coins.forEach((coin, index) => {
       if(index < this.coins.length - 1){
@@ -75,7 +72,6 @@ export class LessonCoinComponent implements AfterViewInit, OnInit{
       }
     });
 
-    console.table(this.lines)
 
     this.startAnimation();
   }, 1000);
@@ -95,10 +91,8 @@ export class LessonCoinComponent implements AfterViewInit, OnInit{
 
   goToReading(level : string){
 
-
     this.coinClicked.emit(level);
 
-    this.router.navigate(['/reading']);
   }
 
 
