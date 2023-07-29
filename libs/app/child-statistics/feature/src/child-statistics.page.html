@@ -1,0 +1,30 @@
+<ion-content [scrollY]="false">
+    <ww-header title="Statistics" [settingsActive]="false" backRoute="../view-child"/>
+    <ion-grid>
+        <ion-row class="chart-container">
+            <ion-col class="chart">
+                <canvas #chartCanvas></canvas>
+            </ion-col>
+        </ion-row>
+        <ion-row class="text-stat-container">
+            <ion-col class="stat-element" size="5">
+                <p class="stat">{{lessonCount}}</p>
+                <p class="stat-text">Lessons</p>
+            </ion-col>
+            <ion-col class="stat-element" size="5">
+                <p class="stat">{{averageScore}}%</p>
+                <p class="stat-text">Average</p>
+            </ion-col>
+        </ion-row>
+        <ion-row class="text-stat-container">
+            <ion-col class="stat-element" size="5">
+                <p class="stat">{{highestScore}}%</p>
+                <p class="stat-text">Highest Score</p>
+            </ion-col>
+            <ion-col class="stat-element" size="5">
+                <p class="stat">{{wordsLearned}}</p>
+                <p class="stat-text">Words learned</p>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

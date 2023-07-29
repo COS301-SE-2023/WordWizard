@@ -1,8 +1,14 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from '@auth0/auth0-angular';
+import { AuthGuard, AuthService } from '@auth0/auth0-angular';
+import { Router } from '@angular/router';
 
 const routes: Routes = [
+  {
+    path: 'dashboard',
+    loadChildren: () =>
+      import('@word-wizard/app/dashboard/feature').then((m) => m.DashboardModule),
+  },
   {
     path:'',
     redirectTo: 'welcome',
@@ -12,7 +18,7 @@ const routes: Routes = [
     path: 'reading',
     loadChildren: () =>
       import('@word-wizard/app/reading/feature').then((m) => m.ReadingModule),
-    canActivate: [AuthGuard],
+   // canActivate: [AuthGuard],
   },
   {
     path: 'library',
@@ -36,11 +42,18 @@ const routes: Routes = [
     path: 'manage-children',
     loadChildren: () =>
       import('@word-wizard/app/manage-children/feature').then((m) => m.ManageChildrenModule),
+    canActivate: [AuthGuard],
   },
   {
     path: 'welcome',
     loadChildren: () =>
       import('@word-wizard/app/welcome/feature').then((m) => m.WelcomeModule),
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'achievements',
+    loadChildren: () =>
+      import('@word-wizard/app/achievements/feature').then((m) => m.AchievementModule),
   },
   {
     path: 'settings',
@@ -52,6 +65,18 @@ const routes: Routes = [
     loadChildren: () =>
       import('@word-wizard/app/splash/feature').then((m) => m.SplashModule),
   },
+  {
+    path: 'child-statistics',
+    loadChildren: () =>
+      import('@word-wizard/app/child-statistics/feature').then((m) => m.ChildStatisticsModule),
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'view-child',
+    loadChildren: () =>
+      import('@word-wizard/app/view-child/feature').then((m) => m.ViewChildModule),
+  }
+  
 ];
 
 @NgModule({
@@ -60,4 +85,12 @@ const routes: Routes = [
   ],
   exports: [RouterModule],
 })
-export class CoreRouting {}
+export class CoreRouting {
+  constructor(private auth: AuthService, private router: Router) {
+    // Uncomment once routing has been merged
+    this.auth.isAuthenticated$.subscribe((isAuthenticated) => {
+      if (isAuthenticated) this.router.navigate(['/manage-children']);
+      else this.router.navigate(['/welcome']);
+    });
+  }
+}
