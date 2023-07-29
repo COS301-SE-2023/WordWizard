@@ -1,4 +1,4 @@
-import { Component, AfterViewInit} from '@angular/core';
+import { Component, AfterViewInit, ElementRef, ViewChild} from '@angular/core';
 import { Chart, registerables } from 'chart.js';
 import { ChildStatisticsService } from '@word-wizard/app/child-statistics/data-access';
 import { Statistics, levelStats } from '@word-wizard/app/child-statistics/data-access';
@@ -19,10 +19,10 @@ Chart.register(...registerables);
 export class ChildStatisticsPage implements AfterViewInit{
 
   @Select(ChildState.currentChild) currentChild$!: Observable<Child>; 
+  @ViewChild('chartCanvas', {static:false}) chartCanvas!: ElementRef;
+  chart!: Chart;
 
-  constructor(private readonly childStatisticsService: ChildStatisticsService, private store: Store) {
-    
-  }
+  constructor(private readonly childStatisticsService: ChildStatisticsService, private store: Store) {}
 
   childStats!: Statistics;
   averageScore!: number;
@@ -38,35 +38,51 @@ export class ChildStatisticsPage implements AfterViewInit{
   ngAfterViewInit(): void {
     
     this.currentChild$.subscribe((data) => {
-      this.childStatisticsService.getStats("64aea0695102acb3adb889ad").subscribe((res) => {
-        this.childStats = res;
-        this.averageScore = res.average_score;
-        this.incorrectCount = res.incorrect_words_by_level;
-        this.lessonCount = res.progress_history.length;
-        this.wordsLearned = res.total_words;
-        this.chartData = res.progress_history;
-        this.highestScore = res.highest_score;
-        console.table(this.chartData);
+      this.childStatisticsService.getStats(data._id).subscribe((res) => {
+        if (res.progress_history.length !== 0) {
+          this.childStats = res;
+          this.averageScore = res.average_score;
+          this.incorrectCount = res.incorrect_words_by_level;
+          this.lessonCount = res.progress_history.length;
+          this.wordsLearned = res.total_words;
+          this.chartData = res.progress_history;
+          this.highestScore = res.highest_score;
+        }
+        else {
+          this.childStats = res;
+          this.averageScore = 0;
+          this.incorrectCount = 0;
+          this.lessonCount = res.progress_history.length;
+          this.wordsLearned = 0;
+          this.chartData = res.progress_history;
+          this.highestScore = 0;
+        }
         this.renderChart();
       });
     });
 
   }
   renderChart() {
+    const ctx: CanvasRenderingContext2D = this.chartCanvas.nativeElement.getContext('2d');
+    // const canvas: HTMLCanvasElement = document.getElementById('bar-chart') as HTMLCanvasElement;
+    const existingChart = Chart.getChart(ctx);
+    if (existingChart) {
+      existingChart.destroy();
+    }
     const labels: string[] = [];
     const dataset: number[] = [];
 
-    console.log(this.chartData);
+    // // console.log(this.chartData);
     for (let i = 0; i < this.chartData.length; i++) {
       labels.push("");
       dataset.push(this.chartData[i].score);
 
     }
 
-    labels[0] = this.chartData[0].date;
-    labels[this.chartData.length-1] = this.chartData[this.chartData.length-1].date;
-
-
+    if (this.chartData.length > 0) {
+      labels[0] = this.chartData[0].date;
+      labels[this.chartData.length-1] = this.chartData[this.chartData.length-1].date;
+    }
 
     const data = {
       labels: labels,
@@ -77,11 +93,13 @@ export class ChildStatisticsPage implements AfterViewInit{
         borderWidth: 3
       }]
     };
-    const ctx = document.getElementById('bar-chart') as HTMLCanvasElement;
     new Chart(ctx, {
       type: 'line',
       data: data,
       options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        // height: 50,
         scales: {
           y: {
             type: 'linear',
@@ -89,33 +107,6 @@ export class ChildStatisticsPage implements AfterViewInit{
           }
         }
       },
-    });
-  }
-
-  rednerPieChart() {
-    const data = {
-      labels: [
-        'Red',
-        'Blue',
-        'Yellow'
-      ],
-      datasets: [{
-        label: 'My First Dataset',
-        data: [300, 50, 100],
-        fill: false,
-        borderColor: 'rgba(75, 192, 192, 0)',
-        backgroundColor: [
-          'rgb(255, 99, 132)',
-          'rgb(54, 162, 235)',
-          'rgb(255, 205, 86)'
-        ],
-        hoverOffset: 4
-      }]
-    };
-    const ctx = document.getElementById('pie-chart') as HTMLCanvasElement;
-    new Chart(ctx, {
-      type: 'pie',
-      data: data,
     });
   }
 }

@@ -11,9 +11,11 @@
                     </div>
                 </ion-col>
                 <ion-col size="1">
-                    <div class="cancel">
-                       <ion-icon name="close-sharp"></ion-icon> 
-                    </div>
+                    <ion-nav-link routerLink="/view-child">
+                        <div class="cancel">
+                            <ion-icon name="close-sharp"></ion-icon> 
+                        </div>
+                    </ion-nav-link>
                 </ion-col>
             </ion-row>
         </ion-grid>
@@ -49,8 +51,7 @@
                         <ion-item style="--border-width:0" (click)="chooseImage(i)" class="img-item">
                             <label htmlFor="img">                            
                                 <ion-avatar slot="start" class="check-img">
-                                <ion-img 
-                                src="{{i}}" />        
+                                    <ion-img src="{{i}}" />        
                                 </ion-avatar>
                             </label>
                             <ion-radio slot="end" id="img" class="hidden-radio"></ion-radio>
@@ -69,18 +70,20 @@
             <label htmlFor="age" class="input-lbl">Age:</label><br>
             <input type="text" id="age" formControlName="age" class="test"/>
         </div> 
-        <div>
+        <!-- <div>
             <label htmlFor="stage" class="input-lbl">Stage:</label><br>
             <input type="text" id="stage" formControlName="stage" class="test"/>
-        </div> 
-        <ww-button 
-            text="Save Changes" 
-            color="#861486" 
-            [submit]="true" 
-            activate="#6b106b"
-            border="#111"
-            [disabled]="!form.valid || !selectedImage"
-        ></ww-button>
+        </div>  -->
+        <ion-nav-link routerLink="/view-child" class="smbt-btn">
+            <ww-button 
+                text="Save Changes" 
+                color="#861486" 
+                [submit]="true" 
+                activate="#6b106b"
+                border="#111111"
+                [disabled]="!form.valid || !selectedImage"
+            />
+        </ion-nav-link>
     </form>
     <div class="delete-container">
         <ww-button 
@@ -88,7 +91,7 @@
             color="#070527" 
             activate="#05041b"
             border="#111"
-            (event)="deleteProfile()"
-        ></ww-button>
+            (event)="presentAlert()"
+        />
     </div>
 </ion-content>

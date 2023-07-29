@@ -1,40 +1,14 @@
 from fastapi import APIRouter
 from ..util.library_models import PracticeRqst, VocabRqst, Word, WordList, UpdateRqst
-import os
-from dotenv import load_dotenv
-from pymongo import MongoClient
-from dataclasses import dataclass
-import mongomock
-load_dotenv()
+from ...deps import Database
 
-
+db = Database.getInstance().db
 router = APIRouter()
-connection_string = os.getenv("MONGODB_CONNECTION_STRING")
-client = MongoClient(connection_string)
-db = client["WordWizardDB"]
-
-# client = mongomock.MongoClient()
-# db = client['WordWizardDB']
-# users_collection = db['users']
-
-def assign__mock_client():
-    global client
-    client = mongomock.MongoClient()
-    global db
-    db = client["WordWizardDB"]
-
-def assign_actual_client():
-    global client
-    connection_string = os.getenv("MONGODB_CONNECTION_STRING")
-    client = MongoClient(connection_string)
-    global db
-    db = client["WordWizardDB"]
-
 
 @router.post('/practice')
 def create_reading(rqst: PracticeRqst):
     practice_collection = db["Practice"]
-    result = practice_collection.find_one({"child_id": rqst.userID})
+    result = practice_collection.find_one({"_id": rqst.userID})
     if result is None:
         return None
     word_list = WordList()
@@ -46,7 +20,7 @@ def create_reading(rqst: PracticeRqst):
 @router.post('/vocab')
 def get_vocab(rqst: VocabRqst):
     vocab_collection = db["Vocabulary"]
-    result = vocab_collection.find_one({"child_id": rqst.userID})
+    result = vocab_collection.find_one({"_id": rqst.userID})
     if result is None:
         return None
     word_list = WordList()
@@ -57,17 +31,17 @@ def get_vocab(rqst: VocabRqst):
 @router.post('/practice/remove')
 def remove_practice(rqst: UpdateRqst):
     practice_collection = db["Practice"]
-    document = practice_collection.find_one({"child_id": rqst.userID, "words": rqst.word})
+    document = practice_collection.find_one({"_id": rqst.userID, "words": rqst.word})
     if document:
         practice_collection.update_one(
-            {"child_id": rqst.userID},
+            {"_id": rqst.userID},
             {"$pull": {"words": rqst.word}}
         )
         return {"status":"success"}
     return {"status":"failed"}   
 
 def check_duplicate_words(collection, user_id, word):
-    document = collection.find_one({"child_id": user_id, "words": word})
+    document = collection.find_one({"_id": user_id, "words": word})
     return document is not None
 
 @router.post('/practice/add') 
@@ -76,7 +50,7 @@ def add_practice(rqst: UpdateRqst):
     if check_duplicate_words(practice_collection, rqst.userID, rqst.word):
         return {"status": "failed", "message": "Word already exists in the practice collection."}
     practice_collection.update_one(
-        {"child_id": rqst.userID},
+        {"_id": rqst.userID},
         {"$addToSet": {"words": rqst.word}},
         upsert=True
     )
@@ -89,7 +63,7 @@ def add_vocab(rqst: UpdateRqst):
     if check_duplicate_words(vocab_collection, rqst.userID, rqst.word):
         return {"status": "failed", "message": "Word already exists in the vocabulary collection."}
     vocab_collection.update_one(
-        {"child_id": rqst.userID},
+        {"_id": rqst.userID},
         {"$addToSet": {"words": rqst.word}},
         upsert=True
     )

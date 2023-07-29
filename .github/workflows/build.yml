@@ -17,6 +17,9 @@ jobs:
       - name: Create .env file
         run: |
           echo "MONGODB_CONNECTION_STRING=${{ secrets.MONGODB_CONNECTION_STRING }}" >> .env
+          echo "WW_API_ENDPOINT=${{ secrets.WW_API_ENDPOINT }}" >> .env
+          echo "WW_AUTH0_DOMAIN=${{ secrets.WW_AUTH0_DOMAIN }}" >> .env
+          echo "WW_AUTH0_CLIENT_ID=${{ secrets.WW_AUTH0_CLIENT_ID }}" >> .env
 
       - name: Set up Python
         uses: actions/setup-python@v2
@@ -40,12 +43,13 @@ jobs:
 
       - name: Test
         working-directory: ./
-        run: |
-          npx nx run-many --target=test --all --skip-nx-cache --parallel --coverage
-          npx nx run-many --target=test --all --skip-nx-cache --parallel
+        run: npx nx run-many --target=test --all --skip-nx-cache --parallel=5 --coverage
 
-      - name: Build app
+      - name: Build app dev
         run: npm run build:app:dev
+
+      - name: Build app prod
+        run: npm run build:app:prod
       
       - name: Upload codecov report
         uses: codecov/codecov-action@v3

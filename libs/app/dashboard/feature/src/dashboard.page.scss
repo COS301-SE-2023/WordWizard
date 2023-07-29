@@ -1,5 +1,5 @@
 .dashboard {
-    background: url(../../../../../apps/word-wizard/src/assets/img/wizardhousebg.png) 0 0/100% 100% no-repeat;
+    background: url(../../../../../apps/word-wizard/src/assets/img/bg/forest-backgound.png) 0 0/100% 100% no-repeat;
     height: 100%;
 
     display: flex;
@@ -184,12 +184,16 @@ ion-avatar img {
     margin-top: 5%;
 }
 
-ion-col {
+// ion-col {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+// }
+.centre {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
 
 // ---------------- CHILD SETTINGS STYLING ---------------------
 ion-content {

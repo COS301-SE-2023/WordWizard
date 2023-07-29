@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { 
+import {
   SetVocab,
   SetPractice,
   UpdatePractice,
   LibraryState,
   WordList,
 } from '@word-wizard/app/library/data-access';
+import { ChildState } from '@word-wizard/app/child/data-access';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 @Component({
@@ -20,8 +21,12 @@ export class LibraryPage {
   practice!:WordList;
   vocab!:WordList;
 
+  parentActive!: boolean;
+
   @Select(LibraryState.practice) practice$!: Observable<WordList>;
   @Select(LibraryState.vocab) vocab$!: Observable<WordList>;
+
+  @Select(ChildState.parentActive) parentActive$!: Observable<boolean>;
 
   constructor(private store: Store){
     this.store.dispatch(new SetPractice());
@@ -38,7 +43,12 @@ export class LibraryPage {
         this.vocab = data;
       }
     });
-  }
+
+    this.parentActive$.subscribe((data) => {
+      if(data === true) this.parentActive = true;
+      else this.parentActive = data;
+    });
+  } 
 
   handleTextChange(text: string) {
     this.store.dispatch(new UpdatePractice({userID:"64784f19bdfa8f92954b9d78", word: text}));

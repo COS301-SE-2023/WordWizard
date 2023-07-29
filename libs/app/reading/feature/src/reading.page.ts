@@ -23,7 +23,8 @@ export class ReadingPage {
 
   backgroundImage = 'assets/img/CastleBackground.png';
   backButton = 'assets/img/item/backbutton.png';
-
+  fontSize = '1em';
+  value = 1;
   visible = false;
 
   star1 = 'assets/img/item/greystar.png';
@@ -32,19 +33,13 @@ export class ReadingPage {
   wizardImg = 'assets/img/item/wizzy.png';
   congratularyMessage = 'Well Tried!';
 
-  readingPageData = {
-    word : '',
-    imageSrc : '',
-    level : 'Journeyman',
-  }
-
   progressPercentage = '0%';
-  progress = 0;
   increment!: number;
   textFromMicrophone: string[] = [];
   practice!: Content;
   currentWord = 0;
   sentence = "";
+  font = false;
 
   constructor(private store: Store) {
     this.setStars();
@@ -55,7 +50,7 @@ export class ReadingPage {
     this.readingState$.subscribe((data) => {
       this.practice = data;
       if(data.passage.filter(word => word.correct === null).length !== 0){
-        this.progressPercentage = `${(data.passage.filter(word => word.correct !== null).length/(data.passage.length)) * 100}%`;
+        this.progressPercentage = `${((data.passage.filter(word => word.correct !== null).length/(data.passage.length)) * 100).toFixed(0)}%`;
       }
       if(data.done)
         this.sentence = data.passage.map((word) => word.word).join(" ");
@@ -74,18 +69,18 @@ export class ReadingPage {
 
   handleTextChange(text: string) {
     const words = text.split(" ");
-    console.table(words);
     if(!this.practice.done) {
       if(words.includes(this.practice.passage[this.practice.focusWordsIndex[this.currentWord]].word.toLowerCase())){
         this.triggerConfetti();
-        setTimeout(() => this.store.dispatch(new MakeAttempt({newAttempt: this.practice.passage[this.practice.focusWordsIndex[this.currentWord]].word.toLowerCase()})), 1000);
+        setTimeout(() => this.store.dispatch(new MakeAttempt({newAttempt: this.practice.passage[this.practice.focusWordsIndex[this.currentWord]].word.toLowerCase()})), 500);
         // const count = this.practice.passage.filter((word) => word.correct !== null).length;
         // this.progress += (count+1)* this.increment;
         // this.progressPercentage = `${this.progress}%`;
         // this.increment = 100/this.practice.passage.length;
+      } else {
+        this.store.dispatch(new MakeAttempt({newAttempt: ""}));
       }
-    }
-    else{
+    } else {
       this.practice.passage.every((word) => {
         if(words.includes(word.word.toLowerCase())){
           this.triggerConfetti();
@@ -156,8 +151,16 @@ export class ReadingPage {
     }
   }
 
-  back(){
+  back() {
     console.log("back");
-    //return back to levels page
+  }
+  // eslint-disable-next-line
+  updateFont(event:any) {
+    this.value = event.target.value;
+    this.fontSize = `${event.target.value}em`;
+  }
+
+  show() {
+    this.font = !this.font;
   }
 }
