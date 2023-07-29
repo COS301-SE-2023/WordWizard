@@ -10,6 +10,9 @@
       "executor": "@nrwl/angular:webpack-browser",
       "outputs": ["{options.outputPath}"],
       "options": {
+        "ssl" : true,
+        "sslKey": "server.key",
+        "sslCert": "server.crt",
         "outputPath": "dist/apps/word-wizard",
         "index": "apps/word-wizard/src/index.html",
         "main": "apps/word-wizard/src/main.ts",
