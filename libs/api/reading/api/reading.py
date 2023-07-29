@@ -53,6 +53,7 @@ def update_progress(updtProgress: UpdateProgressRqst):
         #     progress["incorrect_words_by_level"] = {str(updtProgress.progress.level): updtProgress.progress.incorrect_words}
 
         # AVG score
+        progress["average_score"] = 0
         for lvl in progress["level_scores"]:
             # print(progress["level_scores"][lvl]) 
             progress["average_score"] += int(progress["level_scores"][lvl])
