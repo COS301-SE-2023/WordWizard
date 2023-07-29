@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,11 +7,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./splash.page.scss'],
 })
 export class SplashPage {
+  @Input() nextPage = 'welcome';
   constructor(private route: Router) {}
 
   ngAfterViewInit() {
     setTimeout(() => {
-      this.route.navigate(['/welcome'])
+      this.route.navigate(['/'+ this.nextPage])
     }, 2000);
   }
 }
