@@ -103,11 +103,14 @@ export class ReadingState {
       
         const currentWord = passage[focus[current]];
         attemptsRemaining--;
+        // console.log("Passage[1]: ", passage[1].word, passage[1].correct)
+        // console.log("...Content: ",draft.Passage.model.Content);
         if(draft.Passage.model.Content.done){
           if(attemptsRemaining > 0) {
             const foundIndex = passage.findIndex((word) => word.word.toLowerCase() === payload.newAttempt.toLowerCase());
             if(foundIndex !== -1)
               passage[foundIndex].correct = true;
+              // console.log("Word correct: ",passage[foundIndex], passage[foundIndex].correct )
             Word.attemptsRemaining = Word.attemptsRemaining - 1;
             if(passage.every((word) => word.correct !== null)) {
               this.store.dispatch(new UpdateProgress());
@@ -118,6 +121,7 @@ export class ReadingState {
             console.log('done, out of attempts');
           }
         } else{
+            console.log(currentWord);
           if (currentWord.word.toLowerCase() === payload.newAttempt.toLowerCase()) {
             currentWord.correct = true;
             Word.current++;

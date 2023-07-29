@@ -27,28 +27,23 @@ def create_reading(reading: PassageRqst):
 def update_progress(updtProgress: UpdateProgressRqst):
     progress_collection = db['Progress']
     progress = progress_collection.find_one({'_id': ObjectId(updtProgress.child_id)})
-
     if progress:
         if "level_scores" in progress:
             progress["level_scores"][str(updtProgress.progress.level)] = updtProgress.progress.score
         else:
             progress["level_scores"] = {str(updtProgress.progress.level): updtProgress.progress.score}
-        
         if "total_words" in progress:
             progress["total_words"] += len(updtProgress.progress.content) - updtProgress.progress.incorrect_words
         else:
             progress["total_words"] = len(updtProgress.progress.content) - updtProgress.progress.incorrect_words
-        
         if "incorrect_words_by_level" in progress:
             progress["incorrect_words_by_level"][str(updtProgress.progress.level)] = updtProgress.progress.incorrect_words
-        else:
-            progress["incorrect_words_by_level"] = {str(updtProgress.progress.level): updtProgress.progress.incorrect_words}
+        # else:
+        #     progress["incorrect_words_by_level"] = {str(updtProgress.progress.level): updtProgress.progress.incorrect_words}
         for score in progress["level_scores"]:
             progress["average_score"] += int(score)
-
         if updtProgress.progress.score > progress["highest_score"]:
             progress["highest_score"] = updtProgress.progress.score
-
         newScore = {
             "level": updtProgress.progress.level,
             "score": updtProgress.progress.score,
@@ -56,66 +51,64 @@ def update_progress(updtProgress: UpdateProgressRqst):
             "date" : updtProgress.progress.date
         }
         progress["progress_history"].append(newScore)
-    
         awards = progress["awards"]
         lvlMaster = awards.get("Level Master")
-        # level_master_awards
         if lvlMaster  and isinstance(lvlMaster , dict):
             for award_name, award_details in lvlMaster .items():
                 if award_details["goal"] <= len(progress["level_scores"]):
                     award_details['completed'] = True
-
-        #Word learner
         wordLearner = awards.get("Word Learner")
         if wordLearner and isinstance(wordLearner, dict):
             for award_name, award_details in wordLearner.items():
                 if award_details["goal"] <= progress["total_words"]:
                     award_details["completed"] = True
-        #Practcice enthusiast
         practiceEnth = awards.get("Practice Enthusiast")
         if practiceEnth and isinstance(practiceEnth, dict):
             for award_name, award_details in practiceEnth.items():
                 award_details['completed'] = True
-        #vocab builder
         vocabBuilder = awards.get("Vocabulary Builder")
         if vocabBuilder and isinstance(vocabBuilder, dict):
             for award_name, award_details in vocabBuilder.items():
                 if award_details["goal"] <= progress["total_words"]:
                     award_details["completed"] = True
-        
         awards["Level Master"] = lvlMaster
         awards["Word Learner"] = wordLearner
         awards["Practice Enthusiast"] = practiceEnth
         awards["Vocabulary Builder"] = vocabBuilder
-
         progress["awards"] = awards
-
+        for word in updtProgress.progress.content:
+            if word.correct:
+                # print(word.correct)
+                add_vocab(updtProgress.child_id, word.word)
+            if not word.correct or word.correct == None:
+                # print(word.correct)
+                add_practice(updtProgress.child_id, word.word)
         progress_collection.update_one({'_id': ObjectId(updtProgress.child_id)}, {"$set": progress})
-    return {"status": "success"}
+        return {"status": "success"}
+    return {"status": "failed"}
     
     
 def add_practice(userID, word):
-    practice_collection = db["Practice"]
-    if check_duplicate_words(practice_collection, userID, word):
+    if check_duplicate_words(db["Practice"], userID, word):
         return False
-    practice_collection.update_one(
-        {"_id": userID},
+    print
+    db["Practice"].update_one(
+        {"_id": ObjectId(userID)},
         {"$addToSet": {"words": word}},
         upsert=True
     )
     return True
 
 def add_vocab(userID, word):
-    vocab_collection = db["Vocabulary"]
-    if check_duplicate_words(vocab_collection, userID, word):
+    if check_duplicate_words(db["Vocabulary"], userID, word):
         return False
-    vocab_collection.update_one(
-        {"_id": userID},
+    db["Vocabulary"].update_one(
+        {"_id": ObjectId(userID)},
         {"$addToSet": {"words": word}},
         upsert=True
     )
     return True
 
 def check_duplicate_words(collection, user_id, word):
-    document = collection.find_one({"_id": user_id, "words": word})
+    document = collection.find_one({"_id": ObjectId(user_id), "words": word})
     return document is not None
