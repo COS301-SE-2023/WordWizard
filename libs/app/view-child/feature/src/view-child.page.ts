@@ -6,6 +6,7 @@ import {
 } from '@word-wizard/app/child/data-access';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
+import { StageService, getLevelsResponse, levelsRequest } from '@word-wizard/app/stage/data-access';
 
 @Component({
   selector: 'word-wizard-view-child',
@@ -15,30 +16,39 @@ import { Observable } from 'rxjs';
 export class ViewChildPage {
   @Select(ChildState.currentChild) currentChild$!: Observable<Child>;
 
-  child: any = {
+  child: Child = {
+    _id: '0',
     username: 'Martie',
-    pfp : 'assets/img/item/cauldron-cropped.png',
-    stage: 0,
-    title: 'Journeyman'
+    age: 0,
+    parent: '',
+    vocab_list: '',
+    practice_list: '',
+    progress: '',
+    profile_photo : 'assets/img/item/cauldron-cropped.png',
   };
-  
-  constructor(private store: Store) {
+
+  stage = 0;
+
+  constructor(private store: Store, private stageService: StageService) {
     this.currentChild$.subscribe((data) => {
-      if (data.profile_photo != '')
-      {
-        this.child.pfp = data.profile_photo;
-      }
 
-      if (data.username != '')
-      {
-        this.child.username = data.username;
-      }
+      if (data !==  undefined && data._id !== '') {
+        // console.log('Data exists:', data)
+        this.child = data;
 
-      // Get the stage from the db
-      // Set the child object's stage
+
+        // Create request
+        const rqst: levelsRequest = {
+          progress_id: data._id
+        }
+
+        // Get the stage from the db
+        this.stageService.getStage(rqst).subscribe((data : getLevelsResponse) => {
+          this.stage = data.levels.findIndex((num) => num === 0) + 1;
+        })
+
+      }
     })
   }
-  stage=  1;
-  pfp = 'assets/img/item/cauldron-cropped.png';
-  name = "Martie";
+
 }

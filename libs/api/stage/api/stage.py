@@ -23,14 +23,13 @@ def create_reading(rqst: LevelRequest):
 
     try:
         # Convert the provided string progress_id to ObjectId
-        progress_id = ObjectId(rqst.progress_id)
-        result = progress_collection.find_one({"_id": progress_id})
+        result = progress_collection.find_one({"_id": ObjectId(rqst.progress_id)})
 
         if result:
             score_values : List[int] = []
 
-            for item in result.get("progress_history"):
-                score_value = get_score_range(item["score"])
+            for level in result.get("level_scores"):
+                score_value = get_score_range(result['level_scores'][str(level)])
                 score_values.append(score_value)
 
             while len(score_values) < 20:

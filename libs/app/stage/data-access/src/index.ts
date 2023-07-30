@@ -4,3 +4,5 @@ export * from './stage.actions';
 export * from './stage.service';
 export * from './stage.state';
 export * from './interfaces/stage.interface';
+export * from './requests/stage.requests';
+export * from './responses/stage.responses';

@@ -6,7 +6,7 @@ import { StageService } from './stage.service';
 import { stage } from './interfaces/stage.interface';
 import { levelsRequest } from './requests/stage.requests';
 import { getLevelsResponse } from './responses/stage.responses';
-import { 
+import {
   ChildState,
   Child
 } from '@word-wizard/app/child/data-access';
@@ -56,6 +56,11 @@ export class StageState {
   @Selector()
   static getStage(state: StageStateModel) {
     return state.Stage.model;
+  }
+
+  @Selector()
+  static getLevelsArray(state: StageStateModel) {
+    return state.Stage.model.levels;
   }
 
   @Action(SetStage)
