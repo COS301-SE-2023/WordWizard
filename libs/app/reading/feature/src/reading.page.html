@@ -23,8 +23,10 @@
       </ion-grid>
     </div>
     <div class="image-container">
-      <img [src]="backButton" alt="Image 1" (click)="back()"  class="back-button">
-      <img [src]="wizardImg" alt="Image 2" class="wizard-image">
+      <ion-nav-link routerDirection="back" routerLink="/stage" (click)="controlModal()">
+        <img [src]="backButton" alt="Image 1" class="back-button">
+        <img [src]="wizardImg" alt="Image 2" class="wizard-image">
+      </ion-nav-link>
     </div>
   </div>
   <div class="slider-container" *ngIf="font">

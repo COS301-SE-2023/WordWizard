@@ -5,10 +5,12 @@ import {
   SetPassage,
   MakeAttempt,
   Content,
-  Word
+  Word,
+  SetStatus
 } from '@word-wizard/app/reading/data-access';
 import { ReadingState } from '@word-wizard/app/reading/data-access';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router'
 import * as confetti from 'canvas-confetti';
 
 @Component({
@@ -20,6 +22,7 @@ export class ReadingPage {
 
   @Select(ReadingState.getReadingState) readingState$!: Observable<Content>;
   @Select(ReadingState.getCurrent) getCurrent$!: Observable<number>;
+  @Select(ReadingState.getStatus) getStatus$!: Observable<boolean>;
 
   backgroundImage = 'assets/img/CastleBackground.png';
   backButton = 'assets/img/item/backbutton.png';
@@ -41,9 +44,12 @@ export class ReadingPage {
   sentence = "";
   font = false;
 
-  constructor(private store: Store) {
+  constructor(private store: Store, private router: Router) {
     this.setStars();
     this.store.dispatch(new SetPassage());
+    this.getStatus$.subscribe((data) => {
+      this.visible = data;
+    });
     this.getCurrent$.subscribe((data) => {;
       this.currentWord = data;
     });
@@ -84,7 +90,11 @@ export class ReadingPage {
       this.practice.passage.every((word) => {
         if(words.includes(word.word.toLowerCase())){
           this.triggerConfetti();
-          setTimeout(() => this.store.dispatch(new MakeAttempt({newAttempt: word.word.toLowerCase()})), 250);
+          setTimeout(() => {
+            this.store.dispatch(new MakeAttempt({newAttempt: word.word.toLowerCase()}));
+            this.setStars();
+          }, 250);
+          
         }
         return true;
       });
@@ -133,26 +143,26 @@ export class ReadingPage {
   }
 
   controlModal() {
-    this.visible = !this.visible;
+    this.store.dispatch(new SetStatus({status: false}));
   }
 
   setStars(){  
-    if (this.progressPercentage > '50%'){
+    if (this.progressPercentage >= '50%'){
       this.star1 = 'assets/img/item/goldstar.png';
       this.congratularyMessage = 'Well Done!';
     }
-    if (this.progressPercentage > '75%'){
+    if (this.progressPercentage >= '75%'){
       this.star2 = 'assets/img/item/goldstar.png';
       this.congratularyMessage = 'Great Job!';
     }
-    if (this.progressPercentage > '90%'){
+    if (this.progressPercentage >= '90%'){
       this.star3 = 'assets/img/item/goldstar.png';
       this.congratularyMessage = 'Amazing!';
     }
   }
 
   back() {
-    console.log("back");
+    this.router.navigate(['/stage']);
   }
   // eslint-disable-next-line
   updateFont(event:any) {
