@@ -32,28 +32,20 @@ export class DashboardPage {
 
   constructor(private store: Store, private readonly addChildService: AddChildService, private readonly childService: ChildSettingsService) {
     this.currentChild$.subscribe((data) => {
-      // if (data.profile_photo != '')
-      // {
-      //   this.child.profile_photo = data.profile_photo;
-      // }
-
-      // if (data.username != '')
-      // {
-      //   this.child.username = data.username;
-      // }
 
       this.addChildService.getImages().subscribe((res) => {
         this.pictures = res.images;
       });
 
-      if (data) {
-
+      if (data !==  undefined && data._id !== '') {
+        console.log('Data exists:', data)
         this.child = data;
       }
       // Get the stage from the db
       // Set the child object's stage
     })
   }
+  
   // pfp  = 'assets/img/item/cauldron-cropped.png';
   title = 'Journeyman';
   stage = 0;
