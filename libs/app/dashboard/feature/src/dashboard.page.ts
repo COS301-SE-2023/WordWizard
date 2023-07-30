@@ -54,8 +54,8 @@ export class DashboardPage {
         console.log('Data exists:', data)
         this.child = data;
 
-        // Get the progress id
 
+        // Create request
         const rqst: levelsRequest = {
           progress_id: data._id
         }
@@ -69,11 +69,6 @@ export class DashboardPage {
     })
 
   }
-
-  // pfp  = 'assets/img/item/cauldron-cropped.png';
-  title = 'Journeyman';
-
-
 
   // CHILD SETTINGS CODE
   modal(){
