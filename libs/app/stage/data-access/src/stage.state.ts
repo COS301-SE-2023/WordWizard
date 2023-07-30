@@ -1,11 +1,16 @@
 import { Injectable } from '@angular/core';
-import { Action, Selector, State, StateContext } from '@ngxs/store';
+import { Action, Selector, State, StateContext, Select } from '@ngxs/store';
 import { SetStage, SetSelectedStage } from './stage.actions';
 import {produce} from 'immer';
 import { StageService } from './stage.service';
 import { stage } from './interfaces/stage.interface';
 import { levelsRequest } from './requests/stage.requests';
 import { getLevelsResponse } from './responses/stage.responses';
+import { 
+  ChildState,
+  Child
+} from '@word-wizard/app/child/data-access';
+import { Observable } from 'rxjs';
 
 export interface StageStateModel {
   Stage:{
@@ -30,6 +35,8 @@ export interface StageStateModel {
 
 @Injectable()
 export class StageState {
+
+  @Select(ChildState.currentChild) currentChild$!: Observable<Child>;
 
   constructor(private readonly stageService: StageService) {}
 
@@ -73,9 +80,13 @@ export class StageState {
 
   @Action(SetStage)
   async setStage(ctx: StateContext<StageStateModel>) {
+    let childId = '';
+    this.currentChild$.subscribe((data) => {
+      childId = data._id;
+    });
 
     const rqst: levelsRequest = {
-      progress_id: '64aea0695102acb3adb889ad'
+      progress_id: childId
     }
 
     const defaultVal: getLevelsResponse = {

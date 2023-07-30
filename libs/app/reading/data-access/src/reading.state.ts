@@ -66,19 +66,6 @@ export class ReadingState {
 
   constructor(private readonly readingService: ReadingService, private readonly router: Router, private readonly store: Store ) {}
 
-  // @Action(Example)
-  // example(ctx: StateContext<ReadingStateModel>, action: Example) {
-  //   const request = {
-  //     word: this.word,
-  //     definition: 'A fruit that grows on trees'
-  //   } as ReadingRequest;
-
-  //   this.readingService.getVocab(request).subscribe((data) => {
-  //     console.log(data);
-  //   });
-  // }
-
-
   @Action(SetPassage)
   async setPassage(ctx: StateContext<ReadingStateModel>) {
     const rqst: PassageRequest = {
@@ -116,18 +103,25 @@ export class ReadingState {
       
         const currentWord = passage[focus[current]];
         attemptsRemaining--;
+        // console.log("Passage[1]: ", passage[1].word, passage[1].correct)
+        // console.log("...Content: ",draft.Passage.model.Content);
         if(draft.Passage.model.Content.done){
           if(attemptsRemaining > 0) {
             const foundIndex = passage.findIndex((word) => word.word.toLowerCase() === payload.newAttempt.toLowerCase());
             if(foundIndex !== -1)
               passage[foundIndex].correct = true;
+              // console.log("Word correct: ",passage[foundIndex], passage[foundIndex].correct )
             Word.attemptsRemaining = Word.attemptsRemaining - 1;
+            if(passage.every((word) => word.correct !== null)) {
+              this.store.dispatch(new UpdateProgress());
+              console.log('done');
+            }
           } else {
-            this.currentChild$.subscribe((data) => {
-              this.store.dispatch(new UpdateProgress({content: draft.Passage.model.Content, childId: data._id}));
-            })
+            this.store.dispatch(new UpdateProgress());
+            console.log('done, out of attempts');
           }
         } else{
+            console.log(currentWord);
           if (currentWord.word.toLowerCase() === payload.newAttempt.toLowerCase()) {
             currentWord.correct = true;
             Word.current++;
@@ -151,35 +145,35 @@ export class ReadingState {
   }
 
   @Action(UpdateProgress)
-  async updateProgress(ctx: StateContext<ReadingStateModel>, {payload}:UpdateProgress) {
+  async updateProgress(ctx: StateContext<ReadingStateModel>) {
     // Store content and level
-    const content = payload.content;
-    const level = ctx.getState().Passage.model.level;
-    const childId = payload.childId;
-
-    // Calculate score from content
-    const totalWords = content.passage.length;
-    const correctWords = content.passage.filter((word) => word.correct).length;
-
-    const score = correctWords/totalWords;
-    
-
-    // Create request
-    const rqst: UpdateProgressRequest = {
-      childId: childId,
-      progress:{
-        level: level,
-        content: content,
-        score: score,
-        incorrectWords: totalWords - correctWords,
-        date: new Date()
-      }
-    } as UpdateProgressRequest;
-
-    // Make request via service to update progress
-    this.readingService.updateProgress(rqst);
-
-    // Check if update successful??
+    ctx.setState(
+      produce((draft: ReadingStateModel) => {
+        const content = draft.Passage.model.Content.passage;
+        const level = draft.Passage.model.level;
+        const totalWords = content.length;
+        const correctWords = content.filter((word) => word.correct).length;
+        // console.log("Correct words: ", correctWords);
+        // console.log("Total words: ", totalWords);
+        // console.log("Score: ", (correctWords/totalWords)*100); // Think it needs to be multiplied by 100?
+        this.currentChild$.subscribe((data) => {
+          const rqst: UpdateProgressRequest = {
+            child_id: data._id,
+            progress:{
+              level: level,
+              content: content,
+              score: (correctWords/totalWords)*100,
+              date: `${new Date()}`,
+              incorrect_words: totalWords - correctWords,
+            }
+          }
+          this.readingService.updateProgress(rqst).subscribe((data) => {
+            //Do something else idk?
+            this.router.navigate(['/stage']);
+          });
+        });
+      })
+    )
   }
 
 

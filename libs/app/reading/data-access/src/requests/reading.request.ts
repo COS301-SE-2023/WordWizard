@@ -5,6 +5,6 @@ export interface PassageRequest {
 }
 
 export interface UpdateProgressRequest {
-    childId: string;
+    child_id: string;
     progress: Progress;
 }
