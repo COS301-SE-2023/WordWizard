@@ -41,21 +41,6 @@ export class StageState {
   constructor(private readonly stageService: StageService) {}
 
   @Selector()
-  static nextLevel(state: StageStateModel) {
-
-    const tempLevels = state.Stage.model.levels;
-    let nextLevel = 0;
-
-    tempLevels.forEach((level, index) => {
-      if(level >= 1){
-        nextLevel = index + 1;
-      }
-    });
-
-    return nextLevel;
-  }
-
-  @Selector()
   static getSelectedStage(state: StageStateModel) {
     return state.Stage.model.selectedLevel;
   }

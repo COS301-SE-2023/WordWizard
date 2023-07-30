@@ -20,7 +20,7 @@ import {
   Content
 } from './interfaces/reading.interfaces';
 import { ReadingService } from './reading.service';
-
+import { StageState } from '@word-wizard/app/stage/data-access';
 
 export interface ReadingStateModel {
   Passage: {
@@ -64,13 +64,19 @@ export interface ReadingStateModel {
 export class ReadingState {
 
   @Select(ChildState.currentChild) currentChild$!: Observable<Child>;
+  @Select(StageState.getSelectedStage) getSelectedStage$!: Observable<number>;
 
   constructor(private readonly readingService: ReadingService, private readonly router: Router, private readonly store: Store ) {}
 
   @Action(SetPassage)
   async setPassage(ctx: StateContext<ReadingStateModel>) {
+    let lvl!: number;
+    this.getSelectedStage$.subscribe((data) => {
+      lvl = data;
+    }).unsubscribe();
+
     const rqst: PassageRequest = {
-      level: ctx.getState().Passage.model.level
+      level: lvl
     } as PassageRequest;
 
     const defaultVal: Content = {
@@ -170,9 +176,9 @@ export class ReadingState {
           }
           this.readingService.updateProgress(rqst).subscribe((data) => {
             //Do something else idk?
-            this.router.navigate(['/stage']);
+            // this.router.navigate(['/stage']);
           });
-        });
+        }).unsubscribe();
       })
     )
   }
