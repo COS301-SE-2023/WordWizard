@@ -8,6 +8,9 @@ import {
   Word,
   SetStatus
 } from '@word-wizard/app/reading/data-access';
+import {
+  UpdateStage
+} from '@word-wizard/app/stage/data-access';
 import { ReadingState } from '@word-wizard/app/reading/data-access';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router'
@@ -94,7 +97,7 @@ export class ReadingPage {
             this.store.dispatch(new MakeAttempt({newAttempt: word.word.toLowerCase()}));
             this.setStars();
           }, 250);
-          
+
         }
         return true;
       });
@@ -102,15 +105,15 @@ export class ReadingPage {
   }
 
   triggerConfetti() {
-    setTimeout(() => 
+    setTimeout(() =>
       this.shoot()
       ,0
     );
-    setTimeout(() => 
+    setTimeout(() =>
       this.shoot()
       ,50
     );
-    setTimeout(() => 
+    setTimeout(() =>
       this.shoot()
       ,100
     );
@@ -126,14 +129,14 @@ export class ReadingPage {
       shapes: ['star'],
       colors: ['FFE400', 'FFBD00', 'E89400', 'FFCA6C', 'FDFFB8']
     };
-  
+
     confetti.default({
       ...config,
       particleCount: 40,
       scalar: 1.2,
       shapes: ['star']
     });
-  
+
     confetti.default({
       ...config,
       particleCount: 10,
@@ -144,9 +147,21 @@ export class ReadingPage {
 
   controlModal() {
     this.store.dispatch(new SetStatus({status: false}));
+    let strs = 0;
+    if (this.progressPercentage >= '50%'){
+      strs = 1;
+    }
+    if (this.progressPercentage >= '75%'){
+      strs = 2;
+    }
+    if (this.progressPercentage >= '90%'){
+      strs = 3;
+    }
+    this.store.dispatch(new UpdateStage({stars: strs}));
+    this.router.navigate(['/stage']);
   }
 
-  setStars(){  
+  setStars(){
     if (this.progressPercentage >= '50%'){
       this.star1 = 'assets/img/item/goldstar.png';
       this.congratularyMessage = 'Well Done!';

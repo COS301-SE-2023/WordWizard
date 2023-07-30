@@ -1,6 +1,6 @@
 <ion-content class="page-container" [scrollY]="false">
   <ww-header [title]="'Reading Page'" [settingsActive]="false" [font]="true" (settingsClick)="show()" [backRoute]="'../stage'"/>
-  <div class="overlay-container" [class.hidden-overlay]="!visible"> 
+  <div class="overlay-container" [class.hidden-overlay]="!visible">
     <div class="overlay">
       <ion-grid>
         <ion-row class="top-modal">
@@ -23,7 +23,7 @@
       </ion-grid>
     </div>
     <div class="image-container">
-      <ion-nav-link routerDirection="back" routerLink="/stage" (click)="controlModal()">
+      <ion-nav-link (click)="controlModal()">
         <img [src]="backButton" alt="Image 1" class="back-button">
         <img [src]="wizardImg" alt="Image 2" class="wizard-image">
       </ion-nav-link>

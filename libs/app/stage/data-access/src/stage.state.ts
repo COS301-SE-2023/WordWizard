@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext, Select } from '@ngxs/store';
-import { SetStage, SetSelectedStage } from './stage.actions';
+import { SetStage, SetSelectedStage, UpdateStage} from './stage.actions';
 import {produce} from 'immer';
 import { StageService } from './stage.service';
 import { stage } from './interfaces/stage.interface';
@@ -61,6 +61,21 @@ export class StageState {
   @Selector()
   static getLevelsArray(state: StageStateModel) {
     return state.Stage.model.levels;
+  }
+
+  @Action(UpdateStage)
+  async updateStage(ctx: StateContext<StageStateModel>, {payload}: UpdateStage){
+
+    try{
+      ctx.setState(
+        produce((draft: StageStateModel) => {
+          draft.Stage.model.levels[draft.Stage.model.selectedLevel -1] = payload.stars;
+        }
+      ))
+    }catch(error){
+      console.log(error);
+    }
+
   }
 
   @Action(SetStage)

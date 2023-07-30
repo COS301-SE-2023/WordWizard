@@ -21,7 +21,7 @@ export interface ChildStateModel {
           practice_list: string;
           progress: string;
         }
-        parentActive: boolean;  
+        parentActive: boolean;
     };
   }
 }
@@ -42,7 +42,7 @@ export interface ChildStateModel {
           practice_list: '',
           progress: '',
         },
-        parentActive: true  
+        parentActive: true
       }
     }
   }
@@ -59,9 +59,9 @@ export class ChildState {
 
   @Action(GetChildren)
   async GetChildren(ctx: StateContext<ChildStateModel>, {payload}:GetChildren) {
-    
+
     this.childService.getChildren(payload.parent_email, payload.parent_name)
-    .pipe(take(1)) // Potential issue later, omly seems to take first 5 results?
+    .pipe(take(1))
     .subscribe(
       (rsps: Child[]) => {
         ctx.setState(

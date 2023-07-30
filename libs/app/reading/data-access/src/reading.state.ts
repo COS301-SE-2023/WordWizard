@@ -158,13 +158,18 @@ export class ReadingState {
         const level = draft.Passage.model.level;
         const totalWords = content.length;
         const correctWords = content.filter((word) => word.correct).length;
+
+
+        const score = (correctWords/totalWords)*100;
+        console.log("Score: ", score);
+
         this.currentChild$.subscribe((data) => {
           const rqst: UpdateProgressRequest = {
             child_id: data._id,
             progress:{
               level: level,
               content: content,
-              score: (correctWords/totalWords)*100,
+              score: score,
               date: `${formattedDate}`,
               incorrect_words: totalWords - correctWords,
             }

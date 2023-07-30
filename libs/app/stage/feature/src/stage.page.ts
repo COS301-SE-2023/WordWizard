@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { SetStage, StageState, SetSelectedStage } from '@word-wizard/app/stage/data-access';
 import { Observable } from 'rxjs';
@@ -38,6 +38,23 @@ export class StagePage implements OnInit{
     });
 
   }
+
+  // ngAfterViewInit() {
+  //   this.store.dispatch(new SetStage());
+
+  //   console.log('triggered');
+
+  //   this.stage$.subscribe((data) => {
+  //     this.coins.forEach((coin:Coin, index:number) => {
+  //       coin.filledStars = data.levels[index];
+  //       coin.name = 'level' + (index+1);
+  //     });
+  //   });
+
+  //   this.selectedStage$.subscribe((data) => {
+  //     console.log(data);
+  //   });
+  // }
 
   levelSet($event: string){
 
