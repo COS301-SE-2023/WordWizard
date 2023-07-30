@@ -8,5 +8,5 @@ export class SetVocab{
 
 export class UpdatePractice{
   static readonly type = '[Library] Update Practice';
-  constructor(public payload: { userID: string, word: string }){}
+  constructor(public payload: { word: string }){}
 }
