@@ -1,4 +1,4 @@
-<ion-content>
+<ion-content [scrollY]="false">
   <ww-header title="Stages" backRoute="../dashboard"></ww-header>
     <div class="stage-container">
         <ww-lesson-coin [coins]="coins" (coinClicked)="levelSet($event)"></ww-lesson-coin>

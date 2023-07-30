@@ -6,7 +6,7 @@ import { StageService } from './stage.service';
 import { stage } from './interfaces/stage.interface';
 import { levelsRequest } from './requests/stage.requests';
 import { getLevelsResponse } from './responses/stage.responses';
-import { 
+import {
   ChildState,
   Child
 } from '@word-wizard/app/child/data-access';
@@ -47,7 +47,7 @@ export class StageState {
     let nextLevel = 0;
 
     tempLevels.forEach((level, index) => {
-      if(level >= 50){
+      if(level >= 1){
         nextLevel = index + 1;
       }
     });

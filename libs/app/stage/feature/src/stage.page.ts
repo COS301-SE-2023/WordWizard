@@ -56,7 +56,9 @@ export class StagePage implements OnInit{
 
       levelsSub.unsubscribe();
 
-      if(levelsArr[level - 1] < 50){
+      console.log(levelsArr[level - 2]);
+
+      if(levelsArr[level - 2] < 1){
         levelAccess = false;
       }
     }

@@ -6,7 +6,7 @@ import {
   MakeAttempt,
   UpdateProgress
 } from './reading.actions';
-import { 
+import {
   ChildState,
   Child
 } from '@word-wizard/app/child/data-access';
@@ -20,6 +20,7 @@ import {
   Content
 } from './interfaces/reading.interfaces';
 import { ReadingService } from './reading.service';
+
 
 export interface ReadingStateModel {
   Passage: {
@@ -100,7 +101,7 @@ export class ReadingState {
         const Word = draft.Passage.model.Word;
         const current = Word.current;
         let attemptsRemaining = Word.attemptsRemaining;
-      
+
         const currentWord = passage[focus[current]];
         attemptsRemaining--;
         // console.log("Passage[1]: ", passage[1].word, passage[1].correct)
@@ -136,7 +137,7 @@ export class ReadingState {
           }
 
           if(Word.current === focus.length){
-            Word.attemptsRemaining = 2*passage.length;
+            Word.attemptsRemaining = 5;
             draft.Passage.model.Content.done = true;
           }
         }
