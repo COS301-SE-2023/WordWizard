@@ -15,7 +15,7 @@
                 </ion-segment-button>
         </ion-segment>
 
-        <ion-content *ngIf="toolbarSegment.value === 'vocab'" ngClass="vocab-list" class="ion-padding"> 
+        <ion-content *ngIf="toolbarSegment.value === 'vocab'" ngClass="vocab-list" >
             <ion-text *ngIf="!hasVocab">
                 <h3>No spells yet :O</h3>
                 <p>Complete some lessons to learn new spells</p>
@@ -28,7 +28,7 @@
                 </ion-row>
             </ion-grid>
         </ion-content>
-        <ion-content *ngIf="toolbarSegment.value === 'practice'" ngClass="practice-list" class="ion-padding"> 
+        <ion-content *ngIf="toolbarSegment.value === 'practice'" ngClass="practice-list">
             <ion-grid *ngIf="hasPractice">
                 <ion-row>
                 <ion-col *ngFor="let j of practice.words; let i = index" size="6">
@@ -37,5 +37,5 @@
                 </ion-row>
             </ion-grid>
         </ion-content>
-    </div> 
+    </div>
 </ion-content>
