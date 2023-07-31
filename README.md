@@ -20,15 +20,17 @@ The system is designed to adapt to each user's level of proficiency and learning
 [![Google Docs](https://img.shields.io/badge/Google%20Docs-View%20Document-blue)](https://docs.google.com/document/d/1ciOoZX2MzLFtCf3m2Z29c-V7krlfxKHC/edit?usp=sharing&ouid=116132882510647438116&rtpof=true&sd=true)
 
 ## Technical installation
-- [Installation guide.pdf](https://github.com/COS301-SE-2023/WordWizard/files/12218662/Installation.guide.pdf)
+- [Installation guide](https://github.com/COS301-SE-2023/WordWizard/files/12218662/Installation.guide.pdf)
 
 ## User Manual
-- [![Google Docs](https://example.com/google_docs_badge.png)](https://docs.google.com/document/d/1b9OXTcJPg7bPJNMx4yW_o2M38_6_3Z9R/edit)
+- [User Manual](https://github.com/COS301-SE-2023/WordWizard/files/12219801/Word.Wizard.App.User.Manual.docx.pdf)
 
 
 ## Coding Standards
-- [![Google Docs](https://img.shields.io/badge/Google%20Docs-Open%20Document-blue?logo=google-docs)](https://docs.google.com/document/d/1b9OXTcJPg7bPJNMx4yW_o2M38_6_3Z9R/edit)
+- [Standards Documentation](https://github.com/COS301-SE-2023/WordWizard/files/12219651/Standards.Documentation.pdf)
 
+
+# Demos:
 [![YouTube Channel](https://img.shields.io/badge/YouTube-Subscribe-red?style=flat&logo=youtube&logoColor=white)](https://drive.google.com/file/d/1dLAj847xovyk9ngFzh90m89FL6f_DWRU/view?usp=drive_link)
 
 # Team profile description 
