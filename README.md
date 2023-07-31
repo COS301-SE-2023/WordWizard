@@ -32,6 +32,9 @@ The system is designed to adapt to each user's level of proficiency and learning
 ## Architecture Doc.
 [DEMO ~ 3 Architecture.pdf](https://github.com/COS301-SE-2023/WordWizard/files/12221598/DEMO.3.Architecture.pdf)
 
+## Usability Questionnaire (Tentative)
+[COS 301 Usability Questionnaire_ WordWizard.pdf](https://github.com/COS301-SE-2023/WordWizard/files/12221610/COS.301.Usability.Questionnaire_.WordWizard.pdf)
+
 
 # Demos:
 [![YouTube Channel](https://img.shields.io/badge/YouTube-Subscribe-red?style=flat&logo=youtube&logoColor=white)](https://drive.google.com/file/d/1dLAj847xovyk9ngFzh90m89FL6f_DWRU/view?usp=drive_link)
