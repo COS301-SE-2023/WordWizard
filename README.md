@@ -27,7 +27,7 @@ The system is designed to adapt to each user's level of proficiency and learning
 
 
 ## Coding Standards
-- [Standards Documentation](https://github.com/COS301-SE-2023/WordWizard/files/12219651/Standards.Documentation.pdf)
+[Standards Documentation.pdf](https://github.com/COS301-SE-2023/WordWizard/files/12221562/Standards.Documentation.pdf)
 
 
 # Demos:
