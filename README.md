@@ -70,8 +70,11 @@ You are nearly there. The app should be working fine however you will need a .en
 ![carbon11](https://github.com/COS301-SE-2023/WordWizard/assets/80365036/a4b65ef4-7640-4203-b55c-1fbececac006)
 
 ## User Manual
+[![Google Docs](https://example.com/google_docs_badge.png)](https://docs.google.com/document/d/1b9OXTcJPg7bPJNMx4yW_o2M38_6_3Z9R/edit)
+
 
 ## Coding Standards
+[![Google Docs](https://img.shields.io/badge/Google%20Docs-Open%20Document-blue?logo=google-docs)](https://docs.google.com/document/d/1b9OXTcJPg7bPJNMx4yW_o2M38_6_3Z9R/edit)
 
 # Video Demos:
 ## Video demo 2
