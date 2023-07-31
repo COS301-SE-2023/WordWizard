@@ -23,7 +23,7 @@ export class AchievementPage {
 
   open = false;
 
-  childProfilePictureSrc = 'https://ww-img-bucket.s3.amazonaws.com/Dragon4-testProfile.png';
+  childProfilePictureSrc = 'https://ww-img-bckt.s3.amazonaws.com/Dragon4-testProfile.png';
   
   awards: AwardSection[] = [];
   parentActive!: boolean;
@@ -35,7 +35,7 @@ export class AchievementPage {
 
     this.selectedAward = award;
     if (this.selectedAward.completed == false) {
-      this.selectedAward.img = 'https://ww-img-bucket.s3.amazonaws.com/ww-awards/Blankbadge.png';  
+      this.selectedAward.img = 'https://ww-img-bckt.s3.amazonaws.com/ww-awards/Blankbadge.png';  
       this.selectedAward.name = "Locked";
     } else {
       this.selectedAward.name = "You completed a " + category + " award!";
