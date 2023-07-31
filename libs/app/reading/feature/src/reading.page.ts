@@ -148,7 +148,6 @@ export class ReadingPage {
 
   controlModal() {
     this.store.dispatch(new SetStatus({status: false}));
-    console.log("Progress percentage: ", this.progressPercentage);
     let strs = 0;
     if (this.progressPercentage >= '50%'){
       strs = 1;

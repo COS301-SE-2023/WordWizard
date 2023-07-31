@@ -57,7 +57,7 @@ export class ChildSettingsPage {
 
     this.currentChild$.subscribe((data) => {
       this.childSettingsService.editChild(data._id, this.form.value.name, this.form.value.age, this.selectedImage).subscribe((res) => {
-        console.log(res);
+        // console.log(res);
       });
       this.store.dispatch(new SetChild({childId:data._id}));
     });
@@ -67,7 +67,6 @@ export class ChildSettingsPage {
 
     this.currentChild$.subscribe((data) => {
       this.childSettingsService.deleteChild(data._id).subscribe((res) => {
-        console.log(res);
         this.store.dispatch(new DeleteChild({childId:data._id}));
         this.router.navigate(['/manage-children']);
       });

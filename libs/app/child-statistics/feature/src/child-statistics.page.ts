@@ -71,8 +71,6 @@ export class ChildStatisticsPage implements AfterViewInit{
     }
     const labels: string[] = [];
     const dataset: number[] = [];
-
-    // // console.log(this.chartData);
     for (let i = 0; i < this.chartData.length; i++) {
       labels.push("");
       dataset.push(this.chartData[i].score);

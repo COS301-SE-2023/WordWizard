@@ -31,15 +31,13 @@ export class LibraryPage {
   constructor(private store: Store){
     this.store.dispatch(new SetPractice());
     this.store.dispatch(new SetVocab());
-    this.practice$.subscribe((data) => {;
-      console.log("Practice data: ", data)
+    this.practice$.subscribe((data) => {
       if(data.words.length > 0){
         this.hasPractice = true;
         this.practice = data;
       }
     });
     this.vocab$.subscribe((data) => {
-      console.log("Vocab data: ", data)
       if(data.words.length > 0){
         this.hasVocab = true;
         this.vocab = data;

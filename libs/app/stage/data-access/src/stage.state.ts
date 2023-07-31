@@ -65,8 +65,6 @@ export class StageState {
 
   @Action(UpdateStage)
   async updateStage(ctx: StateContext<StageStateModel>, {payload}: UpdateStage){
-
-    console.log("Payload for stars: ", payload.stars);
     try{
       ctx.setState(
         produce((draft: StageStateModel) => {
