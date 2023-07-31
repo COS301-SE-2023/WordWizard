@@ -34,32 +34,30 @@ The system is designed to adapt to each user's level of proficiency and learning
 Navigate into the directory containing the repository and do the following:
 ### For the front end:
 once here run "npm install" <br/>
-![carbon1](https://github.com/COS301-SE-2023/WordWizard/assets/80365036/6bcba849-3be5-45af-a49b-f6d4fd911c5c)
-
+![carbon1](https://github.com/COS301-SE-2023/WordWizard/assets/80365036/7424615f-2df5-416c-bc15-c4782782752e)
 
 to start the app run "npm run start:app:dev" <br/>
-![carbon2](https://github.com/COS301-SE-2023/WordWizard/assets/80365036/369d023f-b7a6-4be0-adb4-5aa9c8f6cc57)
-
+![carbon2](https://github.com/COS301-SE-2023/WordWizard/assets/80365036/5c53f47f-21ea-4869-b9cd-2751e12d5a45)
 
 [Note] Keep in mind the app will not fully work without the backend
 
 ### For the back end:
 cd into the 'api' directory <br/>
-![carbon3](https://github.com/COS301-SE-2023/WordWizard/assets/80365036/9cbab98d-0f6e-4a3c-aefe-8ae7e4dcce8e)
-
+![carbon3](https://github.com/COS301-SE-2023/WordWizard/assets/80365036/c475cee0-07a3-4563-88aa-0ba5a7a06a91)
 
 The venv (virtual environment) is not required however, it is recommended to ensure that 
  there aren't any conflicts with existing pip (python) packages on your machine. First run 'python3 -m venv venv'. <br/>
-![carbon4](https://github.com/COS301-SE-2023/WordWizard/assets/80365036/f340b5c7-3966-469b-94b7-abb5cb3b63df)
+![carbon4](https://github.com/COS301-SE-2023/WordWizard/assets/80365036/a68ba801-17c0-4b56-b838-78c376f68d9f)
+
 
 Next, run this command on Windows: <br/>
-![carbon5](https://github.com/COS301-SE-2023/WordWizard/assets/80365036/2566b98a-dbcc-403a-8210-569bfa505faf)
-
+![carbon5](https://github.com/COS301-SE-2023/WordWizard/assets/80365036/2621f422-8b6e-4541-809a-fef83c110c7c)
 
 or
 
 This command on Linux: <br/>
-![carbon6](https://github.com/COS301-SE-2023/WordWizard/assets/80365036/dd9f649e-6c0c-47a4-8d3d-ac13af151913)
+![carbon6](https://github.com/COS301-SE-2023/WordWizard/assets/80365036/fa0157ba-4a73-4d78-99c9-8b497a3beacd)
+
 
 Once you have a green '(venv)' next to your cmd you have done this step correctly and continue. <br/>
 ![carbon7](https://github.com/COS301-SE-2023/WordWizard/assets/80365036/e99954da-4f4f-44a6-bc8b-42271502ffde)
