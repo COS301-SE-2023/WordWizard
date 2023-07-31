@@ -99,7 +99,6 @@ export class ManageChildrenPage {
   async presentAlert() {
     const alert = await this.alertController.create({
       header: 'Delete Account',
-      // subHeader: '',
       message: 'Are you sure you want to delete your account?',
       buttons: [
         {

@@ -8,11 +8,11 @@ from bson import ObjectId
 router = APIRouter()
 
 def get_score_range(score: int) -> int:
-    if 0 <= score < 25:
+    if score < 50:
         return 0
-    elif 25 <= score < 50:
+    elif score >= 50:
         return 1
-    elif 50 <= score < 75:
+    elif score >= 75:
         return 2
     else:
         return 3
@@ -23,14 +23,13 @@ def create_reading(rqst: LevelRequest):
 
     try:
         # Convert the provided string progress_id to ObjectId
-        progress_id = ObjectId(rqst.progress_id)
-        result = progress_collection.find_one({"_id": progress_id})
+        result = progress_collection.find_one({"_id": ObjectId(rqst.progress_id)})
 
         if result:
             score_values : List[int] = []
 
-            for item in result.get("progress_history"):
-                score_value = get_score_range(item["score"])
+            for level in result.get("level_scores"):
+                score_value = get_score_range(result['level_scores'][str(level)])
                 score_values.append(score_value)
 
             while len(score_values) < 20:

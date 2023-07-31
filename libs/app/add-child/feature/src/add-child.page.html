@@ -1,12 +1,12 @@
 <ion-content scrollY="false">
     <ww-header title="Add Child" [settingsActive]="false" [backRoute]="'../manage-children'"/>
     <form [formGroup]="form" (ngSubmit)="submit()">
-        <div class="overlay-container" [class.hidden-overlay]="!visible"> 
+        <div class="overlay-container" [class.hidden-overlay]="!visible">
             <div class="overlay">
                 <div class="selected-outer">
                     <div class="selected-image">
                         <ion-avatar class="custom-avatar" *ngIf="selectedImage; else unselected">
-                            <ion-img 
+                            <ion-img
                             src="{{selectedImage}}" />
                         </ion-avatar>
                         <ng-template #unselected>
@@ -19,7 +19,7 @@
                 <ion-grid>
                     <ion-row>
                         <ion-col size="12" class="close">
-                            <ion-icon src="assets/svg/close-outline.svg" class="close-icon" (click)="controlModal()"></ion-icon>
+                            <ion-icon src="assets/svg/close-outline.svg" id="close-modal" class="close-icon" (click)="controlModal()"></ion-icon>
                         </ion-col>
                     </ion-row>
                     <ion-row>
@@ -30,10 +30,10 @@
                     <ion-row>
                         <ion-col size="4" *ngFor="let i of pictures">
                             <ion-item style="--border-width:0" (click)="chooseImage(i)" class="img-item">
-                                <label htmlFor="img">                            
+                                <label htmlFor="img">
                                     <ion-avatar slot="start" class="check-img">
-                                    <ion-img 
-                                    src="{{i}}" />        
+                                    <ion-img
+                                    src="{{i}}" />
                                     </ion-avatar>
                                 </label>
                                 <ion-radio slot="end" id="img" class="hidden-radio"></ion-radio>
@@ -49,7 +49,7 @@
             </ion-button>
             <ng-template #selected>
                 <ion-avatar class="custom-avatar-button" (click)="controlModal()">
-                    <ion-img 
+                    <ion-img
                     src="{{selectedImage}}" />
                 </ion-avatar>
             </ng-template>
