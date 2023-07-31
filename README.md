@@ -1,4 +1,4 @@
-# Umleiten - WordWizard
+![WordWizardBanner](https://github.com/COS301-SE-2023/WordWizard/assets/80365036/27fbe857-bcbd-428d-814c-98bfca52da9e)
 
 ![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/COS301-SE-2023/WordWizard)
 [![codecov](https://codecov.io/gh/COS301-SE-2023/WordWizard/branch/dev/graph/badge.svg?token=2BANYONTYU)](https://codecov.io/gh/COS301-SE-2023/WordWizard)
