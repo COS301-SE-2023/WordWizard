@@ -74,18 +74,23 @@ export class LessonCoinComponent implements AfterViewInit, OnInit{
 
 
     this.startAnimation();
-  }, 1000);
+  }, 500);
 
   }
 
   startAnimation() {
     const lines = document.getElementsByClassName('line');
+    
     let i = 0;
       const animate = setInterval(() => {
         const line = lines[i];
         i++;
-        line.classList.add('line-animation');
-        if(i === 19)clearInterval(animate);
+        if(line){
+          if(line.classList){
+            line.classList.add('line-animation');
+          }
+        }
+        if(i === 18)clearInterval(animate);
       }, 1000);
   }
 

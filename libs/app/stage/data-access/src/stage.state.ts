@@ -94,7 +94,6 @@ export class StageState {
       levels: [0,0,0,0,0],
     };
     const stage: getLevelsResponse = (await this.stageService.getStage(rqst).toPromise()) ?? defaultVal;
-    console.log(' ', stage);
     try{
       ctx.setState(
         produce((draft: StageStateModel) => {

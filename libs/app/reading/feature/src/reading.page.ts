@@ -59,10 +59,8 @@ export class ReadingPage {
     this.readingState$.subscribe((data) => {
       this.practice = data;
       const correctWords = data.passage.filter(word => word.correct);
-      if(correctWords.length !== 0){
-        console.log("Correct words after reading: ", correctWords);
+      if(correctWords.length !== 0)
         this.progressPercentage = `${((correctWords.length/(data.passage.length)) * 100).toFixed(0)}%`;
-      }
       if(data.done)
         this.sentence = data.passage.map((word) => word.word).join(" ");
       this.setStars();

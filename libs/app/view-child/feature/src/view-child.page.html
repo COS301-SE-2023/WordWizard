@@ -1,9 +1,7 @@
-<ww-header title="View Child" [settingsActive]="true" [backRoute]="'../manage-children'" [settingsRoute]='"../settings"'></ww-header>
-
 <ion-content [scrollY]="false">
+    <ww-header title="View Child" [settingsActive]="true" [backRoute]="'../manage-children'" [settingsRoute]='"../settings"'/>
     <div class="view-child">
         <div class="background">
-            <!-- PROFILE IMAGE - CENTER -->
             <div class="pfp">
                 <ion-avatar>
                     <img [src]="child.profile_photo">
@@ -12,8 +10,6 @@
             <div class="name">
                 <p>{{child.username}}</p>
             </div>
-
-            <!-- SPELLBOOK BUTTON     |    TROPHY BUTTON -->
             <ion-content class="links" [scrollY]="false">
                 <ion-grid>
                     <ion-row>
@@ -32,7 +28,6 @@
                     </ion-row>
                     <ion-row>
                         <ion-col>
-                            <!-- STAGE INDICATOR -->
                             <div class="stage">
                                 Level: {{stage}}
                             </div>
@@ -40,11 +35,9 @@
                     </ion-row>
                     <ion-row>
                         <ion-col>
-                            <ion-nav-link routerLink="/child-statistics">
-                                <a class="stats" routerLink="/">
+                            <ion-nav-link routerLink="/child-statistics" class="stats">
                                     <ion-img src="assets/img/stats-logo.png"></ion-img>
                                     Stats
-                                </a>
                             </ion-nav-link>
                         </ion-col>
                     </ion-row>

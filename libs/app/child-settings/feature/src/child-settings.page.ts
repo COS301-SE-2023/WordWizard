@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ChildSettingsService } from '@word-wizard/app/child-settings/data-access';
+import { Router } from '@angular/router';
 import { 
   SetChild,
+  DeleteChild,
   ChildState,
   Child
 } from '@word-wizard/app/child/data-access';
@@ -33,7 +35,8 @@ export class ChildSettingsPage {
     private addChildService: AddChildService,  
     private childSettingsService: ChildSettingsService, 
     private store: Store,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private router: Router
   ) {
     this.currentChild$.subscribe((data) => {
       if(data.profile_photo == '') 
@@ -58,9 +61,6 @@ export class ChildSettingsPage {
       });
       this.store.dispatch(new SetChild({childId:data._id}));
     });
-
-
-    console.log('submit');
   }
 
   deleteProfile() {
@@ -68,6 +68,8 @@ export class ChildSettingsPage {
     this.currentChild$.subscribe((data) => {
       this.childSettingsService.deleteChild(data._id).subscribe((res) => {
         console.log(res);
+        this.store.dispatch(new DeleteChild({childId:data._id}));
+        this.router.navigate(['/manage-children']);
       });
     });
   }
