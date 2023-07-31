@@ -124,7 +124,6 @@ export class ReadingState {
             this.store.dispatch(new UpdateProgress());
           }
         } else{
-            console.log(currentWord);
           if (currentWord.word.toLowerCase() === payload.newAttempt.toLowerCase()) {
             currentWord.correct = true;
             Word.current++;
@@ -161,7 +160,6 @@ export class ReadingState {
 
 
         const score = (correctWords/totalWords)*100;
-        console.log("Score: ", score);
 
         this.currentChild$.subscribe((data) => {
           const rqst: UpdateProgressRequest = {

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
 import { Child } from './interfaces/child.interfaces';
-import { GetChildren, SetChild, ChangeActive, AddChild } from './child.actions';
+import { GetChildren, SetChild, ChangeActive, AddChild, DeleteChild } from './child.actions';
 import { ChildService } from './child.service';
 import { produce } from 'immer';
 import { take } from 'rxjs/operators';
@@ -71,7 +71,7 @@ export class ChildState {
         );
       },
       (error) => {
-        console.error('An error occurred:', error);
+        console.error(error);
       }
     );
   }
@@ -114,6 +114,15 @@ export class ChildState {
         }
       ));
     });
+  }
+
+  @Action(DeleteChild)
+  async DeleteChild(ctx: StateContext<ChildStateModel>, {payload}:DeleteChild) {
+    ctx.setState(
+      produce((draft: ChildStateModel) => {
+        draft.Children.model.children = draft.Children.model.children.filter(c => c._id !== payload.childId);
+      }
+    ));
   }
 
 

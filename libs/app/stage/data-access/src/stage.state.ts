@@ -65,7 +65,6 @@ export class StageState {
 
   @Action(UpdateStage)
   async updateStage(ctx: StateContext<StageStateModel>, {payload}: UpdateStage){
-
     try{
       ctx.setState(
         produce((draft: StageStateModel) => {
@@ -93,7 +92,6 @@ export class StageState {
       levels: [0,0,0,0,0],
     };
     const stage: getLevelsResponse = (await this.stageService.getStage(rqst).toPromise()) ?? defaultVal;
-    console.log(' ', stage);
     try{
       ctx.setState(
         produce((draft: StageStateModel) => {

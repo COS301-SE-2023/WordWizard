@@ -33,16 +33,10 @@ export class ViewChildPage {
     this.currentChild$.subscribe((data) => {
 
       if (data !==  undefined && data._id !== '') {
-        // console.log('Data exists:', data)
         this.child = data;
-
-
-        // Create request
         const rqst: levelsRequest = {
           progress_id: data._id
         }
-
-        // Get the stage from the db
         this.stageService.getStage(rqst).subscribe((data : getLevelsResponse) => {
           this.stage = data.levels.findIndex((num) => num === 0) + 1;
         })

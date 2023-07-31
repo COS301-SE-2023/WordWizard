@@ -16,7 +16,6 @@ export class CauldronComponent {
 
   handleTextChange(text: string) {
     this.textFromMicrophone = text;
-    console.warn('Text from microphone:', text);
     if(text.toLocaleLowerCase() === this.vocab.word.toLocaleLowerCase())
       this.textChanged.emit(text);
   }

@@ -51,7 +51,6 @@ export class DashboardPage {
       });
 
       if (data !==  undefined && data._id !== '') {
-        console.log('Data exists:', data)
         this.child = data;
 
 

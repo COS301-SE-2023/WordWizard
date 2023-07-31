@@ -8,6 +8,7 @@ const routes: Routes = [
     path: 'dashboard',
     loadChildren: () =>
       import('@word-wizard/app/dashboard/feature').then((m) => m.DashboardModule),
+    canActivate: [AuthGuard],
   },
   {
     path:'',
@@ -18,7 +19,7 @@ const routes: Routes = [
     path: 'reading',
     loadChildren: () =>
       import('@word-wizard/app/reading/feature').then((m) => m.ReadingModule),
-   // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
   },
   {
     path: 'library',
@@ -59,6 +60,7 @@ const routes: Routes = [
     path: 'settings',
     loadChildren: () =>
       import('@word-wizard/app/child-settings/feature').then((m) => m.ChildSettingsModule),
+    canActivate: [AuthGuard],
   },
   {
     path: 'splash',
@@ -75,6 +77,7 @@ const routes: Routes = [
     path: 'view-child',
     loadChildren: () =>
       import('@word-wizard/app/view-child/feature').then((m) => m.ViewChildModule),
+    canActivate: [AuthGuard],
   }
 
 ];

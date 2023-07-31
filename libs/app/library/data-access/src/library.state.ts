@@ -47,25 +47,12 @@ export class LibraryState {
     private readonly libraryService: LibraryService
   ){}
 
-  // @Action(Example)
-  // example(ctx: StateContext<ReadingStateModel>, action: Example) {
-  //   const request = {
-  //     word: this.word,
-  //     definition: 'A fruit that grows on trees'
-  //   } as ReadingRequest;
-
-  //   this.readingService.getVocab(request).subscribe((data) => {
-  //     console.log(data);
-  //   });
-  // }
-
   @Action(UpdatePractice)
   async UpdatePractice(ctx: StateContext<LibraryStateModel>, {payload}:UpdatePractice) {
 
     let id!: string;
     this.currentChild$.subscribe((data) => {
-      // id = data._id;
-      id = '64c36dc0da30d08066de5275';
+      id = data._id;
     }).unsubscribe();
 
     const rqst: UpdateRequest = {
@@ -90,15 +77,13 @@ export class LibraryState {
   async setPractice(ctx: StateContext<LibraryStateModel>) {
     let id!: string;
     this.currentChild$.subscribe((data) => {
-      // id = data._id;
-      id = '64c36dc0da30d08066de5275';
+      id = data._id;
 
     }).unsubscribe();
     const rqst: PracticeRequest = {
       userID: id,
     } as PracticeRequest;
     const practice: WordList = await this.libraryService.getPractice(rqst).toPromise() ?? {words: []};
-    console.log(practice);
     ctx.setState(
       produce((draft: LibraryStateModel) => {
         draft.Library.model.Practice = practice;
@@ -110,15 +95,13 @@ export class LibraryState {
   async setVocab(ctx: StateContext<LibraryStateModel>) {
     let id!: string;
     this.currentChild$.subscribe((data) => {
-      // id = data._id;
-      id = '64c36dc0da30d08066de5275';
+      id = data._id;
 
     }).unsubscribe();
     const rqst: VocabRequest = {
       userID: id,
     } as VocabRequest;
     const vocab:WordList = await this.libraryService.getVocab(rqst).toPromise() ?? {words: []};
-    console.log(vocab);
     ctx.setState(
       produce((draft: LibraryStateModel) => {
         draft.Library.model.Vocab = vocab;

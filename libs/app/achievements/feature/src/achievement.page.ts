@@ -93,7 +93,7 @@ export class AchievementPage {
 
       },
       (error) => {
-        console.error('Error loading awards:', error);
+        console.error(error);
       }
     );
   }

@@ -25,36 +25,14 @@ export class StagePage implements OnInit{
 
   ngOnInit() {
     this.store.dispatch(new SetStage());
-
     this.stage$.subscribe((data) => {
       this.coins.forEach((coin:Coin, index:number) => {
         coin.filledStars = data.levels[index];
         coin.name = 'level' + (index+1);
       });
     });
-
-    this.selectedStage$.subscribe((data) => {
-      console.log(data);
-    });
-
   }
 
-  // ngAfterViewInit() {
-  //   this.store.dispatch(new SetStage());
-
-  //   console.log('triggered');
-
-  //   this.stage$.subscribe((data) => {
-  //     this.coins.forEach((coin:Coin, index:number) => {
-  //       coin.filledStars = data.levels[index];
-  //       coin.name = 'level' + (index+1);
-  //     });
-  //   });
-
-  //   this.selectedStage$.subscribe((data) => {
-  //     console.log(data);
-  //   });
-  // }
 
   levelSet($event: string){
 
@@ -72,8 +50,6 @@ export class StagePage implements OnInit{
       });
 
       levelsSub.unsubscribe();
-
-      console.log(levelsArr[level - 2]);
 
       if(levelsArr[level - 2] < 1){
         levelAccess = false;
