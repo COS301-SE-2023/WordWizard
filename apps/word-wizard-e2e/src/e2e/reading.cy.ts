@@ -29,9 +29,9 @@ describe('word-wizard/reading', () => {
 
   it('should display the Reading Page with the correct header', () => {
     cy.visit('/reading');
-    cy.get('ww-header').should('contain', 'Journeyman');
-    cy.get('ww-header').should('have.attr', 'ng-reflect-settings-active', 'true');
-    cy.get('ww-header').should('have.attr', 'ng-reflect-back-route', './');
+    cy.get('#header-content').should('contain', 'Journeyman');
+    cy.get('#header-content').should('have.attr', 'ng-reflect-settings-active', 'true');
+    cy.get('#header-content').should('have.attr', 'ng-reflect-back-route', './');
   });
 
 

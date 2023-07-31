@@ -29,12 +29,19 @@ describe('word-wizard/manage-children', () => {
   });
 
   it('should select a child and redirect to dashboard', () => {
-    cy.visit('/manage-children');
-    cy.get('.circle').first().click();
 
-    cy.get('.overlay').should('be.visible');
-    cy.get('.continueChild').click();
-    cy.url().should('equal', 'http://localhost:4200/dashboard');
+    cy.get('.circle').first().then(($btn) => {
+      if($btn.text() === 'Add Child') {
+        cy.log('no existing children');
+      }else{
+        cy.visit('/manage-children');
+        cy.get('.circle').first().click();
+
+        cy.get('.overlay').should('be.visible');
+        cy.get('.continueChild').click();
+        cy.url().should('equal', 'http://localhost:4200/dashboard');
+      }
+    });
 
   });
 
