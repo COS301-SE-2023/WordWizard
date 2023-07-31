@@ -1,4 +1,4 @@
-![Libraries.io dependency status ![WordWizardBanner](https://github.com/COS301-SE-2023/WordWizard/assets/80365036/700158a7-4404-40d4-a2ac-ea0975daaeff)
+![WordWizardBanner](https://github.com/COS301-SE-2023/WordWizard/assets/80365036/700158a7-4404-40d4-a2ac-ea0975daaeff)
 
 for GitHub repo](https://img.shields.io/librariesio/github/COS301-SE-2023/WordWizard)
 [![codecov](https://codecov.io/gh/COS301-SE-2023/WordWizard/branch/dev/graph/badge.svg?token=2BANYONTYU)](https://codecov.io/gh/COS301-SE-2023/WordWizard)
