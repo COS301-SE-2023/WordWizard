@@ -58,11 +58,14 @@ export class ReadingPage {
     });
     this.readingState$.subscribe((data) => {
       this.practice = data;
-      if(data.passage.filter(word => word.correct === null).length !== 0){
-        this.progressPercentage = `${((data.passage.filter(word => word.correct !== null).length/(data.passage.length)) * 100).toFixed(0)}%`;
+      const correctWords = data.passage.filter(word => word.correct);
+      if(correctWords.length !== 0){
+        console.log("Correct words after reading: ", correctWords);
+        this.progressPercentage = `${((correctWords.length/(data.passage.length)) * 100).toFixed(0)}%`;
       }
       if(data.done)
         this.sentence = data.passage.map((word) => word.word).join(" ");
+      this.setStars();
     });
   }
 
@@ -147,6 +150,7 @@ export class ReadingPage {
 
   controlModal() {
     this.store.dispatch(new SetStatus({status: false}));
+    console.log("Progress percentage: ", this.progressPercentage);
     let strs = 0;
     if (this.progressPercentage >= '50%'){
       strs = 1;
@@ -154,7 +158,7 @@ export class ReadingPage {
     if (this.progressPercentage >= '75%'){
       strs = 2;
     }
-    if (this.progressPercentage >= '90%'){
+    if (this.progressPercentage == '100%'){
       strs = 3;
     }
     this.store.dispatch(new UpdateStage({stars: strs}));
@@ -170,7 +174,7 @@ export class ReadingPage {
       this.star2 = 'assets/img/item/goldstar.png';
       this.congratularyMessage = 'Great Job!';
     }
-    if (this.progressPercentage >= '90%'){
+    if (this.progressPercentage == '100%'){
       this.star3 = 'assets/img/item/goldstar.png';
       this.congratularyMessage = 'Amazing!';
     }
