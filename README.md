@@ -20,64 +20,14 @@ The system is designed to adapt to each user's level of proficiency and learning
 [![Google Docs](https://img.shields.io/badge/Google%20Docs-View%20Document-blue)](https://docs.google.com/document/d/1ciOoZX2MzLFtCf3m2Z29c-V7krlfxKHC/edit?usp=sharing&ouid=116132882510647438116&rtpof=true&sd=true)
 
 ## Technical installation
-### system requirements:
-- Node js v16 +
-- angular cli
-- nx
-- python 3.8 +
-
-Navigate into the directory containing the repository and do the following:
-### For the front end:
-once here run "npm install" <br/>
-![carbon1](https://github.com/COS301-SE-2023/WordWizard/assets/80365036/7424615f-2df5-416c-bc15-c4782782752e)
-
-to start the app run "npm run start:app:dev" <br/>
-![carbon2](https://github.com/COS301-SE-2023/WordWizard/assets/80365036/5c53f47f-21ea-4869-b9cd-2751e12d5a45)
-
-[Note] Keep in mind the app will not fully work without the backend
-
-### For the back end:
-cd into the 'api' directory <br/>
-![carbon3](https://github.com/COS301-SE-2023/WordWizard/assets/80365036/c475cee0-07a3-4563-88aa-0ba5a7a06a91)
-
-The venv (virtual environment) is not required however, it is recommended to ensure that 
- there aren't any conflicts with existing pip (python) packages on your machine. First run 'python3 -m venv venv'. <br/>
-![carbon4](https://github.com/COS301-SE-2023/WordWizard/assets/80365036/a68ba801-17c0-4b56-b838-78c376f68d9f)
-
-
-Next, run this command on Windows: <br/>
-![carbon5](https://github.com/COS301-SE-2023/WordWizard/assets/80365036/2621f422-8b6e-4541-809a-fef83c110c7c)
-
-or
-
-This command on Linux: <br/>
-![carbon6](https://github.com/COS301-SE-2023/WordWizard/assets/80365036/fa0157ba-4a73-4d78-99c9-8b497a3beacd)
-
-
-Once you have a green '(venv)' next to your cmd you have done this step correctly and continue. <br/>
-![carbon7](https://github.com/COS301-SE-2023/WordWizard/assets/80365036/e99954da-4f4f-44a6-bc8b-42271502ffde)
-
-
-Now you need to install all of the packages in 'requirements.txt': <br/>
-![carbon8](https://github.com/COS301-SE-2023/WordWizard/assets/80365036/20794a9f-fb87-4ab7-bddd-30d9d74edd4a)
-
-Navigate back to the root directory and start the API: <br/>
-![carbon9](https://github.com/COS301-SE-2023/WordWizard/assets/80365036/05ae582d-0a42-4510-8268-a9edadfe8ef1)
-<br/>
-![carbon10](https://github.com/COS301-SE-2023/WordWizard/assets/80365036/74b8561f-86e7-4794-8b1e-efe92c1bc968)
-
-You are nearly there. The app should be working fine however you will need a .env file that is structured as follows: <br/>
-![carbon11](https://github.com/COS301-SE-2023/WordWizard/assets/80365036/a4b65ef4-7640-4203-b55c-1fbececac006)
+- [Installation guide.pdf](https://github.com/COS301-SE-2023/WordWizard/files/12218662/Installation.guide.pdf)
 
 ## User Manual
-[![Google Docs](https://example.com/google_docs_badge.png)](https://docs.google.com/document/d/1b9OXTcJPg7bPJNMx4yW_o2M38_6_3Z9R/edit)
+- [![Google Docs](https://example.com/google_docs_badge.png)](https://docs.google.com/document/d/1b9OXTcJPg7bPJNMx4yW_o2M38_6_3Z9R/edit)
 
 
 ## Coding Standards
-[![Google Docs](https://img.shields.io/badge/Google%20Docs-Open%20Document-blue?logo=google-docs)](https://docs.google.com/document/d/1b9OXTcJPg7bPJNMx4yW_o2M38_6_3Z9R/edit)
-
-# Video Demos:
-## Video demo 2
+- [![Google Docs](https://img.shields.io/badge/Google%20Docs-Open%20Document-blue?logo=google-docs)](https://docs.google.com/document/d/1b9OXTcJPg7bPJNMx4yW_o2M38_6_3Z9R/edit)
 
 [![YouTube Channel](https://img.shields.io/badge/YouTube-Subscribe-red?style=flat&logo=youtube&logoColor=white)](https://drive.google.com/file/d/1dLAj847xovyk9ngFzh90m89FL6f_DWRU/view?usp=drive_link)
 
