@@ -4,9 +4,10 @@ import { Action, Selector, State, StateContext, Store, Select } from '@ngxs/stor
 import {
   SetPassage,
   MakeAttempt,
-  UpdateProgress
+  UpdateProgress,
+  SetStatus
 } from './reading.actions';
-import { 
+import {
   ChildState,
   Child
 } from '@word-wizard/app/child/data-access';
@@ -20,6 +21,7 @@ import {
   Content
 } from './interfaces/reading.interfaces';
 import { ReadingService } from './reading.service';
+import { StageState } from '@word-wizard/app/stage/data-access';
 
 export interface ReadingStateModel {
   Passage: {
@@ -34,6 +36,7 @@ export interface ReadingStateModel {
         attemptsRemaining: number;
       },
       level: number;
+      status: boolean;
 //Fair enough
     };
   }
@@ -53,7 +56,8 @@ export interface ReadingStateModel {
           current: 0,
           attemptsRemaining: 5,
         },
-        level: 1
+        level: 1,
+        status: false
       }
     }
   }
@@ -63,21 +67,25 @@ export interface ReadingStateModel {
 export class ReadingState {
 
   @Select(ChildState.currentChild) currentChild$!: Observable<Child>;
+  @Select(StageState.getSelectedStage) getSelectedStage$!: Observable<number>;
 
   constructor(private readonly readingService: ReadingService, private readonly router: Router, private readonly store: Store ) {}
 
   @Action(SetPassage)
   async setPassage(ctx: StateContext<ReadingStateModel>) {
-    const rqst: PassageRequest = {
-      level: ctx.getState().Passage.model.level
-    } as PassageRequest;
+    let lvl!: number;
+    this.getSelectedStage$.subscribe((data) => {
+      lvl = data;
+    }).unsubscribe();
 
+    const rqst: PassageRequest = {
+      level: lvl
+    } as PassageRequest;
     const defaultVal: Content = {
       passage: [],
       focusWordsIndex: [],
       done: false
     };
-
     const passage: Content = await this.readingService.getPassage(rqst).toPromise() ?? defaultVal;
     try{
       ctx.setState(
@@ -100,28 +108,22 @@ export class ReadingState {
         const Word = draft.Passage.model.Word;
         const current = Word.current;
         let attemptsRemaining = Word.attemptsRemaining;
-      
+
         const currentWord = passage[focus[current]];
         attemptsRemaining--;
-        // console.log("Passage[1]: ", passage[1].word, passage[1].correct)
-        // console.log("...Content: ",draft.Passage.model.Content);
         if(draft.Passage.model.Content.done){
           if(attemptsRemaining > 0) {
             const foundIndex = passage.findIndex((word) => word.word.toLowerCase() === payload.newAttempt.toLowerCase());
             if(foundIndex !== -1)
               passage[foundIndex].correct = true;
-              // console.log("Word correct: ",passage[foundIndex], passage[foundIndex].correct )
             Word.attemptsRemaining = Word.attemptsRemaining - 1;
             if(passage.every((word) => word.correct !== null)) {
               this.store.dispatch(new UpdateProgress());
-              console.log('done');
             }
           } else {
             this.store.dispatch(new UpdateProgress());
-            console.log('done, out of attempts');
           }
         } else{
-            console.log(currentWord);
           if (currentWord.word.toLowerCase() === payload.newAttempt.toLowerCase()) {
             currentWord.correct = true;
             Word.current++;
@@ -136,7 +138,7 @@ export class ReadingState {
           }
 
           if(Word.current === focus.length){
-            Word.attemptsRemaining = 2*passage.length;
+            Word.attemptsRemaining = 5;
             draft.Passage.model.Content.done = true;
           }
         }
@@ -146,32 +148,43 @@ export class ReadingState {
 
   @Action(UpdateProgress)
   async updateProgress(ctx: StateContext<ReadingStateModel>) {
-    // Store content and level
+    const currentDate: Date = new Date();
+    const options: Intl.DateTimeFormatOptions = { month: 'long', day: 'numeric', year: 'numeric' };
+    const formattedDate: string = currentDate.toLocaleDateString(undefined, options);
     ctx.setState(
       produce((draft: ReadingStateModel) => {
         const content = draft.Passage.model.Content.passage;
         const level = draft.Passage.model.level;
         const totalWords = content.length;
         const correctWords = content.filter((word) => word.correct).length;
-        // console.log("Correct words: ", correctWords);
-        // console.log("Total words: ", totalWords);
-        // console.log("Score: ", (correctWords/totalWords)*100); // Think it needs to be multiplied by 100?
+
+
+        const score = (correctWords/totalWords)*100;
+
         this.currentChild$.subscribe((data) => {
           const rqst: UpdateProgressRequest = {
             child_id: data._id,
             progress:{
               level: level,
               content: content,
-              score: (correctWords/totalWords)*100,
-              date: `${new Date()}`,
+              score: score,
+              date: `${formattedDate}`,
               incorrect_words: totalWords - correctWords,
             }
           }
           this.readingService.updateProgress(rqst).subscribe((data) => {
-            //Do something else idk?
-            this.router.navigate(['/stage']);
+            this.store.dispatch(new SetStatus({status: true}));
           });
-        });
+        }).unsubscribe();
+      })
+    )
+  }
+
+  @Action(SetStatus)
+  async setStatus(ctx: StateContext<ReadingStateModel>, {payload}: SetStatus) {
+    ctx.setState(
+      produce((draft: ReadingStateModel) => {
+        draft.Passage.model.status = payload.status;
       })
     )
   }
@@ -185,6 +198,11 @@ export class ReadingState {
   @Selector()
   static getCurrent(state: ReadingStateModel) {
     return state.Passage.model.Word.current;
+  }
+
+  @Selector()
+  static getStatus(state: ReadingStateModel) {
+    return state.Passage.model.status;
   }
 }
 

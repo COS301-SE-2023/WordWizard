@@ -9,7 +9,11 @@ export class MakeAttempt{
   constructor(public payload: { newAttempt: string }) { }
 }
 
-
 export class UpdateProgress{
   static readonly type = '[Reading] Update Progress';
+}
+
+export class SetStatus {
+  static readonly type = '[Reading] Set Status';
+  constructor(public payload: { status: boolean }) { }
 }

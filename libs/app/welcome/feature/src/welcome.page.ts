@@ -29,15 +29,4 @@ export class WelcomePage implements OnInit{
     });
 
   }
-  // This is an example of how to fetch the users information when needed
-  // checkAuth() {
-  //   this.auth.user$.subscribe((user) => {
-  //     console.table(user);
-  //     if (user) {
-  //         console.error('user is logged in');
-  //     } else {
-  //         console.error('user is not logged in');
-  //     }
-  //   });
-  // }
 }

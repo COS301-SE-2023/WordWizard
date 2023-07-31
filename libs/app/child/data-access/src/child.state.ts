@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
 import { Child } from './interfaces/child.interfaces';
-import { GetChildren, SetChild, ChangeActive, AddChild } from './child.actions';
+import { GetChildren, SetChild, ChangeActive, AddChild, DeleteChild } from './child.actions';
 import { ChildService } from './child.service';
 import { produce } from 'immer';
 import { take } from 'rxjs/operators';
@@ -21,7 +21,7 @@ export interface ChildStateModel {
           practice_list: string;
           progress: string;
         }
-        parentActive: boolean;  
+        parentActive: boolean;
     };
   }
 }
@@ -42,7 +42,7 @@ export interface ChildStateModel {
           practice_list: '',
           progress: '',
         },
-        parentActive: true  
+        parentActive: true
       }
     }
   }
@@ -59,9 +59,9 @@ export class ChildState {
 
   @Action(GetChildren)
   async GetChildren(ctx: StateContext<ChildStateModel>, {payload}:GetChildren) {
-    
+
     this.childService.getChildren(payload.parent_email, payload.parent_name)
-    .pipe(take(1)) // Potential issue later, omly seems to take first 5 results?
+    .pipe(take(1))
     .subscribe(
       (rsps: Child[]) => {
         ctx.setState(
@@ -71,7 +71,7 @@ export class ChildState {
         );
       },
       (error) => {
-        console.error('An error occurred:', error);
+        console.error(error);
       }
     );
   }
@@ -114,6 +114,15 @@ export class ChildState {
         }
       ));
     });
+  }
+
+  @Action(DeleteChild)
+  async DeleteChild(ctx: StateContext<ChildStateModel>, {payload}:DeleteChild) {
+    ctx.setState(
+      produce((draft: ChildStateModel) => {
+        draft.Children.model.children = draft.Children.model.children.filter(c => c._id !== payload.childId);
+      }
+    ));
   }
 
 

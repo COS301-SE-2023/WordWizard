@@ -38,7 +38,6 @@ export class ChildService {
       const accessToken = await this.authService.getAccessTokenSilently();
       this.authService.user$.subscribe((user) =>{
         if(!user){
-          console.error('User not found.');
           return;
         }
         const userId = user.sub;
@@ -48,7 +47,7 @@ export class ChildService {
         this.authService.logout();
       });
     } catch (error) {
-      console.error('Error deleting user:', error);
+      console.error( error);
     }
   }
 }

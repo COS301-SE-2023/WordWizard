@@ -22,3 +22,8 @@ export class AddChild{
     static readonly type = '[Child] Add Child';
     constructor(public payload: { parentName: string, parentEmail: string, name: string, age: number, image: string }){}
 }
+
+export class DeleteChild{
+    static readonly type = '[Child] Delete Child';
+    constructor(public payload: { childId: string }){}
+}

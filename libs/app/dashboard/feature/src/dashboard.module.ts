@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
 import { SharedUiModule } from '@word-wizard/app/shared-ui';
 import { AddChildService } from '@word-wizard/app/add-child/data-access';
 import { ChildSettingsService } from '@word-wizard/app/child-settings/data-access';
+import { StageService } from '@word-wizard/app/stage/data-access';
 
 @NgModule({
   imports: [
@@ -21,7 +22,7 @@ import { ChildSettingsService } from '@word-wizard/app/child-settings/data-acces
     HttpClientModule
   ],
   declarations: [DashboardPage],
-  providers: [AddChildService, ChildSettingsService]
-  
+  providers: [AddChildService, ChildSettingsService, StageService]
+
 })
 export class DashboardModule { }

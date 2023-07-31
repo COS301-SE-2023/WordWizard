@@ -5,11 +5,21 @@ describe('word-wizard/library', () => {
     cy.viewport('iphone-6')
     cy.visit('/');
 
-    cy.get('ion-button').click();
+    cy.url().then((url) => {
+      if(url.includes('welcome')) {
+        cy.get('ion-button').click();
+      }
+    });
+
     cy.get('input#username').type(Cypress.env('auth_username'));
     cy.get('input#password').type(Cypress.env('auth_password'), {log: false});
     cy.contains('button', 'Continue').click({force: true});
-    cy.url().should('equal', 'http://localhost:4200/welcome');
+
+    cy.get('button').then(($btn) => {
+      if ($btn.text() === 'Accept') {
+        cy.get('button').contains('Accept').click();
+      }
+    });
 
   });
 
@@ -17,34 +27,34 @@ describe('word-wizard/library', () => {
     cy.visit('/library');
   });
 
-  // it('should display the Vocabulary List when "Vocabulary" segment is selected', () => {
-  //   cy.visit('/library');
-  //   cy.get('ion-segment-button[value="vocab"]').should('have.attr', 'checked');
-  //   cy.get('.vocab-list').should('be.visible');
-  // });
+  it('should display the Vocabulary List when "Vocabulary" segment is selected', () => {
+    cy.visit('/library');
+    cy.get('ion-segment-button[value="vocab"]').should('have.attr', 'checked');
+    cy.get('.vocab-list').should('be.visible');
+  });
 
-  // it('should display the Practice List when "Practice" segment is selected', () => {
-  //   cy.visit('/library');
-  //   cy.get('ion-segment-button[value="practice"]').click();
-  //   cy.get('.practice-list').should('be.visible');
-  // });
+  it('should display the Practice List when "Practice" segment is selected', () => {
+    cy.visit('/library');
+    cy.get('ion-segment-button[value="practice"]').click();
+    cy.get('.practice-list').should('be.visible');
+  });
 
-  // it('should display the Practice List when there is practice data', () => {
-  //   cy.intercept('GET', '/api/practice', { words: [{ word: 'Spell1' }, { word: 'Spell2' }] }).as('getPractice');
-  //   cy.visit('/library');
-  //   cy.get('ion-segment-button[value="practice"]').click();
-  //   cy.get('.practice-list').should('be.visible');
-  //   cy.wait('@getPractice');
-  // });
+  it('should display the Practice List when there is practice data', () => {
+    cy.intercept('GET', '/api/practice', { words: [{ word: 'Spell1' }, { word: 'Spell2' }] }).as('getPractice');
+    cy.visit('/library');
+    cy.get('ion-segment-button[value="practice"]').click();
+    cy.get('.practice-list').should('be.visible');
+    cy.wait('@getPractice');
+  });
 
-  // it('should display the Vocabulary List when there is vocabulary data', () => {
-  //   cy.intercept('GET', '/api/vocab', { words: [{ word: 'Spell1' }, { word: 'Spell2' }] }).as('getVocab');
-  //   cy.visit('/library');
-  //   cy.get('ion-segment-button[value="vocab"]').should('have.attr', 'checked');
-  //   cy.get('.vocab-list').should('be.visible');
-  //   cy.contains('h3', 'No spells yet :O').should('not.be.visible');
-  //   cy.wait('@getVocab');
-  // });
+  it('should display the Vocabulary List when there is vocabulary data', () => {
+    cy.intercept('GET', '/api/vocab', { words: [{ word: 'Spell1' }, { word: 'Spell2' }] }).as('getVocab');
+    cy.visit('/library');
+    cy.get('ion-segment-button[value="vocab"]').should('have.attr', 'checked');
+    cy.get('.vocab-list').should('be.visible');
+    cy.contains('h3', 'No spells yet :O').should('not.be.visible');
+    cy.wait('@getVocab');
+  });
 
 
 });
