@@ -24,6 +24,57 @@ The system is designed to adapt to each user's level of proficiency and learning
 # GitHub Project Board
 [![Project Status](https://img.shields.io/badge/Project-Active-brightgreen.svg)](https://github.com/orgs/COS301-SE-2023/projects/12/views/1)
 
+# Technical installation
+### system requirements:
+- Node js v16 +
+- angular cli
+- nx
+- python 3.8 +
+
+Navigate into the directory containing the repository and do the following:
+### For the front end:
+once here run "npm install" <br/>
+![carbon1](https://github.com/COS301-SE-2023/WordWizard/assets/80365036/6bcba849-3be5-45af-a49b-f6d4fd911c5c)
+
+
+to start the app run "npm run start:app:dev" <br/>
+![carbon2](https://github.com/COS301-SE-2023/WordWizard/assets/80365036/369d023f-b7a6-4be0-adb4-5aa9c8f6cc57)
+
+
+[Note] Keep in mind the app will not fully work without the backend
+
+### For the back end:
+cd into the 'api' directory <br/>
+![carbon3](https://github.com/COS301-SE-2023/WordWizard/assets/80365036/9cbab98d-0f6e-4a3c-aefe-8ae7e4dcce8e)
+
+
+The venv (virtual environment) is not required however, it is recommended to ensure that 
+ there aren't any conflicts with existing pip (python) packages on your machine. First run 'python3 -m venv venv'. <br/>
+![carbon4](https://github.com/COS301-SE-2023/WordWizard/assets/80365036/f340b5c7-3966-469b-94b7-abb5cb3b63df)
+
+Next, run this command on Windows: <br/>
+![carbon5](https://github.com/COS301-SE-2023/WordWizard/assets/80365036/2566b98a-dbcc-403a-8210-569bfa505faf)
+
+
+or
+
+This command on Linux: <br/>
+![carbon6](https://github.com/COS301-SE-2023/WordWizard/assets/80365036/dd9f649e-6c0c-47a4-8d3d-ac13af151913)
+
+Once you have a green '(venv)' next to your cmd you have done this step correctly and continue. <br/>
+![carbon7](https://github.com/COS301-SE-2023/WordWizard/assets/80365036/e99954da-4f4f-44a6-bc8b-42271502ffde)
+
+
+Now you need to install all of the packages in 'requirements.txt': <br/>
+![carbon8](https://github.com/COS301-SE-2023/WordWizard/assets/80365036/20794a9f-fb87-4ab7-bddd-30d9d74edd4a)
+
+Navigate back to the root directory and start the API: <br/>
+![carbon9](https://github.com/COS301-SE-2023/WordWizard/assets/80365036/05ae582d-0a42-4510-8268-a9edadfe8ef1)
+<br/>
+![carbon10](https://github.com/COS301-SE-2023/WordWizard/assets/80365036/74b8561f-86e7-4794-8b1e-efe92c1bc968)
+
+You are nearly there. The app should be working fine however you will need a .env file that is structured as follows: <br/>
+![carbon11](https://github.com/COS301-SE-2023/WordWizard/assets/80365036/a4b65ef4-7640-4203-b55c-1fbececac006)
 
 # Team profile description 
 
