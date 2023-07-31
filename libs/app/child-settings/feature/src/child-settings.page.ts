@@ -74,7 +74,7 @@ export class ChildSettingsPage {
         this.store.dispatch(new DeleteChild({ childId: data._id }));
         this.router.navigate(['/manage-children']);
       });
-    });
+    }).unsubscribe();
   }
 
   modal() {
