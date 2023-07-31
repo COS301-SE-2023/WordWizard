@@ -62,19 +62,15 @@ def edit(rqst: EditChildReq):
 def delete(rqst: DeleteChildReq):
     if rqst.child_id == '':
         return {'status': 'error', 'message': 'No Child id'}
-
-    children_collection = db['Children']
-    parents_collection = db['Parents']  
-
     object_id = ObjectId(rqst.child_id)
-    existing_child = children_collection.find_one({'_id': object_id})
-
+    existing_child = db['Children'].find_one({'_id': object_id})
     if existing_child:
-        children_collection.delete_one({'_id': object_id})
+        db['Children'].delete_one({'_id': object_id})
+        db['Vocabulary'].delete_one({'_id': object_id})
+        db['Practice'].delete_one({'_id': object_id})
 
-        parent_id = ObjectId(existing_child['parent'])
-        parents_collection.update_one(
-            {'_id': parent_id},
+        db['Parents'].update_one(
+            {'_id': ObjectId(existing_child['parent'])},
             {'$pull': {'children': object_id}}
         )
         return {'status': 'success'}
