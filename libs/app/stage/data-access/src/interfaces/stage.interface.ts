@@ -1,6 +1,6 @@
 /* eslint-disable @angular-eslint/component-class-suffix */
-export interface stage{
-  levels: number[];//array of each levels progress(out of 3)
+export interface stage {
+  levels: number[]; //array of each levels progress(out of 3)
   selectedLevel: number;
 }
 

@@ -1,5 +1,8 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import {
+  HttpClientTestingModule,
+  HttpTestingController,
+} from '@angular/common/http/testing';
 import { ChildStatisticsService } from './child-statistics.service';
 import { StatisticsReq } from './requests/child-statistics.requests';
 import { Statistics } from './responses/child-statistics.responses';
@@ -11,7 +14,7 @@ describe('ChildStatisticsService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [ChildStatisticsService]
+      providers: [ChildStatisticsService],
     });
 
     service = TestBed.inject(ChildStatisticsService);

@@ -7,8 +7,8 @@ import { SplashRouting } from './splash.routing';
 
 @NgModule({
   imports: [
-    CommonModule, 
-    SplashRouting
+    CommonModule,
+    SplashRouting,
     // RouterModule.forChild(appSplashFeatureRoutes)
   ],
   declarations: [SplashPage],

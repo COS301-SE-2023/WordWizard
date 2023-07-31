@@ -1,7 +1,5 @@
 import { Component, Input } from '@angular/core';
-import {
-  Word,
-} from '@word-wizard/app/library/data-access';
+import { Word } from '@word-wizard/app/library/data-access';
 
 @Component({
   selector: 'ww-scroll',
@@ -10,5 +8,5 @@ import {
 })
 export class ScrollComponent {
   @Input() vocab!: Word;
-  @Input () number!: number;
+  @Input() number!: number;
 }

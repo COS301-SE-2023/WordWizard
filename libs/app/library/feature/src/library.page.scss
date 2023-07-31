@@ -1,49 +1,50 @@
 .vocab-list {
-    // --background: url(../../../../../apps/word-wizard/src/assets/img/bg/wizard_library.png) 0 0/100% 100% no-repeat;
-    --background: transparent;
+  // --background: url(../../../../../apps/word-wizard/src/assets/img/bg/wizard_library.png) 0 0/100% 100% no-repeat;
+  --background: transparent;
 }
 .practice-list {
-    // --background: url(../../../../../apps/word-wizard/src/assets/img/bg/wizard_library.png) center/cover no-repeat;
-    // overflow: hidden;
-    --background: transparent;
+  // --background: url(../../../../../apps/word-wizard/src/assets/img/bg/wizard_library.png) center/cover no-repeat;
+  // overflow: hidden;
+  --background: transparent;
 }
 
-.page-container{
-    background: url("../../../../../apps/word-wizard/src/assets/img/bg/wizard_library.png") no-repeat;
-    background-size: cover;
-    background-position: center;
-    height: 100vh;
-    width: 100%;
+.page-container {
+  background: url('../../../../../apps/word-wizard/src/assets/img/bg/wizard_library.png')
+    no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  width: 100%;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 ion-col {
-    padding: 4px;
+  padding: 4px;
 }
 
 ww-scroll-closed {
-    margin: 0px;
+  margin: 0px;
 }
 
 ion-segment-button {
-    // --background-color:rgba(0, 255, 17, 1);
-    --background: rgba(143, 143, 143, 0.60);
-    --indicator-color: rgba(217, 217, 217, 0.60);
-    --padding-bottom: 5px;
-    font-size: 1.5rem;
+  // --background-color:rgba(0, 255, 17, 1);
+  --background: rgba(143, 143, 143, 0.6);
+  --indicator-color: rgba(217, 217, 217, 0.6);
+  --padding-bottom: 5px;
+  font-size: 1.5rem;
 }
 
 ion-segment {
-    // --background-color: rgba(255, 0, 0, 1);
+  // --background-color: rgba(255, 0, 0, 1);
 }
 
-ion-grid{
+ion-grid {
   --padding: 0px;
 }
 
-ion-col{
+ion-col {
   --padding: 0px;
 }

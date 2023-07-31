@@ -12,7 +12,7 @@ describe('SpeakerComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [SpeakerComponent],
       imports: [IonicModule.forRoot(), HttpClientModule],
-      providers: [SpeakerService]
+      providers: [SpeakerService],
     }).compileComponents();
   });
 

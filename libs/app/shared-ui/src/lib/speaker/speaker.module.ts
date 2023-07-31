@@ -6,9 +6,9 @@ import { SpeakerComponent } from './speaker.component';
 import { SpeakerService } from './speaker.service';
 
 @NgModule({
-  imports: [ CommonModule, FormsModule, IonicModule],
+  imports: [CommonModule, FormsModule, IonicModule],
   declarations: [SpeakerComponent],
   exports: [SpeakerComponent],
-  providers: [SpeakerService]
+  providers: [SpeakerService],
 })
 export class SpeakerModule {}

@@ -1,22 +1,22 @@
 // For Badge Modal
 export interface Badge {
-    img: string;
-    name: string;
-    description: string;
+  img: string;
+  name: string;
+  description: string;
 }
 
 // For View Modal
 export interface Child {
-    username: string;
+  username: string;
 }
 
 // For Picture modal
 export interface Picture {
-    name: string;
+  name: string;
 }
 
 // For Reading Modal
 export interface Stats {
-    score: number;
-    stars: number;
+  score: number;
+  stars: number;
 }

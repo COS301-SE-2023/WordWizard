@@ -1,4 +1,4 @@
-export interface Word{
+export interface Word {
   word: string;
   imageURL: string;
   correct: boolean | null;

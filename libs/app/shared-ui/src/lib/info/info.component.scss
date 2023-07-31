@@ -1,20 +1,18 @@
 .info-button {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #6074DF;
-    border: 3px solid #000000;
-    position: relative;
-    overflow: hidden;
-    transition: background-color 0.3s ease;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #6074df;
+  border: 3px solid #000000;
+  position: relative;
+  overflow: hidden;
+  transition: background-color 0.3s ease;
 }
 
-
-
 .info-icon {
-    font-size: 32px;
-    color: #000000;
+  font-size: 32px;
+  color: #000000;
 }

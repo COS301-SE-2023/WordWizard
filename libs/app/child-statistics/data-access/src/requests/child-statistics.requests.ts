@@ -1,3 +1,3 @@
 export interface StatisticsReq {
-    child_id: string;
+  child_id: string;
 }

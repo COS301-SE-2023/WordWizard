@@ -7,7 +7,11 @@ import { ReadingService } from './reading.service';
 import { ChildState, ChildService } from '@word-wizard/app/child/data-access';
 
 @NgModule({
-  imports: [CommonModule, NgxsModule.forFeature([ReadingState, ChildState]), HttpClientModule],
-  providers: [ReadingService, ChildService]
+  imports: [
+    CommonModule,
+    NgxsModule.forFeature([ReadingState, ChildState]),
+    HttpClientModule,
+  ],
+  providers: [ReadingService, ChildService],
 })
-export class ReadingModule { }
+export class ReadingModule {}

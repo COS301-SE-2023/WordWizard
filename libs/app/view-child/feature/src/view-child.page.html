@@ -1,54 +1,50 @@
 <ion-content [scrollY]="false">
-    <ww-header title="View Child" [settingsActive]="true" [backRoute]="'../manage-children'" [settingsRoute]='"../settings"'/>
-    <div class="view-child">
-        <div class="background">
-            <div class="pfp">
-                <ion-avatar>
-                    <img [src]="child.profile_photo">
-                </ion-avatar>
-            </div>
-            <div class="name">
-                <p>{{child.username}}</p>
-            </div>
-            <ion-content class="links" [scrollY]="false">
-                <ion-grid>
-                    <ion-row>
-                        <ion-col size="6">
-                            <a class="spellbook" routerLink="/library">
-                                <ion-img src="assets/icon/spellbook-cropped.png"></ion-img>
-                                Library
-                            </a>
-                        </ion-col>
-                        <ion-col size="6">
-                            <a class="trophy" routerLink="/achievements">
-                                <ion-img src="assets/icon/trophy-cropped.png"></ion-img>
-                                Badges
-                            </a>
-                        </ion-col>
-                    </ion-row>
-                    <ion-row>
-                        <ion-col>
-                            <div class="stage">
-                                Level: {{stage}}
-                            </div>
-                        </ion-col>
-                    </ion-row>
-                    <ion-row>
-                        <ion-col>
-                            <ion-nav-link routerLink="/child-statistics" class="stats">
-                                    <ion-img src="assets/img/stats-logo.png"></ion-img>
-                                    Stats
-                            </ion-nav-link>
-                        </ion-col>
-                    </ion-row>
-                </ion-grid>
-            </ion-content>
-        </div>
+  <ww-header
+    title="View Child"
+    [settingsActive]="true"
+    [backRoute]="'../manage-children'"
+    [settingsRoute]='"../settings"' />
+  <div class="view-child">
+    <div class="background">
+      <div class="pfp">
+        <ion-avatar>
+          <img [src]="child.profile_photo" />
+        </ion-avatar>
+      </div>
+      <div class="name">
+        <p>{{child.username}}</p>
+      </div>
+      <ion-content class="links" [scrollY]="false">
+        <ion-grid>
+          <ion-row>
+            <ion-col size="6">
+              <a class="spellbook" routerLink="/library">
+                <ion-img src="assets/icon/spellbook-cropped.png"></ion-img>
+                Library
+              </a>
+            </ion-col>
+            <ion-col size="6">
+              <a class="trophy" routerLink="/achievements">
+                <ion-img src="assets/icon/trophy-cropped.png"></ion-img>
+                Badges
+              </a>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <div class="stage">Level: {{stage}}</div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-nav-link routerLink="/child-statistics" class="stats">
+                <ion-img src="assets/img/stats-logo.png"></ion-img>
+                Stats
+              </ion-nav-link>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-content>
     </div>
+  </div>
 </ion-content>
-
-
-
-
-
-
