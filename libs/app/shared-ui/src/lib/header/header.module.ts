@@ -5,8 +5,8 @@ import { HeaderComponent } from './header.component';
 import { RouterModule } from '@angular/router';
 
 @NgModule({
-  imports: [ CommonModule, IonicModule, RouterModule],
+  imports: [CommonModule, IonicModule, RouterModule],
   declarations: [HeaderComponent],
-  exports: [HeaderComponent]
+  exports: [HeaderComponent],
 })
 export class HeaderModule {}

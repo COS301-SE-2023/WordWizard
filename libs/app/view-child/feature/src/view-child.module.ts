@@ -5,14 +5,13 @@ import { ViewChildRouting } from './view-child.routing';
 import { IonicModule } from '@ionic/angular';
 import { SharedUiModule } from '@word-wizard/app/shared-ui';
 
-
 @NgModule({
   imports: [
-    CommonModule, 
+    CommonModule,
     // RouterModule.forChild(appViewChildFeatureRoutes)
     ViewChildRouting,
     IonicModule,
-    SharedUiModule
+    SharedUiModule,
   ],
   declarations: [ViewChildPage],
   exports: [ViewChildPage],
