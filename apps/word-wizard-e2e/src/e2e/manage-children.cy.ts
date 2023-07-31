@@ -30,7 +30,7 @@ describe('word-wizard/manage-children', () => {
 
   it('should select a child and redirect to dashboard', () => {
     cy.visit('/manage-children');
-    cy.get('button .circle').first().click();
+    cy.get('.circle').first().click();
 
     cy.get('.overlay').should('be.visible');
     cy.get('.continueChild').click();

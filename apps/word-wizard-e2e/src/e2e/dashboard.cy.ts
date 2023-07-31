@@ -28,13 +28,13 @@ describe('word-wizard/dashboard', () => {
 
   it('should open the image picker modal when the profile photo is clicked', () => {
     cy.visit('/dashboard');
-    cy.get('.pfp ion-avatar').click();
+    cy.get('.pfp').click();
     cy.get('.overlay').should('be.visible');
   });
 
   it('should close the image picker modal when the close icon is clicked', () => {
     cy.visit('/dashboard');
-    cy.get('.pfp ion-avatar').click();
+    cy.get('.pfp').click();
     cy.get('.overlay').should('be.visible');
 
     cy.get('.close-icon').click();
@@ -44,13 +44,13 @@ describe('word-wizard/dashboard', () => {
   it('should change the profile image when a new PFP is picked on the modal', () => {
     cy.visit('/dashboard');
 
-    cy.get('.pfp ion-avatar').click();
+    cy.get('.pfp').click();
     cy.get('.overlay').should('be.visible');
 
     cy.get('.img-item').first().click();
     cy.get('.overlay').should('not.be.visible');
 
-    cy.get('.pfp ion-avatar img').should('have.attr', 'src').should('not.be.empty');
+    cy.get('.pfp img').should('have.attr', 'src').should('not.be.empty');
   });
 
 

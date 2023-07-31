@@ -1,5 +1,5 @@
 /* eslint-disable */
-describe('word-wizard/child-statistics', () => {
+describe('word-wizard/view-child', () => {
   beforeEach(() => {
     cy.viewport('iphone-6')
     cy.visit('/');
