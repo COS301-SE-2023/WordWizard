@@ -44,11 +44,23 @@
                         <ion-icon class="plus" name="add-outline"></ion-icon>
                     </button>
                 </ion-nav-link>
+                <div class="child-name">add child</div>
             </ion-col>
         </ion-row>
     </ion-grid>
-    <ion-button class="sign-out" (click)="logout()">
-        Sign out
-    </ion-button>
+    <ww-button class="continueChild"
+        text="Sign out" 
+        color="#861486" 
+        activate="#510E51"
+        border="#fff"
+        (click)="logout()"
+    />
+    <ww-button class="continueParent"
+        text="Delete Account" 
+        color="#070527" 
+        activate="#000000"
+        border="#fff"
+        (event)="presentAlert()"
+    />
 </ion-content>
 

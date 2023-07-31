@@ -1,0 +1,109 @@
+.container {
+    height: 100vh;
+    width: 100vw;
+    // If using style with card - use flex - else comment out
+    // display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../../../../../apps/word-wizard/src/assets/img/bg/welcome_background.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+.background {
+    margin-top: 0%;
+    height: 100%;
+    // background-color: rgba($color: rgb(0, 0, 0), $alpha: 0.3);
+}
+
+// Container to center contents vertically
+.splash {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.hat {
+    // margin-top: 10%;
+    position: relative;
+    // top: 10vw;
+    display: flex;
+    // align-items: center;
+
+    // FLOATING ANIMATION
+    animation-name: floating;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+
+    img {
+        width: 75%;
+        height: auto;
+        margin: auto;
+    }
+}
+
+@keyframes floating {
+    from { transform: translate(0,  0px); }
+    65%  { transform: translate(0, 15px); }
+    to   { transform: translate(0, -0px); }    
+}
+
+
+.name {
+    font-size: 15vw;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: gold;
+    text-shadow:    -2px 2px 2px #000,
+                    2px 2px 2px #000,
+                    2px -2px 2px #000,
+                    -2px -2px 2px #000;
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-top: 5vw;
+    // position: absolute;
+    // bottom: 15vw;
+
+    // PULSE ANIMATION
+    p {
+        transform: scale(1);
+	    animation: pulse 2s infinite;
+        border: none;
+    }
+}
+
+@keyframes pulse {
+	0% {
+		transform: scale(0.95);
+		// box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+	}
+
+	70% {
+		transform: scale(1);
+		// box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+	}
+
+	100% {
+		transform: scale(0.95);
+		// box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+	}
+}
+
+#wizard {
+    position: relative;
+    left: 10%;
+    margin-top: 2%;
+}
+
+#word {
+    position: relative;
+    right: 10%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+

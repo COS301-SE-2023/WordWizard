@@ -17,11 +17,12 @@ class Content(BaseModel):
 
 class Progress(BaseModel):
     level: int
-    content: Content
+    content: list[Word]
     score: int
-    date: datetime
-    incorrect_words : int
+    date: str
+    incorrect_words: int
 
 class UpdateProgressRqst(BaseModel):
     child_id: str
     progress: Progress
+

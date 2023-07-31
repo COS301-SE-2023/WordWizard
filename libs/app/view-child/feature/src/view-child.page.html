@@ -1,4 +1,4 @@
-<ww-header title="View Chlid" [settingsActive]="true" [backRoute]="'../manage-children'" [settingsRoute]='"../settings"'></ww-header>
+<ww-header title="View Child" [settingsActive]="true" [backRoute]="'../manage-children'" [settingsRoute]='"../settings"'></ww-header>
 
 <ion-content [scrollY]="false">
     <div class="view-child">
@@ -6,7 +6,7 @@
             <!-- PROFILE IMAGE - CENTER -->
             <div class="pfp">
                 <ion-avatar>
-                    <img [src]="child.pfp">
+                    <img [src]="child.profile_photo">
                 </ion-avatar>
             </div>
             <div class="name">
@@ -34,7 +34,7 @@
                         <ion-col>
                             <!-- STAGE INDICATOR -->
                             <div class="stage">
-                                Stage {{child.stage}}
+                                Level: {{stage}}
                             </div>
                         </ion-col>
                     </ion-row>

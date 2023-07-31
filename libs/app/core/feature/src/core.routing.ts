@@ -61,6 +61,11 @@ const routes: Routes = [
       import('@word-wizard/app/child-settings/feature').then((m) => m.ChildSettingsModule),
   },
   {
+    path: 'splash',
+    loadChildren: () =>
+      import('@word-wizard/app/splash/feature').then((m) => m.SplashModule),
+  },
+  {
     path: 'child-statistics',
     loadChildren: () =>
       import('@word-wizard/app/child-statistics/feature').then((m) => m.ChildStatisticsModule),
@@ -71,7 +76,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('@word-wizard/app/view-child/feature').then((m) => m.ViewChildModule),
   }
-  
+
 ];
 
 @NgModule({
@@ -82,7 +87,6 @@ const routes: Routes = [
 })
 export class CoreRouting {
   constructor(private auth: AuthService, private router: Router) {
-    // Uncomment once routing has been merged
     this.auth.isAuthenticated$.subscribe((isAuthenticated) => {
       if (isAuthenticated) this.router.navigate(['/manage-children']);
       else this.router.navigate(['/welcome']);

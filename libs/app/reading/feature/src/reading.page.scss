@@ -68,7 +68,17 @@
 }
 
 ion-content.page-container {
-    --background: url(../../../../../apps/word-wizard/src/assets/img/CastleBackground.png) 0 0/100% 100% no-repeat;
+    --background: url(../../../../../apps/word-wizard/src/assets/img/bg/reading-background.png) 0 0/100% 100% no-repeat;
+
+    // --background: url("../../../../../apps/word-wizard/src/assets/img/bg/stages-background.png") no-repeat;
+    --background-size: cover;
+    --background-position: center;
+    // --height: 100vh;
+    // --width: 100%;
+    
+    // --display: flex;
+    // --flex-direction: column;
+    // --justify-content: center;
 
 }
 
@@ -119,7 +129,7 @@ ww-progress-potion{
     height: 100vh;
     top: 0;
     left: 0;
-    z-index: 1;
+    z-index: 999;
   }
   
   .overlay-animation {

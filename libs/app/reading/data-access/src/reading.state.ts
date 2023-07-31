@@ -1,23 +1,27 @@
 import { Injectable } from '@angular/core';
-import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
+import { Router } from '@angular/router';
+import { Action, Selector, State, StateContext, Store, Select } from '@ngxs/store';
 import {
   SetPassage,
   MakeAttempt,
-  UpdateProgress
- } from './reading.actions';
-
+  UpdateProgress,
+  SetStatus
+} from './reading.actions';
+import {
+  ChildState,
+  Child
+} from '@word-wizard/app/child/data-access';
+import { Observable } from 'rxjs';
  import {produce} from 'immer';
-
 import {
   PassageRequest, UpdateProgressRequest,
 } from './requests/reading.request';
-
 import {
   Word,
   Content
 } from './interfaces/reading.interfaces';
-
 import { ReadingService } from './reading.service';
+import { StageState } from '@word-wizard/app/stage/data-access';
 
 export interface ReadingStateModel {
   Passage: {
@@ -32,6 +36,7 @@ export interface ReadingStateModel {
         attemptsRemaining: number;
       },
       level: number;
+      status: boolean;
 //Fair enough
     };
   }
@@ -51,7 +56,8 @@ export interface ReadingStateModel {
           current: 0,
           attemptsRemaining: 5,
         },
-        level: 1
+        level: 1,
+        status: false
       }
     }
   }
@@ -60,33 +66,26 @@ export interface ReadingStateModel {
 @Injectable()
 export class ReadingState {
 
-  constructor(private readonly readingService: ReadingService) {}
+  @Select(ChildState.currentChild) currentChild$!: Observable<Child>;
+  @Select(StageState.getSelectedStage) getSelectedStage$!: Observable<number>;
 
-  // @Action(Example)
-  // example(ctx: StateContext<ReadingStateModel>, action: Example) {
-  //   const request = {
-  //     word: this.word,
-  //     definition: 'A fruit that grows on trees'
-  //   } as ReadingRequest;
-
-  //   this.readingService.getVocab(request).subscribe((data) => {
-  //     console.log(data);
-  //   });
-  // }
-
+  constructor(private readonly readingService: ReadingService, private readonly router: Router, private readonly store: Store ) {}
 
   @Action(SetPassage)
   async setPassage(ctx: StateContext<ReadingStateModel>) {
-    const rqst: PassageRequest = {
-      level: ctx.getState().Passage.model.level
-    } as PassageRequest;
+    let lvl!: number;
+    this.getSelectedStage$.subscribe((data) => {
+      lvl = data;
+    }).unsubscribe();
 
+    const rqst: PassageRequest = {
+      level: lvl
+    } as PassageRequest;
     const defaultVal: Content = {
       passage: [],
       focusWordsIndex: [],
       done: false
     };
-
     const passage: Content = await this.readingService.getPassage(rqst).toPromise() ?? defaultVal;
     try{
       ctx.setState(
@@ -109,77 +108,87 @@ export class ReadingState {
         const Word = draft.Passage.model.Word;
         const current = Word.current;
         let attemptsRemaining = Word.attemptsRemaining;
-      
+
         const currentWord = passage[focus[current]];
         attemptsRemaining--;
         if(draft.Passage.model.Content.done){
-          if(attemptsRemaining > 0){
+          if(attemptsRemaining > 0) {
             const foundIndex = passage.findIndex((word) => word.word.toLowerCase() === payload.newAttempt.toLowerCase());
             if(foundIndex !== -1)
               passage[foundIndex].correct = true;
             Word.attemptsRemaining = Word.attemptsRemaining - 1;
-          } else{
-            console.log("No attempts left");
-            //Get new passage or move onto next level
+            if(passage.every((word) => word.correct !== null)) {
+              this.store.dispatch(new UpdateProgress());
+            }
+          } else {
+            this.store.dispatch(new UpdateProgress());
           }
         } else{
+            console.log(currentWord);
           if (currentWord.word.toLowerCase() === payload.newAttempt.toLowerCase()) {
             currentWord.correct = true;
             Word.current++;
-            Word.attemptsRemaining = 5;
+            Word.attemptsRemaining = 2;
             passage[current].correct = true;
           } else if (attemptsRemaining <= 0) {
             currentWord.correct = false;
             Word.current++;
-            Word.attemptsRemaining = 5;
+            Word.attemptsRemaining = 2;
           } else {
             Word.attemptsRemaining = Word.attemptsRemaining - 1;
           }
 
           if(Word.current === focus.length){
-            Word.attemptsRemaining = 5*passage.length;
+            Word.attemptsRemaining = 5;
             draft.Passage.model.Content.done = true;
           }
         }
-
-        // When done
-        // Get child Id from child state
-        // Invoke update progress 
-
       })
     )
   }
 
   @Action(UpdateProgress)
-  async updateProgress(ctx: StateContext<ReadingStateModel>, {payload}:UpdateProgress) {
-    // Store content and level
-    const content = payload.content;
-    const level = ctx.getState().Passage.model.level;
-    const childId = payload.childId;
+  async updateProgress(ctx: StateContext<ReadingStateModel>) {
+    const currentDate: Date = new Date();
+    const options: Intl.DateTimeFormatOptions = { month: 'long', day: 'numeric', year: 'numeric' };
+    const formattedDate: string = currentDate.toLocaleDateString(undefined, options);
+    ctx.setState(
+      produce((draft: ReadingStateModel) => {
+        const content = draft.Passage.model.Content.passage;
+        const level = draft.Passage.model.level;
+        const totalWords = content.length;
+        const correctWords = content.filter((word) => word.correct).length;
 
-    // Calculate score from content
-    const totalWords = content.passage.length;
-    const correctWords = content.passage.filter((word) => word.correct).length;
 
-    const score = correctWords/totalWords;
-    
+        const score = (correctWords/totalWords)*100;
+        console.log("Score: ", score);
 
-    // Create request
-    const rqst: UpdateProgressRequest = {
-      childId: childId,
-      progress:{
-        level: level,
-        content: content,
-        score: score,
-        incorrectWords: totalWords - correctWords,
-        date: new Date()
-      }
-    } as UpdateProgressRequest;
+        this.currentChild$.subscribe((data) => {
+          const rqst: UpdateProgressRequest = {
+            child_id: data._id,
+            progress:{
+              level: level,
+              content: content,
+              score: score,
+              date: `${formattedDate}`,
+              incorrect_words: totalWords - correctWords,
+            }
+          }
+          this.readingService.updateProgress(rqst).subscribe((data) => {
+            this.store.dispatch(new SetStatus({status: true}));
+          });
+        }).unsubscribe();
+      })
+    )
+  }
 
-    // Make request via service to update progress
-    this.readingService.updateProgress(rqst);
-
-    // Check if update successful??
+  @Action(SetStatus)
+  async setStatus(ctx: StateContext<ReadingStateModel>, {payload}: SetStatus) {
+    ctx.setState(
+      produce((draft: ReadingStateModel) => {
+        draft.Passage.model.status = payload.status;
+      })
+    )
   }
 
 
@@ -191,6 +200,11 @@ export class ReadingState {
   @Selector()
   static getCurrent(state: ReadingStateModel) {
     return state.Passage.model.Word.current;
+  }
+
+  @Selector()
+  static getStatus(state: ReadingStateModel) {
+    return state.Passage.model.status;
   }
 }
 

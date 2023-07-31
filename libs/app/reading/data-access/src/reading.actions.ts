@@ -2,7 +2,6 @@ import { Content } from "./interfaces/reading.interfaces";
 
 export class SetPassage {
   static readonly type = '[Reading] Set Passage';
-  // constructor(public payload: { passage: string }) { }
 }
 
 export class MakeAttempt{
@@ -10,8 +9,11 @@ export class MakeAttempt{
   constructor(public payload: { newAttempt: string }) { }
 }
 
-
 export class UpdateProgress{
   static readonly type = '[Reading] Update Progress';
-  constructor(public payload: { content: Content, childId: string }) { }
+}
+
+export class SetStatus {
+  static readonly type = '[Reading] Set Status';
+  constructor(public payload: { status: boolean }) { }
 }
