@@ -1,3 +1,3 @@
-export interface levelsRequest{
+export interface levelsRequest {
   progress_id: string;
 }

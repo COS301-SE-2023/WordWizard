@@ -19,10 +19,9 @@ import { StageService } from '@word-wizard/app/stage/data-access';
     DashboardRouting,
     RouterModule,
     SharedUiModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   declarations: [DashboardPage],
-  providers: [AddChildService, ChildSettingsService, StageService]
-
+  providers: [AddChildService, ChildSettingsService, StageService],
 })
-export class DashboardModule { }
+export class DashboardModule {}

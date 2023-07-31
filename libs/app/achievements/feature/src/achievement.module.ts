@@ -8,10 +8,18 @@ import { SharedUiModule } from '@word-wizard/app/shared-ui';
 import { HttpClientModule } from '@angular/common/http';
 import { AchievementService } from '@word-wizard/app/achievements/data-access';
 
-
 @NgModule({
-  imports: [ CommonModule, FormsModule, IonicModule, AchievementRouting, SharedUiModule, HttpClientModule],
-  declarations: [AchievementPage ],
-  providers: [AchievementService]
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonicModule,
+    AchievementRouting,
+    SharedUiModule,
+    HttpClientModule,
+  ],
+  declarations: [AchievementPage],
+  providers: [AchievementService],
 })
 export class AchievementModule {}
+
+//deploycommit

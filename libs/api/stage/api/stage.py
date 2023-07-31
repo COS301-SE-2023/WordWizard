@@ -8,11 +8,11 @@ from bson import ObjectId
 router = APIRouter()
 
 def get_score_range(score: int) -> int:
-    if 0 <= score < 25:
+    if score < 50:
         return 0
-    elif 25 <= score < 50:
+    elif score >= 50:
         return 1
-    elif 50 <= score < 75:
+    elif score >= 75:
         return 2
     else:
         return 3

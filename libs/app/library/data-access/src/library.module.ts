@@ -6,7 +6,11 @@ import { LibraryService } from './library.service';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-  imports: [CommonModule, NgxsModule.forFeature([LibraryState]), HttpClientModule],
-  providers: [LibraryService]
+  imports: [
+    CommonModule,
+    NgxsModule.forFeature([LibraryState]),
+    HttpClientModule,
+  ],
+  providers: [LibraryService],
 })
-export class ReadingModule { }
+export class ReadingModule {}

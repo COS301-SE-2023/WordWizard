@@ -15,20 +15,20 @@ import { Router } from '@angular/router';
 export class AddChildPage {
   form: FormGroup = this.fb.group({
     name: ['', Validators.required],
-    age: ['', Validators.required]
+    age: ['', Validators.required],
   });
   // Set visible to true to debug modal
   visible = false;
   selectedImage!: string;
   pictures: string[] = [];
   constructor(
-      private readonly fb: FormBuilder, 
-      private auth: AuthService, 
-      private addChildService: AddChildService, 
-      public toastController: ToastController, 
-      private router: Router,
-      private store: Store,
-    ) {
+    private readonly fb: FormBuilder,
+    private auth: AuthService,
+    private addChildService: AddChildService,
+    public toastController: ToastController,
+    private router: Router,
+    private store: Store,
+  ) {
     this.addChildService.getImages().subscribe((res) => {
       this.pictures = res.images;
     });
@@ -45,25 +45,27 @@ export class AddChildPage {
   submit() {
     this.auth.user$.subscribe((user) => {
       if (user) {
-          this.store.dispatch(new AddChild({
-              parentName: user.nickname || '',
-              parentEmail: user.email || '',
-              name: this.form.value.name,
-              age: this.form.value.age,
-              image: this.selectedImage
-          }));
+        this.store.dispatch(
+          new AddChild({
+            parentName: user.nickname || '',
+            parentEmail: user.email || '',
+            name: this.form.value.name,
+            age: this.form.value.age,
+            image: this.selectedImage,
+          }),
+        );
       } else {
-          console.error('user is not logged in');
+        console.error('user is not logged in');
       }
     });
     this.router.navigate(['/manage-children']);
   }
 
-  async presentToast(text:string, color:string) {
+  async presentToast(text: string, color: string) {
     const toast = await this.toastController.create({
       message: text,
       duration: 2000,
-      color: color
+      color: color,
     });
     toast.present();
   }

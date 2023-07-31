@@ -1,7 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
 import { Child } from './interfaces/child.interfaces';
-import { GetChildren, SetChild, ChangeActive, AddChild } from './child.actions';
+import {
+  GetChildren,
+  SetChild,
+  ChangeActive,
+  AddChild,
+  DeleteChild,
+} from './child.actions';
 import { ChildService } from './child.service';
 import { produce } from 'immer';
 import { take } from 'rxjs/operators';
@@ -9,21 +15,21 @@ import { AddChildService } from '@word-wizard/app/add-child/data-access';
 
 export interface ChildStateModel {
   Children: {
-    model:{
-        children: Child[];
-        currentChild:{
-          _id: string;
-          username: string;
-          age: number;
-          parent: string;
-          profile_photo: string;
-          vocab_list: string;
-          practice_list: string;
-          progress: string;
-        }
-        parentActive: boolean;
+    model: {
+      children: Child[];
+      currentChild: {
+        _id: string;
+        username: string;
+        age: number;
+        parent: string;
+        profile_photo: string;
+        vocab_list: string;
+        practice_list: string;
+        progress: string;
+      };
+      parentActive: boolean;
     };
-  }
+  };
 }
 
 @State<ChildStateModel>({
@@ -42,80 +48,107 @@ export interface ChildStateModel {
           practice_list: '',
           progress: '',
         },
-        parentActive: true
-      }
-    }
-  }
+        parentActive: true,
+      },
+    },
+  },
 })
-
 @Injectable()
 export class ChildState {
-
   constructor(
     private readonly store: Store,
     private readonly childService: ChildService,
-    private readonly addChildService: AddChildService
-  ){}
+    private readonly addChildService: AddChildService,
+  ) {}
 
   @Action(GetChildren)
-  async GetChildren(ctx: StateContext<ChildStateModel>, {payload}:GetChildren) {
-
-    this.childService.getChildren(payload.parent_email, payload.parent_name)
-    .pipe(take(1))
-    .subscribe(
-      (rsps: Child[]) => {
-        ctx.setState(
-          produce((draft: ChildStateModel) => {
-            draft.Children.model.children = rsps;
-          })
-        );
-      },
-      (error) => {
-        console.error('An error occurred:', error);
-      }
-    );
+  async GetChildren(
+    ctx: StateContext<ChildStateModel>,
+    { payload }: GetChildren,
+  ) {
+    this.childService
+      .getChildren(payload.parent_email, payload.parent_name)
+      .pipe(take(1))
+      .subscribe(
+        (rsps: Child[]) => {
+          ctx.setState(
+            produce((draft: ChildStateModel) => {
+              draft.Children.model.children = rsps;
+            }),
+          );
+        },
+        (error) => {
+          console.error(error);
+        },
+      );
   }
 
   @Action(SetChild)
-  async SetChild(ctx: StateContext<ChildStateModel>, {payload}:SetChild) {
+  async SetChild(ctx: StateContext<ChildStateModel>, { payload }: SetChild) {
     const state = ctx.getState();
-    const child = state.Children.model.children.find(c => c._id === payload.childId);
-    if(child) {
+    const child = state.Children.model.children.find(
+      (c) => c._id === payload.childId,
+    );
+    if (child) {
       ctx.patchState({
         Children: {
           model: {
             ...state.Children.model,
-            currentChild: child
-          }
-        }
+            currentChild: child,
+          },
+        },
       });
     }
   }
 
   @Action(ChangeActive)
-  async ChangeActive(ctx: StateContext<ChildStateModel>, {payload}:ChangeActive) {
+  async ChangeActive(
+    ctx: StateContext<ChildStateModel>,
+    { payload }: ChangeActive,
+  ) {
     const state = ctx.getState();
     ctx.patchState({
       Children: {
         model: {
           ...state.Children.model,
-          parentActive: payload.parentActive
-        }
-      }
+          parentActive: payload.parentActive,
+        },
+      },
     });
   }
 
   @Action(AddChild)
-  async AddChild(ctx: StateContext<ChildStateModel>, {payload}:AddChild) {
-    this.addChildService.addChild(payload.parentName, payload.parentEmail, payload.name, payload.age, payload.image).subscribe((res) => {
-      ctx.setState(
-        produce((draft: ChildStateModel) => {
-          draft.Children.model.children.push(res);
-        }
-      ));
-    });
+  async AddChild(ctx: StateContext<ChildStateModel>, { payload }: AddChild) {
+    this.addChildService
+      .addChild(
+        payload.parentName,
+        payload.parentEmail,
+        payload.name,
+        payload.age,
+        payload.image,
+      )
+      .subscribe((res) => {
+        ctx.setState(
+          produce((draft: ChildStateModel) => {
+            draft.Children.model.children.push(res);
+          }),
+        );
+      });
   }
 
+  @Action(DeleteChild)
+  async DeleteChild(
+    ctx: StateContext<ChildStateModel>,
+    { payload }: DeleteChild,
+  ) {
+    ctx.setState(
+      produce((draft: ChildStateModel) => {
+        draft.Children.model.children = draft.Children.model.children.filter(
+          (c) => c._id !== payload.childId,
+        );
+      }),
+    );
+  }
 
   @Selector()
   static Children(state: ChildStateModel) {
@@ -132,4 +165,3 @@ export class ChildState {
     return state.Children.model.parentActive;
   }
 }
-

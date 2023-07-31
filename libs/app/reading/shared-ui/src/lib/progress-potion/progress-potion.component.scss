@@ -1,9 +1,9 @@
-*{
+* {
   margin: 0;
   padding: 0;
 }
 
-#potion-container{
+#potion-container {
   position: relative;
   display: grid;
   place-items: center;
@@ -13,20 +13,19 @@
   height: 100%;
   width: 100%;
 
-  #potion-bottle-container{
+  #potion-bottle-container {
     position: relative;
     height: 90%;
     width: 90%;
     border-radius: 100%;
-    background-color: #A8CCD7;
+    background-color: #a8ccd7;
     box-sizing: border-box;
     overflow: hidden;
     display: grid;
     place-items: center;
     z-index: 10;
 
-    #potion-bottle-fluid{
-
+    #potion-bottle-fluid {
       position: absolute;
       bottom: 0%;
       transform: translateY(100%);
@@ -38,7 +37,7 @@
       animation: liquid 4.5s linear infinite;
     }
 
-    #potion-bottle-content{
+    #potion-bottle-content {
       z-index: 1000;
       font-family: 'Inter';
       font-style: normal;
@@ -46,35 +45,34 @@
       font-size: 2rem;
       line-height: 48px;
 
-      color: #FFFFFF;
+      color: #ffffff;
     }
-
   }
 
-  #potion-neck-container{
+  #potion-neck-container {
     position: absolute;
     top: 7%;
     right: 7%;
     height: 15%;
     width: 20%;
     // background-color:#A8CCD7;
-    background-color: #CAA478;
+    background-color: #caa478;
     transform: rotateZ(45deg);
-     z-index: 5;
+    z-index: 5;
   }
 
-  #potion-cork-container{
+  #potion-cork-container {
     position: absolute;
     top: 2%;
     right: 4%;
     height: 10%;
     width: 10%;
-    background-color: #CAA478;
+    background-color: #caa478;
     transform: rotateZ(45deg);
     z-index: 5;
   }
 
-  @keyframes liquid{
+  @keyframes liquid {
     from {
       transform: translateY(100%) rotate(0deg);
     }

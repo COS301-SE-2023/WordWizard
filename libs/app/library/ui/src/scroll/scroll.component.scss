@@ -7,7 +7,9 @@
 .box {
   width: 100%; /* Set the desired width */
   height: 150px; /* Set the desired height */
-  background: transparent url('../../../../../../apps/word-wizard/src/assets/img/item/scroll-closed-cropped.png') no-repeat center center;
+  background: transparent
+    url('../../../../../../apps/word-wizard/src/assets/img/item/scroll-closed-cropped.png')
+    no-repeat center center;
   background-size: contain;
   border: none; /* Remove the button border */
   padding-bottom: 10%;
@@ -16,25 +18,24 @@
   //padding: 0;
 }
 
-.transparent-background{
+.transparent-background {
   --background: transparent;
 }
 .transparent-background * {
   background: transparent !important;
 }
 
-
-  .word{
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 800;
-    font-size: 2rem;
-    line-height: 24px;
-    color: #000000;
-    padding-bottom: 10%;
-    text-align: center;
-    padding-top: 7%;
-  }
+.word {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 800;
+  font-size: 2rem;
+  line-height: 24px;
+  color: #000000;
+  padding-bottom: 10%;
+  text-align: center;
+  padding-top: 7%;
+}
 
 //   .defention{
 //     font-family: 'Inter';
@@ -97,11 +98,13 @@ ion-modal#example-modal .wrapper {
 }
 
 .scroll-closed {
-  --background: url(../../../../../../apps/word-wizard/src/assets/img/item/scroll-closed-cropped.png) 0 0/100% 100% no-repeat;
+  --background: url(../../../../../../apps/word-wizard/src/assets/img/item/scroll-closed-cropped.png)
+    0 0/100% 100% no-repeat;
 }
 
 .scroll-opened {
-  --background: url(../../../../../../apps/word-wizard/src/assets/img/item/scroll-opened-improved-cropped.png) 0 0/100% 100% no-repeat;
+  --background: url(../../../../../../apps/word-wizard/src/assets/img/item/scroll-opened-improved-cropped.png)
+    0 0/100% 100% no-repeat;
 }
 
 ion-button {
@@ -109,7 +112,7 @@ ion-button {
   padding: 0% !important;
 }
 
-ion-item  {
+ion-item {
   background: transparent !important;
 }
 
@@ -137,11 +140,11 @@ h1.word {
   font-weight: 800;
 }
 
-.open-scroll-content{
+.open-scroll-content {
   padding-bottom: 30%;
 }
 
-.definition{
+.definition {
   padding-left: 20%;
   padding-right: 20%;
 }

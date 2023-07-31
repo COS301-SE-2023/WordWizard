@@ -28,7 +28,9 @@ describe('ScrollComponent', () => {
     component.vocab = { word: word };
     fixture.detectChanges();
 
-    const buttonElement = fixture.debugElement.query(By.css('.box.word')).nativeElement;
+    const buttonElement = fixture.debugElement.query(
+      By.css('.box.word'),
+    ).nativeElement;
     expect(buttonElement.textContent).toContain(word);
   });
 
@@ -37,7 +39,9 @@ describe('ScrollComponent', () => {
     component.vocab = { word: word };
     fixture.detectChanges();
 
-    const modalElement = fixture.debugElement.query(By.css('.word')).nativeElement;
+    const modalElement = fixture.debugElement.query(
+      By.css('.word'),
+    ).nativeElement;
     expect(modalElement.textContent).toContain(word);
   });
 });

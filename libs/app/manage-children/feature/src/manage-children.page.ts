@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { 
-  GetChildren, 
+import {
+  GetChildren,
   SetChild,
   ChildState,
   ChildService,
   Child,
-  ChangeActive
+  ChangeActive,
 } from '@word-wizard/app/child/data-access';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
@@ -26,16 +26,21 @@ export class ManageChildrenPage {
   selectedChild!: Child;
 
   constructor(
-    private router: Router, 
-    private store: Store, 
-    private readonly auth: AuthService, 
+    private router: Router,
+    private store: Store,
+    private readonly auth: AuthService,
     private readonly childService: ChildService,
     private readonly toastController: ToastController,
-    private readonly alertController: AlertController
+    private readonly alertController: AlertController,
   ) {
     this.auth.user$.subscribe((user) => {
-      if(user) {
-        this.store.dispatch(new GetChildren({parent_email:user?.email || '', parent_name: user?.nickname || ''}));
+      if (user) {
+        this.store.dispatch(
+          new GetChildren({
+            parent_email: user?.email || '',
+            parent_name: user?.nickname || '',
+          }),
+        );
         this.Children$.subscribe((data) => {
           this.children = data;
         });
@@ -45,7 +50,7 @@ export class ManageChildrenPage {
 
   setChild(child: Child) {
     this.selectedChild = child;
-    this.store.dispatch(new SetChild({childId:child._id}));
+    this.store.dispatch(new SetChild({ childId: child._id }));
     this.controlModal();
   }
 
@@ -57,29 +62,29 @@ export class ManageChildrenPage {
     try {
       this.auth.logout();
       this.router.navigate(['/welcome']);
-    } catch(error) {
+    } catch (error) {
       console.error(error);
     }
   }
 
   setActive(val: boolean) {
-    this.store.dispatch(new ChangeActive({parentActive: val}));
+    this.store.dispatch(new ChangeActive({ parentActive: val }));
     this.controlModal();
   }
 
   deleteAccount() {
     this.auth.user$.subscribe((user) => {
-      if(user) {
-        try{
+      if (user) {
+        try {
           this.childService.deleteAuthAccount();
-        } catch(error) {
+        } catch (error) {
           console.error(error);
           return;
         }
         this.childService.deleteAccount(user.email || '').subscribe((data) => {
-          if(data.status === 'success') {
+          if (data.status === 'success') {
             this.router.navigate(['/welcome']);
-          } else{
+          } else {
             this.presentToast();
           }
         });
@@ -91,7 +96,7 @@ export class ManageChildrenPage {
     const toast = await this.toastController.create({
       message: 'Error occured when deleting account',
       duration: 2000,
-      color: 'danger'
+      color: 'danger',
     });
     toast.present();
   }
@@ -99,21 +104,20 @@ export class ManageChildrenPage {
   async presentAlert() {
     const alert = await this.alertController.create({
       header: 'Delete Account',
-      // subHeader: '',
       message: 'Are you sure you want to delete your account?',
       buttons: [
         {
           text: 'Cancel',
           role: 'cancel',
-          cssClass: 'secondary'
+          cssClass: 'secondary',
         },
         {
           text: 'OK',
           handler: () => {
             this.deleteAccount();
-          }
-        }
-      ]
+          },
+        },
+      ],
     });
     await alert.present();
   }

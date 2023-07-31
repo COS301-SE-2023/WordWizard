@@ -1,66 +1,69 @@
 <ion-header>
-    <ion-toolbar>
-        <ion-title>
-            Manage Children
-        </ion-title>
-    </ion-toolbar>
+  <ion-toolbar>
+    <ion-title> Manage Children </ion-title>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
-    <div class="overlay-container" [class.hidden-overlay]="!visible"> 
-        <div class="overlay">
-            <div size="12" class="close">
-                <ion-icon src="assets/svg/close-outline.svg" class="close-icon" (click)="controlModal()"></ion-icon>
-            </div>
-            <ion-nav-link routerLink="/dashboard">
-                <ww-button class="continueChild"
-                    text="Continue as {{selectedChild?.username}}" 
-                    color="#861486" 
-                    activate="#510E51"
-                    border="#fff"
-                    (click)="setActive(false)"
-                />
-            </ion-nav-link>
-            <ion-nav-link routerLink="/view-child">
-                <ww-button class="continueParent"
-                    text="View Progress" 
-                    color="#070527" 
-                    activate="#000000"
-                    border="#fff"
-                    (click)="setActive(true)"
-                />
-            </ion-nav-link>
-        </div>
+  <div class="overlay-container" [class.hidden-overlay]="!visible">
+    <div class="overlay">
+      <div size="12" class="close">
+        <ion-icon
+          src="assets/svg/close-outline.svg"
+          class="close-icon"
+          (click)="controlModal()"></ion-icon>
+      </div>
+      <ion-nav-link routerLink="/dashboard">
+        <ww-button
+          class="continueChild"
+          text="Continue as {{selectedChild?.username}}"
+          color="#861486"
+          activate="#510E51"
+          border="#fff"
+          (click)="setActive(false)" />
+      </ion-nav-link>
+      <ion-nav-link routerLink="/view-child">
+        <ww-button
+          class="continueParent"
+          text="View Progress"
+          color="#070527"
+          activate="#000000"
+          border="#fff"
+          (click)="setActive(true)" />
+      </ion-nav-link>
     </div>
-    <ion-grid class="children-grid">
-        <ion-row>
-            <ion-col *ngFor="let child of children" size="6">
-                <button class="circle" [style.background-image]="'url(' + child.profile_photo + ')'" (click)="setChild(child)"></button>
-                <div class="child-name">{{child?.username}}</div>
-            </ion-col>
-            <ion-col size="6">
-                <ion-nav-link routerLink="/add-child">
-                    <button class="circle">
-                        <ion-icon class="plus" name="add-outline"></ion-icon>
-                    </button>
-                </ion-nav-link>
-                <div class="child-name">add child</div>
-            </ion-col>
-        </ion-row>
-    </ion-grid>
-    <ww-button class="continueChild"
-        text="Sign out" 
-        color="#861486" 
-        activate="#510E51"
-        border="#fff"
-        (click)="logout()"
-    />
-    <ww-button class="continueParent"
-        text="Delete Account" 
-        color="#070527" 
-        activate="#000000"
-        border="#fff"
-        (event)="presentAlert()"
-    />
+  </div>
+  <ion-grid class="children-grid">
+    <ion-row>
+      <ion-col class="child-item" *ngFor="let child of children" size="6">
+        <button
+          class="circle"
+          [style.background-image]="'url(' + child.profile_photo + ')'"
+          (click)="setChild(child)"></button>
+        <div class="child-name">{{child?.username}}</div>
+      </ion-col>
+      <ion-col size="6">
+        <ion-nav-link routerLink="/add-child">
+          <button class="circle">
+            <ion-icon class="plus" name="add-outline"></ion-icon>
+          </button>
+        </ion-nav-link>
+        <div class="child-name">add child</div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ww-button
+    class="continueChild"
+    text="Sign out"
+    color="#861486"
+    activate="#510E51"
+    border="#fff"
+    (click)="logout()" />
+  <ww-button
+    class="continueParent"
+    text="Delete Account"
+    color="#070527"
+    activate="#000000"
+    border="#fff"
+    (event)="presentAlert()" />
 </ion-content>
-

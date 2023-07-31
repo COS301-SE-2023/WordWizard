@@ -1,16 +1,16 @@
-*{
+* {
   margin: 0px;
   padding: 0px;
   font-family: sans-serif;
 }
-.coin-mapping-container{
+.coin-mapping-container {
   position: relative;
   height: fit-content;
   width: 100%;
   overflow-x: hidden;
 }
 
-.coin-map{
+.coin-map {
   height: fit-content;
   width: 100%;
   position: relative;
@@ -18,7 +18,7 @@
   z-index: 10;
 }
 
-.coin{
+.coin {
   width: fit-content;
   height: fit-content;
   position: relative;
@@ -26,22 +26,22 @@
   display: block;
 }
 
-.coin-image-container{
-  position:relative;
+.coin-image-container {
+  position: relative;
   width: fit-content;
   height: fit-content;
 }
 
-img{
+img {
   width: auto;
   height: 8rem;
 }
 
-.level-name-container{
-  font-size:1.3rem;
+.level-name-container {
+  font-size: 1.3rem;
 }
 
-.coin-connectors{
+.coin-connectors {
   position: absolute;
   top: 0;
   left: 0;
@@ -50,21 +50,21 @@ img{
   z-index: 1;
 }
 
-.coin-connectors svg{
+.coin-connectors svg {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: fit-content;
   z-index: 0;
   overflow: visible;
 }
 
-.line-animation{
+.line-animation {
   animation: lineFillAnimation 1s linear forwards;
 }
 
-.stars-container{
+.stars-container {
   position: relative;
   top: 0;
   left: 0;
@@ -78,6 +78,6 @@ img{
   }
 }
 
-button{
+button {
   z-index: 1000;
 }

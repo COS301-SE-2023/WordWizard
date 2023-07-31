@@ -7,8 +7,8 @@ import { IonicModule } from '@ionic/angular';
 import { ModalComponent } from './modal.component';
 
 @NgModule({
-  imports: [ CommonModule, FormsModule, IonicModule,],
-  declarations: [ModalComponent ],
-  exports: [ModalComponent ]
+  imports: [CommonModule, FormsModule, IonicModule],
+  declarations: [ModalComponent],
+  exports: [ModalComponent],
 })
 export class ModalModule {}

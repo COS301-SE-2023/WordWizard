@@ -2,12 +2,7 @@
 import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 
-import {
-  Badge,
-  Child,
-  Picture,
-  Stats
-}from './modal.interface'
+import { Badge, Child, Picture, Stats } from './modal.interface';
 
 @Component({
   selector: 'ww-modal',
@@ -15,51 +10,45 @@ import {
   styleUrls: ['./modal.component.scss'],
 })
 export class ModalComponent implements OnInit {
-
-  @Input() badge? : Badge;
-  @Input() child? : Child;
-  @Input() picture? : Picture;
-  @Input() stats? : Stats;
+  @Input() badge?: Badge;
+  @Input() child?: Child;
+  @Input() picture?: Picture;
+  @Input() stats?: Stats;
   @Input() isModalOpen = false;
 
-  title = "";
+  title = '';
 
   @Output() close: EventEmitter<boolean> = new EventEmitter();
 
+  constructor(private modalController: ModalController) {}
 
-  constructor(private modalController: ModalController) {
-  }
-  
   async ngOnInit() {
-
     await this.sleep(1000);
-    if (this.badge)
-    {
-      this.title = "Achievement";
-      if (this.badge.img == "https://ww-img-bucket.s3.amazonaws.com/ww-awards/Blankbadge.png") {
-        this.badge.name = "Locked";    
+    if (this.badge) {
+      this.title = 'Achievement';
+      if (
+        this.badge.img ==
+        'https://ww-img-bckt.s3.amazonaws.com/ww-awards/Blankbadge.png'
+      ) {
+        this.badge.name = 'Locked';
       }
     }
-    
-    if (this.child)
-    {
+
+    if (this.child) {
       // this.title = this.child.username;
-      this.title = "Manage Child";
+      this.title = 'Manage Child';
     }
-  
-    if (this.picture)
-    {
-      this.title = "Choose a picture";
+
+    if (this.picture) {
+      this.title = 'Choose a picture';
     }
-  
-    if (this.stats)
-    {
-      this.title = "Results";
+
+    if (this.stats) {
+      this.title = 'Results';
     }
-    
   }
 
-  closeModal(){
+  closeModal() {
     this.close.emit(false);
   }
 
@@ -77,12 +66,10 @@ export class ModalComponent implements OnInit {
       },
     });
 
-  
     await modal.present();
   }
 
   async sleep(ms: number) {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
-
 }

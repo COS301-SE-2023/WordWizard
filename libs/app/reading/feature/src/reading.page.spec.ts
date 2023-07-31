@@ -1,4 +1,3 @@
-
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReadingPage } from './reading.page';
 import { NgxsModule } from '@ngxs/store';
@@ -12,10 +11,7 @@ describe('ReadingPage', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        NgxsModule.forRoot([]),
-        ReadingModule
-      ],
+      imports: [NgxsModule.forRoot([]), ReadingModule],
       providers: [
         {
           provide: ActivatedRoute,
@@ -28,8 +24,7 @@ describe('ReadingPage', () => {
           },
         },
       ],
-    })
-    .compileComponents();
+    }).compileComponents();
   });
 
   beforeEach(() => {

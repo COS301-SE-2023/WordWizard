@@ -14,6 +14,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class SplashRouting {
-    
-}
+export class SplashRouting {}

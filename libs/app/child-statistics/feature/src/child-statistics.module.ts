@@ -9,7 +9,6 @@ import { SharedUiModule } from '@word-wizard/app/shared-ui';
 import { NgxsModule } from '@ngxs/store';
 import { ChildState, ChildService } from '@word-wizard/app/child/data-access';
 
-
 @NgModule({
   imports: [
     CommonModule,
@@ -18,7 +17,7 @@ import { ChildState, ChildService } from '@word-wizard/app/child/data-access';
     SharedUiModule,
     NgxsModule.forFeature([ChildState]),
     HttpClientModule,
-  ],  
+  ],
   declarations: [ChildStatisticsPage],
   providers: [ChildStatisticsService, ChildService],
 })

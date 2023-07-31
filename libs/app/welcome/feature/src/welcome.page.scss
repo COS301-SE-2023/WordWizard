@@ -1,4 +1,4 @@
-#container{
+#container {
   height: 100vh;
   width: 100vw;
   display: flex;
@@ -20,16 +20,16 @@
     align-items: center;
     position: absolute;
     .logo {
-      margin-top:1.3rem;
-      img{
+      margin-top: 1.3rem;
+      img {
         width: 15rem;
         height: 15rem;
       }
     }
     .hat {
       position: absolute;
-      top:-30%;
-      left:50%;
+      top: -30%;
+      left: 50%;
       transform: translate(3%);
       img {
         transform: rotate(24deg);
@@ -37,7 +37,7 @@
       width: 15rem;
       height: 12rem;
       border-radius: 50%;
-      z-index:2;
+      z-index: 2;
     }
     .title {
       color: #070527;
@@ -63,7 +63,7 @@
         --background: #070527;
         width: 18.5rem;
         height: 3.5rem;
-        color: #FFF;
+        color: #fff;
         font-size: 1.5rem;
         font-family: Inter;
         font-style: normal;

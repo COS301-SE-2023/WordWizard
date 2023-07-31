@@ -5,8 +5,8 @@ import { IonicModule } from '@ionic/angular';
 import { InfoComponent } from './info.component';
 
 @NgModule({
-  imports: [ CommonModule, FormsModule, IonicModule,],
-  declarations: [InfoComponent ],
-  exports: [InfoComponent ]
+  imports: [CommonModule, FormsModule, IonicModule],
+  declarations: [InfoComponent],
+  exports: [InfoComponent],
 })
 export class InfoModule {}

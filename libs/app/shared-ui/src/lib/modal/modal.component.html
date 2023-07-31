@@ -1,33 +1,38 @@
 <div class="container" *ngIf="isModalOpen">
   <div class="modal">
-    <img class="wizard-bottom" [src]="'https://ww-img-bucket.s3.amazonaws.com/WizzyFlipped.png'" alt="WizzyFlipped" />
+    <img
+      class="wizard-bottom"
+      [src]="'https://ww-img-bckt.s3.amazonaws.com/WizzyFlipped.png'"
+      alt="WizzyFlipped" />
     <!-- <ion-modal [isOpen]="isModalOpen" [initialBreakpoint]="0.25"> -->
 
-      <div class="header">
-        <div class="filler"></div>
-        <div class="title"><h2>{{title}}</h2></div>
-          <button (click)="closeModal()">
-            <ion-icon name="close"></ion-icon>
-          </button>
+    <div class="header">
+      <div class="filler"></div>
+      <div class="title">
+        <h2>{{ title }}</h2>
+      </div>
+      <button (click)="closeModal()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </div>
+
+    <div class="content">
+      <div *ngIf="badge" class="badge-modal">
+        <!-- Badge specific content -->
+        <div class="award-picture-container">
+          <img [src]="badge.img" alt="Award Picture" class="award-picture" />
+        </div>
+        <h2>{{ badge.name }}</h2>
+        <p>{{ badge.description }}</p>
       </div>
 
-      <div class="content">
-          <div *ngIf="badge" class="badge-modal">
-            <!-- Badge specific content -->
-            <div class="award-picture-container">
-              <img [src]="badge.img" alt="Award Picture" class="award-picture" >
-            </div>
-            <h2>{{badge.name}} </h2>
-            <p> {{badge.description}} </p>
-          </div>
-          
-          <div *ngIf="stats" class="stats-modal">
-            <!-- Reading specific content -->
-          </div>
-          
-          <div *ngIf="picture" class="picture-modal">
-            <!-- Picture specific content -->
-            <!-- <div class="overlay-container" [class.hidden-overlay]="!visible"> 
+      <div *ngIf="stats" class="stats-modal">
+        <!-- Reading specific content -->
+      </div>
+
+      <div *ngIf="picture" class="picture-modal">
+        <!-- Picture specific content -->
+        <!-- <div class="overlay-container" [class.hidden-overlay]="!visible"> 
               <div class="overlay">
                   <div class="selected-outer">
                       <div class="selected-image">
@@ -68,16 +73,23 @@
                       </ion-row>
                   </ion-grid>
               </div> -->
-
-          </div>
-          
-          <div *ngIf="child" class="child-modal">
-            <!-- View specific content -->
-              <ion-button class="continue-btn" expand="block" routerLink="../dashboard"> Continue as {{child.username}}</ion-button>
-              <ion-button class="progress-btn" expand="block" routerLink="../view-child"> View Progress</ion-button>
-          </div>
       </div>
-   
-  </div> 
-  
+
+      <div *ngIf="child" class="child-modal">
+        <!-- View specific content -->
+        <ion-button
+          class="continue-btn"
+          expand="block"
+          routerLink="../dashboard">
+          Continue as {{ child.username }}</ion-button
+        >
+        <ion-button
+          class="progress-btn"
+          expand="block"
+          routerLink="../view-child">
+          View Progress</ion-button
+        >
+      </div>
+    </div>
+  </div>
 </div>

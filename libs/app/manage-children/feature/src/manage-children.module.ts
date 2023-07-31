@@ -11,9 +11,9 @@ import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 
 @NgModule({
   imports: [
-    CommonModule, 
+    CommonModule,
     IonicModule,
-    ManageChildrenRouting, 
+    ManageChildrenRouting,
     SharedUiModule,
     NgxsModule.forFeature([ChildState]),
     HttpClientModule,
@@ -28,8 +28,6 @@ import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
     }),
   ],
   declarations: [ManageChildrenPage],
-  providers: [ChildService, JwtHelperService]
+  providers: [ChildService, JwtHelperService],
 })
-export class ManageChildrenModule {
-
-}
+export class ManageChildrenModule {}

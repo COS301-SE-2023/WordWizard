@@ -5,8 +5,8 @@ import { IonicModule } from '@ionic/angular';
 import { ButtonComponent } from './button.component';
 
 @NgModule({
-  imports: [ CommonModule, FormsModule, IonicModule,],
+  imports: [CommonModule, FormsModule, IonicModule],
   declarations: [ButtonComponent],
-  exports: [ButtonComponent]
+  exports: [ButtonComponent],
 })
 export class ButtonModule {}

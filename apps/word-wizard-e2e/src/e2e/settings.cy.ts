@@ -1,15 +1,24 @@
 /* eslint-disable */
 describe('word-wizard/settings', () => {
   beforeEach(() => {
-    cy.viewport('iphone-6')
+    cy.viewport('iphone-6');
     cy.visit('/');
 
-    cy.get('ion-button').click();
-    cy.get('input#username').type(Cypress.env('auth_username'));
-    cy.get('input#password').type(Cypress.env('auth_password'), {log: false});
-    cy.contains('button', 'Continue').click({force: true});
-    cy.url().should('equal', 'http://localhost:4200/welcome');
+    cy.url().then((url) => {
+      if (url.includes('welcome')) {
+        cy.get('ion-button').click();
+      }
+    });
 
+    cy.get('input#username').type(Cypress.env('auth_username'));
+    cy.get('input#password').type(Cypress.env('auth_password'), { log: false });
+    cy.contains('button', 'Continue').click({ force: true });
+
+    cy.get('button').then(($btn) => {
+      if ($btn.text() === 'Accept') {
+        cy.get('button').contains('Accept').click();
+      }
+    });
   });
 
   it('should load the settings page', () => {
@@ -38,7 +47,9 @@ describe('word-wizard/settings', () => {
 
     cy.get('.img-item').first().click();
 
-    cy.get('.profile-img img').should('have.attr', 'src').should('not.be.empty');
+    cy.get('.profile-img img')
+      .should('have.attr', 'src')
+      .should('not.be.empty');
   });
 
   it('should fill in input fields and save changes', () => {
@@ -50,6 +61,4 @@ describe('word-wizard/settings', () => {
 
     cy.contains('ww-button', 'Save Changes').click();
   });
-
-
 });

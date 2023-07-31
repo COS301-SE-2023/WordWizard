@@ -1,118 +1,118 @@
 .box {
-    width: 100%; /* Set the desired width */
-    height: 150px; /* Set the desired height */
-    background: transparent url('../../../../../../apps/word-wizard/src/assets/img/item/cauldron-cropped.png') no-repeat center center;
-    background-size: contain;
-    border: none; /* Remove the button border */
-    padding-top: 10%;
-    // align-items: end;
-  }
+  width: 100%; /* Set the desired width */
+  height: 150px; /* Set the desired height */
+  background: transparent
+    url('../../../../../../apps/word-wizard/src/assets/img/item/cauldron-cropped.png')
+    no-repeat center center;
+  background-size: contain;
+  border: none; /* Remove the button border */
+  padding-top: 10%;
+  // align-items: end;
+}
 
-.definition{
+.definition {
   padding-left: 20%;
   padding-right: 20%;
 }
 
+.transparent-background {
+  --background: transparent;
+}
+.transparent-background * {
+  background: transparent !important;
+}
 
-  .transparent-background{
-    --background: transparent;
-  }
-  .transparent-background * {
-    background: transparent !important;
-  }
+.word {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 800;
+  font-size: 2rem;
+  line-height: 24px;
+  color: #ffffff;
+}
 
+ion-modal#example-modal {
+  --width: 100%;
+  // --min-width: 250px;
+  --height: auto;
+  --border-radius: 6px;
+  // --box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);
 
-    .word{
-      font-family: 'Inter';
-      font-style: normal;
-      font-weight: 800;
-      font-size: 2rem;
-      line-height: 24px;
-      color: #ffffff;
-    }
+  // --backdrop-opacity: 0;
+  pointer-events: none;
+  --border-width: 0;
+  --box-shadow: none;
+  --ion-background-color: transparent;
+}
 
-  ion-modal#example-modal {
-    --width: 100%;
-    // --min-width: 250px;
-    --height: auto;
-    --border-radius: 6px;
-    // --box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);
+ion-modal#example-modal h1 {
+  margin: 20px 20px 10px 20px;
+}
 
-    // --backdrop-opacity: 0;
-    pointer-events: none;
-    --border-width: 0;
-    --box-shadow: none;
-    --ion-background-color: transparent;
-  }
+ion-modal#example-modal ion-icon {
+  margin-right: 6px;
 
-  ion-modal#example-modal h1 {
-    margin: 20px 20px 10px 20px;
-  }
+  width: 48px;
+  height: 48px;
 
-  ion-modal#example-modal ion-icon {
-    margin-right: 6px;
+  padding: 4px 0;
 
-    width: 48px;
-    height: 48px;
+  color: #aaaaaa;
+}
 
-    padding: 4px 0;
+ion-modal#example-modal .wrapper {
+  width: 100%;
+  margin-bottom: 10px;
+  padding-top: 50%;
+}
 
-    color: #aaaaaa;
-  }
+.empty-bottle {
+  --background: url(../../../../../../apps/word-wizard/src/assets/img/item/potion-empty-cropped.png)
+    0 0/100% 100% no-repeat;
+}
 
-  ion-modal#example-modal .wrapper {
-    width: 100%;
-    margin-bottom: 10px;
-    padding-top: 50%;
-  }
+.full-bottle {
+  --background: url(../../../../../../apps/word-wizard/src/assets/img/item/potion-full-cropped.png)
+    0 0/100% 100% no-repeat;
+}
 
-  .empty-bottle {
-    --background: url(../../../../../../apps/word-wizard/src/assets/img/item/potion-empty-cropped.png) 0 0/100% 100% no-repeat;
-  }
+ion-button {
+  background: transparent;
+  padding: 0% !important;
+}
 
-  .full-bottle {
-    --background: url(../../../../../../apps/word-wizard/src/assets/img/item/potion-full-cropped.png) 0 0/100% 100% no-repeat;
-  }
+ion-item {
+  background: transparent !important;
+}
 
-  ion-button {
-    background: transparent;
-    padding: 0% !important;
-  }
+ion-item ion-label {
+  text-align: center;
+}
 
-  ion-item  {
-    background: transparent !important;
-  }
+ion-list {
+  background: transparent !important;
+  // --color: #000000;
+  // opacity: 0.5;
+}
 
-  ion-item ion-label {
-    text-align: center;
-  }
+ion-col {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  ion-list {
-    background: transparent !important;
-    // --color: #000000;
-    // opacity: 0.5;
-  }
+h1.word {
+  text-align: center;
+  color: #000000 !important;
+  font-size: 3rem;
+}
 
-  ion-col {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+ww-microphone {
+  margin: 10px;
+  padding-bottom: 5%;
+}
 
-  h1.word {
-    text-align: center;
-    color: #000000 !important;
-    font-size:3rem;
-
-  }
-
-  ww-microphone {
-    margin: 10px;
-    padding-bottom: 5%;
-  }
-
-  ww-speaker {
-    margin: 10px;
-    padding-bottom: 5%;
-  }
-
+ww-speaker {
+  margin: 10px;
+  padding-bottom: 5%;
+}
