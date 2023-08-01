@@ -30,7 +30,8 @@ The system is designed to adapt to each user's level of proficiency and learning
 - [Standards Documentation.pdf](https://github.com/COS301-SE-2023/WordWizard/files/12221562/Standards.Documentation.pdf)
 
 ## Architecture Doc.
-- [DEMO ~ 3 Architecture.pdf](https://github.com/COS301-SE-2023/WordWizard/files/12221598/DEMO.3.Architecture.pdf)
+- [DEMO__3_Architecture.pdf](https://github.com/COS301-SE-2023/WordWizard/files/12224870/DEMO__3_Architecture.pdf)
+
 
 ## Usability Questionnaire (Tentative)
 - [COS 301 Usability Questionnaire_ WordWizard.pdf](https://github.com/COS301-SE-2023/WordWizard/files/12221610/COS.301.Usability.Questionnaire_.WordWizard.pdf)
