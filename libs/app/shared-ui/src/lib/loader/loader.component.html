@@ -1,7 +1,7 @@
-<div class="animation-container">
+<div class="animation-container" *ngIf="visible">
   <div class="loader">
       <!-- <img src="hourglass-cropped.png" alt=""> -->
       <img src="assets/img/hourglass-cropped.png" alt="">
   </div>
-  <p>Loading...</p>
+  <p>{{message}}</p>
 </div>
