@@ -56,7 +56,7 @@ export interface ReadingStateModel {
         },
         Word: {
           current: 0,
-          attemptsRemaining: 5,
+          attemptsRemaining: 2,
         },
         level: 1,
         status: false,
@@ -152,7 +152,7 @@ export class ReadingState {
           }
 
           if (Word.current === focus.length) {
-            Word.attemptsRemaining = 5;
+            Word.attemptsRemaining = 2;
             draft.Passage.model.Content.done = true;
           }
         }
