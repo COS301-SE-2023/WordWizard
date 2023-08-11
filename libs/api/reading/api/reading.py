@@ -3,6 +3,7 @@ from ..util.reading_models import PassageRqst, Content, Word, Progress, UpdatePr
 from ..util.markov import MarkovChain
 from bson import ObjectId
 from ...deps import Database
+import random
 
 db = Database.getInstance().db
 router = APIRouter()
@@ -10,14 +11,8 @@ markov = MarkovChain()
 
 @router.post('/passage')
 def create_reading(reading: PassageRqst):
-    lesson_collection = db['Lessons']
-    lesson = lesson_collection.find_one({'level':reading.level})
-    passage = (lesson['part3'])['passage'].split()
-    words = [Word(word=word, correct=None) for word in passage]
-    words[passage.index((lesson['part1'])['hard_word'])].imageURL = (lesson['part1'])['image']
-    words[passage.index((lesson['part2'])['hard_word'])].imageURL = (lesson['part2'])['image']
-    data = Content(passage=words, focusWordsIndex=[passage.index((lesson['part1'])['hard_word']), passage.index((lesson['part2'])['hard_word'])])
-    return data
+    words = [Word(word=word, imageURL="img", correct=None) for word in markov.generate_passage(reading.level * 3, priority_words=["fox"]).split()]
+    return Content(passage=words, focusWordsIndex=random.sample(range(len(words)), k=2))
 
 @router.post('/update-progress')
 def update_progress(updtProgress: UpdateProgressRqst):
