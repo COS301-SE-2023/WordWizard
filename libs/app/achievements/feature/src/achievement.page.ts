@@ -3,7 +3,7 @@ import { AwardSection, AchievementService } from '@word-wizard/app/achievements/
 import { Observable } from 'rxjs';
 import { Select, Store } from '@ngxs/store';
 import { 
-  SetChild,
+
   ChildState,
   Child
 } from '@word-wizard/app/child/data-access';
@@ -54,7 +54,7 @@ export class AchievementPage {
 
           this.childProfilePictureSrc = child.profile_photo;
         }
-        // this.loadAwards('64aea0695102acb3adb889ad');
+
       }
     });
 
@@ -64,13 +64,7 @@ export class AchievementPage {
     });
   }
 
-  // getBadge(categoryName: string, award: any): Badge {
-  //   return {
-  //     img: award.completed ? award.img : 'https://ww-img-bucket.s3.amazonaws.com/ww-awards/Blankbadge.png',
-  //     name: categoryName,
-  //     description: award.description,
-  //   };
-  // }  
+
 
 
   loadAwards(id:string) {
