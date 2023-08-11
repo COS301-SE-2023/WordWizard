@@ -1,15 +1,12 @@
 from fastapi import APIRouter
 from ..util.reading_models import PassageRqst, Content, Word, Progress, UpdateProgressRqst
-import os
-from dotenv import load_dotenv
-from pymongo import MongoClient
-from dataclasses import dataclass
+from ..util.markov import MarkovChain
 from bson import ObjectId
-load_dotenv()
+from ...deps import Database
 
-client = MongoClient(os.getenv("MONGODB_CONNECTION_STRING"))
-db = client["WordWizardDB"]
+db = Database.getInstance().db
 router = APIRouter()
+markov = MarkovChain()
 
 @router.post('/passage')
 def create_reading(reading: PassageRqst):
@@ -21,7 +18,6 @@ def create_reading(reading: PassageRqst):
     words[passage.index((lesson['part2'])['hard_word'])].imageURL = (lesson['part2'])['image']
     data = Content(passage=words, focusWordsIndex=[passage.index((lesson['part1'])['hard_word']), passage.index((lesson['part2'])['hard_word'])])
     return data
-
 
 @router.post('/update-progress')
 def update_progress(updtProgress: UpdateProgressRqst):
@@ -108,8 +104,7 @@ def update_progress(updtProgress: UpdateProgressRqst):
         progress_collection.update_one({'_id': ObjectId(updtProgress.child_id)}, {"$set": progress})
         return {"status": "success"}
     return {"status": "failed"}
-    
-    
+  
 def add_practice(userID, word):
     if check_duplicate_words(db["Practice"], userID, word):
         return False
