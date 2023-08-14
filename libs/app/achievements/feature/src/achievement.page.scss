@@ -42,13 +42,14 @@
   padding: 10px;
   margin-left: 0%;
   text-align: center;
+  font-size: 2rem;
 }
 
 .awards-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 10px;
-  // margin-left: 10%;
+  margin-bottom: 5%;
 }
 
 .award-item {
@@ -61,6 +62,7 @@
   align-items: center;
   justify-content: center;
   margin-left: 4vw;
+  margin-bottom: 1.7vh;
 }
 
 .award-image {
@@ -81,4 +83,8 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+  
+.section-container:last-of-type{
+  margin-bottom:15%;
 }

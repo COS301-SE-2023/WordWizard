@@ -5,6 +5,8 @@ ion-header {
   ion-icon {
     margin-left: 0.5rem;
     margin-right: 0.5rem;
+    color: white;
+    font-size: 64px;
   }
 
   ion-title {
@@ -13,8 +15,9 @@ ion-header {
     color: white;
   }
 
-  a {
-    color: white;
+  a{
+    color: white;  
+
   }
 
   #header-content {

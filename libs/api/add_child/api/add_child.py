@@ -109,28 +109,28 @@ def create_progress(child_id):
             "Level Master": {
                 "Level 1 Conqueror": {
                     "goal": 1,
-                    "progress": 3,
+                    "progress": 0,
                     "description": "Complete level 1",
                     "completed": False,
                     "img": "https://ww-img-bckt.s3.amazonaws.com/ww-awards/caldron.jpg"
                 },
                 "Level 5 Prodigy": {
                     "goal": 5,
-                    "progress": 3,
+                    "progress": 0,
                     "description": "Complete level 5",
                     "completed": False,
                     "img": "https://ww-img-bckt.s3.amazonaws.com/ww-awards/crown.jpg"
                 },
                 "Level 10 Guru": {
                     "goal": 10,
-                    "progress": 3,
+                    "progress": 0,
                     "description": "Complete level 10",
                     "completed": False,
                     "img": "https://ww-img-bckt.s3.amazonaws.com/ww-awards/diamond_bracelet1.jpg"
                 },
                 "WordWizard Legend": {
                     "goal": 20,
-                    "progress": 3,
+                    "progress": 0,
                     "description": "Complete level 20",
                     "completed": False,
                     "img": "https://ww-img-bckt.s3.amazonaws.com/ww-awards/diamond_necklace1.jpg"
@@ -138,90 +138,90 @@ def create_progress(child_id):
             },
             "Word Learner": {
                 "Word Novice": {
-                    "goal": 10,
-                    "progress": 6,
-                    "description": "Learn 10 new words",
+                    "goal": 25,
+                    "progress": 0,
+                    "description": "Learn 25 new words",
                     "completed": False,
                     "img": "https://ww-img-bckt.s3.amazonaws.com/ww-awards/diamond_ring1.jpg"
                 },
                 "Word Apprentice": {
-                    "goal": 14,
-                    "progress": 6,
-                    "description": "Learn 14 new words",
+                    "goal": 50,
+                    "progress": 0,
+                    "description": "Learn 50 new words",
                     "completed": False,
                     "img": "https://ww-img-bckt.s3.amazonaws.com/ww-awards/diamond_ring2.jpg"
                 },
                 "Word Connoisseur": {
-                    "goal": 18,
-                    "progress": 6,
-                    "description": "Learn 18 new words",
+                    "goal": 100,
+                    "progress": 0,
+                    "description": "Learn 100 new words",
                     "completed": False,
                     "img": "https://ww-img-bckt.s3.amazonaws.com/ww-awards/diamond_shoe.jpg"
                 },
                 "Word Wizard": {
-                    "goal": 22,
-                    "progress": 6,
-                    "description": "Learn 22 new words",
+                    "goal": 200,
+                    "progress": 0,
+                    "description": "Learn 200 new words",
                     "completed": False,
                     "img": "https://ww-img-bckt.s3.amazonaws.com/ww-awards/emerald_necklace.jpg"
                 }
             },
             "Practice Enthusiast": {
                 "Practice Starter": {
-                    "goal": 5,
-                    "progress": 5,
-                    "description": "Have 5 words in your practice list",
+                    "goal": 25,
+                    "progress": 0,
+                    "description": "Have 25 words in your practice list",
                     "completed": False,
                     "img": "https://ww-img-bckt.s3.amazonaws.com/ww-awards/emerald_ring.jpg"
                 },
                 "Practice Explorer": {
-                    "goal": 10,
-                    "progress": 5,
-                    "description": "Have 10 words in your practice list",
+                    "goal": 50,
+                    "progress": 0,
+                    "description": "Have 50 words in your practice list",
                     "completed": False,
                     "img": "https://ww-img-bckt.s3.amazonaws.com/ww-awards/glassAward.jpg"
                 },
                 "Practice Devotee": {
-                    "goal": 15,
-                    "progress": 5,
-                    "description": "Have 15 words in your practice list",
+                    "goal": 100,
+                    "progress": 0,
+                    "description": "Have 100 words in your practice list",
                     "completed": False,
                     "img": "https://ww-img-bckt.s3.amazonaws.com/ww-awards/goblet.jpg"
                 },
                 "Practice Champion": {
-                    "goal": 20,
-                    "progress": 5,
-                    "description": "Have 20 words in your practice list",
+                    "goal": 200,
+                    "progress": 0,
+                    "description": "Have 200 words in your practice list",
                     "completed": False,
                     "img": "https://ww-img-bckt.s3.amazonaws.com/ww-awards/necklace.jpg"
                 }
             },
             "Vocabulary Builder": {
                 "Vocabulary Starter": {
-                    "goal": 10,
-                    "progress": 5,
-                    "description": "Build a vocabulary of 10 words",
+                    "goal": 25,
+                    "progress": 0,
+                    "description": "Build a vocabulary of 25 words",
                     "completed": False,
                     "img": "https://ww-img-bckt.s3.amazonaws.com/ww-awards/potion_bottle.jpg"
                 },
                 "Vocabulary Explorer": {
-                    "goal": 20,
-                    "progress": 5,
-                    "description": "Build a vocabulary of 20 words",
+                    "goal": 50,
+                    "progress": 0,
+                    "description": "Build a vocabulary of 50 words",
                     "completed": False,
                     "img": "https://ww-img-bckt.s3.amazonaws.com/ww-awards/ruby_ring.jpg"
                 },
                 "Vocabulary Devotee": {
-                    "goal": 50,
-                    "progress": 5,
-                    "description": "Build a vocabulary of 50 words",
+                    "goal": 100,
+                    "progress": 0,
+                    "description": "Build a vocabulary of 100 words",
                     "completed": False,
                     "img": "https://ww-img-bckt.s3.amazonaws.com/ww-awards/totemAward.jpg"
                 },
                 "Vocabulary Champion": {
-                    "goal": 100,
-                    "progress": 5,
-                    "description": "Build a vocabulary of 100 words",
+                    "goal": 200,
+                    "progress": 0,
+                    "description": "Build a vocabulary of 200 words",
                     "completed": False,
                     "img": "https://ww-img-bckt.s3.amazonaws.com/ww-awards/wiazard_hat_2.jpg"
                 }
