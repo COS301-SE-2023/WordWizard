@@ -6,27 +6,25 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-
-  @Input() title! : string;
-  @Input() backRoute! : string;
-  @Input() settingsActive! : boolean;
-  @Input() settingsRoute! : string;
+  @Input() title!: string;
+  @Input() backRoute!: string;
+  @Input() settingsActive!: boolean;
+  @Input() settingsRoute!: string;
   @Input() font!: boolean;
   @Output() settingsClick = new EventEmitter();
-  backActive! : boolean;
+  backActive!: boolean;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {}
 
   ngOnInit() {
-    if(this.backRoute != ''){
+    if (this.backRoute != '') {
       this.backActive = true;
-    }else{
+    } else {
       this.backActive = false;
     }
   }
 
-  fontChange(){
+  fontChange() {
     this.settingsClick.emit();
   }
-
 }

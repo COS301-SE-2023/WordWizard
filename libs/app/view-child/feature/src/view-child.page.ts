@@ -2,11 +2,15 @@ import { Component } from '@angular/core';
 import {
   SetChild,
   ChildState,
-  Child
+  Child,
 } from '@word-wizard/app/child/data-access';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { StageService, getLevelsResponse, levelsRequest } from '@word-wizard/app/stage/data-access';
+import {
+  StageService,
+  getLevelsResponse,
+  levelsRequest,
+} from '@word-wizard/app/stage/data-access';
 
 @Component({
   selector: 'word-wizard-view-child',
@@ -24,25 +28,24 @@ export class ViewChildPage {
     vocab_list: '',
     practice_list: '',
     progress: '',
-    profile_photo : 'assets/img/item/cauldron-cropped.png',
+    profile_photo: 'assets/img/item/cauldron-cropped.png',
   };
 
   stage = 0;
 
   constructor(private store: Store, private stageService: StageService) {
     this.currentChild$.subscribe((data) => {
-
-      if (data !==  undefined && data._id !== '') {
+      if (data !== undefined && data._id !== '') {
         this.child = data;
         const rqst: levelsRequest = {
-          progress_id: data._id
-        }
-        this.stageService.getStage(rqst).subscribe((data : getLevelsResponse) => {
-          this.stage = data.levels.findIndex((num) => num === 0) + 1;
-        })
-
+          progress_id: data._id,
+        };
+        this.stageService
+          .getStage(rqst)
+          .subscribe((data: getLevelsResponse) => {
+            this.stage = data.levels.findIndex((num) => num === 0) + 1;
+          });
       }
-    })
+    });
   }
-
 }

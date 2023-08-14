@@ -1,13 +1,13 @@
-import { WordList } from "../interfaces/library.interfaces";
+import { WordList } from '../interfaces/library.interfaces';
 
 export interface PracticeResponse {
-    practiceList: WordList;
+  practiceList: WordList;
 }
 
 export interface VocabResponse {
-    vocabList: WordList;
+  vocabList: WordList;
 }
 
 export interface UpdateResponse {
-    status: string;
+  status: string;
 }

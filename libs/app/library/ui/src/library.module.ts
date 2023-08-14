@@ -4,17 +4,8 @@ import { CommonModule } from '@angular/common';
 import { ScrollModule } from './scroll';
 import { CauldronModule } from './cauldron';
 
-
 @NgModule({
-  imports: [
-    CommonModule, 
-    IonicModule,
-    ScrollModule,
-    CauldronModule ,
-  ],
-  exports: [ 
-    ScrollModule,
-    CauldronModule ,
-  ],
+  imports: [CommonModule, IonicModule, ScrollModule, CauldronModule],
+  exports: [ScrollModule, CauldronModule],
 })
 export class LibraryModule {}

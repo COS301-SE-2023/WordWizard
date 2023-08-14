@@ -1,4 +1,7 @@
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import {
+  HttpClientTestingModule,
+  HttpTestingController,
+} from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { VoiceRecognitionService } from './voice-recognition.service';
 
@@ -29,7 +32,9 @@ describe('VoiceRecognitionService', () => {
     service.convertSpeechToText(file).subscribe((response) => {
       expect(response).toEqual(expectedResponse);
     });
-    const req = httpMock.expectOne(`${process.env['WW_API_ENDPOINT']}/speech/speech-to-text`);
+    const req = httpMock.expectOne(
+      `${process.env['WW_API_ENDPOINT']}/speech/speech-to-text`,
+    );
     expect(req.request.method).toBe('POST');
     expect(req.request.body instanceof FormData).toBeTruthy();
     expect(req.request.body.get('file')).toEqual(file);

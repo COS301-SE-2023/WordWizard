@@ -11,16 +11,15 @@ import { ChildState, ChildService } from '@word-wizard/app/child/data-access';
 import { ChildSettingsService } from '@word-wizard/app/child-settings/data-access';
 import { AddChildService } from '@word-wizard/app/add-child/data-access';
 
-
 @NgModule({
   imports: [
-    CommonModule, 
-    ChildSettingsRouting, 
-    IonicModule, 
-    ReactiveFormsModule, 
+    CommonModule,
+    ChildSettingsRouting,
+    IonicModule,
+    ReactiveFormsModule,
     SharedUiModule,
     NgxsModule.forFeature([ChildState]),
-    HttpClientModule
+    HttpClientModule,
   ],
   declarations: [ChildSettingsPage],
   providers: [ChildService, AddChildService, ChildSettingsService],

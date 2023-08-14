@@ -18,22 +18,18 @@ const redirect_uri = `${window.location.origin}`;
     IonicModule.forRoot(),
     CoreRouting,
     NoopAnimationsModule,
-    NgxsModule.forRoot([
-
-    ]),
+    NgxsModule.forRoot([]),
     AuthModule.forRoot({
       domain: `${process.env['WW_AUTH0_DOMAIN']}`,
       clientId: `${process.env['WW_AUTH0_CLIENT_ID']}`,
       useRefreshTokens: true,
       useRefreshTokensFallback: false,
       authorizationParams: {
-        redirect_uri
-      }
+        redirect_uri,
+      },
     }),
   ],
-  providers: [
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-  ],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [CoreShell],
 })
-export class CoreModule { }
+export class CoreModule {}

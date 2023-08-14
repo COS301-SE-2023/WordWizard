@@ -6,18 +6,14 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./progress-potion.component.scss'],
 })
 export class ProgressPotionComponent {
-
   @Input() percentage!: string;
   temp!: string;
 
   ngOnInit() {
-
     this.temp = this.percentage;
     this.percentage = '0%';
     setTimeout(() => {
       this.percentage = this.temp;
     }, 250);
   }
-
-
 }

@@ -7,13 +7,15 @@ const routes: Routes = [
   {
     path: 'dashboard',
     loadChildren: () =>
-      import('@word-wizard/app/dashboard/feature').then((m) => m.DashboardModule),
+      import('@word-wizard/app/dashboard/feature').then(
+        (m) => m.DashboardModule,
+      ),
     canActivate: [AuthGuard],
   },
   {
-    path:'',
+    path: '',
     redirectTo: 'welcome',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'reading',
@@ -36,13 +38,17 @@ const routes: Routes = [
   {
     path: 'add-child',
     loadChildren: () =>
-      import('@word-wizard/app/add-child/feature').then((m) => m.AddChildModule),
+      import('@word-wizard/app/add-child/feature').then(
+        (m) => m.AddChildModule,
+      ),
     canActivate: [AuthGuard],
   },
   {
     path: 'manage-children',
     loadChildren: () =>
-      import('@word-wizard/app/manage-children/feature').then((m) => m.ManageChildrenModule),
+      import('@word-wizard/app/manage-children/feature').then(
+        (m) => m.ManageChildrenModule,
+      ),
     canActivate: [AuthGuard],
   },
   {
@@ -54,12 +60,16 @@ const routes: Routes = [
   {
     path: 'achievements',
     loadChildren: () =>
-      import('@word-wizard/app/achievements/feature').then((m) => m.AchievementModule),
+      import('@word-wizard/app/achievements/feature').then(
+        (m) => m.AchievementModule,
+      ),
   },
   {
     path: 'settings',
     loadChildren: () =>
-      import('@word-wizard/app/child-settings/feature').then((m) => m.ChildSettingsModule),
+      import('@word-wizard/app/child-settings/feature').then(
+        (m) => m.ChildSettingsModule,
+      ),
     canActivate: [AuthGuard],
   },
   {
@@ -70,16 +80,19 @@ const routes: Routes = [
   {
     path: 'child-statistics',
     loadChildren: () =>
-      import('@word-wizard/app/child-statistics/feature').then((m) => m.ChildStatisticsModule),
+      import('@word-wizard/app/child-statistics/feature').then(
+        (m) => m.ChildStatisticsModule,
+      ),
     canActivate: [AuthGuard],
   },
   {
     path: 'view-child',
     loadChildren: () =>
-      import('@word-wizard/app/view-child/feature').then((m) => m.ViewChildModule),
+      import('@word-wizard/app/view-child/feature').then(
+        (m) => m.ViewChildModule,
+      ),
     canActivate: [AuthGuard],
-  }
-
+  },
 ];
 
 @NgModule({

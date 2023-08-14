@@ -18,6 +18,6 @@ import { SharedUiModule } from '@word-wizard/app/shared-ui';
     SharedUiModule,
   ],
   declarations: [AddChildPage],
-  providers: [AddChildService]
+  providers: [AddChildService],
 })
 export class AddChildModule {}

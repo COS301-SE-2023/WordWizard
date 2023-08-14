@@ -5,14 +5,16 @@ import { AwardSection } from './interfaces/achievements.interfaces';
 import { map } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AchievementService {
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getAwards(userId: string): Observable<AwardSection[]> {
     const requestPayload = { child_id: userId };
-    return this.http.post<AwardSection[]>( `${process.env['WW_API_ENDPOINT']}/achievements`, requestPayload);
+    return this.http.post<AwardSection[]>(
+      `${process.env['WW_API_ENDPOINT']}/achievements`,
+      requestPayload,
+    );
   }
 }

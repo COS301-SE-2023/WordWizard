@@ -24,7 +24,7 @@ import { ModalModule } from './modal';
     InfoModule,
     HeaderModule,
     ButtonModule,
-    ModalModule
+    ModalModule,
   ],
 })
 export class SharedUiModule {}

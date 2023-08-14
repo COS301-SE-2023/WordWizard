@@ -13,8 +13,18 @@ import { HttpClientModule } from '@angular/common/http';
 import { SharedUiModule } from '@word-wizard/app/shared-ui';
 
 @NgModule({
-  imports: [ CommonModule, FormsModule, IonicModule, StageRouting, SharedUiModule, LocalSharedUi, RouterModule, HttpClientModule, NgxsModule.forFeature([StageState])],
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonicModule,
+    StageRouting,
+    SharedUiModule,
+    LocalSharedUi,
+    RouterModule,
+    HttpClientModule,
+    NgxsModule.forFeature([StageState]),
+  ],
   declarations: [StagePage],
-  providers: [StageService]
+  providers: [StageService],
 })
 export class StageModule {}
