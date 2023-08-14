@@ -5,16 +5,18 @@ ion-header{
   ion-icon{
     margin-left: 0.5rem;
     margin-right: 0.5rem;
+    color: white;
   }
 
   ion-title{
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: bold;
     color: white;
   }
 
   a{
-    color: white;   
+    color: white;  
+    font-weight: bold; 
   }
 
   #header-content{
