@@ -67,10 +67,13 @@ const routes: Routes = [
   {
     path: 'settings',
     loadChildren: () =>
-      import('@word-wizard/app/child-settings/feature').then(
-        (m) => m.ChildSettingsModule,
-      ),
-    canActivate: [AuthGuard],
+      import('@word-wizard/app/child-settings/feature').then((m) => m.ChildSettingsModule),
+      canActivate: [AuthGuard],
+  },
+  {
+    path: 'loading',
+    loadChildren: () =>
+      import('@word-wizard/app/loading/feature').then((m) => m.LoadingModule),
   },
   {
     path: 'splash',
