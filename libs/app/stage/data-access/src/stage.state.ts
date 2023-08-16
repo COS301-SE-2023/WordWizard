@@ -3,7 +3,7 @@ import { Action, Selector, State, StateContext, Select } from '@ngxs/store';
 import { SetStage, SetSelectedStage, UpdateStage } from './stage.actions';
 import { produce } from 'immer';
 import { StageService } from './stage.service';
-import { stage } from './interfaces/stage.interface';
+// import { stage } from './interfaces/stage.interface';
 import { levelsRequest } from './requests/stage.requests';
 import { getLevelsResponse } from './responses/stage.responses';
 import { ChildState, Child } from '@word-wizard/app/child/data-access';
