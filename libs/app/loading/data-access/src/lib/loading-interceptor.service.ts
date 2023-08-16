@@ -17,10 +17,10 @@ export class LoadingInterceptorService implements HttpInterceptor {
   constructor(private loadingService: LoadingService) {}
 
   intercept(
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // eslint-disable-next-line
     request: HttpRequest<any>,
     next: HttpHandler
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // eslint-disable-next-line
   ): Observable<HttpEvent<any>> {
     this.loadingService.show();
 
