@@ -1,3 +1,1 @@
-export * from './lib/loading.module';
-export * from './lib/loading.service';
-export * from './lib/loading-interceptor.service';
+export * from './lib/app-loading-data-access.module';
