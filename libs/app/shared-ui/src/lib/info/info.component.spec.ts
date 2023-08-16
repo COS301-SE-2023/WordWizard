@@ -9,9 +9,7 @@ describe('InfoComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [InfoComponent],
-      imports:[
-        IonicModule.forRoot(),
-      ]
+      imports: [IonicModule.forRoot()],
     }).compileComponents();
   });
 

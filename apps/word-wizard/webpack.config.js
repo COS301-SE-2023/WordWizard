@@ -12,7 +12,7 @@ function getClientEnvironment(configuration) {
       },
       {
         NODE_ENV: process.env.NODE_ENV || configuration,
-      }
+      },
     );
 
   return {
@@ -25,7 +25,7 @@ function getClientEnvironment(configuration) {
 
 module.exports = (config, options, context) => {
   config.plugins.push(
-    new webpack.DefinePlugin(getClientEnvironment(context.configuration))
+    new webpack.DefinePlugin(getClientEnvironment(context.configuration)),
   );
   return config;
 };

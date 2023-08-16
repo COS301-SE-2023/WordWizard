@@ -1,70 +1,109 @@
 import { Injectable } from '@angular/core';
-import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
-import { SetStage } from './stage.actions';
-import {produce} from 'immer';
+import { Action, Selector, State, StateContext, Select } from '@ngxs/store';
+import { SetStage, SetSelectedStage, UpdateStage } from './stage.actions';
+import { produce } from 'immer';
 import { StageService } from './stage.service';
-import { stage, stageRequest } from './interfaces/stage.interface';
+// import { stage } from './interfaces/stage.interface';
+import { levelsRequest } from './requests/stage.requests';
+import { getLevelsResponse } from './responses/stage.responses';
+import { ChildState, Child } from '@word-wizard/app/child/data-access';
+import { Observable } from 'rxjs';
 
 export interface StageStateModel {
-  Stage:{
-    model:{
-      name: string;//name of the stage
-      levels: [number,number,number,number,number];//array of each levels progress(out of 3)
-      background: string;//background image
-    }
-  }
+  Stage: {
+    model: {
+      levels: number[];
+      selectedLevel: number;
+    };
+  };
 }
 
 @State<StageStateModel>({
   name: 'stage',
   defaults: {
-    Stage:{
-      model:{
-        name: '',
-        levels: [0,0,0,0,0],
-        background: ''
-      }
-    }
-  }
+    Stage: {
+      model: {
+        levels: [0, 0, 0, 0, 0],
+        selectedLevel: 0,
+      },
+    },
+  },
 })
-
 @Injectable()
 export class StageState {
+  @Select(ChildState.currentChild) currentChild$!: Observable<Child>;
 
   constructor(private readonly stageService: StageService) {}
+
+  @Selector()
+  static getSelectedStage(state: StageStateModel) {
+    return state.Stage.model.selectedLevel;
+  }
+
+  @Action(SetSelectedStage)
+  setSelectedStage(
+    ctx: StateContext<StageStateModel>,
+    { payload }: SetSelectedStage,
+  ) {
+    ctx.setState(
+      produce((draft: StageStateModel) => {
+        draft.Stage.model.selectedLevel = payload;
+      }),
+    );
+  }
 
   @Selector()
   static getStage(state: StageStateModel) {
     return state.Stage.model;
   }
 
-  @Action(SetStage)
-  async setStage(ctx: StateContext<StageStateModel>) {
-    console.log('setStage action called')
-    //get current user from auth module and assign it to userID in rqst
+  @Selector()
+  static getLevelsArray(state: StageStateModel) {
+    return state.Stage.model.levels;
+  }
 
-    const rqst: stageRequest = {
-      userID: '1'
-    }
-
-    const defaultVal: stage = {
-      name: '',
-      levels: [0,0,0,0,0],
-      background: ''
-    };
-    const stage: stage = (await this.stageService.getStage(rqst).toPromise()) ?? defaultVal;
-    try{
-      console.log('sdfsdf', stage);
+  @Action(UpdateStage)
+  async updateStage(
+    ctx: StateContext<StageStateModel>,
+    { payload }: UpdateStage,
+  ) {
+    try {
       ctx.setState(
         produce((draft: StageStateModel) => {
-          draft.Stage.model.background = stage.background;
-          draft.Stage.model.levels = stage.levels;
-          draft.Stage.model.name = stage.name;
-        }))
-    }catch(error){
+          draft.Stage.model.levels[draft.Stage.model.selectedLevel - 1] =
+            payload.stars;
+        }),
+      );
+    } catch (error) {
       console.log(error);
     }
   }
 
-}
+  @Action(SetStage)
+  async setStage(ctx: StateContext<StageStateModel>) {
+    let childId = '';
+    this.currentChild$.subscribe((data) => {
+      childId = data._id;
+    });
 
+    const rqst: levelsRequest = {
+      progress_id: childId,
+    };
+
+    const defaultVal: getLevelsResponse = {
+      levels: [0, 0, 0, 0, 0],
+    };
+    const stage: getLevelsResponse =
+      (await this.stageService.getStage(rqst).toPromise()) ?? defaultVal;
+    try {
+      ctx.setState(
+        produce((draft: StageStateModel) => {
+          draft.Stage.model.levels = stage.levels;
+          draft.Stage.model.selectedLevel = 0;
+        }),
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  }
+}

@@ -25,4 +25,3 @@ describe('CoreShell', () => {
     expect(component).toBeTruthy();
   });
 });
-

@@ -1,47 +1,30 @@
-// .microphone-button {
-//     width: 80px;
-//     height: 80px;
-//     border-radius: 50%;
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     background-color: #ffffff;
-//     border: 2px solid #000000;
-//     position: relative;
-//     overflow: hidden;
-//     transition: background-color 0.3s ease;
-// }
-
-.microphone-button:before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 55px;
-    height: 55px;
-    border: 2px solid #000000;
-    border-radius: 50%;
-    // background-color: #6074DF;
-    transition: background-color 0.3s ease;
+ion-img {
+  height: 8rem !important;
+  width: 8rem !important;
+  object-fit: cover;
+  left: 10rem !important;
 }
 
-.microphone-icon {
-    font-size: 80px;
-    color: #000000;
+.microphone-button:before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 91%;
+  height: 91%;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+  background-image: url(../../../../../../apps/word-wizard/src/assets/img/Microphone_v2.png);
+  background-size: 100%;
+  background-repeat: no-repeat;
 }
 
 .microphone-button {
-    width: 100px;
-    height: 100px;
-    position: relative;
-    overflow: hidden;
-    border-radius: 50%;
-  }
-  
-  img {
-    display: inline;
-    margin: 0 auto;
-    height: 100%;
-    width: auto;
-  }
+  width: 100px;
+  height: 100px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 50%;
+  border: 2px solid black;
+}

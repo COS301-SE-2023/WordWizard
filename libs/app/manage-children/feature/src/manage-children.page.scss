@@ -1,0 +1,136 @@
+ion-content {
+  --background: linear-gradient(
+    90deg,
+    #0b449a 0%,
+    #02001b 90.1%,
+    #02001b 94.27%
+  );
+}
+
+ion-header {
+  ion-toolbar {
+    --background: #861486;
+    color: white;
+  }
+}
+
+.circle {
+  width: 40vw;
+  height: 0;
+  padding-bottom: 40vw;
+  background-color: transparent;
+  border: 3px solid white;
+  border-radius: 50%;
+  left: 5%;
+
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: white;
+
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+}
+
+.plus {
+  font-size: 40vw;
+  color: white;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.custom-ion-item {
+  --ion-item-background: transparent;
+  display: flex;
+}
+
+.child-name {
+  font-size: 200%;
+  color: white;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.children-grid {
+  margin-top: 10%;
+}
+
+.sign-out {
+  margin-top: 22vh;
+  height: 5vh;
+  width: 30vw;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 5vw;
+  --background: #861486;
+  --border-radius: 20px;
+  --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  --border-width: 4px;
+  --border-color: #ffffff;
+}
+
+.overlay-container {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.6);
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.overlay {
+  margin-top: 30vh;
+  width: 85vw;
+  border-radius: 1rem;
+  position: absolute;
+  z-index: 1;
+  background-image: url(../../../../../apps/word-wizard/src/assets/img/bg/welcome_background.jpg);
+  background-size: cover;
+  background-position: center;
+  border: 3px solid white;
+}
+
+.hidden-overlay {
+  // animation: fadeOut 1s ease-in forwards;
+  display: none;
+}
+
+.continueChild {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.continueParent {
+  margin-bottom: 20vw;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.close {
+  background-color: #0c0330;
+  height: 20vw;
+  width: 20vw;
+  margin-left: 60vw;
+  color: white;
+  font-size: 20vw;
+  z-index: 2;
+}

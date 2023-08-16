@@ -18,7 +18,7 @@ export class MicrophoneComponent {
     //   this.textChanged.emit(word);
     // });
   }
-  
+
   async startRecording() {
     this.isRecording = true;
     this.stream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -34,11 +34,9 @@ export class MicrophoneComponent {
     this.isRecording = false;
     this.mediaRecorder.stop((blob: Blob) => {
       this.stream.getAudioTracks().forEach((track) => track.stop());
-      this.voiceService.convertSpeechToText(blob).subscribe(
-        (res:any) => {
-          this.textChanged.emit(res.text);
-        }
-      );
+      this.voiceService.convertSpeechToText(blob).subscribe((res: any) => {
+        this.textChanged.emit(res.text);
+      });
     });
   }
   // startRecording(): void {

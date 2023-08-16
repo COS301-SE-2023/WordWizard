@@ -1,12 +1,12 @@
 export interface VocabRequest {
-    userID: string;
+  userID: string;
 }
 
 export interface PracticeRequest {
-    userID: string;
+  userID: string;
 }
 
 export interface UpdateRequest {
-    userID: string;
-    word: string;
+  userID: string;
+  word: string;
 }

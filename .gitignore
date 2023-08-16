@@ -44,6 +44,7 @@ Thumbs.db
 
 #Sensitive files
 .env
+cypress.env.json
 
 #Python
 __pycache__

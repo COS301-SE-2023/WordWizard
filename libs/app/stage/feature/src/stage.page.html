@@ -1,4 +1,6 @@
-<div class="stage-container">
-  <img src="assets/img/wizardhousebg.png" alt="">
-<ww-lesson-coin [coins]="coins"></ww-lesson-coin>
-</div>
+<ion-content [scrollY]="false">
+  <ww-header title="Stages" backRoute="../dashboard" />
+  <div class="stage-container">
+    <ww-lesson-coin [coins]="coins" (coinClicked)="levelSet($event)" />
+  </div>
+</ion-content>

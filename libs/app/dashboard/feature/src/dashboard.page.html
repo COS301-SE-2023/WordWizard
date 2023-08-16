@@ -1,0 +1,111 @@
+<ww-header
+  [title]="'Dashboard'"
+  [settingsActive]="false"
+  [backRoute]="'../manage-children'"></ww-header>
+<ion-content [scrollY]="false">
+  <div class="dashboard">
+    <div class="background">
+      <div class="pfp">
+        <ion-avatar (click)="modal()">
+          <img [src]="child.profile_photo" />
+          <div class="edit-pfp">
+            <ion-grid>
+              <ion-row>
+                <ion-col class="centre">
+                  <ion-button>
+                    <ion-icon name="create-outline"></ion-icon>
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </div>
+        </ion-avatar>
+      </div>
+      <div class="name">
+        <p>{{child.username}}</p>
+      </div>
+      <ion-content class="links" [scrollY]="false">
+        <ion-grid>
+          <ion-row>
+            <ion-col size="6" class="centre">
+              <a class="spellbook" routerLink="/library">
+                <ion-img src="assets/icon/spellbook-cropped.png"></ion-img>
+                Library
+              </a>
+            </ion-col>
+            <ion-col size="6">
+              <a class="trophy" routerLink="/achievements">
+                <ion-img src="assets/icon/trophy-cropped.png"></ion-img>
+                Badges
+              </a>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="centre">
+              <div class="stage">Level: {{stage}}</div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="centre">
+              <a class="map" routerLink="/stage">
+                <ion-img src="assets/icon/map-cropped.png"></ion-img>
+                Levels
+              </a>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-content>
+      <ion-button class="trophy" href="">
+        <ion-img src="assets/icon/map.png"></ion-img>
+        Levels
+      </ion-button>
+    </div>
+  </div>
+  <div class="overlay-container" [class.hidden-overlay]="!visible">
+    <div class="overlay">
+      <div class="selected-outer">
+        <div class="selected-image">
+          <ion-avatar
+            class="custom-avatar"
+            *ngIf="child?.profile_photo; else unselected">
+            <ion-img src="{{child.profile_photo}}" />
+          </ion-avatar>
+          <ng-template #unselected>
+            <div class="unselected">
+              <ion-icon src="assets/svg/person-outline.svg"></ion-icon>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="12" class="close">
+            <ion-icon
+              src="assets/svg/close-outline.svg"
+              class="close-icon"
+              (click)="modal()"></ion-icon>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12" class="modal-header">
+            <p class="pick-text">Pick an Image</p>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="4" *ngFor="let i of pictures">
+            <ion-item
+              style="--border-width: 0"
+              (click)="chooseImage(i)"
+              class="img-item">
+              <label htmlFor="img">
+                <ion-avatar slot="start" class="check-img">
+                  <ion-img src="{{i}}" />
+                </ion-avatar>
+              </label>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
+</ion-content>

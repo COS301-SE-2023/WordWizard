@@ -1,6 +1,9 @@
-<button [style.background-color]="isRecording ? '#00FF00' : (isRecording ? '#ffffff' : null)" class="microphone-button" (touchstart)="startRecording()" (touchend)="stopRecording()">
-  <div class="microphone-button-inner">
-  <ion-icon name="mic" class="microphone-icon" src="assets/svg/mic2.svg"></ion-icon>
-  </div>
+<button
+  [style.background-color]="
+    isRecording ? '#00FF00' : isRecording ? '#ffffff' : null
+  "
+  class="microphone-button"
+  (touchstart)="startRecording()"
+  (touchend)="stopRecording()">
+  <div class="microphone-button-inner"></div>
 </button>
-

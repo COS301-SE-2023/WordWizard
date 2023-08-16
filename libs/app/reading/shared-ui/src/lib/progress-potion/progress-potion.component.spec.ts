@@ -20,6 +20,4 @@ describe('ProgressPotionComponent', () => {
   it('should create the ProgressPotionComponent', () => {
     expect(component).toBeTruthy();
   });
-
-
 });

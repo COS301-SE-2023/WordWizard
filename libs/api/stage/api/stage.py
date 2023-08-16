@@ -1,19 +1,46 @@
+from typing import List
 from fastapi import APIRouter
 from ..util.stage_models import LevelRequest
-import os
-from dotenv import load_dotenv
-from pymongo import MongoClient
-load_dotenv()
+from ...deps import Database
+db = Database.getInstance().db
+from bson import ObjectId
 
 router = APIRouter()
-connection_string = os.getenv("MONGODB_CONNECTION_STRING")
-client = MongoClient(connection_string)
-db = client["WordWizardDB"]
+
+def get_score_range(score: int) -> int:
+    if score < 50:
+        return 0
+    elif score >= 50:
+        return 1
+    elif score >= 75:
+        return 2
+    else:
+        return 3
 
 @router.post("/get-levels")
 def create_reading(rqst: LevelRequest):
     progress_collection = db["Progress"]
-    result = progress_collection.find_one({"_id": rqst.progress_id})
-    if result:
-        return result.get("progress_history")
-    return {"message": "Progress not found"}
+
+    try:
+        # Convert the provided string progress_id to ObjectId
+        result = progress_collection.find_one({"_id": ObjectId(rqst.progress_id)})
+
+        if result:
+            score_values : List[int] = []
+
+            for level in result.get("level_scores"):
+                score_value = get_score_range(result['level_scores'][str(level)])
+                score_values.append(score_value)
+
+            while len(score_values) < 20:
+                score_values.append(0)
+
+            return {"levels": score_values[:20]}
+        return {"message": "Progress not found"}
+
+    except Exception as e:
+        return {"message": "Invalid ObjectId format"}
+
+@router.get("/test")
+def test():
+    return {"message": "Hello World"}

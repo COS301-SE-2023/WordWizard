@@ -1,20 +1,16 @@
 .speaker-button {
-    width: 55px;
-    height: 55px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    // background-color: #6074DF;
-    // border: 2px solid #000000;
-    position: relative;
-    overflow: hidden;
-    transition: background-color 0.3s ease;
+  width: 91%;
+  height: 91%;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  transition: background-color 0.3s ease;
 }
-
 
 .speaker-icon {
-    font-size:100px;
-    color: #000000;
+  font-size: 100px;
+  color: #000000;
 }
-  

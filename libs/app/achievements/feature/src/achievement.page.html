@@ -1,0 +1,41 @@
+<ww-header
+  *ngIf="parentActive; else childActive"
+  title="Magical Treasures"
+  [backRoute]="'../view-child'" />
+<ng-template #childActive>
+  <ww-header title="Magical Treasures" [backRoute]="'../dashboard'" />
+</ng-template>
+<ion-content [scrollY]="false" [scrollX]="false">
+  <div class="page-container">
+    <div class="profile-picture-container">
+      <img
+        [src]="childProfilePictureSrc"
+        alt="Profile Picture"
+        class="profile-picture" />
+    </div>
+    <div class="awards-section-container">
+      <div class="section-container" *ngFor="let category of awards">
+        <div class="section-header">{{ category.name }}</div>
+        <div class="awards-container">
+          <div class="award-item" *ngFor="let award of category.awards">
+            <button (click)="openModal(award, category.name)">
+              <img
+                [src]="award.completed ? award.img : 'https://ww-img-bckt.s3.amazonaws.com/ww-awards/Blankbadge.png'"
+                alt="Award Image"
+                class="award-image"
+                loading="lazy" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <ww-modal
+      [isModalOpen]="open"
+      (close)="open=false"
+      [badge]="selectedAward"></ww-modal>
+
+
+
+  </div>
+</ion-content>

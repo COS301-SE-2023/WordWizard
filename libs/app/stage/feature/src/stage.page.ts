@@ -1,41 +1,94 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
-import { SetStage, StageState } from '@word-wizard/app/stage/data-access';
+import {
+  SetStage,
+  StageState,
+  SetSelectedStage,
+} from '@word-wizard/app/stage/data-access';
 import { Observable } from 'rxjs';
-import { stage, Coin} from '@word-wizard/app/stage/data-access';
+import { stage, Coin } from '@word-wizard/app/stage/data-access';
+import { Router } from '@angular/router';
+
 @Component({
-  selector: 'stage',
+  selector: 'ww-stage',
   templateUrl: './stage.page.html',
   styleUrls: ['./stage.page.scss'],
 })
-export class StagePage {
-
+export class StagePage implements OnInit {
   //get stage from state
   @Select(StageState.getStage) stage$!: Observable<stage>;
+  @Select(StageState.getSelectedStage) selectedStage$!: Observable<number>;
 
-  name= '';
-  background='';
+  name = '';
+  background = '';
 
-  coins : Coin[] = [{name:''} as Coin, {name:''}as Coin, {name:''}as Coin, {name:''}as Coin, {name:''}as Coin];
+  coins: Coin[] = [
+    { name: '' } as Coin,
+    { name: '' } as Coin,
+    { name: '' } as Coin,
+    { name: '' } as Coin,
+    { name: '' } as Coin,
+    { name: '' } as Coin,
+    { name: '' } as Coin,
+    { name: '' } as Coin,
+    { name: '' } as Coin,
+    { name: '' } as Coin,
+    { name: '' } as Coin,
+    { name: '' } as Coin,
+    { name: '' } as Coin,
+    { name: '' } as Coin,
+    { name: '' } as Coin,
+    { name: '' } as Coin,
+    { name: '' } as Coin,
+    { name: '' } as Coin,
+    { name: '' } as Coin,
+    { name: '' } as Coin,
+  ];
 
-  constructor(private store: Store) {}
+  constructor(private router: Router, private store: Store) {}
 
   ngOnInit() {
-    //dispatch action to get stage
     this.store.dispatch(new SetStage());
-
     this.stage$.subscribe((data) => {
-      this.name = data.name;
-      this.background = data.background;
-      this.coins.forEach((coin:Coin, index:number) => {
-        coin.filledStars = data.levels[index] ?? 0;
-        coin.name = 'level ' + (index+1);
+      this.coins.forEach((coin: Coin, index: number) => {
+        coin.filledStars = data.levels[index];
+        coin.name = 'level' + (index + 1);
+      });
+    });
+  }
+
+  levelSet($event: string) {
+    const level = this.extractNumberFromString($event) || 0;
+    let levelAccess = true;
+
+    if (level !== 1) {
+      let levelsArr: number[] = [];
+
+      const levelsSub = this.store
+        .select(StageState.getLevelsArray)
+        .subscribe((levels: number[]) => {
+          levelsArr = levels;
         });
 
-        console.table(this.coins);
-    });
+      levelsSub.unsubscribe();
 
+      if (levelsArr[level - 2] < 1) {
+        levelAccess = false;
+      }
+    }
 
+    if (levelAccess) {
+      this.store.dispatch(new SetSelectedStage(level));
+      this.router.navigate(['/reading']);
+    }
+  }
 
+  extractNumberFromString(inputString: string): number | null {
+    const regex = /\d+/;
+    const matches = inputString.match(regex);
+    if (matches && matches.length > 0) {
+      return parseInt(matches[0], 10);
+    }
+    return null;
   }
 }
