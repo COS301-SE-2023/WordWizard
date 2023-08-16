@@ -2,6 +2,7 @@
     text-align: center;
     font-size: 2rem;
     color: white;
+    background: transparent;
 }
 
 .animation-container {
@@ -22,6 +23,8 @@
     display: flex;
     align-content: center;
     animation: spinner 4s linear infinite;
+
+    background: transparent;
 }
 
 @keyframes spinner {
