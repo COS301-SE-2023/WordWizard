@@ -6,13 +6,13 @@
     </div>
 </ion-content> -->
 
-<div class="container">
+<div class="container" *ngIf="loading$ | async">
     <div class="background">
       <div class="loading">
         <!-- <div class="hat">
           <img src="assets/img/ww-logo-cropped.png" />
         </div> -->
-  
+
         <div class="name">
           <p id="word">Word</p>
           <p id="wizard">Wizard</p>
