@@ -22,12 +22,19 @@ export class LoadingInterceptorService implements HttpInterceptor {
     next: HttpHandler
     // eslint-disable-next-line
   ): Observable<HttpEvent<any>> {
-    this.loadingService.show();
 
-    return next.handle(request).pipe(
-      finalize(() => {
-        this.loadingService.hide();
-      })
-    );
+    if((!request.url.includes(process.env['WW_AUTH0_DOMAIN'] as string))){
+      this.loadingService.show();
+
+      return next.handle(request).pipe(
+        finalize(() => {
+          this.loadingService.hide();
+        })
+      );
+    }
+
+
+    return next.handle(request);
+
   }
 }

@@ -7,6 +7,7 @@ import { AchievementRouting } from './achievement.routing';
 import { SharedUiModule } from '@word-wizard/app/shared-ui';
 import { HttpClientModule } from '@angular/common/http';
 import { AchievementService } from '@word-wizard/app/achievements/data-access';
+import { LoadingModule } from '@word-wizard/app/loading/feature';
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import { AchievementService } from '@word-wizard/app/achievements/data-access';
     AchievementRouting,
     SharedUiModule,
     HttpClientModule,
+    LoadingModule
   ],
   declarations: [AchievementPage],
   providers: [AchievementService],

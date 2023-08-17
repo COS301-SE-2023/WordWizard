@@ -26,15 +26,23 @@
   height: 100vh;
   width: 100vw;
   // If using style with card - use flex - else comment out
-  // display: flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-image: url('../../../../../apps/word-wizard/src/assets/img/bg/welcome_background.jpg');
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
+  position: absolute;
+  // background-image: url('../../../../../apps/word-wizard/src/assets/img/bg/welcome_background.jpg');
+  // background-repeat: no-repeat;
+  // background-position: center center;
+  // background-size: cover;
+  // background: transparent;
+  background-color: rgba($color: rgb(0, 0, 0), $alpha: 0.5);
+
   z-index: 10001;
+}
+
+ww-loader {
+  background: transparent;
 }
 
 .background {

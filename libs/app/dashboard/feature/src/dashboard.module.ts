@@ -10,6 +10,7 @@ import { SharedUiModule } from '@word-wizard/app/shared-ui';
 import { AddChildService } from '@word-wizard/app/add-child/data-access';
 import { ChildSettingsService } from '@word-wizard/app/child-settings/data-access';
 import { StageService } from '@word-wizard/app/stage/data-access';
+import { LoadingModule } from '@word-wizard/app/loading/feature';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import { StageService } from '@word-wizard/app/stage/data-access';
     RouterModule,
     SharedUiModule,
     HttpClientModule,
+    LoadingModule,
   ],
   declarations: [DashboardPage],
   providers: [AddChildService, ChildSettingsService, StageService],
