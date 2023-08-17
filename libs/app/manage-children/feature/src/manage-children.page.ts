@@ -13,6 +13,7 @@ import { Observable } from 'rxjs';
 import { AuthService } from '@auth0/auth0-angular';
 import { ToastController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'word-wizard-manage-children',
@@ -32,6 +33,7 @@ export class ManageChildrenPage {
     private readonly childService: ChildService,
     private readonly toastController: ToastController,
     private readonly alertController: AlertController,
+    private cookieService: CookieService,
   ) {
     this.auth.user$.subscribe((user) => {
       if (user) {
@@ -46,6 +48,15 @@ export class ManageChildrenPage {
         });
       }
     });
+
+    this.auth.idTokenClaims$.subscribe((claims) => {
+      if (claims) {
+        const idToken = claims.__raw;
+
+        this.cookieService.set('authToken', idToken, undefined, undefined, undefined, true, 'Strict');
+      }
+    });
+
   }
 
   setChild(child: Child) {
