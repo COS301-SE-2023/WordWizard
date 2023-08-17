@@ -23,6 +23,7 @@ export class ReadingPage {
   @Select(ReadingState.getReadingState) readingState$!: Observable<Content>;
   @Select(ReadingState.getCurrent) getCurrent$!: Observable<number>;
   @Select(ReadingState.getStatus) getStatus$!: Observable<boolean>;
+  @Select(ReadingState.getAttemptsRemaining) getAttemptsRemaining$!: Observable<number>;
 
   backgroundImage = 'assets/img/CastleBackground.png';
   backButton = 'assets/img/item/backbutton.png';

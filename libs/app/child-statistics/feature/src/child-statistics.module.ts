@@ -8,6 +8,7 @@ import { IonicModule } from '@ionic/angular';
 import { SharedUiModule } from '@word-wizard/app/shared-ui';
 import { NgxsModule } from '@ngxs/store';
 import { ChildState, ChildService } from '@word-wizard/app/child/data-access';
+import { LoadingModule } from '@word-wizard/app/loading/feature';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { ChildState, ChildService } from '@word-wizard/app/child/data-access';
     SharedUiModule,
     NgxsModule.forFeature([ChildState]),
     HttpClientModule,
+    LoadingModule,
   ],
   declarations: [ChildStatisticsPage],
   providers: [ChildStatisticsService, ChildService],

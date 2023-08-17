@@ -1,3 +1,4 @@
+<ww-loading></ww-loading>
 <ion-content class="page-container" [scrollY]="false">
   <ww-header
     [title]="'Reading Page'"
@@ -44,7 +45,11 @@
       (change)="updateFont($event)" />
   </div>
   <div id="potion-container">
+    <div id="attempts-container">
+      {{ getAttemptsRemaining$ | async  }}
+    </div>
     <ww-progress-potion [percentage]="progressPercentage"></ww-progress-potion>
+    <div></div>
   </div>
   <div class="container">
     <div class="header-container">

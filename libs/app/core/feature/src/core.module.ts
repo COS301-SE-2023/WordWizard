@@ -7,7 +7,10 @@ import { RouteReuseStrategy } from '@angular/router';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxsModule } from '@ngxs/store';
 import { AuthModule } from '@auth0/auth0-angular';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LoadingService } from '@word-wizard/app/loading/data-access';
+import { LoadingInterceptorService } from '@word-wizard/app/loading/data-access';
+
 const redirect_uri = `${window.location.origin}`;
 
 @NgModule({
@@ -29,7 +32,7 @@ const redirect_uri = `${window.location.origin}`;
       },
     }),
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },{provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptorService, multi: true,}, LoadingService],
   bootstrap: [CoreShell],
 })
 export class CoreModule {}

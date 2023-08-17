@@ -11,6 +11,7 @@ import { StageService, StageState } from '@word-wizard/app/stage/data-access';
 import { StageRouting } from './stage.routing';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedUiModule } from '@word-wizard/app/shared-ui';
+import { LoadingModule } from '@word-wizard/app/loading/feature';
 
 @NgModule({
   imports: [
@@ -19,6 +20,7 @@ import { SharedUiModule } from '@word-wizard/app/shared-ui';
     IonicModule,
     StageRouting,
     SharedUiModule,
+    LoadingModule,
     LocalSharedUi,
     RouterModule,
     HttpClientModule,
