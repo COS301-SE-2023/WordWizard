@@ -1,6 +1,7 @@
 from fastapi import APIRouter
 from ..util.reading_models import PassageRqst, Content, Word, Progress, UpdateProgressRqst
 from ..util.markov import MarkovChain
+from ..util.img import get_image
 from bson import ObjectId
 from ...deps import Database
 import random
@@ -12,7 +13,11 @@ markov = MarkovChain()
 @router.post('/passage')
 def create_reading(reading: PassageRqst):
     words = [Word(word=word, imageURL="img", correct=None) for word in markov.generate_passage(reading.level * 3).split()]
-    return Content(passage=words, focusWordsIndex=random.sample(range(len(words)), k=2))
+    content = Content(passage=words, focusWordsIndex=random.sample(range(len(words)), k=2))
+    for s in content.focusWordsIndex:
+        content.passage[s].imageURL = get_image()
+        print(content.passage[s].imageURL)
+    return content
 
 @router.post('/update-progress')
 def update_progress(updtProgress: UpdateProgressRqst):
