@@ -14,6 +14,8 @@ import {
 } from '@word-wizard/app/library/data-access';
 import { SharedUiModule } from '@word-wizard/app/shared-ui';
 import { ChildState } from '@word-wizard/app/child/data-access';
+import { LoadingModule } from '@word-wizard/app/loading/feature';
+
 
 @NgModule({
   imports: [
@@ -26,6 +28,7 @@ import { ChildState } from '@word-wizard/app/child/data-access';
     NgxsModule.forFeature([LibraryState, ChildState]),
     HttpClientModule,
     SharedUiModule,
+    LoadingModule,
   ],
   declarations: [LibraryPage],
   providers: [LibraryService],

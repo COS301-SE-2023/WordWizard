@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ChildState, ChildService } from '@word-wizard/app/child/data-access';
 import { ChildSettingsService } from '@word-wizard/app/child-settings/data-access';
 import { AddChildService } from '@word-wizard/app/add-child/data-access';
+import { LoadingModule } from '@word-wizard/app/loading/feature';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import { AddChildService } from '@word-wizard/app/add-child/data-access';
     SharedUiModule,
     NgxsModule.forFeature([ChildState]),
     HttpClientModule,
+    LoadingModule,
   ],
   declarations: [ChildSettingsPage],
   providers: [ChildService, AddChildService, ChildSettingsService],

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { GetChildrenRqst, deleteAccountRqst } from './requests/child.requests';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Child, DeleteAccountRsps } from './interfaces/child.interfaces';
-import { AuthService, User } from '@auth0/auth0-angular';
+import { AuthService} from '@auth0/auth0-angular';
 
 @Injectable({
   providedIn: 'root',

@@ -12,6 +12,7 @@ import {
   ReadingService,
 } from '@word-wizard/app/reading/data-access';
 import { ReadingSharedUiModule } from '@word-wizard/app/reading/shared-ui';
+import { LoadingModule } from '@word-wizard/app/loading/feature';
 import { SharedUiModule } from '@word-wizard/app/shared-ui';
 
 @NgModule({
@@ -24,6 +25,7 @@ import { SharedUiModule } from '@word-wizard/app/shared-ui';
     NgxsModule.forFeature([ReadingState]),
     HttpClientModule,
     ReadingSharedUiModule,
+    LoadingModule,
     SharedUiModule,
   ],
   declarations: [ReadingPage],
