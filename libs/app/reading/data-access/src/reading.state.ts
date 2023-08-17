@@ -228,4 +228,9 @@ export class ReadingState {
   static getStatus(state: ReadingStateModel) {
     return state.Passage.model.status;
   }
+
+  @Selector()
+  static getAttemptsRemaining(state: ReadingStateModel){
+    return state.Passage.model.Word.attemptsRemaining;
+  }
 }

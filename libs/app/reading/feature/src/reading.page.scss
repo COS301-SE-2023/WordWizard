@@ -115,10 +115,24 @@ ww-progress-potion {
 #potion-container {
   width: 100vw;
   height: fit-content;
-  display: grid;
+  display: flex;
   place-items: center;
   margin-top: 3vh;
+  justify-content: space-evenly;
+  flex-direction: row;
+  position: relative;
+  div{
+    flex-grow: 1;
+  }
+
+  #attempts-container{
+    display: grid;
+    place-items: center;
+    font-size: 2rem;
+  }
+
 }
+
 
 .overlay-container {
   position: absolute;
