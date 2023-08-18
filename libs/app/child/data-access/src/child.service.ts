@@ -17,8 +17,14 @@ export class ChildService {
       parent_email: email,
       parent_name: name,
     };
+
+    const cookies = document.cookie.split('; ');
+    const tokenCookie = cookies.find(cookie => cookie.startsWith('authToken='));
+    const token = tokenCookie ? tokenCookie.split('=')[1] : null;
+
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`,
     });
     return this.http.post<Child[]>(
       `${process.env['WW_API_ENDPOINT']}/child`,
@@ -31,8 +37,14 @@ export class ChildService {
     const request: deleteAccountRqst = {
       parent_email: email,
     };
+
+    const cookies = document.cookie.split('; ');
+    const tokenCookie = cookies.find(cookie => cookie.startsWith('authToken='));
+    const token = tokenCookie ? tokenCookie.split('=')[1] : null;
+
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`,
     });
     return this.http.post<DeleteAccountRsps>(
       `${process.env['WW_API_ENDPOINT']}/parent/delete`,
