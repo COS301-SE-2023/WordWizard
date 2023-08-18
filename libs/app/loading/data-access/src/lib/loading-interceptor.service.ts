@@ -30,11 +30,10 @@ export class LoadingInterceptorService implements HttpInterceptor {
       const tokenCookie = cookies.find(cookie => cookie.startsWith('authToken='));
       const token = tokenCookie ? tokenCookie.split('=')[1] : null;
 
-
       if (token) {
         request = request.clone({
           setHeaders: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${token}`
           },
         });
       }
