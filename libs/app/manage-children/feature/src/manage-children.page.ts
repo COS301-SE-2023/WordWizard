@@ -14,6 +14,7 @@ import { AuthService } from '@auth0/auth0-angular';
 import { ToastController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 import { CookieService } from 'ngx-cookie-service';
+import { LoadingService } from '@word-wizard/app/loading/data-access';
 
 @Component({
   selector: 'word-wizard-manage-children',
@@ -34,29 +35,33 @@ export class ManageChildrenPage {
     private readonly toastController: ToastController,
     private readonly alertController: AlertController,
     private cookieService: CookieService,
+    private loadingService: LoadingService,
   ) {
-    this.auth.user$.subscribe((user) => {
-      if (user) {
-        this.store.dispatch(
-          new GetChildren({
-            parent_email: user?.email || '',
-            parent_name: user?.nickname || '',
-          }),
-        );
-        this.Children$.subscribe((data) => {
-          this.children = data;
-        });
-      }
-    });
+    loadingService.show();
+    setTimeout(() => {
 
-    this.auth.idTokenClaims$.subscribe((claims) => {
-      if (claims) {
-        const idToken = claims.__raw;
+      this.auth.idTokenClaims$.subscribe((claims) => {
+        if (claims) {
+          const idToken = claims.__raw;
+          this.cookieService.set('authToken', idToken, undefined, undefined, undefined, true, 'Strict');
+        }
+      });
 
-        this.cookieService.set('authToken', idToken, undefined, undefined, undefined, true, 'Strict');
-      }
-    });
-
+      this.auth.user$.subscribe((user) => {
+        if (user) {
+          this.store.dispatch(
+            new GetChildren({
+              parent_email: user?.email || '',
+              parent_name: user?.nickname || '',
+            }),
+          );
+          this.Children$.subscribe((data) => {
+            this.children = data;
+          });
+        }
+      });
+      loadingService.hide();
+    }, 2000);
   }
 
   setChild(child: Child) {

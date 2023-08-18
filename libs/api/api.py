@@ -61,7 +61,7 @@ app.include_router(stage_router, prefix="/stage", tags=["stage"], dependencies=[
 app.include_router(library_router, prefix="/library", tags=["library"], dependencies=[Depends(validate_token)])
 app.include_router(speech_router, prefix="/speech", tags=["speech"], dependencies=[Depends(validate_token)])
 app.include_router(add_child_router, prefix="/add-child", tags=["add_child"], dependencies=[Depends(validate_token)])
-app.include_router(child_router, prefix="/child", tags=["child"])
+app.include_router(child_router, prefix="/child", tags=["child"], dependencies=[Depends(validate_token)])
 app.include_router(achievements_router, prefix="/achievements", tags=["achievements"], dependencies=[Depends(validate_token)])
 app.include_router(statistics_router, prefix="/statistics", tags=["statistics"], dependencies=[Depends(validate_token)])
 app.include_router(parent_router, prefix="/parent", tags=["parent"], dependencies=[Depends(validate_token)])
