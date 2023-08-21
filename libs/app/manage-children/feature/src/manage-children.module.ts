@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ChildState, ChildService } from '@word-wizard/app/child/data-access';
 import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import { LoadingModule } from '@word-wizard/app/loading/feature';
+import { HelpModule } from '@word-wizard/app/help/feature';
 
 @NgModule({
   imports: [
@@ -28,6 +29,7 @@ import { LoadingModule } from '@word-wizard/app/loading/feature';
       },
     }),
     LoadingModule,
+    HelpModule,
   ],
   declarations: [ManageChildrenPage],
   providers: [ChildService, JwtHelperService],
