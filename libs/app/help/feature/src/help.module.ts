@@ -9,5 +9,6 @@ import { HelpComponent } from './help.component';
   imports: [CommonModule, IonicModule, ReactiveFormsModule, SharedUiModule],
   declarations: [HelpComponent],
   providers: [],
+  exports: [HelpComponent],
 })
 export class HelpModule {}

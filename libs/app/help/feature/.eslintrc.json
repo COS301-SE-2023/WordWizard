@@ -17,7 +17,7 @@
           "error",
           {
             "type": "element",
-            "prefix": "word-wizard",
+            "prefix": "ww",
             "style": "kebab-case"
           }
         ]

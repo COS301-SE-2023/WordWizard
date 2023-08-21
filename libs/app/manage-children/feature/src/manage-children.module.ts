@@ -9,7 +9,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { ChildState, ChildService } from '@word-wizard/app/child/data-access';
 import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import { LoadingModule } from '@word-wizard/app/loading/feature';
-import { HelpModule } from '@word-wizard/app/help/feature';
 
 @NgModule({
   imports: [
@@ -28,8 +27,7 @@ import { HelpModule } from '@word-wizard/app/help/feature';
         disallowedRoutes: [`${process.env['WW_AUTH0_DOMAIN']}/api/v2/`],
       },
     }),
-    LoadingModule,
-    HelpModule,
+    LoadingModule
   ],
   declarations: [ManageChildrenPage],
   providers: [ChildService, JwtHelperService],
