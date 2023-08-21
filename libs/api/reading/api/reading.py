@@ -14,6 +14,7 @@ markov = MarkovChain()
 
 @router.post('/passage')
 def create_reading(reading: PassageRqst):
+    print("💯")
     words = [Word(word=word, imageURL="img", correct=None) for word in markov.generate_passage(reading.level * 3, priority_words=query(reading.level)).split()]
     content = Content(passage=words, focusWordsIndex=random.sample(range(len(words)), k=2))
     for s in content.focusWordsIndex:
