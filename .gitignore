@@ -50,3 +50,4 @@ cypress.env.json
 __pycache__
 .pytest_cache
 venv
+*.csv
