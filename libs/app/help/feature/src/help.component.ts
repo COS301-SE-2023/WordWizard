@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'ww-help',
@@ -6,8 +6,19 @@ import { Component } from '@angular/core';
   styleUrls: ['./help.component.scss'],
 })
 export class HelpComponent {
-  constructor() {
-    console.log('HelpComponent');
+
+  @Input() messages: string[] = [];
+  @Input() show = false;
+  @Input() audioRoutes : string[] = [];
+  currentMessage = 0;
+
+
+  next(){
+    this.currentMessage++;
+    if(this.currentMessage >= this.messages.length){
+      this.show = false;
+    }
+
   }
 
 }
