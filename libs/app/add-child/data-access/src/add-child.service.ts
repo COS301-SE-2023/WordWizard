@@ -20,7 +20,7 @@ export class AddChildService {
     const request: AddChildRqst = {
       parent_email: parentEmail,
       parent_name: parentName,
-      name: name,
+      name: name.trim(),
       age: age,
       profile_picture: image,
     };

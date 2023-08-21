@@ -5,6 +5,7 @@ from ...deps import Database
 db = Database.getInstance().db
 from bson import ObjectId
 
+
 router = APIRouter()
 
 def get_score_range(score: int) -> int:

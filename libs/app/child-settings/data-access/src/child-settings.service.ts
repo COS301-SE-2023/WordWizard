@@ -15,7 +15,7 @@ export class ChildSettingsService {
   editChild(id: string, name: string, age: number, image: string) {
     const request: EditChildRqst = {
       child_id: id,
-      name: name,
+      name: name.trim(),
       age: age,
       profile_picture: image,
     };
