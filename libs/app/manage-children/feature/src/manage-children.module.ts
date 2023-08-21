@@ -27,7 +27,7 @@ import { LoadingModule } from '@word-wizard/app/loading/feature';
         disallowedRoutes: [`${process.env['WW_AUTH0_DOMAIN']}/api/v2/`],
       },
     }),
-    LoadingModule,
+    LoadingModule
   ],
   declarations: [ManageChildrenPage],
   providers: [ChildService, JwtHelperService],
