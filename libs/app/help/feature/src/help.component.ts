@@ -1,4 +1,5 @@
 import { Component, Input, ViewChild, ElementRef, OnChanges, SimpleChange } from '@angular/core';
+import { HelpService } from '@word-wizard/app/help/data-access';
 
 @Component({
   selector: 'ww-help',
@@ -7,10 +8,18 @@ import { Component, Input, ViewChild, ElementRef, OnChanges, SimpleChange } from
 })
 export class HelpComponent implements OnChanges {
 
-  @Input() messages: string[] = [];
-  @Input() show = false;
-  @Input() audioSources : string[] = [];
+  messages: string[] = [];
+  show = false;
+  audioSources : string[] = [];
   currentMessage = 0;
+
+  constructor(private helpService: HelpService) {
+    helpService.help$.subscribe((help) => {
+      this.messages = help.text;
+      this.show = help.show;
+      this.audioSources = help.audioSources;
+    });
+  }
 
   @ViewChild('audioPlayer') audioPlayerRef!: ElementRef<HTMLAudioElement>;
 
