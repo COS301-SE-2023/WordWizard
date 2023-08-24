@@ -13,6 +13,7 @@ import {
   MakeAttempt,
   UpdateProgress,
   SetStatus,
+  ResetPassage,
 } from './reading.actions';
 import { ChildState, Child } from '@word-wizard/app/child/data-access';
 import { Observable } from 'rxjs';
@@ -214,6 +215,22 @@ export class ReadingState {
     );
   }
 
+  @Action(ResetPassage)
+  async resetPassage(ctx: StateContext<ReadingStateModel>) {
+    ctx.setState(
+      produce((draft: ReadingStateModel) => {
+        draft.Passage.model.Content.focusWordsIndex = [];
+        draft.Passage.model.Content.passage = [];
+        draft.Passage.model.Content.done = false;
+        draft.Passage.model.Word.current = 0;
+        draft.Passage.model.Word.attemptsRemaining = 2;
+        draft.Passage.model.Content.passage.forEach((word) => {
+          word.correct = null;
+        });
+      }),
+    );
+  }
+
   @Selector()
   static getReadingState(state: ReadingStateModel) {
     return state.Passage.model.Content;
@@ -227,5 +244,10 @@ export class ReadingState {
   @Selector()
   static getStatus(state: ReadingStateModel) {
     return state.Passage.model.status;
+  }
+
+  @Selector()
+  static getAttemptsRemaining(state: ReadingStateModel){
+    return state.Passage.model.Word.attemptsRemaining;
   }
 }

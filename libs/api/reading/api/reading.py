@@ -1,27 +1,25 @@
 from fastapi import APIRouter
 from ..util.reading_models import PassageRqst, Content, Word, Progress, UpdateProgressRqst
-import os
-from dotenv import load_dotenv
-from pymongo import MongoClient
-from dataclasses import dataclass
+from ..util.markov import MarkovChain
+from ..util.img import get_image
+from ..util.helper import get_prefixes_suffixes, find_phonotactics, count_syllables
 from bson import ObjectId
-load_dotenv()
+from ...deps import Database
+import random
+from ..util.recomended import query
 
-client = MongoClient(os.getenv("MONGODB_CONNECTION_STRING"))
-db = client["WordWizardDB"]
+db = Database.getInstance().db
 router = APIRouter()
+markov = MarkovChain()
 
 @router.post('/passage')
 def create_reading(reading: PassageRqst):
-    lesson_collection = db['Lessons']
-    lesson = lesson_collection.find_one({'level':reading.level})
-    passage = (lesson['part3'])['passage'].split()
-    words = [Word(word=word, correct=None) for word in passage]
-    words[passage.index((lesson['part1'])['hard_word'])].imageURL = (lesson['part1'])['image']
-    words[passage.index((lesson['part2'])['hard_word'])].imageURL = (lesson['part2'])['image']
-    data = Content(passage=words, focusWordsIndex=[passage.index((lesson['part1'])['hard_word']), passage.index((lesson['part2'])['hard_word'])])
-    return data
-
+    print("💯")
+    words = [Word(word=word, imageURL="img", correct=None) for word in markov.generate_passage(reading.level * 3, priority_words=query(reading.level)).split()]
+    content = Content(passage=words, focusWordsIndex=random.sample(range(len(words)), k=2))
+    for s in content.focusWordsIndex:
+        content.passage[s].imageURL = get_image()
+    return content
 
 @router.post('/update-progress')
 def update_progress(updtProgress: UpdateProgressRqst):
@@ -104,19 +102,27 @@ def update_progress(updtProgress: UpdateProgressRqst):
                 add_vocab(updtProgress.child_id, word.word)
             if not word.correct or word.correct == None:
                 # print(word.correct)
-                add_practice(updtProgress.child_id, word.word)
+                add_practice(updtProgress.child_id, word.word, updtProgress.progress.level)
         progress_collection.update_one({'_id': ObjectId(updtProgress.child_id)}, {"$set": progress})
         return {"status": "success"}
     return {"status": "failed"}
-    
-    
-def add_practice(userID, word):
+  
+def add_practice(userID, word, level=1):
     if check_duplicate_words(db["Practice"], userID, word):
         return False
-    print
+    pref = get_prefixes_suffixes(word)
     db["Practice"].update_one(
         {"_id": ObjectId(userID)},
-        {"$addToSet": {"words": word}},
+        {"$addToSet": {"words": 
+            {
+                "word": word,
+                "phonotactics": find_phonotactics(word),
+                "prefixes": pref[0],
+                "suffixes": pref[1],
+                "syllables": count_syllables(word),
+                "level": level
+            }
+        }},
         upsert=True
     )
     return True

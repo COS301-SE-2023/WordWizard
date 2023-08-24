@@ -7,9 +7,10 @@ import {
   Content,
   Word,
   SetStatus,
+  ReadingState,
+  ResetPassage,
 } from '@word-wizard/app/reading/data-access';
 import { UpdateStage } from '@word-wizard/app/stage/data-access';
-import { ReadingState } from '@word-wizard/app/reading/data-access';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import * as confetti from 'canvas-confetti';
@@ -23,6 +24,7 @@ export class ReadingPage {
   @Select(ReadingState.getReadingState) readingState$!: Observable<Content>;
   @Select(ReadingState.getCurrent) getCurrent$!: Observable<number>;
   @Select(ReadingState.getStatus) getStatus$!: Observable<boolean>;
+  @Select(ReadingState.getAttemptsRemaining) getAttemptsRemaining$!: Observable<number>;
 
   backgroundImage = 'assets/img/CastleBackground.png';
   backButton = 'assets/img/item/backbutton.png';
@@ -98,10 +100,6 @@ export class ReadingPage {
             ),
           500,
         );
-        // const count = this.practice.passage.filter((word) => word.correct !== null).length;
-        // this.progress += (count+1)* this.increment;
-        // this.progressPercentage = `${this.progress}%`;
-        // this.increment = 100/this.practice.passage.length;
       } else {
         this.store.dispatch(new MakeAttempt({ newAttempt: '' }));
       }
@@ -166,6 +164,7 @@ export class ReadingPage {
       strs = 3;
     }
     this.store.dispatch(new UpdateStage({ stars: strs }));
+    this.store.dispatch(new ResetPassage());
     this.router.navigate(['/stage']);
   }
 
