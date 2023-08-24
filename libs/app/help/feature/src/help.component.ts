@@ -13,6 +13,7 @@ export class HelpComponent {
   show = false;
   audioSources : string[] = [];
   currentMessage = 0;
+  audio!: HTMLAudioElement;
 
 
   constructor(private helpService: HelpService) {
@@ -28,6 +29,7 @@ export class HelpComponent {
 
 
   next(){
+    this.audio.pause();
     this.currentMessage++;
     if(this.currentMessage >= this.messages.length){
       this.show = false;
@@ -39,9 +41,9 @@ export class HelpComponent {
 
 
   playAudio() {
-    const audio = new Audio(this.audioSources[this.currentMessage]);
-    audio.play();
-    audio.onended = () => {
+    this.audio = new Audio(this.audioSources[this.currentMessage]);
+    this.audio.play();
+    this.audio.onended = () => {
       this.next();
     }
   }
