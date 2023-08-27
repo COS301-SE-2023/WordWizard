@@ -1,5 +1,6 @@
-import { Component, Input, EventEmitter, Output, OnInit } from '@angular/core';
+import { Component, Input, EventEmitter, Output, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'ww-header',
   templateUrl: './header.component.html',
@@ -13,11 +14,18 @@ export class HeaderComponent implements OnInit {
   @Input() font!: boolean;
   @Output() settingsClick = new EventEmitter();
   backActive!: boolean;
-  audioElement: HTMLAudioElement;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  div: any;
 
 
-  constructor(private router: Router) {
-    this.audioElement = <HTMLAudioElement>document.getElementById('backgroundAudio');
+  constructor(private router: Router, private elRef:ElementRef ) {
+  }
+
+  // eslint-disable-next-line @angular-eslint/use-lifecycle-interface
+  ngAfterViewInit() {
+    this.div = this.elRef.nativeElement.querySelector('audio');
+    this.div.volume = 0.03;
+    console.log(this.div.volume);
   }
 
   ngOnInit() {
@@ -33,10 +41,10 @@ export class HeaderComponent implements OnInit {
   }
 
   toggleBackgroundMusic() {
-    if (this.audioElement?.paused) {
-      this.audioElement.play();
-    } else {
-      this.audioElement.pause();
-    }
+    // if (this.audioElement?.paused) {
+    //   this.audioElement.play();
+    // } else {
+    //   this.audioElement.pause();
+    // }
   }
 }
