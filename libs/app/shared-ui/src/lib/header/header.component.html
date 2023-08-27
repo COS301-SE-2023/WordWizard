@@ -25,9 +25,14 @@
       name="settings-sharp"
       src="assets/svg/settings-sharp.svg"
       (click)="fontChange()" />
-  </div>
+
+  <button (click)="toggleBackgroundMusic()">Toggle Music</button>
+
   <audio id="backgroundAudio" loop autoplay>
     <source src="assets/mp3/ambientsoundmark2_Cut.mp3" type="audio/mp3">
     Your browser does not support the audio element.
   </audio>
+
+  </div>
+
 </ion-header>
