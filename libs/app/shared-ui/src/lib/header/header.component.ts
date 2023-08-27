@@ -15,20 +15,49 @@ export class HeaderComponent implements OnInit {
   @Output() settingsClick = new EventEmitter();
   backActive!: boolean;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  div: any;
+  BGAudio: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  BGAudioHelper: any;
+  audioActive!: boolean;
 
 
   constructor(private router: Router, private elRef:ElementRef ) {
+    this.audioActive = true;
   }
 
   // eslint-disable-next-line @angular-eslint/use-lifecycle-interface
   ngAfterViewInit() {
-    this.div = this.elRef.nativeElement.querySelector('audio');
-    this.div.volume = 0.03;
-    console.log(this.div.volume);
+    this.BGAudio = this.elRef.nativeElement.querySelector('#backgroundAudio');
+    this.BGAudio.volume = 0.03;
+
+    this.BGAudioHelper = this.elRef.nativeElement.querySelector('#backgroundAudioHELPER');
+    this.BGAudioHelper.volume = 0.03;
+
+
+    console.log(this.BGAudio);
+    console.log(this.BGAudioHelper);
+
   }
 
+  wait() {
+    console.log("waiting 7 seconds to replay....");
+      setTimeout(this.playSoundHelper, 7000);
+  }
+
+  playSoundHelper() {
+      this.BGAudioHelper.play();
+      this.BGAudioHelper.onended = function() {
+        console.log("audio clip ended ");
+        wait();
+      }
+  }
+
+
   ngOnInit() {
+
+    this.playSoundHelper();
+
+
     if (this.backRoute != '') {
       this.backActive = true;
     } else {
@@ -48,3 +77,7 @@ export class HeaderComponent implements OnInit {
     // }
   }
 }
+function wait() {
+  throw new Error('Function not implemented.');
+}
+
