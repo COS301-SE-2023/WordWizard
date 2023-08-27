@@ -13,8 +13,12 @@ export class HeaderComponent implements OnInit {
   @Input() font!: boolean;
   @Output() settingsClick = new EventEmitter();
   backActive!: boolean;
+  audioElement: HTMLAudioElement;
 
-  constructor(private router: Router) {}
+
+  constructor(private router: Router) {
+    this.audioElement = <HTMLAudioElement>document.getElementById('backgroundAudio');
+  }
 
   ngOnInit() {
     if (this.backRoute != '') {
@@ -26,5 +30,13 @@ export class HeaderComponent implements OnInit {
 
   fontChange() {
     this.settingsClick.emit();
+  }
+
+  toggleBackgroundMusic() {
+    if (this.audioElement?.paused) {
+      this.audioElement.play();
+    } else {
+      this.audioElement.pause();
+    }
   }
 }
