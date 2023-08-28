@@ -1,5 +1,6 @@
 import { Component, Input, EventEmitter, Output, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
+import { CoreService } from '@word-wizard/app/core/feature';
 
 @Component({
   selector: 'ww-header',
@@ -14,12 +15,10 @@ export class HeaderComponent implements OnInit {
   @Input() font!: boolean;
   @Output() settingsClick = new EventEmitter();
   backActive!: boolean;
-  // audioLevel!: number;
-  // audioLevelString!: string;
+  audioLevel!: number;
 
-
-
-  constructor(private router: Router) {
+  constructor(private router: Router, private coreService: CoreService) {
+    this.audioLevel = coreService.getVolume();
   }
 
   ngOnInit() {
@@ -34,26 +33,19 @@ export class HeaderComponent implements OnInit {
     this.settingsClick.emit();
   }
 
-  // toggleBackgroundMusic() {
-  //   console.log("TOGGLE LEVEL");
-  //   if (this.audioLevel === 6) {
-  //     this.audioLevelString = "0.03";
-  //     this.audioLevel = 3;
-  //     this.BGAudio.volume = this.audioLevelString;
-  //     this.BGAudioHelper.volume = this.audioLevelString;
-  //   } else if (this.audioLevel === 3) {
-  //     this.audioLevelString = '0.00';
-  //     this.audioLevel = 0;
-  //     this.BGAudio.volume = this.audioLevelString;
-  //     this.BGAudioHelper.volume = this.audioLevelString;
-  //   } else if (this.audioLevel === 0) {
-  //     this.audioLevelString = '0.06';
-  //     this.audioLevel = 6;
-  //     this.BGAudio.volume = this.audioLevelString;
-  //     this.BGAudioHelper.volume = this.audioLevelString;
-  //   }
-  //   console.log(this.audioLevel + " is the new level");
-  // }
+  toggleBackgroundMusic() {
+
+    if (this.audioLevel === 6) {
+      this.audioLevel = 3;
+    } else if (this.audioLevel === 3) {
+      this.audioLevel = 0;
+    } else if (this.audioLevel === 0) {
+      this.audioLevel = 6;
+    }
+    this.coreService.volumeChange((this.audioLevel / 100));
+
+    console.log(this.audioLevel + " is the new level");
+  }
 
 }
 
