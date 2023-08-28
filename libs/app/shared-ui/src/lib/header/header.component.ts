@@ -39,25 +39,7 @@ export class HeaderComponent implements OnInit {
 
   }
 
-  wait() {
-    console.log("waiting 7 seconds to replay....");
-      setTimeout(this.playSoundHelper, 7000);
-  }
-
-  playSoundHelper() {
-      this.BGAudioHelper.play();
-      this.BGAudioHelper.onended = function() {
-        console.log("audio clip ended ");
-        wait();
-      }
-  }
-
-
   ngOnInit() {
-
-    this.playSoundHelper();
-
-
     if (this.backRoute != '') {
       this.backActive = true;
     } else {
@@ -77,7 +59,5 @@ export class HeaderComponent implements OnInit {
     // }
   }
 }
-function wait() {
-  throw new Error('Function not implemented.');
-}
+
 
