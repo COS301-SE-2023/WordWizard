@@ -96,6 +96,14 @@ const routes: Routes = [
       ),
     canActivate: [AuthGuard],
   },
+  {
+    path: 'preferences',
+    loadChildren: () =>
+      import('@word-wizard/app/preferences/feature').then(
+        (m) => m.PreferencesModule,
+      ),
+    // canActivate: [AuthGuard],
+  }
 ];
 
 @NgModule({
