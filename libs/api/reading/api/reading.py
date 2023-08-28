@@ -11,13 +11,12 @@ from ..util.recomended import query
 from ..util.Rating import Rating
 from ..util.passage import query
 
-import time
 
 db = Database.getInstance().db
 router = APIRouter()
 markov = MarkovChain()
 
-def get_prompt(id:str):
+def get_class(id:str):
     practice = db['Practice'].find_one({'_id': ObjectId(id)},{'_id':0})
     vocab = db['Vocabulary'].find_one({'_id': ObjectId(id)},{'_id':0})
     return Rating(vocab["words"], practice["words"])
@@ -25,18 +24,7 @@ def get_prompt(id:str):
 
 @router.post('/passage')
 def create_reading(reading: PassageRqst):
-    print("💯")
-    rating = get_prompt(reading.id)
-    current_time = int(round(time.time() * 1000))
-    q = query(rating.generatePrompt())
-    print(int(round(time.time() * 1000)) - current_time)
-
-    # words = [Word(word=word, imageURL="img", correct=None) for word in markov.generate_passage(reading.level * 3, priority_words=query(reading.level)).split()]
-    # content = Content(passage=words, focusWordsIndex=random.sample(range(len(words)), k=2))
-    # for s in content.focusWordsIndex:
-    #     content.passage[s].imageURL = get_image()
-    # return content
-    print(q)
+    q = query(get_class(reading.id).generatePrompt())
     return q
 
 @router.post('/update-progress')
