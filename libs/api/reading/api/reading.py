@@ -7,8 +7,11 @@ from ..util.Rating import Rating
 from bson import ObjectId
 from ...deps import Database
 import random
-from ..util.recomended import query
+from ..util.recomended import query     
 from ..util.Rating import Rating
+from ..util.passage import query
+
+import time
 
 db = Database.getInstance().db
 router = APIRouter()
@@ -24,13 +27,17 @@ def get_prompt(id:str):
 def create_reading(reading: PassageRqst):
     print("💯")
     rating = get_prompt(reading.id)
-    print(rating)
+    current_time = int(round(time.time() * 1000))
+    q = query(rating.generatePrompt())
+    print(int(round(time.time() * 1000)) - current_time)
 
-    words = [Word(word=word, imageURL="img", correct=None) for word in markov.generate_passage(reading.level * 3, priority_words=query(reading.level)).split()]
-    content = Content(passage=words, focusWordsIndex=random.sample(range(len(words)), k=2))
-    for s in content.focusWordsIndex:
-        content.passage[s].imageURL = get_image()
-    return content
+    # words = [Word(word=word, imageURL="img", correct=None) for word in markov.generate_passage(reading.level * 3, priority_words=query(reading.level)).split()]
+    # content = Content(passage=words, focusWordsIndex=random.sample(range(len(words)), k=2))
+    # for s in content.focusWordsIndex:
+    #     content.passage[s].imageURL = get_image()
+    # return content
+    print(q)
+    return q
 
 @router.post('/update-progress')
 def update_progress(updtProgress: UpdateProgressRqst):
