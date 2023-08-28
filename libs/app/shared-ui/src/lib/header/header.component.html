@@ -8,7 +8,7 @@
         size="large"
         name="arrow-back-outline"
         src="assets/svg/arrow-back-outline.svg"
-        (click)="playHaptic()" />
+      />
     </ion-nav-link>
 
     <ion-title>{{ title }}</ion-title>
@@ -20,13 +20,12 @@
         src="assets/svg/settings-sharp.svg" />
     </ion-nav-link>
 
-    <ion-icon
+    <!-- <ion-icon
       *ngIf="font"
       size="large"
       name="settings-sharp"
       src="assets/svg/settings-sharp.svg"
       (click)="fontChange()" />
-
 
     <ion-icon *ngIf="audioLevel === 6"
         size="large"
@@ -44,7 +43,7 @@
         size="large"
         (click)="toggleBackgroundMusic()"
         name="volume-mute-outline">
-      </ion-icon>
+      </ion-icon> -->
 
   </div>
 

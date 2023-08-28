@@ -32,8 +32,6 @@ export class AchievementPage {
   parentActive!: boolean;
   selectedAward: any;
   badges: Badge[] = [];
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  HapticAudio: any;
 
 
   helpText: string[] = ['Click on each badge to see more details.', 'You collect badges by completing more levels.'];
@@ -68,8 +66,6 @@ export class AchievementPage {
       }
     });
 
-    this.HapticAudio = this.elRef.nativeElement.querySelector('#HapticAudio');
-    this.HapticAudio.volume = "0.1";
 
     this.parentActive$.subscribe((data) => {
       if (data === true) this.parentActive = true;
@@ -77,9 +73,6 @@ export class AchievementPage {
     });
   }
 
-  playHaptic() {
-    this.HapticAudio.play();
-  }
 
   loadAwards(id: string) {
     this.achievementService.getAwards(id).subscribe(
