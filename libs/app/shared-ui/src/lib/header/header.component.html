@@ -25,41 +25,27 @@
       size="large"
       name="settings-sharp"
       src="assets/svg/settings-sharp.svg"
-      (click)="fontChange(); playHaptic()" />
+      (click)="fontChange()" />
 
 
-    <ion-icon *ngIf="audioLevel === 6" 
+    <ion-icon *ngIf="audioLevel === 6"
         size="large"
-        (click)="toggleBackgroundMusic(); playHaptic()"
+        (click)="toggleBackgroundMusic()"
         name="volume-high-outline">
       </ion-icon>
-      
+
     <ion-icon *ngIf="audioLevel >= 3 && audioLevel < 6"
         size="large"
-        (click)="toggleBackgroundMusic(); playHaptic()"  
+        (click)="toggleBackgroundMusic()"
         name="volume-medium-outline">
       </ion-icon>
-      
+
     <ion-icon *ngIf="audioLevel < 3"
         size="large"
-        (click)="toggleBackgroundMusic(); playHaptic()"
+        (click)="toggleBackgroundMusic()"
         name="volume-mute-outline">
-      </ion-icon>      
+      </ion-icon>
 
   </div>
 
 </ion-header>
-<audio id="backgroundAudio" loop autoplay>
-  <source src="assets/mp3/LongAmbient.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio>
-
-<audio id="HapticAudio" >
-  <source src="assets/mp3/Haptic.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio>
-
-<audio id="backgroundAudioHELPER" loop autoplay>
-  <source src="assets/mp3/AmbientHelper.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio>
