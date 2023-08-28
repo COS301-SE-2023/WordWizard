@@ -1,3 +1,4 @@
-export interface VocabResponse {
+export interface PreferenceResponse {
     preferences: string[];
 }
+

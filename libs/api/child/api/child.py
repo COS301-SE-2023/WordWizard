@@ -28,15 +28,14 @@ def get_children(rqst: GetChildrenReq):
 @router.post('/get-preferences')
 def get_preferences(rqst: GetPreferencesReq):
     preferences = db['Children'].find_one({'_id': ObjectId(rqst.child_id)})
-    print(preferences)
-    if(preferences["preferences"]):
-        return preferences["preferences"]
+    if "preferences" in preferences:
+        return { "preferences" : preferences["preferences"] }
     else:
         db['Children'].update_one(
             {'_id': ObjectId(rqst.child_id)},
             {'$set': {'preferences': []}}
         )
-        return []
+        return {"preferences" : []}
 
 @router.post('/update-preferences')
 def update_preferences(rqst: UpdatePreferencesReq):
