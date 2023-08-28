@@ -19,7 +19,11 @@ markov = MarkovChain()
 def get_class(id:str):
     practice = db['Practice'].find_one({'_id': ObjectId(id)},{'_id':0})
     vocab = db['Vocabulary'].find_one({'_id': ObjectId(id)},{'_id':0})
-    return Rating(vocab["words"], practice["words"])
+    child = db['Children'].find_one({'_id': ObjectId(id)},{'_id':0})
+    pref = []
+    if "preferences" in child:
+        pref = child["preferences"]
+    return Rating(vocab["words"], practice["words"], pref=pref)
 
 
 @router.post('/passage')

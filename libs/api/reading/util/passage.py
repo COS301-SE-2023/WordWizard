@@ -8,6 +8,7 @@ openai.api_key = api_key
 
 def query(query:str):
     q = "Sentence: The wizards subbed their toys.\nFocus Words: wizards, subbed"
+    print(query)
     # q = query_chat(query)
     return santise_string(q)
 
