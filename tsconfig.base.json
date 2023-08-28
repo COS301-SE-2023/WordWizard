@@ -90,6 +90,9 @@
       "@word-wizard/app/stage/shared-ui": [
         "libs/app/stage/shared-ui/src/index.ts"
       ],
+      "@word-wizard/app/user-agreement/feature": [
+        "libs/app/user-agreement/feature/src/index.ts"
+      ],
       "@word-wizard/app/view-child/feature": [
         "libs/app/view-child/feature/src/index.ts"
       ],
