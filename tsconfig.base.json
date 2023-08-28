@@ -73,6 +73,9 @@
       "@word-wizard/app/manage-children/shared-ui": [
         "libs/app/manage-children/shared-ui/src/index.ts"
       ],
+      "@word-wizard/app/preferences/data-access": [
+        "libs/app/preferences/data-access/src/index.ts"
+      ],
       "@word-wizard/app/preferences/feature": [
         "libs/app/preferences/feature/src/index.ts"
       ],

@@ -1,4 +1,17 @@
 import { Component } from '@angular/core';
+import { 
+  PreferencesService, 
+  GetPreferencesReq, 
+  PreferenceResponse,
+  UpdatePreferencesReq,
+  GetPreferencesResponse,
+  Topics,
+  preferences
+} from '@word-wizard/app/preferences/data-access';
+import { Select } from '@ngxs/store';
+import { ChildState, Child } from '@word-wizard/app/child/data-access';
+import { Observable } from 'rxjs';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'word-wizard-preferences',
@@ -6,58 +19,56 @@ import { Component } from '@angular/core';
   styleUrls: ['./preferences.page.scss'],
 })
 export class PreferencesPage {
-
-  options:any[] = [];
-  chosenOption:any[] = [];
+  @Select(ChildState.currentChild) currentChild$!: Observable<Child>;
+  options:preferences[] = [];
+  chosenOption:preferences[] = [];
   colors = ["#FFBF00", "#FFD700", "#FF6347", "#FF4500", "#FF8C00", "#FF7F50", "#FF69B4", "#FF1493", "#FF00FF", "#FF00FF"]
 
   input = "";
-  constructor() {
-    this.options = [
-      {
-        value:"Christmas",
-        color:"#EC7E19"
-      },
-      {
-        value:"Animals",
-        color:"#FC7777"
-      },
-      {
-        value:"Friends",
-        color:"#197AEC"
-      },
-      {
-        value:"Family",
-        color:"#36EC19"
-      },
-    ];
-    this.chosenOption =[
-      {
-        value:"Christmas",
-        color:"#EC7E19"
-      },
-      {
-        value:"Animals",
-        color:"#FC7777"
-      },
-      {
-        value:"Friends",
-        color:"#197AEC"
-      },
-      {
-        value:"Family",
-        color:"#36EC19"
-      },
-    ]
+  constructor(private readonly preferencesService: PreferencesService, private toastController: ToastController) {
+    
+    this.currentChild$.subscribe(async (data) => {
+      const rqst: GetPreferencesReq = {
+        child_id: data._id,
+      } as GetPreferencesReq;
+      const defaultVal: PreferenceResponse = {
+        preferences: []
+      };
+      const preferences: PreferenceResponse = (await this.preferencesService.getPreferences(rqst).toPromise()) ?? defaultVal;
+      try {
+        preferences.preferences.forEach((element:string) => {
+          this.chosenOption.push({
+            value:element,
+            color:this.colors[Math.floor(Math.random() * this.colors.length)]
+          })
+        })
+      } catch (err) {
+        console.log(err);
+      }
+    }).unsubscribe();
+    this.preferencesService.getTopics().subscribe(async (data) => {
+      try {
+        data.topics.forEach((element:string) => {
+          this.options.push({
+            value:element,
+            color:this.colors[Math.floor(Math.random() * this.colors.length)]
+          })
+        })
+      } catch (err) {
+        console.log(err);
+      }
+    });
   }
 
-  addOption(option:any) {
-    if(this.chosenOption.length >= 4 || this.chosenOption.includes(option) || this.input == "")
+  addOption(option:preferences) {
+    if(this.chosenOption.length >= 4 || this.chosenOption.includes(option))
       return;
     this.chosenOption.push(option);
   }
 
   addCustom() {
+    if(this.chosenOption.length >= 4 || this.input == "")
+      return;
     this.addOption({
       value:this.input,
       color:this.colors[Math.floor(Math.random() * this.colors.length)]
@@ -65,11 +76,39 @@ export class PreferencesPage {
     this.input = "";
   }
 
-  removeOption(option:any) {
+  removeOption(option:preferences) {
     this.chosenOption.splice(this.chosenOption.indexOf(option), 1);
   }
 
   save() {
-    console.log(this.chosenOption);
+    const preferences_rqst:string[] = [];
+    this.chosenOption.forEach((element:preferences) => {
+      preferences_rqst.push(element.value);
+    });
+
+    this.currentChild$.subscribe(async (data) => {
+      const rqst: UpdatePreferencesReq = {
+        child_id: data._id,
+        preferences: preferences_rqst
+      } as UpdatePreferencesReq;
+      const defaultVal: GetPreferencesResponse = {
+        status: "error"
+      };
+      const preferences: GetPreferencesResponse = (await this.preferencesService.updatePreferences(rqst).toPromise()) ?? defaultVal;
+      if(preferences.status == "error")
+        this.presentToast("error try again", "danger");
+      else
+        this.presentToast("Preferences saved!", "primary");
+    }).unsubscribe();
+  }
+
+  async presentToast(message: string, color: string) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 5000,
+      position: 'bottom',
+      color: color,
+    });
+    toast.present();
   }
 }

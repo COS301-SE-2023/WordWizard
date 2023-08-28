@@ -2,7 +2,7 @@
     <ww-header
         [title]="'Personalise'"
         [settingsActive]="false"
-        [backRoute]="'../stage'"
+        [backRoute]="'../view-child'"
         [settingsActive]="true"
     />
     <div class="container">
@@ -15,7 +15,7 @@
                     </ion-col>
                 </ion-row>
             </ion-grid>
-            <input type="text" id="name" class="test" [(ngModel)]="input"/>
+            <input type="text" id="name" class="test" [(ngModel)]="input" placeholder="Custom topic..."/>
             <ion-button class="add-btn" (click)="addCustom()">Add</ion-button>
             <div class="selected-container">
                 <div class="selected-vals">
@@ -26,7 +26,7 @@
             </div>
             <ww-button
                 class="continueChild"
-                text="Add Topics"
+                text="Update Topics"
                 color="#861486"
                 activate="#861486"
                 border="#111"

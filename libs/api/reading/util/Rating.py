@@ -7,9 +7,10 @@ from .Metrics import Metrics
 from .Child import Child
 
 class Rating:
-    def __init__(self, vcb, prtc):
+    def __init__(self, vcb, prtc, pref: list[str] = []):
         self.vcb = vcb
         self.prtc = prtc
+        self.pref = pref
         self.construct_dic()
         self.metrices = Metrics(self.syllables, self.phono_arr, self.prefixes, self.suffixes)
         self.child = Child(self.metrices, 10)
@@ -126,4 +127,4 @@ Focus Words: ...
     def __str__(self) -> str:
         return self.generatePrompt()
     def get_function(self):
-        return f"G(THEME='Wizards',COM=4, LEN=5 , SYL={self.evaluateSyllables().numberOf}, PHONA='{self.evaluatePhonotactics().pattern}', PRE='{get_prefix(self.evaluatePrefixes().length)}', SUF='{get_suffix(self.evaluateSuffixes().length)}')"
+        return f"G(THEME={self.pref},COM=4, LEN=5 , SYL={self.evaluateSyllables().numberOf}, PHONA='{self.evaluatePhonotactics().pattern}', PRE='{get_prefix(self.evaluatePrefixes().length)}', SUF='{get_suffix(self.evaluateSuffixes().length)}')"
