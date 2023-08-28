@@ -53,7 +53,7 @@ export class HeaderComponent implements OnInit {
   fontChange() {
     this.settingsClick.emit();
   }
-  
+
 
   playHaptic() {
     this.HapticAudio.play();

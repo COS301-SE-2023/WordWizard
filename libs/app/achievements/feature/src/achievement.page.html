@@ -19,7 +19,7 @@
         <div class="section-header">{{ category.name }}</div>
         <div class="awards-container">
           <div class="award-item" *ngFor="let award of category.awards">
-            <button (click)="openModal(award, category.name); playHaptic()">
+            <button (click)="openModal(award, category.name)">
               <img
                 [src]="award.completed ? award.img : 'https://ww-img-bckt.s3.amazonaws.com/ww-awards/Blankbadge.png'"
                 alt="Award Image"
@@ -33,13 +33,10 @@
 
     <ww-modal
       [isModalOpen]="open"
-      (close)="open=false; playHaptic()"
+      (close)="open=false"
       [badge]="selectedAward"></ww-modal>
+
+
 
   </div>
 </ion-content>
-
-<audio id="backgroundAudioHELPER" loop autoplay>
-  <source src="assets/mp3/AmbientHelper.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio>
