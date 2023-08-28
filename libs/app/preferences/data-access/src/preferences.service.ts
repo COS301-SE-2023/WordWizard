@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { PreferenceResponse, GetPreferencesResponse } from './responses/preferences.responses';
+import { PreferenceResponse, GetPreferencesResponse, Topics } from './responses/preferences.responses';
 import { GetPreferencesReq, UpdatePreferencesReq } from './requests/preferences.requests';
 
 @Injectable({
@@ -31,5 +31,15 @@ export class PreferencesService {
       request,
       { headers },
     );
+  }
+
+  getTopics(): Observable<Topics> {
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+      });
+      return this.http.get<Topics>(
+        `${process.env['WW_API_ENDPOINT']}/child`,
+        { headers },
+      );
   }
 }

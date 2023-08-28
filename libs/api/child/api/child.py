@@ -7,6 +7,11 @@ from ...deps import Database
 db = Database.getInstance().db
 router = APIRouter()
 
+@router.get('/')
+def get_topics():
+    arr = ['Christmas', 'Family', 'Animals', 'Friends']
+    return { 'topics' : arr }
+
 @router.post('/')
 def get_children(rqst: GetChildrenReq):
     parent_data = {

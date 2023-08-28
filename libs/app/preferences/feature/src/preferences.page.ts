@@ -5,8 +5,9 @@ import {
   PreferenceResponse,
   UpdatePreferencesReq,
   GetPreferencesResponse,
+  Topics,
+  preferences
 } from '@word-wizard/app/preferences/data-access';
-import { preferences } from './preferences.interface';
 import { Select } from '@ngxs/store';
 import { ChildState, Child } from '@word-wizard/app/child/data-access';
 import { Observable } from 'rxjs';
@@ -45,24 +46,18 @@ export class PreferencesPage {
         console.log(err);
       }
     }).unsubscribe();
-    this.options = [
-      {
-        value:"Christmas",
-        color:"#EC7E19"
-      },
-      {
-        value:"Animals",
-        color:"#FC7777"
-      },
-      {
-        value:"Friends",
-        color:"#197AEC"
-      },
-      {
-        value:"Family",
-        color:"#36EC19"
-      },
-    ];
+    this.preferencesService.getTopics().subscribe(async (data) => {
+      try {
+        data.topics.forEach((element:string) => {
+          this.options.push({
+            value:element,
+            color:this.colors[Math.floor(Math.random() * this.colors.length)]
+          })
+        })
+      } catch (err) {
+        console.log(err);
+      }
+    });
   }
 
   addOption(option:preferences) {
