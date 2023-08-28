@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component } from '@angular/core';
 import { HelpService } from '@word-wizard/app/help/data-access';
 
 
@@ -7,7 +7,7 @@ import { HelpService } from '@word-wizard/app/help/data-access';
   templateUrl: './help.component.html',
   styleUrls: ['./help.component.scss'],
 })
-export class HelpComponent implements OnDestroy{
+export class HelpComponent {
 
   messages: string[] = [];
   show = false;
@@ -26,11 +26,6 @@ export class HelpComponent implements OnDestroy{
     });
   }
 
-  ngOnDestroy(): void {
-    this.audio.pause();
-    this.show = false;
-    this.currentMessage = 0;
-  }
 
 
   next(){
@@ -43,8 +38,6 @@ export class HelpComponent implements OnDestroy{
     this.playAudio();
 
   }
-
-
 
 
   playAudio() {

@@ -6,7 +6,7 @@ import {
 } from '@word-wizard/app/achievements/data-access';
 import { Observable } from 'rxjs';
 import { Select, Store } from '@ngxs/store';
-import {
+import { 
 
   ChildState,
   Child,
@@ -35,9 +35,6 @@ export class AchievementPage {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   HapticAudio: any;
 
-
-  helpText: string[] = ['Click on each badge to see more details.', 'You collect badges by completing more levels.'];
-  audioSources: string[] = ['assets/mp3/achievements-1.wav', 'assets/mp3/achievements-2.wav'];
 
   @Select(ChildState.currentChild) currentChild$!: Observable<Child>;
   @Select(ChildState.parentActive) parentActive$!: Observable<boolean>;
