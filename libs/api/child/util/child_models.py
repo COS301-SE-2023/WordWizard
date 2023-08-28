@@ -9,7 +9,7 @@ class GetPreferencesReq(BaseModel):
 
 class UpdatePreferencesReq(BaseModel):
     child_id: str
-    preferences: list
+    preferences: list[str]
 
 class EditChildReq(BaseModel):
     child_id: str
