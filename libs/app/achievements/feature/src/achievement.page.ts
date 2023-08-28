@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Component, ElementRef } from '@angular/core';
 import {
   AwardSection,
   AchievementService,
@@ -31,6 +32,9 @@ export class AchievementPage {
   parentActive!: boolean;
   selectedAward: any;
   badges: Badge[] = [];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  HapticAudio: any;
+
 
   helpText: string[] = ['Click on each badge to see more details.', 'You collect badges by completing more levels.'];
   audioSources: string[] = ['assets/mp3/achievements-1.wav', 'assets/mp3/achievements-2.wav'];
@@ -51,7 +55,7 @@ export class AchievementPage {
 
   constructor(
     private achievementService: AchievementService,
-    private store: Store,
+    private elRef:ElementRef
   ) {
     this.currentChild$.subscribe((child) => {
       if (child && child._id !== '') {
@@ -64,12 +68,18 @@ export class AchievementPage {
       }
     });
 
+    this.HapticAudio = this.elRef.nativeElement.querySelector('#HapticAudio');
+    this.HapticAudio.volume = "0.1";
+
     this.parentActive$.subscribe((data) => {
       if (data === true) this.parentActive = true;
       else this.parentActive = data;
     });
   }
 
+  playHaptic() {
+    this.HapticAudio.play();
+  }
 
   loadAwards(id: string) {
     this.achievementService.getAwards(id).subscribe(
