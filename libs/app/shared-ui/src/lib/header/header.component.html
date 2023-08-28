@@ -26,7 +26,21 @@
       src="assets/svg/settings-sharp.svg"
       (click)="fontChange()" />
 
-  <!-- <button (click)="toggleBackgroundMusic()">Toggle Music</button> -->
+
+    <ion-icon *ngIf="audioLevel === 6"  
+        (click)="toggleBackgroundMusic()"
+        name="volume-high-outline">
+      </ion-icon>
+      
+    <ion-icon *ngIf="audioLevel >= 3 && audioLevel < 6"
+        (click)="toggleBackgroundMusic()"  
+        name="volume-medium-outline">
+      </ion-icon>
+      
+    <ion-icon *ngIf="audioLevel < 3"
+        (click)="toggleBackgroundMusic()"
+        name="volume-mute-outline">
+      </ion-icon>      
 
   </div>
 

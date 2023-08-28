@@ -18,25 +18,26 @@ export class HeaderComponent implements OnInit {
   BGAudio: any;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   BGAudioHelper: any;
-  audioActive!: boolean;
+  audioLevel!: number;
+  audioLevelString!: string;
+
 
 
   constructor(private router: Router, private elRef:ElementRef ) {
-    this.audioActive = true;
+    this.audioLevelString = "0.06";
+    this.audioLevel = 6;
   }
 
   // eslint-disable-next-line @angular-eslint/use-lifecycle-interface
   ngAfterViewInit() {
     this.BGAudio = this.elRef.nativeElement.querySelector('#backgroundAudio');
-    this.BGAudio.volume = 0.03;
+    this.BGAudio.volume = this.audioLevelString;
 
     this.BGAudioHelper = this.elRef.nativeElement.querySelector('#backgroundAudioHELPER');
-    this.BGAudioHelper.volume = 0.03;
-
+    this.BGAudioHelper.volume = this.audioLevelString;
 
     console.log(this.BGAudio);
     console.log(this.BGAudioHelper);
-
   }
 
   ngOnInit() {
@@ -52,12 +53,26 @@ export class HeaderComponent implements OnInit {
   }
 
   toggleBackgroundMusic() {
-    // if (this.audioElement?.paused) {
-    //   this.audioElement.play();
-    // } else {
-    //   this.audioElement.pause();
-    // }
+    console.log("TOGGLE LEVEL");
+    if (this.audioLevel === 6) {
+      this.audioLevelString = "0.03";
+      this.audioLevel = 3;
+      this.BGAudio.volume = this.audioLevelString;
+      this.BGAudioHelper.volume = this.audioLevelString;
+    } else if (this.audioLevel === 3) {
+      this.audioLevelString = '0.00'; 
+      this.audioLevel = 0;
+      this.BGAudio.volume = this.audioLevelString;
+      this.BGAudioHelper.volume = this.audioLevelString;
+    } else if (this.audioLevel === 0) {
+      this.audioLevelString = '0.06'; 
+      this.audioLevel = 6;
+      this.BGAudio.volume = this.audioLevelString;
+      this.BGAudioHelper.volume = this.audioLevelString;
+    }
+    console.log(this.audioLevel + " is the new level");
   }
+  
 }
 
 
