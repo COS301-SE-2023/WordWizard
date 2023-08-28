@@ -6,3 +6,4 @@ export * from './lib/loader';
 export * from './lib/header';
 export * from './lib/button';
 export * from './lib/modal';
+export * from './lib/help-button';
