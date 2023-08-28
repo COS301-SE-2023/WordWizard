@@ -50,6 +50,9 @@
       "@word-wizard/app/dashboard/feature": [
         "libs/app/dashboard/feature/src/index.ts"
       ],
+      "@word-wizard/app/help/data-access": [
+        "libs/app/help/data-access/src/index.ts"
+      ],
       "@word-wizard/app/help/feature": ["libs/app/help/feature/src/index.ts"],
       "@word-wizard/app/library/data-access": [
         "libs/app/library/data-access/src/index.ts"
