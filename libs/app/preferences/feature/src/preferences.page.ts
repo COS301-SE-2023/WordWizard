@@ -52,12 +52,14 @@ export class PreferencesPage {
   }
 
   addOption(option:any) {
-    if(this.chosenOption.length >= 4 || this.chosenOption.includes(option) || this.input == "")
+    if(this.chosenOption.length >= 4 || this.chosenOption.includes(option))
       return;
     this.chosenOption.push(option);
   }
 
   addCustom() {
+    if(this.chosenOption.length >= 4 || this.input == "")
+      return;
     this.addOption({
       value:this.input,
       color:this.colors[Math.floor(Math.random() * this.colors.length)]
