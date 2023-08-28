@@ -3,18 +3,29 @@ from ..util.reading_models import PassageRqst, Content, Word, Progress, UpdatePr
 from ..util.markov import MarkovChain
 from ..util.img import get_image
 from ..util.helper import get_prefixes_suffixes, find_phonotactics, count_syllables
+from ..util.Rating import Rating
 from bson import ObjectId
 from ...deps import Database
 import random
 from ..util.recomended import query
+from ..util.Rating import Rating
 
 db = Database.getInstance().db
 router = APIRouter()
 markov = MarkovChain()
 
+def get_prompt(id:str):
+    practice = db['Practice'].find_one({'_id': ObjectId(id)},{'_id':0})
+    vocab = db['Vocabulary'].find_one({'_id': ObjectId(id)},{'_id':0})
+    return Rating(vocab["words"], practice["words"])
+
+
 @router.post('/passage')
 def create_reading(reading: PassageRqst):
     print("💯")
+    rating = get_prompt(reading.id)
+    print(rating)
+
     words = [Word(word=word, imageURL="img", correct=None) for word in markov.generate_passage(reading.level * 3, priority_words=query(reading.level)).split()]
     content = Content(passage=words, focusWordsIndex=random.sample(range(len(words)), k=2))
     for s in content.focusWordsIndex:

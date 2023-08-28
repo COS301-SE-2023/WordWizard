@@ -42,6 +42,7 @@ def add_create(rqst: AddChildRqst):
         result_child = children_collection.insert_one({
             'username': rqst.name,
             'age': rqst.age,
+            'preferences': [],
             'parent': existing_parent['_id'],
             'profile_photo': rqst.profile_picture,
             'vocab_list': '',
@@ -59,6 +60,7 @@ def add_create(rqst: AddChildRqst):
             '_id': str(result_child.inserted_id),
             'username': rqst.name,
             'age': rqst.age,
+            'preferences': [],
             'parent': str(existing_parent['_id']),
             'profile_photo': rqst.profile_picture,
             'vocab_list': '',

@@ -29,7 +29,7 @@ class MarkovChain:
                 priority_states = [state for state in next_states if state in priority_words]
                 if priority_states:
                     next_state = random.choice(priority_states)
-                    priority_words.remove(next_state)
+                    # priority_words.remove(next_state)
                 else:
                     next_state = random.choice(next_states)
             else:
