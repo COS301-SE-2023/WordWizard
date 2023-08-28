@@ -18,6 +18,8 @@ export class HeaderComponent implements OnInit {
   BGAudio: any;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   BGAudioHelper: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  HapticAudio: any;
   audioLevel!: number;
   audioLevelString!: string;
 
@@ -36,8 +38,8 @@ export class HeaderComponent implements OnInit {
     this.BGAudioHelper = this.elRef.nativeElement.querySelector('#backgroundAudioHELPER');
     this.BGAudioHelper.volume = this.audioLevelString;
 
-    console.log(this.BGAudio);
-    console.log(this.BGAudioHelper);
+    this.HapticAudio = this.elRef.nativeElement.querySelector('#HapticAudio');
+    this.HapticAudio.volume = "0.1";
   }
 
   ngOnInit() {
@@ -50,6 +52,11 @@ export class HeaderComponent implements OnInit {
 
   fontChange() {
     this.settingsClick.emit();
+  }
+
+
+  playHaptic() {
+    this.HapticAudio.play();
   }
 
   toggleBackgroundMusic() {

@@ -7,7 +7,8 @@
       <ion-icon
         size="large"
         name="arrow-back-outline"
-        src="assets/svg/arrow-back-outline.svg" />
+        src="assets/svg/arrow-back-outline.svg"
+        (click)="playHaptic()" />
     </ion-nav-link>
 
     <ion-title>{{ title }}</ion-title>
@@ -24,24 +25,24 @@
       size="large"
       name="settings-sharp"
       src="assets/svg/settings-sharp.svg"
-      (click)="fontChange()" />
+      (click)="fontChange(); playHaptic()" />
 
 
     <ion-icon *ngIf="audioLevel === 6" 
         size="large"
-        (click)="toggleBackgroundMusic()"
+        (click)="toggleBackgroundMusic(); playHaptic()"
         name="volume-high-outline">
       </ion-icon>
       
     <ion-icon *ngIf="audioLevel >= 3 && audioLevel < 6"
         size="large"
-        (click)="toggleBackgroundMusic()"  
+        (click)="toggleBackgroundMusic(); playHaptic()"  
         name="volume-medium-outline">
       </ion-icon>
       
     <ion-icon *ngIf="audioLevel < 3"
         size="large"
-        (click)="toggleBackgroundMusic()"
+        (click)="toggleBackgroundMusic(); playHaptic()"
         name="volume-mute-outline">
       </ion-icon>      
 
@@ -53,8 +54,8 @@
   Your browser does not support the audio element.
 </audio>
 
-<audio id="HaptickAudio" >
-  <source src="assets/mp3/Haptick.mp3" type="audio/mpeg">
+<audio id="HapticAudio" >
+  <source src="assets/mp3/Haptic.mp3" type="audio/mpeg">
   Your browser does not support the audio element.
 </audio>
 
