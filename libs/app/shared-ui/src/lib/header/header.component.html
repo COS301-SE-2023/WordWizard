@@ -27,17 +27,20 @@
       (click)="fontChange()" />
 
 
-    <ion-icon *ngIf="audioLevel === 6"  
+    <ion-icon *ngIf="audioLevel === 6" 
+        size="large"
         (click)="toggleBackgroundMusic()"
         name="volume-high-outline">
       </ion-icon>
       
     <ion-icon *ngIf="audioLevel >= 3 && audioLevel < 6"
+        size="large"
         (click)="toggleBackgroundMusic()"  
         name="volume-medium-outline">
       </ion-icon>
       
     <ion-icon *ngIf="audioLevel < 3"
+        size="large"
         (click)="toggleBackgroundMusic()"
         name="volume-mute-outline">
       </ion-icon>      
