@@ -16,15 +16,15 @@ db = client["WordWizardDB"]
 @router.get('/')
 def get_photos():
     return { 'images': [
-        "https://ww-img-bckt.s3.amazonaws.com/ww-ProfilePics/dragon_1.png",
-        "https://ww-img-bckt.s3.amazonaws.com/ww-ProfilePics/dragon_11.png",
-        "https://ww-img-bckt.s3.amazonaws.com/ww-ProfilePics/dragon_3.png",
-        "https://ww-img-bckt.s3.amazonaws.com/ww-ProfilePics/dragon_2.png",
-        "https://ww-img-bckt.s3.amazonaws.com/ww-ProfilePics/dragon_4.png",
-        "https://ww-img-bckt.s3.amazonaws.com/ww-ProfilePics/dragon_6.png",
-        "https://ww-img-bckt.s3.amazonaws.com/ww-ProfilePics/dragon_8.png",
-        "https://ww-img-bckt.s3.amazonaws.com/ww-ProfilePics/dragon_7.png",
-        "https://ww-img-bckt.s3.amazonaws.com/ww-ProfilePics/dragon_9.png",
+        "assets/img/ProfilePics/dragon_1.png",
+        "assets/img/ProfilePics/dragon_11.png",
+        "assets/img/ProfilePics/dragon_3.png",
+        "assets/img/ProfilePics/dragon_2.png",
+        "assets/img/ProfilePics/dragon_4.png",
+        "assets/img/ProfilePics/dragon_6.png",
+        "assets/img/ProfilePics/dragon_8.png",
+        "assets/img/ProfilePics/dragon_7.png",
+        "assets/img/ProfilePics/dragon_9.png",
     ]}
 
 
