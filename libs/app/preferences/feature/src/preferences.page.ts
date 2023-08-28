@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { PreferencesService } from '@word-wizard/app/preferences/data-access';
+import { preferences } from './preferences.interface';
+import { GetPreferencesReq } from '../../data-access/src/requests/preferences.requests';
 
 @Component({
   selector: 'word-wizard-preferences',
@@ -7,12 +10,12 @@ import { Component } from '@angular/core';
 })
 export class PreferencesPage {
 
-  options:any[] = [];
-  chosenOption:any[] = [];
+  options:preferences[] = [];
+  chosenOption:preferences[] = [];
   colors = ["#FFBF00", "#FFD700", "#FF6347", "#FF4500", "#FF8C00", "#FF7F50", "#FF69B4", "#FF1493", "#FF00FF", "#FF00FF"]
 
   input = "";
-  constructor() {
+  constructor(private readonly preferencesService: PreferencesService) {
     this.options = [
       {
         value:"Christmas",

@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from ..util.child_models import GetChildrenReq, EditChildReq, DeleteChildReq
+from ..util.child_models import GetChildrenReq, EditChildReq, DeleteChildReq, GetPreferencesReq, UpdatePreferencesReq
 from dataclasses import dataclass
 from bson import ObjectId
 from ...deps import Database
@@ -24,6 +24,29 @@ def get_children(rqst: GetChildrenReq):
     else:
         result_parent = parents_collection.insert_one(parent_data)
         return []
+    
+@router.post('/get-preferences')
+def get_preferences(rqst: GetPreferencesReq):
+    preferences = db['Children'].find_one({'_id': ObjectId(rqst.child_id)})
+    print(preferences)
+    if(preferences["preferences"]):
+        return preferences["preferences"]
+    else:
+        db['Children'].update_one(
+            {'_id': ObjectId(rqst.child_id)},
+            {'$set': {'preferences': []}}
+        )
+        return []
+
+@router.post('/update-preferences')
+def update_preferences(rqst: UpdatePreferencesReq):
+    db['Children'].update_one(
+        {'_id': ObjectId(rqst.child_id)},
+        {'$set': {
+            'preferences': rqst.preferences
+        }}
+    )
+    return { 'status': 'success' }
 
 def get_child(child_id):
     children_collection = db['Children']
