@@ -22,7 +22,7 @@
           <div class="award-item" *ngFor="let award of category.awards">
             <button (click)="openModal(award, category.name)">
               <img
-                [src]="award.completed ? award.img : 'https://ww-img-bckt.s3.amazonaws.com/ww-awards/Blankbadge.png'"
+                [src]="award.completed ? award.img : 'assets/img/Awards/Blankbadge.png'"
                 alt="Award Image"
                 class="award-image"
                 loading="lazy" />
