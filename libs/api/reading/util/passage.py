@@ -6,7 +6,7 @@ from .helper import santise_string
 api_key = os.getenv("OPEN_AI_KEY")
 openai.api_key = api_key
 
-def query(query:str):
+def query_passage(query:str):
     q = "Sentence: The wizards subbed their toys.\nFocus Words: wizards, subbed"
     # q = query_chat(query)
     return santise_string(q)
@@ -27,3 +27,4 @@ def query_chat(query:str):
         presence_penalty=0
     )
     return response["choices"][0]["message"]["content"]
+

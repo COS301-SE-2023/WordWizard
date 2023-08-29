@@ -6,6 +6,7 @@ from ...deps import Database
 db = Database.getInstance().db
 from typing import List
 from .reading_models import Content, Word
+from .img import generate_image
 
 patterns = {
     r'[bcdfghjklmnpqrstvwxyz][aeiou]': 'CV',
@@ -37,6 +38,11 @@ def santise_string(response: str):
     return_arr = []
     for w in focuse_arr:
         return_arr.append(find_word_index(words, w.strip()))
+    c = 1
+    for f in return_arr:
+        if c == 1:
+            words[f].imageURL = generate_image(words[f].word)
+        c += 1
     return Content(passage=words, focusWordsIndex=return_arr)
 
 def count_syllables(word):
