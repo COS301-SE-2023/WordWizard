@@ -7,7 +7,8 @@
       <ion-icon
         size="large"
         name="arrow-back-outline"
-        src="assets/svg/arrow-back-outline.svg" />
+        src="assets/svg/arrow-back-outline.svg"
+      />
     </ion-nav-link>
 
     <ion-title>{{ title }}</ion-title>
@@ -25,5 +26,25 @@
       name="settings-sharp"
       src="assets/svg/settings-sharp.svg"
       (click)="fontChange()" />
+
+    <ion-icon *ngIf="audioLevel === 6"
+        size="large"
+        (click)="toggleBackgroundMusic()"
+        name="volume-high-outline">
+      </ion-icon>
+
+    <ion-icon *ngIf="audioLevel >= 3 && audioLevel < 6"
+        size="large"
+        (click)="toggleBackgroundMusic()"
+        name="volume-medium-outline">
+      </ion-icon>
+
+    <ion-icon *ngIf="audioLevel < 3"
+        size="large"
+        (click)="toggleBackgroundMusic()"
+        name="volume-mute-outline">
+      </ion-icon>
+
   </div>
+
 </ion-header>
