@@ -1,5 +1,5 @@
 import { Component, HostListener } from '@angular/core';
-import { CoreService } from './core.service';
+import { CoreService } from '@word-wizard/app/core/data-access';
 
 @Component({
   selector: 'ww-core',

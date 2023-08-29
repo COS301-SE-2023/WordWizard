@@ -1,6 +1,6 @@
 import { Component, Input, EventEmitter, Output, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
-import { CoreService } from '@word-wizard/app/core/feature';
+import { CoreService } from '@word-wizard/app/core/data-access';
 
 @Component({
   selector: 'ww-header',
