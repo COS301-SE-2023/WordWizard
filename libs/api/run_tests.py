@@ -15,7 +15,7 @@ def run_pytest(root_directory):
         results = []
         for test_file in test_files:
             print(f"Running pytest for: {test_file}")
-            results.append(executor.submit(subprocess.run, ["pytest", "--cov=.", "--cov-report=xml", test_file]))
+            results.append(executor.submit(subprocess.run, ["pytest", "--cov=.", "--cov-report=html", test_file]))
         concurrent.futures.wait(results)
 
 if __name__ == "__main__":

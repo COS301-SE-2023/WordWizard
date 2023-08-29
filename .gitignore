@@ -30,6 +30,7 @@ node_modules
 /coverage
 .coverage
 coverage.xml
+htmlcov
 /libpeerconnection.log
 npm-debug.log
 yarn-error.log
