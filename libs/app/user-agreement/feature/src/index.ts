@@ -1,1 +1,4 @@
-export * from './lib/app-user-agreement-feature';
+export * from './user-agreement.module';
+// export * from './lib.routes';
+
+export * from './user-agreement.page';

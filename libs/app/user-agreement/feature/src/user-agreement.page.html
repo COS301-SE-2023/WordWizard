@@ -1,14 +1,25 @@
-<div class="container">
-  <div class="background">
-    <div class="splash">
-      <div class="hat">
-        <img src="assets/img/ww-logo-cropped.png" />
+<ww-header [title]="'User Agreement'"></ww-header>
+<ion-content scrollY="false">
+  <div id="container">
+    <div class="user-agreement">
+      
+      <!-- <div class="hat">
+        <img src="assets/img/wizzard_hat.png" />
+      </div> -->
+      <div class="logo">
+        <img src="assets/icon/favicon.png" />
       </div>
-
-      <div class="name">
-        <p id="word">Word</p>
-        <p id="wizard">Wizard</p>
+      <div class="agreement-content">
+        <p class="title">User Agreement</p>
+        <p class="subtext">
+          {{agreement}}
+        </p>
+      </div>
+      <div class="button-container">
+        <ion-button (click)="accept()">Accept</ion-button>
+        <ion-button (click)="decline()">Decline</ion-button>
       </div>
     </div>
   </div>
-</div>
+</ion-content>
+

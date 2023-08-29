@@ -1,8 +1,7 @@
-.container {
+#container {
   height: 100vh;
   width: 100vw;
-  // If using style with card - use flex - else comment out
-  // display: flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -10,102 +9,77 @@
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-}
+  .user-agreement {
+    width: 20rem;
+    background-color: white;
+    height: 95%;
+    border-radius: 1.8rem;
+    border: 3px solid #070527;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: absolute;
+    top: 2rem;
+    .logo {
+      margin-top: 1.3rem;
+      img {
+        width: 10rem;
+        height: 10rem;
+      }
+    }
+    // .hat {
+    //   position: absolute;
+    //   top: -30%;
+    //   left: 50%;
+    //   transform: translate(3%);
+    //   img {
+    //     transform: rotate(24deg);
+    //   }
+    //   width: 15rem;
+    //   height: 12rem;
+    //   border-radius: 50%;
+    //   z-index: 2;
+    // }
+    .agreement-content {
+      height: calc(100% - 3.5rem - 17rem);
+      overflow: scroll;
+      padding: 1rem;
 
-.background {
-  margin-top: 0%;
-  height: 100%;
-  // background-color: rgba($color: rgb(0, 0, 0), $alpha: 0.3);
-}
-
-// Container to center contents vertically
-.splash {
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-}
-
-.hat {
-  // margin-top: 10%;
-  position: relative;
-  // top: 10vw;
-  display: flex;
-  // align-items: center;
-
-  // FLOATING ANIMATION
-  animation-name: floating;
-  animation-duration: 3s;
-  animation-iteration-count: infinite;
-  animation-timing-function: ease-in-out;
-
-  img {
-    width: 75%;
-    height: auto;
-    margin: auto;
+      .title {
+        color: #070527;
+        font-size: 2.5rem;
+        font-family: Inter;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 0;
+        margin-bottom: 1rem;
+        margin-top: 1rem;
+      }
+      .subtext {
+        color: #070527;
+        font-size: 1.5rem;
+        font-family: Inter;
+        font-style: normal;
+        font-weight: 700;
+        text-align: center;
+      }
+    }
+    .button-container {
+      // margin-bottom: 2rem;
+      position: absolute;
+      bottom: 0;
+      border-radius: 1.8rem;
+      ion-button {
+        --background: #070527;
+        width: 18.5rem;
+        height: 3.5rem;
+        color: #fff;
+        font-size: 1.5rem;
+        font-family: Inter;
+        font-style: normal;
+        font-weight: 400;
+      }
+    }
   }
-}
-
-@keyframes floating {
-  from {
-    transform: translate(0, 0px);
-  }
-  65% {
-    transform: translate(0, 15px);
-  }
-  to {
-    transform: translate(0, -0px);
-  }
-}
-
-.name {
-  font-size: 15vw;
-  font-family: Georgia, 'Times New Roman', Times, serif;
-  color: gold;
-  text-shadow: -2px 2px 2px #000, 2px 2px 2px #000, 2px -2px 2px #000,
-    -2px -2px 2px #000;
-  display: block;
-  width: 100%;
-  text-align: center;
-  margin-top: 5vw;
-  // position: absolute;
-  // bottom: 15vw;
-
-  // PULSE ANIMATION
-  p {
-    transform: scale(1);
-    animation: pulse 2s infinite;
-    border: none;
-  }
-}
-
-@keyframes pulse {
-  0% {
-    transform: scale(0.95);
-    // box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
-  }
-
-  70% {
-    transform: scale(1);
-    // box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
-  }
-
-  100% {
-    transform: scale(0.95);
-    // box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
-  }
-}
-
-#wizard {
-  position: relative;
-  left: 10%;
-  margin-top: 2%;
-}
-
-#word {
-  position: relative;
-  right: 10%;
-  margin-top: 2%;
-  margin-bottom: 2%;
 }
