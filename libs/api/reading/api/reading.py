@@ -1,7 +1,6 @@
 from fastapi import APIRouter
 from ..util.reading_models import PassageRqst, Content, Word, Progress, UpdateProgressRqst
 from ..util.markov import MarkovChain
-from ..util.img import get_image
 from ..util.helper import get_prefixes_suffixes, find_phonotactics, count_syllables
 from ..util.Rating import Rating
 from bson import ObjectId
@@ -9,7 +8,7 @@ from ...deps import Database
 import random
 from ..util.recomended import query     
 from ..util.Rating import Rating
-from ..util.passage import query
+from ..util.passage import query_passage
 
 
 db = Database.getInstance().db
@@ -28,7 +27,7 @@ def get_class(id:str):
 
 @router.post('/passage')
 def create_reading(reading: PassageRqst):
-    q = query(get_class(reading.id).generatePrompt())
+    q = query_passage(get_class(reading.id).generatePrompt())
     return q
 
 @router.post('/update-progress')
