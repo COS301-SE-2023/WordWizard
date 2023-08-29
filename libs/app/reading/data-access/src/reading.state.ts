@@ -84,27 +84,30 @@ export class ReadingState {
         lvl = data;
       })
       .unsubscribe();
-
-    const rqst: PassageRequest = {
-      level: lvl,
-    } as PassageRequest;
-    const defaultVal: Content = {
-      passage: [],
-      focusWordsIndex: [],
-      done: false,
-    };
-    const passage: Content =
-      (await this.readingService.getPassage(rqst).toPromise()) ?? defaultVal;
-    try {
-      ctx.setState(
-        produce((draft: ReadingStateModel) => {
-          draft.Passage.model.Content.passage = passage.passage;
-          draft.Passage.model.Content.focusWordsIndex = passage.focusWordsIndex;
-        }),
-      );
-    } catch (err) {
-      console.log(err);
-    }
+  
+    this.currentChild$.subscribe(async (data) => {
+      const rqst: PassageRequest = {
+        id: data._id,
+        level: lvl,
+      } as PassageRequest;
+      const defaultVal: Content = {
+        passage: [],
+        focusWordsIndex: [],
+        done: false,
+      };
+      const passage: Content =
+        (await this.readingService.getPassage(rqst).toPromise()) ?? defaultVal;
+      try {
+        ctx.setState(
+          produce((draft: ReadingStateModel) => {
+            draft.Passage.model.Content.passage = passage.passage;
+            draft.Passage.model.Content.focusWordsIndex = passage.focusWordsIndex;
+          }),
+        );
+      } catch (err) {
+        console.log(err);
+      }
+    }).unsubscribe();
   }
 
   @Action(MakeAttempt)
