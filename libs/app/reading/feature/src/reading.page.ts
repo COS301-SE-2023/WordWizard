@@ -13,6 +13,8 @@ import {
 import { UpdateStage } from '@word-wizard/app/stage/data-access';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
+
 import * as confetti from 'canvas-confetti';
 
 @Component({
@@ -46,7 +48,7 @@ export class ReadingPage {
   sentence = '';
   font = false;
 
-  constructor(private store: Store, private router: Router) {
+  constructor(private store: Store, private router: Router, private toastController: ToastController) {
     this.setStars();
     this.store.dispatch(new SetPassage());
     this.getStatus$.subscribe((data) => {
@@ -101,6 +103,14 @@ export class ReadingPage {
           500,
         );
       } else {
+        this.toastController.create({
+          message: 'Ooops, Try again!',
+          duration: 2000,
+          color: 'danger',
+          position: 'top',
+        }).then((toast) => {
+          toast.present();
+        });
         this.store.dispatch(new MakeAttempt({ newAttempt: '' }));
       }
     } else {
