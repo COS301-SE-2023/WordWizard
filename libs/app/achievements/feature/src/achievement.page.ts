@@ -34,9 +34,6 @@ export class AchievementPage {
   badges: Badge[] = [];
 
 
-  helpText: string[] = ['Click on each badge to see more details.', 'You collect badges by completing more levels.'];
-  audioSources: string[] = ['assets/mp3/achievements-1.wav', 'assets/mp3/achievements-2.wav'];
-
   @Select(ChildState.currentChild) currentChild$!: Observable<Child>;
   @Select(ChildState.parentActive) parentActive$!: Observable<boolean>;
   openModal(award: any, category: any) {
