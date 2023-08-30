@@ -42,14 +42,14 @@ export class ReadingPage {
 
   progressPercentage = '0%';
   increment!: number;
-  textFromMicrophone: string[] = [];
+  textFromMicrophone: string[] = ['assets/mp3/add-1.wav'];
   practice!: Content;
   currentWord = 0;
   sentence = '';
   font = false;
 
   helpText: string[] = [];
-  audioSources: string[] = [];
+  audioSources: string[] = ["assets/mp3/"];
 
   constructor(private store: Store, private router: Router, private toastController: ToastController) {
     this.setStars();
