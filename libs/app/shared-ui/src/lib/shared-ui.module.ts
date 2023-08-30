@@ -8,6 +8,7 @@ import { HeaderModule } from './header/header.module';
 import { ButtonModule } from './button';
 import { ModalModule } from './modal';
 import { LoaderModule } from './loader';
+import { HelpButtonModule } from './help-button';
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { LoaderModule } from './loader';
     HeaderModule,
     InfoModule,
     ButtonModule,
-    LoaderModule
+    LoaderModule,
+    HelpButtonModule
   ],
   exports: [
     MicrophoneModule,
@@ -27,7 +29,8 @@ import { LoaderModule } from './loader';
     HeaderModule,
     ButtonModule,
     ModalModule,
-    LoaderModule
+    LoaderModule,
+    HelpButtonModule
   ],
 })
 export class SharedUiModule {}

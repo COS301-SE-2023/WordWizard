@@ -4,6 +4,7 @@ from datetime import datetime
 
 
 class PassageRqst(BaseModel):
+    id: str
     level: int
 
 class Word(BaseModel):
