@@ -12,8 +12,8 @@ export class BurgerMenuComponent {
   @Input() fontChanger = false;
   @Input() help = true;
 
-  @Input() helpText: string[] = ['Click on each badge to see more details.', 'You collect badges by completing more levels.'];
-  @Input() audioSources: string[] = ['assets/mp3/achievements-1.wav', 'assets/mp3/achievements-2.wav'];
+  @Input() helpText!: string[];
+  @Input() audioSources!: string[];
 
   @Output() settingsClick = new EventEmitter();
 

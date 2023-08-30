@@ -14,6 +14,7 @@ export class HelpButtonComponent {
   @Input() audioSources!: string[];
 
   help(){
+    console.table(this.helpText)
     this.helpService.show(this.helpText, this.audioSources);
   }
 
