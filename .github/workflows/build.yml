@@ -44,9 +44,6 @@ jobs:
         working-directory: ./
         run: npx nx run-many --target=test --all --skip-nx-cache --parallel=5 --coverage
 
-      - name: Build app dev
-        run: npm run build:app:dev
-
       - name: Build app prod
         run: npm run build:app:prod
       
@@ -54,4 +51,4 @@ jobs:
         uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          directory: ./coverage
+          # directory: ./coverage

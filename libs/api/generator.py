@@ -23,7 +23,7 @@ def generate_file_structure(api_name):
     with open(os.path.join(tests_dir, "__init__.py"), "w") as f:
         pass
 
-    with open(os.path.join(tests_dir, f"{api_name}_tests.py"), "w") as f:
+    with open(os.path.join(tests_dir, f"tests_{api_name}.py"), "w") as f:
         pass
 
     with open(os.path.join(util_dir, "__init__.py"), "w") as f:
