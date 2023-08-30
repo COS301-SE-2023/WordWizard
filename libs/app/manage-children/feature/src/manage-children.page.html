@@ -1,5 +1,9 @@
 <ww-loading/>
-<ww-header title="Manage Children"/>
+<ww-header title="Manage Children"
+[help]="true"
+[helpText]="helpText"
+[audioSources]="audioSources"
+[volumeChanger]="true"/>
 <ion-content>
   <div class="overlay-container" [class.hidden-overlay]="!visible">
     <div class="overlay">

@@ -15,12 +15,10 @@ export class BurgerMenuComponent {
   @Input() helpText: string[] = ['Click on each badge to see more details.', 'You collect badges by completing more levels.'];
   @Input() audioSources: string[] = ['assets/mp3/achievements-1.wav', 'assets/mp3/achievements-2.wav'];
 
-
-  @Input() audioLevel = 0;
-
   @Output() settingsClick = new EventEmitter();
 
   open = false;
+  audioLevel: number;
 
   constructor(private coreService: CoreService) {
     this.audioLevel = coreService.getVolume();

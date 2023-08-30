@@ -27,6 +27,10 @@ export class LibraryPage {
 
   @Select(ChildState.parentActive) parentActive$!: Observable<boolean>;
 
+
+  helpText: string[] = [];
+  audioSources: string[] = [];
+
   constructor(private store: Store) {
     this.store.dispatch(new SetPractice());
     this.store.dispatch(new SetVocab());

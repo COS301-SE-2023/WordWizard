@@ -20,7 +20,6 @@ export class HeaderComponent implements OnInit {
   @Input () help! : boolean;
   @Input () helpText!: string[];
   @Input () audioSources!: string[];
-  @Input () audioLevel = 0;
 
 
   backActive!: boolean;

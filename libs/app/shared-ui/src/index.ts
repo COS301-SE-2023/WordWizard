@@ -8,4 +8,4 @@ export * from './lib/button';
 export * from './lib/modal';
 export * from './lib/help-button';
 
-export * from './lib/burger-menu.component';
+export * from './lib/burger-menu';

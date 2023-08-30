@@ -5,7 +5,12 @@
     [settingsActive]="false"
     [font]="true"
     (settingsClick)="show()"
-    [backRoute]="'../stage'" />
+    [backRoute]="'../stage'"
+    [help]="true"
+    [helpText]="helpText"
+    [audioSources]="audioSources"
+    [volumeChanger]="true"
+    [fontChanger]="true"/>
   <div class="overlay-container" [class.hidden-overlay]="!visible">
     <div class="overlay">
       <ion-grid>

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { 
-  PreferencesService, 
-  GetPreferencesReq, 
+import {
+  PreferencesService,
+  GetPreferencesReq,
   PreferenceResponse,
   UpdatePreferencesReq,
   GetPreferencesResponse,
@@ -25,8 +25,11 @@ export class PreferencesPage {
   colors = ["#FFBF00", "#FFD700", "#FF6347", "#FF4500", "#FF8C00", "#FF7F50", "#FF69B4", "#FF1493", "#FF00FF", "#FF00FF"]
 
   input = "";
+
+  helpText: string[] = [];
+  audioSources: string[] = [];
   constructor(private readonly preferencesService: PreferencesService, private toastController: ToastController) {
-    
+
     this.currentChild$.subscribe(async (data) => {
       const rqst: GetPreferencesReq = {
         child_id: data._id,

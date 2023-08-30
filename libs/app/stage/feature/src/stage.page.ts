@@ -22,6 +22,9 @@ export class StagePage implements OnInit {
   name = '';
   background = '';
 
+  helpText: string[] = [];
+  audioSources: string[] = [];
+
   coins: Coin[] = [
     { name: '' } as Coin,
     { name: '' } as Coin,
