@@ -53,8 +53,6 @@ def validate_token(authorization: str = Header(None)):
     except Exception as e:
         raise HTTPException(status_code=401, detail=f"Token validation failed: {str(e)}")
 
-
-app.include_router(vocab_router, prefix="/vocab", tags=["vocab"], dependencies=[Depends(validate_token)])
 app.include_router(reading_router, prefix="/reading", tags=["reading"], dependencies=[Depends(validate_token)])
 app.include_router(stage_router, prefix="/stage", tags=["stage"], dependencies=[Depends(validate_token)])
 app.include_router(library_router, prefix="/library", tags=["library"], dependencies=[Depends(validate_token)])
