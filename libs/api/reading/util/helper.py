@@ -38,11 +38,8 @@ def santise_string(response: str):
     return_arr = []
     for w in focuse_arr:
         return_arr.append(find_word_index(words, w.strip()))
-    c = 1
     for f in return_arr:
-        if c == 1:
-            words[f].imageURL = generate_image(words[f].word)
-        c += 1
+        words[f].imageURL = generate_image(words[f].word)
     return Content(passage=words, focusWordsIndex=return_arr)
 
 def count_syllables(word):
