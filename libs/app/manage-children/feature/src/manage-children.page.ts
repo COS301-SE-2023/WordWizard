@@ -27,6 +27,9 @@ export class ManageChildrenPage {
   visible = false;
   selectedChild!: Child;
 
+  helpText: string[] = [];
+  audioSources: string[] = [];
+
   constructor(
     private router: Router,
     private store: Store,

@@ -4,7 +4,11 @@
     <ww-header
       *ngIf="parentActive; else childActive"
       title="Library"
-      [backRoute]="'../view-child'" />
+      [backRoute]="'../view-child'"
+      [help]="true"
+      [helpText]="helpText"
+      [audioSources]="audioSources"
+      [volumeChanger]="true" />
     <ng-template #childActive>
       <ww-header title="Library" [backRoute]="'../dashboard'" />
     </ng-template>

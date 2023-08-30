@@ -20,30 +20,7 @@
         src="assets/svg/settings-sharp.svg" />
     </ion-nav-link>
 
-    <ion-icon
-      *ngIf="font"
-      size="large"
-      name="settings-sharp"
-      src="assets/svg/settings-sharp.svg"
-      (click)="fontChange()" />
-
-    <ion-icon *ngIf="audioLevel === 6"
-        size="large"
-        (click)="toggleBackgroundMusic()"
-        name="volume-high-outline">
-      </ion-icon>
-
-    <ion-icon *ngIf="audioLevel >= 3 && audioLevel < 6"
-        size="large"
-        (click)="toggleBackgroundMusic()"
-        name="volume-medium-outline">
-      </ion-icon>
-
-    <ion-icon *ngIf="audioLevel < 3"
-        size="large"
-        (click)="toggleBackgroundMusic()"
-        name="volume-mute-outline">
-      </ion-icon>
+    <ww-burger-menu [volumeChanger]="volumeChanger" [fontChanger]="fontChanger" [help]="help" [helpText]="helpText" [audioSources]="audioSources" (settingsClick)="fontChange()"></ww-burger-menu>
 
   </div>
 

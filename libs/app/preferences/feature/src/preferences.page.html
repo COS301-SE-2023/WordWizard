@@ -4,6 +4,10 @@
         [settingsActive]="false"
         [backRoute]="'../view-child'"
         [settingsActive]="true"
+        [help]="true"
+        [helpText]="helpText"
+        [audioSources]="audioSources"
+        [volumeChanger]="true"
     />
     <div class="container">
         <div class="text-container">Select topics for your child to have a customised learning experience of enter your own topic.</div>
@@ -19,7 +23,7 @@
             <ion-button class="add-btn" (click)="addCustom()">Add</ion-button>
             <div class="selected-container">
                 <div class="selected-vals">
-                    <ion-chip (click)="addOption(i)" *ngFor="let i of chosenOption" class="sel-chip" [style.--background]="i.color">{{i.value}} 
+                    <ion-chip (click)="addOption(i)" *ngFor="let i of chosenOption" class="sel-chip" [style.--background]="i.color">{{i.value}}
                         <ion-icon name="close" class="close" (click)="removeOption(i)"/>
                     </ion-chip>
                 </div>
@@ -30,7 +34,7 @@
                 color="#861486"
                 activate="#861486"
                 border="#111"
-                (click)="save()" 
+                (click)="save()"
                 class="btn-tpc"
             />
         </div>

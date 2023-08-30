@@ -1,10 +1,17 @@
-.chat-container {
+.container{
   position: fixed;
+  width: 95vw;
+  height: 100vh;
   bottom: 20px;
   z-index: 20;
+}
+
+.chat-container {
+
+
   display: flex;
   justify-content: start;
-  width: 95vw;
+  overflow: visible;
 }
 
 .wizard-image{

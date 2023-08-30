@@ -1,13 +1,16 @@
-<div class="chat-container" *ngIf="show" (click)="next()">
+<div class="container">
+  <div class="chat-container" *ngIf="show" (click)="next()">
 
-  <div class="chat-content">
-    <div class="message">
-      <div class="triangle"></div>
-      <p>{{messages[currentMessage]}}</p>
+    <div class="chat-content">
+      <div class="message">
+        <div class="triangle"></div>
+        <p>{{messages[currentMessage]}}</p>
+      </div>
+    </div>
+
+    <div class="wizard-image">
+      <img src="assets/img/WizzyFlipped.png" alt="Wizard">
     </div>
   </div>
-
-  <div class="wizard-image">
-    <img src="assets/img/WizzyFlipped.png" alt="Wizard">
-  </div>
 </div>
+

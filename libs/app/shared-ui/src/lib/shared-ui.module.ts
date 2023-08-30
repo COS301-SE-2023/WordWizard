@@ -9,6 +9,7 @@ import { ButtonModule } from './button';
 import { ModalModule } from './modal';
 import { LoaderModule } from './loader';
 import { HelpButtonModule } from './help-button';
+import { BurgerMenuModule } from './burger-menu';
 
 @NgModule({
   imports: [
@@ -20,7 +21,7 @@ import { HelpButtonModule } from './help-button';
     InfoModule,
     ButtonModule,
     LoaderModule,
-    HelpButtonModule
+    HelpButtonModule,
   ],
   exports: [
     MicrophoneModule,
@@ -30,7 +31,9 @@ import { HelpButtonModule } from './help-button';
     ButtonModule,
     ModalModule,
     LoaderModule,
-    HelpButtonModule
+    HelpButtonModule,
+    BurgerMenuModule,
   ],
+  declarations: [],
 })
 export class SharedUiModule {}

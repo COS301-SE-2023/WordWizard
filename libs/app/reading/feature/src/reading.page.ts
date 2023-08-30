@@ -48,6 +48,9 @@ export class ReadingPage {
   sentence = '';
   font = false;
 
+  helpText: string[] = [];
+  audioSources: string[] = [];
+
   constructor(private store: Store, private router: Router, private toastController: ToastController) {
     this.setStars();
     this.store.dispatch(new SetPassage());

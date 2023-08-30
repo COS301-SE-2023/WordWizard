@@ -31,6 +31,9 @@ export class DashboardPage {
   pictures: string[] = [];
   stage = 0;
 
+  helpText: string[] = [];
+  audioSources: string[] = [];
+
   constructor(
     private store: Store,
     private readonly addChildService: AddChildService,
