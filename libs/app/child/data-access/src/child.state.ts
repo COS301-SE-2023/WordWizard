@@ -28,6 +28,7 @@ export interface ChildStateModel {
         progress: string;
       };
       parentActive: boolean;
+      passcode: string;
     };
   };
 }
@@ -49,6 +50,7 @@ export interface ChildStateModel {
           progress: '',
         },
         parentActive: true,
+        passcode: '',
       },
     },
   },
@@ -163,5 +165,10 @@ export class ChildState {
   @Selector()
   static parentActive(state: ChildStateModel) {
     return state.Children.model.parentActive;
+  }
+
+  @Selector()
+  static passcode(state: ChildStateModel) {
+    return state.Children.model.passcode;
   }
 }
