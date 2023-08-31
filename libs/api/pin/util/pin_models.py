@@ -1,11 +1,12 @@
 from pydantic import BaseModel
 
-class ResetPinReq(BaseModel):
+class SetPinReq(BaseModel):
+    parent_id: str
+    new_pin: str
+class ValidatePasswordReq(BaseModel):
     parent_id: str
     validate_password: str
-    new_pin: str
-
-class ResetPinRsp(BaseModel):
+class SetPinRsp(BaseModel):
     message: str
     status_code: bool
 
