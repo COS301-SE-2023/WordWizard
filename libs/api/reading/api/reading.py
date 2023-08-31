@@ -1,19 +1,16 @@
 from fastapi import APIRouter
 from ..util.reading_models import PassageRqst, Content, Word, Progress, UpdateProgressRqst
-from ..util.markov import MarkovChain
 from ..util.helper import get_prefixes_suffixes, find_phonotactics, count_syllables
 from ..util.Rating import Rating
 from bson import ObjectId
 from ...deps import Database
-import random
-from ..util.recomended import query     
+import random   
 from ..util.Rating import Rating
 from ..util.passage import query_passage
 
 
 db = Database.getInstance().db
 router = APIRouter()
-markov = MarkovChain()
 
 def get_class(id:str):
     practice = db['Practice'].find_one({'_id': ObjectId(id)},{'_id':0})

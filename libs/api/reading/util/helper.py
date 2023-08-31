@@ -89,21 +89,6 @@ def create(data):
             else:
                 writer.writerow(row)
 
-def load():
-    words_collection = db["Practice"]
-    all_documents = words_collection.find({}, {"_id": 0})
-    arr = []
-    for document in all_documents:
-        arr.append(document["words"])
-    arr = [item for sublist in arr for item in sublist]
-    create(arr)
-
-def delete():
-    if os.path.exists(os.path.join(os.path.dirname(__file__), "data.csv")):
-        os.remove(os.path.join(os.path.dirname(__file__), "data.csv"))
-    else:
-        print("The file does not exist")
-
 def get_prefix(length: int) -> str:
     return random.choice([prefix for prefix in prefixes if len(prefix) == length])
 
