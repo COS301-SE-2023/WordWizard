@@ -13,14 +13,14 @@ connection_string = os.getenv("MONGODB_CONNECTION_STRING")
 client = MongoClient(connection_string)
 db = client["WordWizardDB"]
 
-@router.post('/')
+@router.post('/add-pin')
 def add_pin(rqst: SetPinReq):
     parent_collection = db['Parents']
     parent = parent_collection.find_one({'_id': ObjectId(rqst.parent_id)})
     if parent:
         parent_collection.update_one(
             {'_id': ObjectId(rqst.parent_id)},
-            {'$set': {'validate_password': rqst.validate_password, 'pin': rqst.new_pin}}
+            {'$set': {'validation_word': rqst.validation_word, 'pin': rqst.new_pin}}
         )
         return {
             'message': 'Pin successfully made',
@@ -31,7 +31,8 @@ def add_pin(rqst: SetPinReq):
             'message': 'Parent not found',
             'status_code': False
         }
-    
+
+@router.post('/change-pin')
 def change_pin(rqst: SetPinReq):
     parent_collection = db['Parents']
     parent = parent_collection.find_one({'_id': ObjectId(rqst.parent_id)})
@@ -49,18 +50,20 @@ def change_pin(rqst: SetPinReq):
             'message': 'Parent not found',
             'status_code': False
         }
-    
+
+@router.post('/validate-word')
 def validate_word(rqst: ValidatePasswordReq):
     parent_collection = db['Parents']
     parent = parent_collection.find_one({'_id': ObjectId(rqst.parent_id)})
     if parent:
-        if parent['validate_password'] == rqst.validate_password:
+        if parent['validation_word'] == rqst.validation_word:
             return True
         else:
             return False
     else:
         return False
-    
+
+@router.post('/validate-pin')
 def validate_pin (rqst: PinReq):
     parent_collection = db['Parents']
     parent = parent_collection.find_one({'_id': ObjectId(rqst.parent_id)})
@@ -69,6 +72,7 @@ def validate_pin (rqst: PinReq):
     else:
         return False
 
+@router.post('/get-pin')
 def get_pin (rqst: PinReq):
     parent_collection = db['Parents']
     parent = parent_collection.find_one({'_id': ObjectId(rqst.parent_id)})

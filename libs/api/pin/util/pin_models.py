@@ -5,7 +5,7 @@ class SetPinReq(BaseModel):
     new_pin: str
 class ValidatePasswordReq(BaseModel):
     parent_id: str
-    validate_password: str
+    validation_word: str
 class SetPinRsp(BaseModel):
     message: str
     status_code: bool
