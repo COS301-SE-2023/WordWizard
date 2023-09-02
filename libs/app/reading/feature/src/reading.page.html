@@ -75,12 +75,23 @@
         </ng-container>
         <ng-template #doneTemplate>
           <p>
-            <span *ngFor="let word of practice?.passage; let last = last">
+            <span *ngFor="let word of practice?.passage; let last = last; let i = index">
               <span
+                *ngIf="i !== idx; else pointerTemplate"
                 [ngStyle]="{ 'color': getWordColor(word), 'font-size': fontSize}"
                 style="font-size: 100px"
                 >{{ word?.word }}</span
-              >{{ !last ? ' ' : '' }}
+              >
+              <ng-template #pointerTemplate>
+                <span
+                *ngIf="i !== idx; else pointerTemplate"
+                [ngStyle]="{ 'color': getWordColor(word), 'font-size': fontSize}"
+                style="font-size: 100px"
+                > *{{ word?.word }}</span
+              >
+              </ng-template>
+              {{ !last ? ' ' : '' }}
+              <b>{{i}}</b>
             </span>
           </p>
         </ng-template>
@@ -90,15 +101,18 @@
   <div class="button-container">
     <div class="button-group">
       <ng-container *ngIf="!practice.done; else finishedTemplate">
-        <ww-speaker
-          [speakPhrase]="practice.passage[practice.focusWordsIndex[currentWord]]?.word" />
+        <ww-speaker [speakPhrase]="practice.passage[practice.focusWordsIndex[currentWord]]?.word" />
       </ng-container>
       <ng-template #finishedTemplate>
         <ww-speaker [speakPhrase]="sentence" />
       </ng-template>
     </div>
     <div class="button-group">
-      <ww-microphone (textChanged)="handleTextChange($event)"></ww-microphone>
+      <ww-microphone 
+        (textChanged)="handleTextChange($event)"
+        (stopRec)="stopR()"
+        (startRec)="startR()"
+      />
     </div>
     <!-- <div class="button-group"></div> -->
   </div>

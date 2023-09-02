@@ -48,6 +48,19 @@ export class ReadingPage {
   sentence = '';
   font = false;
 
+  idx = 0;
+  intervalTimer! : any;
+
+  sTimeout(x:number){
+    console.error("SETTING INTERVAL");  
+
+    this.intervalTimer = setInterval(() => {
+        this.idx++;
+        if(this.idx >= 5) this.idx = 0;
+    }, x);
+
+  }
+
   helpText: string[] = [];
   audioSources: string[] = ["assets/mp3/"];
 
@@ -207,5 +220,15 @@ export class ReadingPage {
 
   show() {
     this.font = !this.font;
+  }
+
+  startR() {
+    if(this.practice.done)
+      this.sTimeout(1000);
+  }
+
+  stopR() {
+    this.intervalTimer = null; 
+    
   }
 }
