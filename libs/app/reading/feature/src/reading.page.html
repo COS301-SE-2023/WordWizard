@@ -77,21 +77,14 @@
           <p>
             <span *ngFor="let word of practice?.passage; let last = last; let i = index">
               <span
-                *ngIf="i !== idx; else pointerTemplate"
                 [ngStyle]="{ 'color': getWordColor(word), 'font-size': fontSize}"
                 style="font-size: 100px"
                 >{{ word?.word }}</span
               >
-              <ng-template #pointerTemplate>
-                <span
-                *ngIf="i !== idx; else pointerTemplate"
-                [ngStyle]="{ 'color': getWordColor(word), 'font-size': fontSize}"
-                style="font-size: 100px"
-                > *{{ word?.word }}</span
-              >
-              </ng-template>
+              <div *ngIf="i === idx">
+                Index found
+              </div>
               {{ !last ? ' ' : '' }}
-              <b>{{i}}</b>
             </span>
           </p>
         </ng-template>

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import {
-  // ReadingStateModel,
   SetPassage,
   MakeAttempt,
   Content,
@@ -51,14 +50,17 @@ export class ReadingPage {
   idx = 0;
   intervalTimer! : any;
 
-  sTimeout(x:number){
+  sTimeout(x: number) {
     console.error("SETTING INTERVAL");  
-
-    this.intervalTimer = setInterval(() => {
+    if (!this.intervalTimer) {
+      this.intervalTimer = setInterval(() => {
         this.idx++;
-        if(this.idx >= 5) this.idx = 0;
-    }, x);
-
+        if (this.idx >= this.practice.passage.length) {
+          clearInterval(this.intervalTimer); // Stop the timer when the condition is met
+          this.intervalTimer = null; // Reset the timer
+        }
+      }, x);
+    }
   }
 
   helpText: string[] = [];
@@ -223,12 +225,18 @@ export class ReadingPage {
   }
 
   startR() {
-    if(this.practice.done)
+    
+    if(this.practice.done){
+      console.log("start")
       this.sTimeout(1000);
+    }
+      
   }
 
   stopR() {
-    this.intervalTimer = null; 
+    console.log("stop");
+    if(this.practice.done)
+      clearTimeout(this.intervalTimer)
     
   }
 }
