@@ -23,7 +23,7 @@ export class AddChildPage {
   pictures: string[] = [];
 
   helpText: string[] = [];
-  audioSources: string[] = [];
+  audioSources: string[] = ['assets/mp3/add-1.wav'];
 
   constructor(
     private readonly fb: FormBuilder,

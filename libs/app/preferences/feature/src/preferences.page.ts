@@ -27,7 +27,7 @@ export class PreferencesPage {
   input = "";
 
   helpText: string[] = [];
-  audioSources: string[] = [];
+  audioSources: string[] = ['assets/mp3/preferences.wav'];
   constructor(private readonly preferencesService: PreferencesService, private toastController: ToastController) {
 
     this.currentChild$.subscribe(async (data) => {

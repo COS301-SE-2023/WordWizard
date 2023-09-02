@@ -1,24 +1,21 @@
-.container{
-  position: fixed;
-  width: 95vw;
-  height: 100vh;
-  bottom: 20px;
-  z-index: 20;
-}
 
 .chat-container {
-
+  width: 95vw;
+  bottom: 20px;
+  left:0px;
+  z-index: 20;
 
   display: flex;
+  flex-direction: row;
   justify-content: start;
   overflow: visible;
 }
 
-.wizard-image{
-  position: absolute;
-  right: 0px;
-  bottom: 0px;
-}
+// .wizard-image{
+//   position: absolute;
+//   right: 0px;
+//   bottom: 0px;
+// }
 
 .wizard-image img {
   width: 40vw;
@@ -29,6 +26,8 @@
   width: 70%;
   margin-left: 5%;
   position: relative;
+  display: grid;
+  place-items: center;
 }
 
 p{
@@ -43,17 +42,6 @@ p{
   border-radius: 10px;
   margin-bottom: 10px;
 
-  .triangle{
-    position: absolute;
-    top: 5%;
-    right: 0px;
-    transform: translateX(2.5vw);
-    width: 0;
-    height: 0;
-    border-top: 3vw solid transparent;
-    border-bottom: 3vw solid transparent;
-    border-left: 3vw solid #D9A57E;
-  }
 
 }
 
