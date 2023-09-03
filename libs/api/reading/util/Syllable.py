@@ -6,5 +6,7 @@ class Syllable:
         self.avg = avg
     def add(self, weight: float=1):
             self.weight += weight
-    def calculate(self):
+    def calculate(self) -> float:
+        if self.avg == 0:
+            return 0
         return self.weight/self.avg

@@ -56,8 +56,8 @@ export class ReadingPage {
       this.intervalTimer = setInterval(() => {
         this.idx++;
         if (this.idx >= this.practice.passage.length) {
-          clearInterval(this.intervalTimer); // Stop the timer when the condition is met
-          this.intervalTimer = null; // Reset the timer
+          clearInterval(this.intervalTimer); 
+          this.intervalTimer = null;
         }
       }, x);
     }
@@ -225,18 +225,12 @@ export class ReadingPage {
   }
 
   startR() {
-    
-    if(this.practice.done){
-      console.log("start")
+    if(this.practice.done)
       this.sTimeout(1000);
-    }
-      
   }
 
   stopR() {
-    console.log("stop");
     if(this.practice.done)
       clearTimeout(this.intervalTimer)
-    
   }
 }

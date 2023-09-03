@@ -19,7 +19,7 @@ def get_class(id:str):
     pref = []
     if "preferences" in child:
         pref = child["preferences"]
-    return Rating(vocab["words"], practice["words"], pref=pref)
+    return Rating(vocab["words"], practice["words"])
 
 
 @router.post('/passage')
@@ -32,9 +32,6 @@ def update_progress(updtProgress: UpdateProgressRqst):
     # Get the current progress from DB
     progress_collection = db['Progress']
     progress = progress_collection.find_one({'_id': ObjectId(updtProgress.child_id)})
-
-    print("Level ", updtProgress.progress.level)
-    print("Score: ", updtProgress.progress.score)
 
     # UPDATE THE VALUES 
     if progress:
