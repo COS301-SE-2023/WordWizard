@@ -28,6 +28,9 @@ node_modules
 /.sass-cache
 /connect.lock
 /coverage
+.coverage
+coverage.xml
+htmlcov
 /libpeerconnection.log
 npm-debug.log
 yarn-error.log
@@ -44,8 +47,10 @@ Thumbs.db
 
 #Sensitive files
 .env
+cypress.env.json
 
 #Python
 __pycache__
 .pytest_cache
 venv
+*.csv

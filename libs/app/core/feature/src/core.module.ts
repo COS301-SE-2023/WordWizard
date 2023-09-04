@@ -4,32 +4,35 @@ import { CoreRouting } from './core.routing';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { CoreShell } from './core.shell';
 import { RouteReuseStrategy } from '@angular/router';
-import { SharedUiModule } from '@word-wizard/app/shared-ui';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxsModule } from '@ngxs/store';
-// eslint-disable-next-line @nx/enforce-module-boundaries
-import { SharedAuthModule } from '@word-wizard/app/auth/feature';
+import { AuthModule } from '@auth0/auth0-angular';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LoadingService } from '@word-wizard/app/loading/data-access';
+import { LoadingInterceptorService } from '@word-wizard/app/loading/data-access';
+
+const redirect_uri = `${window.location.origin}`;
 
 @NgModule({
   declarations: [CoreShell],
   imports: [
+    HttpClientModule,
     BrowserModule,
     IonicModule.forRoot(),
     CoreRouting,
-    SharedUiModule,
     NoopAnimationsModule,
-    NgxsModule.forRoot([
-
-    ]),
-    SharedAuthModule,
+    NgxsModule.forRoot([]),
+    AuthModule.forRoot({
+      domain: `${process.env['WW_AUTH0_DOMAIN']}`,
+      clientId: `${process.env['WW_AUTH0_CLIENT_ID']}`,
+      useRefreshTokens: true,
+      useRefreshTokensFallback: false,
+      authorizationParams: {
+        redirect_uri,
+      },
+    }),
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },{provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptorService, multi: true,}, LoadingService],
   bootstrap: [CoreShell],
 })
-export class CoreModule {
-
-  constructor() {
-    console.log("CoreModule constructor");
-}
-
-}
+export class CoreModule {}

@@ -1,26 +1,36 @@
 <div>
-    <div>
-      <button id="open-cauldron-dialog-{{number}}"  class="box word">{{vocab.word}}</button>
-    </div>
-    <ion-modal id="example-modal" #modal trigger="open-cauldron-dialog-{{number}}" [ngClass]="bottleClass">
-      <ng-template>
-        <div class="wrapper">
-          <h1 class="word">{{vocab.word}}</h1>
-          <ion-grid>
-            <ion-row>
-              <ion-col size="12.5" class="ion-text-center ion-align-items-center">
-                <img src="{{vocab.img}}">
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col size="12" class="ion-text-center ion-align-items-center">
-                <ww-speaker [speakPhrase]="vocab.word"></ww-speaker>
-                <ww-microphone (textChanged)="handleTextChange($event)"></ww-microphone>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </div>
-      </ng-template>
-    </ion-modal>
+  <div>
+    <button id="open-cauldron-dialog-{{ number }}" class="box word">
+      {{ vocab.word }}
+    </button>
   </div>
-  
+  <ion-modal
+    id="example-modal"
+    #modal
+    trigger="open-cauldron-dialog-{{ number }}"
+    [ngClass]="bottleClass">
+    <ng-template>
+      <div class="wrapper" style="margin-top: 20%">
+        <h1 class="word">{{ vocab.word }}</h1>
+        <ion-grid>
+          <ion-row>
+            <ion-col
+              size="12"
+              class="ion-text-center ion-align-items-center ion-justify-content-center">
+              <ion-img
+                [src]="vocab.img"
+                style="width: 40%; height: auto"></ion-img>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="12" class="ion-text-center ion-align-items-center">
+              <ww-speaker [speakPhrase]="vocab.word"></ww-speaker>
+              <ww-microphone
+                (textChanged)="handleTextChange($event)"></ww-microphone>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+    </ng-template>
+  </ion-modal>
+</div>

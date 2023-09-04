@@ -5,7 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { ProgressPotionComponent } from './progress-potion.component';
 
 @NgModule({
-  imports: [ CommonModule, FormsModule, IonicModule],
+  imports: [CommonModule, FormsModule, IonicModule],
   declarations: [ProgressPotionComponent],
   exports: [ProgressPotionComponent],
 })

@@ -1,0 +1,7 @@
+{
+  "name": "word-wizard",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

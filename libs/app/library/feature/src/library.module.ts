@@ -5,10 +5,16 @@ import { IonicModule } from '@ionic/angular';
 import { LibraryPage } from './library.page';
 import { LibraryRouting } from './library.routing';
 import { HttpClientModule } from '@angular/common/http';
-import { LibraryModule as LibraryUiModule }  from '@word-wizard/app/library/ui';
+import { LibraryModule as LibraryUiModule } from '@word-wizard/app/library/ui';
 import { RouterModule } from '@angular/router';
 import { NgxsModule } from '@ngxs/store';
-import { LibraryState, LibraryService } from '@word-wizard/app/library/data-access';
+import {
+  LibraryState,
+  LibraryService,
+} from '@word-wizard/app/library/data-access';
+import { SharedUiModule } from '@word-wizard/app/shared-ui';
+import { ChildState } from '@word-wizard/app/child/data-access';
+import { LoadingModule } from '@word-wizard/app/loading/feature';
 
 
 @NgModule({
@@ -19,10 +25,12 @@ import { LibraryState, LibraryService } from '@word-wizard/app/library/data-acce
     LibraryRouting,
     RouterModule,
     LibraryUiModule,
-    NgxsModule.forFeature([LibraryState]),
-    HttpClientModule
+    NgxsModule.forFeature([LibraryState, ChildState]),
+    HttpClientModule,
+    SharedUiModule,
+    LoadingModule,
   ],
   declarations: [LibraryPage],
-  providers: [LibraryService]
+  providers: [LibraryService],
 })
-export class LibraryModule { }
+export class LibraryModule {}

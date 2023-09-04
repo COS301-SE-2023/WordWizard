@@ -1,23 +1,47 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, EventEmitter, Output, OnInit} from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ww-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
+  @Input() title!: string;
+  @Input() backRoute!: string;
+  @Input() settingsActive!: boolean;
+  @Input() settingsRoute!: string;
+  @Input() font!: boolean;
+  @Output() settingsClick = new EventEmitter();
 
-  @Input() title! : string;
-  @Input() backRoute! : string;
-  @Input() settingsActive! : boolean;
-  backActive! : boolean;
+  //burgermenu inputs
+  @Input () volumeChanger! : boolean;
+  @Input () fontChanger! : boolean;
+  @Input () help! : boolean;
+  @Input () helpText!: string[];
+  @Input () audioSources!: string[];
+
+
+  backActive!: boolean;
+
+  constructor(private router: Router) {
+
+  }
 
   ngOnInit() {
-    if(this.backRoute != ''){
+    if (this.backRoute != '') {
       this.backActive = true;
-    }else{
+    } else {
       this.backActive = false;
     }
   }
 
+  fontChange() {
+    this.settingsClick.emit();
+  }
+
+
+
 }
+
+

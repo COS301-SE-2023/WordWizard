@@ -1,0 +1,45 @@
+<div class="burger-menu">
+  <ion-button (click)="toggleMenu()">
+    <ion-icon name="menu" size="large"></ion-icon>
+  </ion-button>
+
+  <div class="dropdown" *ngIf="open">
+
+    <!-- font size -->
+    <ion-icon
+    *ngIf="fontChanger"
+    size="large"
+    name="settings-sharp"
+    src="assets/svg/settings-sharp.svg"
+    (click)="fontChange()" />
+
+
+    <!-- audio level -->
+  <div class="audioLevel" *ngIf="volumeChanger">
+    <ion-icon *ngIf="audioLevel === 6"
+        size="large"
+        (click)="toggleBackgroundMusic()"
+        name="volume-high-outline">
+    </ion-icon>
+
+    <ion-icon *ngIf="audioLevel >= 3 && audioLevel < 6"
+        size="large"
+        (click)="toggleBackgroundMusic()"
+        name="volume-medium-outline">
+    </ion-icon>
+
+    <ion-icon *ngIf="audioLevel < 3"
+        size="large"
+        (click)="toggleBackgroundMusic()"
+        name="volume-mute-outline">
+    </ion-icon>
+  </div>
+
+  <!-- help button -->
+
+  <ww-help-button *ngIf="help" [helpText]="helpText" [audioSources]="audioSources"></ww-help-button>
+
+  </div>
+
+
+</div>

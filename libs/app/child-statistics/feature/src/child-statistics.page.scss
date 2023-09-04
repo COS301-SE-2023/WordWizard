@@ -1,0 +1,46 @@
+ion-content {
+  --background: #070527;
+  .chart {
+    background: #131041;
+    border-radius: 5%;
+  }
+  .chart-container {
+    margin-top: 4vh;
+    margin-bottom: 3vh;
+    width: 87vw;
+    height: 42vh;
+    margin-left: 5.5vw;
+  }
+  .text-stat-container {
+    margin-top: 3vh;
+    ion-col {
+      border-radius: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      margin-left: 5.5vw;
+
+      .stat-text {
+        color: #fff;
+        font-size: 1.25rem;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        margin-top: -1rem;
+      }
+      .stat {
+        color: #fff;
+        font-size: 2.5rem;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        margin-top: 1.8rem;
+      }
+    }
+  }
+  .stat-element {
+    background: #131041;
+  }
+}

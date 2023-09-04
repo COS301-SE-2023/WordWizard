@@ -1,18 +1,26 @@
 <div>
   <div class="scroll-closed">
-    <button id="open-custom-dialog-{{number}}"  class="box word">{{vocab.word}}</button>
+    <button id="open-custom-dialog-{{ number }}" class="box word">
+      {{ vocab.word }}
+    </button>
   </div>
-  <ion-modal id="example-modal" #modal trigger="open-custom-dialog-{{number}}" class="scroll-opened no-padding">
+  <ion-modal
+    id="example-modal"
+    #modal
+    trigger="open-custom-dialog-{{ number }}"
+    class="scroll-opened no-padding">
     <ng-template>
       <div class="wrapper" class="open-scroll-content">
-        <h1 class="word">{{vocab.word}}</h1>
+        <h1 class="word">{{ vocab.word }}</h1>
         <ion-grid>
           <ion-row>
             <ion-col size="11" class="ion-text-center ion-align-items-center">
-              <img src="{{vocab.img}}">
+              <ion-img
+                [src]="vocab.img"
+                style="width: 60%; height: auto"></ion-img>
             </ion-col>
           </ion-row>
-          <ion-row >
+          <ion-row>
             <ion-col size="12" class="ion-text-center ion-align-items-center">
               <ww-speaker [speakPhrase]="vocab.word"></ww-speaker>
             </ion-col>

@@ -1,9 +1,10 @@
 name: Build
 
 on:
+  push:
+    branches: [ dev, main ]
   pull_request:
-    branches:
-      - dev
+    branches: [ dev, main ]
 
 jobs:
   build:
@@ -16,6 +17,9 @@ jobs:
       - name: Create .env file
         run: |
           echo "MONGODB_CONNECTION_STRING=${{ secrets.MONGODB_CONNECTION_STRING }}" >> .env
+          echo "WW_API_ENDPOINT=${{ secrets.WW_API_ENDPOINT }}" >> .env
+          echo "WW_AUTH0_DOMAIN=${{ secrets.WW_AUTH0_DOMAIN }}" >> .env
+          echo "WW_AUTH0_CLIENT_ID=${{ secrets.WW_AUTH0_CLIENT_ID }}" >> .env
 
       - name: Set up Python
         uses: actions/setup-python@v2
@@ -24,7 +28,6 @@ jobs:
       
       - name: Install python dependancies
         run: |
-          cd libs/api
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
@@ -32,16 +35,20 @@ jobs:
         run: npm run test:api
 
       - name: Install dependencies
-        run: npm install --legacy-peer-deps
+        run: npm install
 
       - name: Run linting
         run: npm run lint
 
-      - name: Run tests
-        run: npm run test
+      - name: Test
+        working-directory: ./
+        run: npx nx run-many --target=test --all --skip-nx-cache --parallel=5 --coverage
 
-      - name: Build app
-        run: npm run build:app:dev
-        
-      - name: Check if build succeeded
-        run: |
+      - name: Build app prod
+        run: npm run build:app:prod
+      
+      - name: Upload codecov report
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          # directory: ./coverage

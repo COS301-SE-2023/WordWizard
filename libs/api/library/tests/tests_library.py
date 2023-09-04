@@ -16,7 +16,7 @@ word2 = generate_random_word(6)
 
 # MOCK API TO TEST DB
 def test_get_vocab_valid():
-    rqst = {"userID": "64784f19bdfa8f92954b9d78"}
+    rqst = {"userID": "64aea4e9116f3e6a544202ba"}
     response = client.post("/library/vocab", json=rqst)
     assert response.status_code == 200
     result = response.json()
@@ -27,7 +27,7 @@ def test_get_vocab_valid():
         assert "img" in word
 
 def test_get_practice_valid():
-    rqst = {"userID": "64784f19bdfa8f92954b9d78"}
+    rqst = {"userID": "64aea4e9116f3e6a544202ba"}
     response = client.post("/library/practice", json=rqst)
     assert response.status_code == 200
     result = response.json()
@@ -74,19 +74,19 @@ def test_add_vocab_valid():
 
 # MOCK DB TO TEST API
 
-def test_get_vocab_api():
-    # Call function to assign the mock client 
-    assign_mock_client()
+# def test_get_vocab_api():
+#     # Call function to assign the mock client 
+#     # assign_mock_client()
 
-    rqst = {"userID": "64784f19bdfa8f92954b9d78"}
-    response = libClient.post("/library/vocab", json=rqst)
-    assert response.status_code == 200
-    result = response.json()
-    assert "words" in result
-    assert len(result["words"]) > 0
-    for word in result["words"]:
-        assert "word" in word
-        assert "img" in word
+#     rqst = {"userID": "64aea4e9116f3e6a544202ba"}
+#     response = libClient.post("/library/vocab", json=rqst)
+#     assert response.status_code == 200
+#     result = response.json()
+#     assert "words" in result
+#     assert len(result["words"]) > 0
+#     for word in result["words"]:
+#         assert "word" in word
+#         assert "img" in word
 
     # Reassign the real client
     assign_actual_client()

@@ -1,53 +1,105 @@
-<ww-header [title]="'Journeyman'" [settingsActive]="true" [backRoute]="'./'"></ww-header>
-
-
-<ion-content class="page-container">
+<ww-loading></ww-loading>
+<ion-content class="page-container" [scrollY]="false">
+  <ww-header
+    [title]="'Reading Page'"
+    [settingsActive]="false"
+    [font]="true"
+    (settingsClick)="show()"
+    [backRoute]="'../stage'"
+    [help]="true"
+    [helpText]="helpText"
+    [audioSources]="audioSources"
+    [volumeChanger]="true"
+    [fontChanger]="true"/>
+  <div class="overlay-container" [class.hidden-overlay]="!visible">
+    <div class="overlay">
+      <ion-grid>
+        <ion-row class="top-modal">
+          <div class="title">{{progressPercentage}}</div>
+        </ion-row>
+        <ion-row>
+          <ion-col size="4">
+            <img [src]="star1" />
+          </ion-col>
+          <ion-col size="4">
+            <img [src]="star2" />
+          </ion-col>
+          <ion-col size="4">
+            <img [src]="star3" />
+          </ion-col>
+        </ion-row>
+        <ion-row class="bottom-modal">
+          <div class="title">{{congratularyMessage}}</div>
+        </ion-row>
+      </ion-grid>
+    </div>
+    <div class="image-container">
+      <ion-nav-link (click)="controlModal()">
+        <img [src]="backButton" alt="Image 1" class="back-button" />
+        <img [src]="wizardImg" alt="Image 2" class="wizard-image" />
+      </ion-nav-link>
+    </div>
+  </div>
+  <div class="slider-container" *ngIf="font">
+    <input
+      type="range"
+      min="1"
+      max="3"
+      value="{{value}}"
+      class="slider"
+      (change)="updateFont($event)" />
+  </div>
   <div id="potion-container">
+    <div id="attempts-container">
+      {{ getAttemptsRemaining$ | async  }}
+    </div>
     <ww-progress-potion [percentage]="progressPercentage"></ww-progress-potion>
+    <div></div>
   </div>
   <div class="container">
     <div class="header-container">
       <div>
-          <ng-container *ngIf="!practice.done; else doneTemplate">
-            <p>
-              <span [ngStyle]="{ 'color': getWordColor(practice.passage[practice.focusWordsIndex[currentWord]]) }">{{ practice.passage[practice.focusWordsIndex[currentWord]]?.word }}</span>
-            </p>
-            <div class="content-container">
-              <img [src]="practice.passage[practice.focusWordsIndex[currentWord]]?.imageURL" alt="Magic Image"/>
-            </div>
-          </ng-container>
-          <ng-template #doneTemplate>
-            <p>
-              <span *ngFor="let word of practice?.passage; let last = last">
-                <span [ngStyle]="{ 'color': getWordColor(word) }">{{ word?.word }}</span>{{ !last ? ' ' : '' }}
-              </span>
-            </p>
-          </ng-template>
+        <ng-container *ngIf="!practice.done; else doneTemplate">
+          <p>
+            <span
+              [ngStyle]="{ 'color': getWordColor(practice.passage[practice.focusWordsIndex[currentWord]]), 'font-size': fontSize }"
+              >{{ practice.passage[practice.focusWordsIndex[currentWord]]?.word
+              }}</span
+            >
+          </p>
+          <div class="content-container">
+            <img
+              [src]="practice.passage[practice.focusWordsIndex[currentWord]]?.imageURL"
+              alt="Magic Image" />
+          </div>
+        </ng-container>
+        <ng-template #doneTemplate>
+          <p>
+            <span *ngFor="let word of practice?.passage; let last = last; let i = index">
+              <span
+                [ngStyle]="{ 'color': getWordColor(word), 'font-size': fontSize}"
+                style="font-size: 100px"
+                >{{ word?.word }}</span
+              >
+              {{ !last ? ' ' : '' }}
+            </span>
+          </p>
+        </ng-template>
       </div>
-
     </div>
-    <!-- <div class="content-container">
-      <img [src]="readingPageData.imageSrc" alt="Magic Image">
-    </div> -->
   </div>
   <div class="button-container">
     <div class="button-group">
       <ng-container *ngIf="!practice.done; else finishedTemplate">
-        <ww-speaker [speakPhrase]="practice.passage[currentWord]?.word"></ww-speaker>
+        <ww-speaker [speakPhrase]="practice.passage[practice.focusWordsIndex[currentWord]]?.word" />
       </ng-container>
       <ng-template #finishedTemplate>
-        <ww-speaker [speakPhrase]="sentence"></ww-speaker>
+        <ww-speaker [speakPhrase]="sentence" />
       </ng-template>
-      
-      <!-- <ww-speaker *ngIf="done" [speakPhrase]="practice?.passage"></ww-speaker> -->
     </div>
     <div class="button-group">
-      <ww-microphone (textChanged)="handleTextChange($event)"></ww-microphone>
+      <ww-microphone (textChanged)="handleTextChange($event)"/>
     </div>
-    <div class="button-group">
-      <ww-info></ww-info>
-    </div>
+    <!-- <div class="button-group"></div> -->
   </div>
 </ion-content>
-
-
