@@ -25,6 +25,7 @@ export class ManageChildrenPage {
   @Select(ChildState.Children) Children$!: Observable<Child[]>;
   children: Child[] = [];
   visible = false;
+  passwordSet = true;
   selectedChild!: Child;
 
   helpText: string[] = [];
@@ -139,5 +140,9 @@ export class ManageChildrenPage {
       ],
     });
     await alert.present();
+  }
+
+  handle() {
+    this.passwordSet = !this.passwordSet;
   }
 }
