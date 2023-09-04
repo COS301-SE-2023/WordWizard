@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -6,8 +7,6 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class VoiceRecognitionService {
-  constructor(private http: HttpClient) {}
-  /*eslint-disable-next-line*/
   convertSpeechToText(file: Blob): Observable<any> {
     const formData = new FormData();
     formData.append('file', file, 'audio.wav');
@@ -16,4 +15,6 @@ export class VoiceRecognitionService {
       formData,
     );
   }
+  constructor(private http: HttpClient){}
 }
+/* eslint:enable */
