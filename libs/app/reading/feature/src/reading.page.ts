@@ -47,22 +47,6 @@ export class ReadingPage {
   sentence = '';
   font = false;
 
-  idx = 0;
-  intervalTimer! : any;
-
-  sTimeout(x: number) {
-    console.error("SETTING INTERVAL");  
-    if (!this.intervalTimer) {
-      this.intervalTimer = setInterval(() => {
-        this.idx++;
-        if (this.idx >= this.practice.passage.length) {
-          clearInterval(this.intervalTimer); 
-          this.intervalTimer = null;
-        }
-      }, x);
-    }
-  }
-
   helpText: string[] = [];
   audioSources: string[] = ["assets/mp3/"];
 
@@ -222,15 +206,5 @@ export class ReadingPage {
 
   show() {
     this.font = !this.font;
-  }
-
-  startR() {
-    if(this.practice.done)
-      this.sTimeout(1000);
-  }
-
-  stopR() {
-    if(this.practice.done)
-      clearTimeout(this.intervalTimer)
   }
 }

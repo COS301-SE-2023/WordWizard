@@ -81,9 +81,6 @@
                 style="font-size: 100px"
                 >{{ word?.word }}</span
               >
-              <div *ngIf="i === idx">
-                Index found
-              </div>
               {{ !last ? ' ' : '' }}
             </span>
           </p>
@@ -101,11 +98,7 @@
       </ng-template>
     </div>
     <div class="button-group">
-      <ww-microphone 
-        (textChanged)="handleTextChange($event)"
-        (stopRec)="stopR()"
-        (startRec)="startR()"
-      />
+      <ww-microphone (textChanged)="handleTextChange($event)"/>
     </div>
     <!-- <div class="button-group"></div> -->
   </div>
