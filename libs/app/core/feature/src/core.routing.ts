@@ -103,7 +103,7 @@ const routes: Routes = [
         (m) => m.PreferencesModule,
       ),
     // canActivate: [AuthGuard],
-  }
+  },
   {
     path: 'password',
     loadChildren: () =>

@@ -56,7 +56,6 @@ def validate_token(authorization: str = Header(None)):
         raise HTTPException(status_code=401, detail=f"Token validation failed: {str(e)}")
 
 
-app.include_router(vocab_router, prefix="/vocab", tags=["vocab"])
 app.include_router(reading_router, prefix="/reading", tags=["reading"])
 app.include_router(stage_router, prefix="/stage", tags=["stage"])
 app.include_router(library_router, prefix="/library", tags=["library"])
