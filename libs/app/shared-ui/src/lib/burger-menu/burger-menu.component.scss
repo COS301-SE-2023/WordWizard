@@ -9,7 +9,7 @@ ion-button{
 }
 
 .dropdown{
-  height: 20vw;
+  height: fit-content;
   width: 90%;
   bottom: 0px;
   left: 0px;
@@ -26,4 +26,8 @@ ion-button{
     margin-bottom: 5px;
   }
 
+}
+
+#font-size{
+  margin-top:5px;
 }

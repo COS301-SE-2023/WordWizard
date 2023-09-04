@@ -27,8 +27,8 @@ export class ManageChildrenPage {
   visible = false;
   selectedChild!: Child;
 
-  helpText: string[] = [];
-  audioSources: string[] = [];
+  helpText: string[] = ['Welcome, press on the plus-button to add a child', 'You can sign out or delete your account, but be careful','If you want to read, navigate to your profile'];
+  audioSources: string[] = ['assets/mp3/manage-3.wav', 'assets/mp3/manage-2.wav', 'assets/mp3/manage-1.wav'];
 
   constructor(
     private router: Router,
