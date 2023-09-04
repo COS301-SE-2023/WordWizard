@@ -16,6 +16,7 @@ export class AddChildPage {
   form: FormGroup = this.fb.group({
     name: ['', Validators.required],
     age: ['', Validators.required],
+    acceptAgreement: ['', Validators.required],
   });
   // Set visible to true to debug modal
   visible = false;

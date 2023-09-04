@@ -78,6 +78,10 @@
       <label htmlFor="age">Age:</label><br />
       <input type="number" id="age" formControlName="age" class="test1" />
     </div>
+    <div>
+      <label htmlFor="accept-agreement">Accept <a routerLink="user-agreement">Terms of Service</a></label><br />
+      <input type="checkbox" id="accept-agreement" formControlName="acceptAgreement" class="test1" />
+    </div>
     <ion-button
       [disabled]="!form.valid || !selectedImage"
       type="submit"
