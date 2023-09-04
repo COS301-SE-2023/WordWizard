@@ -102,6 +102,7 @@ export class ReadingState {
           produce((draft: ReadingStateModel) => {
             draft.Passage.model.Content.passage = passage.passage;
             draft.Passage.model.Content.focusWordsIndex = passage.focusWordsIndex;
+            draft.Passage.model.Content.done = false;
           }),
         );
       } catch (err) {
@@ -127,11 +128,10 @@ export class ReadingState {
         attemptsRemaining--;
         if (draft.Passage.model.Content.done) {
           if (attemptsRemaining > 0) {
-            const foundIndex = passage.findIndex(
-              (word) =>
-                word.word.toLowerCase() === payload.newAttempt.toLowerCase(),
-            );
-            if (foundIndex !== -1) passage[foundIndex].correct = true;
+            passage.forEach((word) => {
+              if (word.word.toLowerCase() === payload.newAttempt.toLowerCase())
+                word.correct = true;
+            });
             Word.attemptsRemaining = Word.attemptsRemaining - 1;
             if (passage.every((word) => word.correct !== null)) {
               this.store.dispatch(new UpdateProgress());
@@ -140,13 +140,10 @@ export class ReadingState {
             this.store.dispatch(new UpdateProgress());
           }
         } else {
-          if (
-            currentWord.word.toLowerCase() === payload.newAttempt.toLowerCase()
-          ) {
+          if (currentWord.word.toLowerCase() === payload.newAttempt.toLowerCase()) {
             currentWord.correct = true;
             Word.current++;
             Word.attemptsRemaining = 2;
-            passage[current].correct = true;
           } else if (attemptsRemaining <= 0) {
             currentWord.correct = false;
             Word.current++;
