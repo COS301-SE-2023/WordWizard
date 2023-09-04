@@ -4,6 +4,43 @@ import os
 import random
 from ...deps import Database
 db = Database.getInstance().db
+from typing import List
+from .reading_models import Content, Word
+from .img import generate_image
+
+patterns = {
+    r'[bcdfghjklmnpqrstvwxyz][aeiou]': 'CV',
+    r'[bcdfghjklmnpqrstvwxyz][aeiou][bcdfghjklmnpqrstvwxyz]': 'CVC',
+    r'[bcdfghjklmnpqrstvwxyz][bcdfghjklmnpqrstvwxyz][aeiou]': 'CCV',
+    r'[bcdfghjklmnpqrstvwxyz][aeiou][bcdfghjklmnpqrstvwxyz][bcdfghjklmnpqrstvwxyz]': 'CVCC',
+    r'[bcdfghjklmnpqrstvwxyz]{3}[aeiou]': 'CCCV',
+    r'[bcdfghjklmnpqrstvwxyz]{2}[aeiou][bcdfghjklmnpqrstvwxyz]': 'CCVC',
+    r'[aeiou]': 'V',
+    r'[aeiou][bcdfghjklmnpqrstvwxyz]': 'VC'
+}
+prefixes = ['a', 'anti', 'bi', 'co', 'com', 'de', 'dis', 'en', 'em', 'ex', 'fore', 'in', 'im', 'il', 'ir', 'mis', 'non', 'over', 'pre', 'pro', 're', 'semi', 'sub', 'tri', 'un']
+suffixes = ['able', 'al', 'ed', 'en', 'er', 'est', 'ful', 'ic', 'ing', 'ion', 'ity', 'ive', 'less', 'ly', 'ment', 'ness', 'ous', 's', 'tion', 'y']
+
+def find_word_index(words: List[Word], target_word: str) -> int:
+    for w in words:
+        if w.word == target_word:
+            return words.index(w)
+    return -1
+
+def santise_string(response: str):
+    sec = response.split("\n")
+    sentence = sec[0].split(":")[1].strip()
+    sentence = sentence.replace(".", "")
+    sentence_arr = sentence.split(" ")
+    focus_words = sec[1].split(":")[1].strip()
+    focuse_arr = focus_words.split(",")
+    words = [Word(word=word, imageURL="img", correct=None) for word in sentence_arr]
+    return_arr = []
+    for w in focuse_arr:
+        return_arr.append(find_word_index(words, w.strip()))
+    for f in return_arr:
+        words[f].imageURL = generate_image(words[f].word)
+    return Content(passage=words, focusWordsIndex=return_arr)
 
 def count_syllables(word):
     cv_pattern = r'[bcdfghjklmnpqrstvwxz]+[aeiouy]+'
@@ -11,16 +48,6 @@ def count_syllables(word):
     return len(cvs)
 
 def find_phonotactics(word):
-    patterns = {
-        r'[bcdfghjklmnpqrstvwxyz][aeiou]': 'CV',
-        r'[bcdfghjklmnpqrstvwxyz][aeiou][bcdfghjklmnpqrstvwxyz]': 'CVC',
-        r'[bcdfghjklmnpqrstvwxyz][bcdfghjklmnpqrstvwxyz][aeiou]': 'CCV',
-        r'[bcdfghjklmnpqrstvwxyz][aeiou][bcdfghjklmnpqrstvwxyz][bcdfghjklmnpqrstvwxyz]': 'CVCC',
-        r'[bcdfghjklmnpqrstvwxyz]{3}[aeiou]': 'CCCV',
-        r'[bcdfghjklmnpqrstvwxyz]{2}[aeiou][bcdfghjklmnpqrstvwxyz]': 'CCVC',
-        r'[aeiou]': 'V',
-        r'[aeiou][bcdfghjklmnpqrstvwxyz]': 'VC'
-    }
     longest_pattern = None
     for pattern, phonotactic in patterns.items():
         match = re.search(pattern, word)
@@ -31,8 +58,6 @@ def find_phonotactics(word):
     return None
 
 def get_prefixes_suffixes(word):
-    prefixes = ['a', 'anti', 'bi', 'co', 'com', 'de', 'dis', 'en', 'em', 'ex', 'extra', 'fore', 'in', 'im', 'il', 'ir', 'inter', 'intra', 'mis', 'non', 'over', 'pre', 'pro', 're', 'semi', 'sub', 'super', 'trans', 'tri', 'un', 'under']
-    suffixes = ['able', 'al', 'ed', 'en', 'er', 'est', 'ful', 'ic', 'ing', 'ion', 'ity', 'ive', 'less', 'ly', 'ment', 'ness', 'ous', 's', 'tion', 'y']
     prefix = None
     suffix = None
     for p in prefixes:
@@ -78,3 +103,22 @@ def delete():
         os.remove(os.path.join(os.path.dirname(__file__), "data.csv"))
     else:
         print("The file does not exist")
+
+def get_prefix(length: int) -> str:
+    return random.choice([prefix for prefix in prefixes if len(prefix) == length])
+
+def get_suffix(length: int) -> str:
+    return random.choice([suffix for suffix in suffixes if len(suffix) == length])
+
+p = {
+    'CV': 2,
+    'CVC': 3,
+    'CCV': 3,
+    'CVCC': 4,
+    'CCCV': 4,
+    'CCVC': 4,
+    'V': 1,
+    'VC': 2
+}
+def get_phonotactic(pattern: str):
+    return p[pattern]

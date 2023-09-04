@@ -46,9 +46,15 @@
       "@word-wizard/app/child/data-access": [
         "libs/app/child/data-access/src/index.ts"
       ],
+      "@word-wizard/app/core/data-access": [
+        "libs/app/core/data-access/src/index.ts"
+      ],
       "@word-wizard/app/core/feature": ["libs/app/core/feature/src/index.ts"],
       "@word-wizard/app/dashboard/feature": [
         "libs/app/dashboard/feature/src/index.ts"
+      ],
+      "@word-wizard/app/help/data-access": [
+        "libs/app/help/data-access/src/index.ts"
       ],
       "@word-wizard/app/help/feature": ["libs/app/help/feature/src/index.ts"],
       "@word-wizard/app/library/data-access": [
@@ -72,6 +78,12 @@
       ],
       "@word-wizard/app/password/feature": [
         "libs/app/password/feature/src/index.ts"
+      ],
+      "@word-wizard/app/preferences/data-access": [
+        "libs/app/preferences/data-access/src/index.ts"
+      ],
+      "@word-wizard/app/preferences/feature": [
+        "libs/app/preferences/feature/src/index.ts"
       ],
       "@word-wizard/app/reading/data-access": [
         "libs/app/reading/data-access/src/index.ts"

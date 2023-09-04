@@ -1,1 +1,14 @@
-<p>help works!</p>
+
+  <div class="chat-container" *ngIf="show" >
+
+    <div class="chat-content" (click)="next()">
+      <div class="message">
+        <p>{{messages[currentMessage]}}</p>
+      </div>
+    </div>
+
+    <div class="wizard-image">
+      <img src="assets/img/WizzyFlipped.png" alt="Wizard">
+    </div>
+  </div>
+

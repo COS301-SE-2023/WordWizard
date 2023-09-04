@@ -97,6 +97,14 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
+    path: 'preferences',
+    loadChildren: () =>
+      import('@word-wizard/app/preferences/feature').then(
+        (m) => m.PreferencesModule,
+      ),
+    // canActivate: [AuthGuard],
+  }
+  {
     path: 'password',
     loadChildren: () =>
       import('@word-wizard/app/password/feature').then(

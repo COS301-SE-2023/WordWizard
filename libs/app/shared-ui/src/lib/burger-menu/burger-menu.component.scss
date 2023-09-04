@@ -1,0 +1,29 @@
+.burger-menu{
+  height: 100%;
+  width: auto;
+  position: relative;
+}
+
+ion-button{
+  --background: transparent;
+}
+
+.dropdown{
+  height: 20vw;
+  width: 90%;
+  bottom: 0px;
+  left: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  position: absolute;
+  transform: translateY(100%);
+  background-color: rgba(0,0,0,0.5);
+  border-radius: 10%;
+
+  *{
+    margin-bottom: 5px;
+  }
+
+}

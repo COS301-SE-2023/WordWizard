@@ -1,0 +1,42 @@
+<ion-content>
+    <ww-header
+        [title]="'Personalise'"
+        [settingsActive]="false"
+        [backRoute]="'../view-child'"
+        [settingsActive]="true"
+        [help]="true"
+        [helpText]="helpText"
+        [audioSources]="audioSources"
+        [volumeChanger]="true"
+    />
+    <div class="container">
+        <div class="text-container">Select topics for your child to have a customised learning experience of enter your own topic.</div>
+        <div class="pref-container">
+            <ion-grid>
+                <ion-row>
+                    <ion-col size="6" *ngFor="let i of options">
+                        <ion-chip class="op-chip" [style.--background]="i.color" (click)="addOption(i)">{{i.value}}</ion-chip>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+            <input type="text" id="name" class="test" [(ngModel)]="input" placeholder="Custom topic..."/>
+            <ion-button class="add-btn" (click)="addCustom()">Add</ion-button>
+            <div class="selected-container">
+                <div class="selected-vals">
+                    <ion-chip (click)="addOption(i)" *ngFor="let i of chosenOption" class="sel-chip" [style.--background]="i.color">{{i.value}}
+                        <ion-icon name="close" class="close" (click)="removeOption(i)"/>
+                    </ion-chip>
+                </div>
+            </div>
+            <ww-button
+                class="continueChild"
+                text="Update Topics"
+                color="#861486"
+                activate="#861486"
+                border="#111"
+                (click)="save()"
+                class="btn-tpc"
+            />
+        </div>
+    </div>
+</ion-content>
