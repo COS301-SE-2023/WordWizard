@@ -7,14 +7,19 @@ from .Metrics import Metrics
 from .Child import Child
 
 class Rating:
-    def __init__(self, vcb, prtc, pref: list[str] = []):
+    def __init__(self, vcb, prtc):
         self.vcb = vcb
         self.prtc = prtc
-        self.pref = pref
         self.construct_dic()
         self.metrices = Metrics(self.syllables, self.phono_arr, self.prefixes, self.suffixes)
         self.child = Child(self.metrices, 10)
         self.fit()
+
+    def calc_met(self) -> float:
+        return round((self.metrices.cal_syl() 
+                    + self.metrices.cal_phono() 
+                    + self.metrices.cal_suff() 
+                    + self.metrices.cal_pref()),2)
 
     def fit(self):
         for w in self.prtc:
@@ -39,18 +44,16 @@ class Rating:
                 pref,suff = get_prefixes_suffixes(w)
                 self.phono_dic[find_phonotactics(w)].add()
                 self.syllables[count_syllables(w)-1].add()
-                if pref and len(pref) < 5:
-                    self.prefixes[len(pref)-1].add(-1)
-                if suff and len(suff) < 5:
-                    self.suffixes[len(suff)-1].add(-1)
+                if pref:
+                    self.prefixes[len(pref)].add(-1)
+                if suff:
+                    self.suffixes[len(suff)].add(-1)
             else:
                 self.phono_dic[w['phonotactics']].add()
                 self.syllables[w['syllables']-1].add()
-                print(w['prefixes'])
-                print(w['suffixes'])
-                if w['prefixes'] and len(w['prefixes']) < 5:
+                if w['prefixes']:
                     self.prefixes[len(w['prefixes'])-1].add(-1)
-                if w['suffixes'] and len(w['suffixes']) < 5:
+                if w['suffixes']:
                     self.suffixes[len(w['suffixes'])-1].add(-1)
 
     def construct_dic(self):
@@ -60,17 +63,17 @@ class Rating:
         for i in range(1,6):
             self.syllables.append(Syllable(i, (len(self.vcb) + len(self.prtc))/2))
         for i in range(1,5):
-            self.prefixes.append(Prefix(i))
-            self.suffixes.append(Suffix(i))
+            self.prefixes.append(Prefix(i, (len(self.vcb) + len(self.prtc))/2))
+            self.suffixes.append(Suffix(i,(len(self.vcb) + len(self.prtc))/2))
         self.phono_dic = {
-            "CV": Phonotactic("CV"),
-            "CVC": Phonotactic("CVC"),
-            "CCV": Phonotactic("CCV"),
-            "CVCC": Phonotactic("CVCC"),
-            "CCCV": Phonotactic("CCCV"),
-            "CCVC": Phonotactic("CCVC"),
-            "V": Phonotactic("V"),
-            "VC": Phonotactic("VC")
+            "CV": Phonotactic("CV", (len(self.vcb) + len(self.prtc))/2),
+            "CVC": Phonotactic("CVC", (len(self.vcb) + len(self.prtc))/2),
+            "CCV": Phonotactic("CCV", (len(self.vcb) + len(self.prtc))/2),
+            "CVCC": Phonotactic("CVCC",(len(self.vcb) + len(self.prtc))/2),
+            "CCCV": Phonotactic("CCCV", (len(self.vcb) + len(self.prtc))/2),
+            "CCVC": Phonotactic("CCVC", (len(self.vcb) + len(self.prtc))/2),
+            "V": Phonotactic("V", (len(self.vcb) + len(self.prtc))/2),
+            "VC": Phonotactic("VC", (len(self.vcb) + len(self.prtc))/2)
         }
         self.phono_arr = []
         for p in self.phono_dic:
@@ -100,7 +103,7 @@ class Rating:
             suffix.finalRating = (self.child.gameLevel * (4-suffix.length)) / (self.child.readingAbility * (suffix.length) * suffix.weight)
         return max(suffixes, key=lambda x: x.finalRating)
     
-    def generatePrompt(self):
+    def generatePrompt(self) -> str:
         return f"""
 You are a sentence generator, you need to generate a sentence that a child will read to practice reading and pronunciation, each sentence will contain 2 'focus words' that the child will practice before attempting the entire sentence as a hole.
 Let's say there is some function 'G' that is the sentence generator.
@@ -126,5 +129,5 @@ Focus Words: ...
         """
     def __str__(self) -> str:
         return self.generatePrompt()
-    def get_function(self):
-        return f"G(THEME={self.pref},COM=4, LEN=5 , SYL={self.evaluateSyllables().numberOf}, PHONA='{self.evaluatePhonotactics().pattern}', PRE='{get_prefix(self.evaluatePrefixes().length)}', SUF='{get_suffix(self.evaluateSuffixes().length)}')"
+    def get_function(self) -> str:
+        return f"G(THEME='Wizards',COM={self.calc_met()}, LEN=5 , SYL={self.evaluateSyllables().numberOf}, PHONA='{self.evaluatePhonotactics().pattern}', PRE='{get_prefix(self.evaluatePrefixes().length)}', SUF='{get_suffix(self.evaluateSuffixes().length)}')"

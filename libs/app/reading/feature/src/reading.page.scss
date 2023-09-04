@@ -4,7 +4,6 @@
   left: 50%;
   transform: translate(-50%, -50%);
   width: 90%;
-  // max-width: 400px;
   height: 50%;
   background-color: #861486;
   border: 5px solid #000000;
@@ -70,16 +69,8 @@
 ion-content.page-container {
   --background: url(../../../../../apps/word-wizard/src/assets/img/bg/reading-background.png)
     0 0/100% 100% no-repeat;
-
-  // --background: url("../../../../../apps/word-wizard/src/assets/img/bg/stages-background.png") no-repeat;
   --background-size: cover;
   --background-position: center;
-  // --height: 100vh;
-  // --width: 100%;
-
-  // --display: flex;
-  // --flex-direction: column;
-  // --justify-content: center;
 }
 
 ion-header {
@@ -158,7 +149,7 @@ ww-progress-potion {
   position: absolute;
   z-index: 2;
   background-color: #070527;
-  background-size: cover; /* Adjust the size of the image to cover the element */
+  background-size: cover;
   background-position: center;
   border: 3px solid white;
   font-size: 6vh;
@@ -167,7 +158,6 @@ ww-progress-potion {
 }
 
 .hidden-overlay {
-  // animation: fadeOut 1s ease-in forwards;
   display: none;
 }
 
@@ -212,7 +202,6 @@ ww-progress-potion {
 .slider-container {
   height: 48px;
   width: 20vh;
-  // flex-shrink: 0;
   border-radius: 6px;
   background: rgba(7, 5, 39, 0.5);
   position: absolute;
@@ -239,7 +228,6 @@ ww-progress-potion {
 
   .slider::-webkit-slider-thumb {
     -webkit-appearance: none;
-    // appearance: none;
     width: 19px;
     height: 19px;
     border-radius: 50%;

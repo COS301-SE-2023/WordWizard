@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import {
-  // ReadingStateModel,
   SetPassage,
   MakeAttempt,
   Content,

@@ -5,19 +5,11 @@
     background: transparent;
 }
 
-.animation-container {
-    /* position: absolute;
-    top: 50%; */
-    /* -ms-transform: translateY(-50%); */
-    /* transform: translateY(-50%); */
-}
-
 .loader {
     margin: auto;
     border: 20px solid #dadada;
     border-radius: 50%;
     border-top: 20px solid #861486;
-    // border-top: 20px solid goldenrod;
     width: 200px;
     height: 200px;
     display: flex;
@@ -45,15 +37,12 @@
 
 @keyframes spin-pulse {
     0% {
-        /* transform: rotate(0deg) scale(0.7); */
         transform: scale(0.6);
     }
     50% {
-        /* transform: rotate(180deg) scale(0.9); */
         transform: scale(0.9);
     }
     100% {
-        /* transform: rotate(360deg) scale(0.7); */
         transform: scale(0.6);
     }
 }
