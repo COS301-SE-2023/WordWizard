@@ -145,4 +145,8 @@ export class ManageChildrenPage {
   handle() {
     this.passwordSet = !this.passwordSet;
   }
+
+  correctPin() {
+    this.passwordSet = false;
+  }
 }

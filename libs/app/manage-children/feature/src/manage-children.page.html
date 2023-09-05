@@ -8,7 +8,7 @@ settingsRoute="/password"
 [audioSources]="audioSources"
 [volumeChanger]="true"/>
 <ion-content>
-  <ww-password [visible]="passwordSet"/>
+  <ww-password [visible]="passwordSet" (correct)="correctPin()"/>
   <div class="overlay-container" [class.hidden-overlay]="!visible">
     <div class="overlay">
       <div size="12" class="close">
