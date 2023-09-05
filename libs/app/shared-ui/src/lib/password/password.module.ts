@@ -3,12 +3,22 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { PasswordService } from './password.service';
 import { PasswordComponent } from './password.component';
 import { ButtonModule } from '../button';
 
 @NgModule({
-  imports: [ CommonModule, FormsModule, IonicModule, ReactiveFormsModule, ButtonModule],
+  imports: [ 
+    CommonModule, 
+    FormsModule, 
+    IonicModule, 
+    ReactiveFormsModule, 
+    ButtonModule,
+    HttpClientModule
+  ],
   declarations: [PasswordComponent],
-  exports: [PasswordComponent]
+  exports: [PasswordComponent],
+  providers: [PasswordService]
 })
 export class PasswordModule {}

@@ -2,6 +2,7 @@ import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
+import { PasswordService } from './password.service';
 
 
 @Component({
@@ -15,7 +16,12 @@ export class PasswordComponent {
   otpForm: FormGroup;
   @Output() correct = new EventEmitter<void>();
 
-  constructor(private fb: FormBuilder, private router: Router, private toastController: ToastController) {
+  constructor(
+    private fb: FormBuilder, 
+    private router: Router, 
+    private toastController: ToastController,
+    private passwordService: PasswordService
+  ) {
     this.otpForm = this.fb.group({
       otp1: [''],
       otp2: [''],
