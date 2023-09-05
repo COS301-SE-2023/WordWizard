@@ -10,7 +10,8 @@
     [helpText]="helpText"
     [audioSources]="audioSources"
     [volumeChanger]="true"
-    [fontChanger]="true"/>
+    [fontChanger]="true"
+    (back)="handle()"/>
   <div class="overlay-container" [class.hidden-overlay]="!visible">
     <div class="overlay">
       <ion-grid>

@@ -12,7 +12,8 @@ export class HeaderComponent implements OnInit {
   @Input() settingsActive!: boolean;
   @Input() settingsRoute!: string;
   @Input() font!: boolean;
-  @Output() settingsClick = new EventEmitter();
+  @Output() settingsClick = new EventEmitter<void>();
+  @Output() back = new EventEmitter<void>();
 
   //burgermenu inputs
   @Input () volumeChanger! : boolean;
@@ -40,7 +41,9 @@ export class HeaderComponent implements OnInit {
     this.settingsClick.emit();
   }
 
-
+  backClick() {
+    this.back.emit();
+  }
 
 }
 
