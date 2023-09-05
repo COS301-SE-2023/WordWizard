@@ -14,7 +14,10 @@ def create_reading(rqst: PracticeRqst):
         return None
     word_list = WordList()
     for doc in result["words"]:
-        word_list.add_word(doc, get_image(doc)) # Call api or something to generate img url
+        if isinstance(doc, str):
+            word_list.add_word(doc, get_image(doc)) 
+        else:
+            word_list.add_word(doc["word"], get_image(doc["word"]))
     return word_list
 
 
@@ -26,7 +29,10 @@ def get_vocab(rqst: VocabRqst):
         return None
     word_list = WordList()
     for doc in result["words"]:
-        word_list.add_word(doc, get_image(doc)) # Call api or something to generate img url
+        if isinstance(doc, str):
+            word_list.add_word(doc, get_image(doc)) 
+        else:
+            word_list.add_word(doc["word"], get_image(doc["word"]))
     return word_list
 
 @router.post('/practice/remove')

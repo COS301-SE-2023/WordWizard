@@ -165,19 +165,19 @@ export class ReadingPage {
 
   controlModal() {
     this.store.dispatch(new SetStatus({ status: false }));
-    let strs = 0;
-    if (this.progressPercentage >= '50%') {
-      strs = 1;
-    }
-    if (this.progressPercentage >= '75%') {
-      strs = 2;
-    }
-    if (this.progressPercentage == '100%') {
-      strs = 3;
-    }
-    this.store.dispatch(new UpdateStage({ stars: strs }));
+    this.store.dispatch(new UpdateStage({ stars: this.getStars()}));
     this.store.dispatch(new ResetPassage());
     this.router.navigate(['/stage']);
+  }
+
+  getStars() {
+    if (this.progressPercentage >= '50%') 
+      return 1;
+    if (this.progressPercentage >= '75%') 
+      return 2;
+    if (this.progressPercentage == '100%') 
+      return 3;
+    return 0;
   }
 
   setStars() {
@@ -194,10 +194,6 @@ export class ReadingPage {
       this.congratularyMessage = 'Amazing!';
     }
   }
-
-  back() {
-    this.router.navigate(['/stage']);
-  }
   // eslint-disable-next-line
   updateFont(event: any) {
     this.value = event.target.value;
@@ -206,5 +202,9 @@ export class ReadingPage {
 
   show() {
     this.font = !this.font;
+  }
+
+  handle() {
+    this.store.dispatch(new UpdateStage({ stars: this.getStars()}));
   }
 }
