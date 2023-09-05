@@ -1,9 +1,6 @@
 from fastapi.testclient import TestClient
-from .library import router
 from ..util.library_models import PracticeRqst, VocabRqst, UpdateRqst
-
 from ...test_api import app
-
 
 client = TestClient(app)
 
@@ -14,31 +11,31 @@ sample_word = "Test"
 # Define test cases for each function
 
 def test_create_reading():
-    rqst_body = PracticeRqst(userID=sample_user_id)
-    response = client.post('/practice', json=rqst_body)
+    rqst_body = {"userID": sample_user_id}
+    response = client.post('/library/practice', json=rqst_body)
     assert response.status_code == 200
     assert response.json() is not None
 
 def test_get_vocab():
-    rqst_body = VocabRqst(userID=sample_user_id)
-    response = client.post('/vocab', json=rqst_body)
+    rqst_body = {"userID": sample_user_id}
+    response = client.post('/library/vocab', json=rqst_body)
     assert response.status_code == 200
     assert response.json() is not None
 
 def test_remove_practice():
-    rqst_body = UpdateRqst(userID=sample_user_id, word=sample_word)
-    response = client.post('/practice/remove', json=rqst_body)
+    rqst_body = {"userID": sample_user_id, "word": sample_word}
+    response = client.post('/library/practice/remove', json=rqst_body)
     assert response.status_code == 200
     assert response.json()["status"] == "success"
 
 def test_add_practice():
-    rqst_body = UpdateRqst(userID=sample_user_id, word=sample_word)
-    response = client.post('/practice/add', json=rqst_body)
+    rqst_body = {"userID": sample_user_id, "word": sample_word}
+    response = client.post('/library/practice/add', json=rqst_body)
     assert response.status_code == 200
     assert response.json()["status"] == "success"
 
 def test_add_vocab():
-    rqst_body = UpdateRqst(userID=sample_user_id, word=sample_word)
-    response = client.post('/vocab/add', json=rqst_body)
+    rqst_body = {"userID": sample_user_id, "word": sample_word}
+    response = client.post('/library/vocab/add', json=rqst_body)
     assert response.status_code == 200
     assert response.json()["status"] == "success"
