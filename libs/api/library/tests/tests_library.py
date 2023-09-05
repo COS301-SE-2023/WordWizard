@@ -25,4 +25,20 @@ def test_get_vocab():
     assert response.status_code == 200
     assert response.json() is not None
 
+def test_remove_practice():
+    rqst_body = UpdateRqst(userID=sample_user_id, word=sample_word)
+    response = client.post('/practice/remove', json=rqst_body)
+    assert response.status_code == 200
+    assert response.json()["status"] == "success"
 
+def test_add_practice():
+    rqst_body = UpdateRqst(userID=sample_user_id, word=sample_word)
+    response = client.post('/practice/add', json=rqst_body)
+    assert response.status_code == 200
+    assert response.json()["status"] == "success"
+
+def test_add_vocab():
+    rqst_body = UpdateRqst(userID=sample_user_id, word=sample_word)
+    response = client.post('/vocab/add', json=rqst_body)
+    assert response.status_code == 200
+    assert response.json()["status"] == "success"
