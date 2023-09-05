@@ -1,4 +1,4 @@
-<ww-loading></ww-loading>
+<ww-loading/>
 <ww-header
   [title]="'Dashboard'"
   [settingsActive]="false"
@@ -6,7 +6,7 @@
   [help]="true"
   [helpText]="helpText"
   [audioSources]="audioSources"
-  [volumeChanger]="true"></ww-header>
+  [volumeChanger]="true"/>
 <ion-content [scrollY]="false">
   <div class="dashboard">
     <div class="background">
@@ -18,7 +18,7 @@
               <ion-row>
                 <ion-col class="centre">
                   <ion-button>
-                    <ion-icon name="create-outline"></ion-icon>
+                    <ion-icon name="create-outline"/>
                   </ion-button>
                 </ion-col>
               </ion-row>
@@ -34,13 +34,13 @@
           <ion-row>
             <ion-col size="6" class="centre">
               <a class="spellbook" routerLink="/library">
-                <ion-img src="assets/icon/spellbook-cropped.png"></ion-img>
+                <ion-img src="assets/icon/spellbook-cropped.png"/>
                 Library
               </a>
             </ion-col>
             <ion-col size="6">
               <a class="trophy" routerLink="/achievements">
-                <ion-img src="assets/icon/trophy-cropped.png"></ion-img>
+                <ion-img src="assets/icon/trophy-cropped.png"/>
                 Badges
               </a>
             </ion-col>
@@ -53,7 +53,7 @@
           <ion-row>
             <ion-col class="centre">
               <a class="map" routerLink="/stage">
-                <ion-img src="assets/icon/map-cropped.png"></ion-img>
+                <ion-img src="assets/icon/map-cropped.png"/>
                 Levels
               </a>
             </ion-col>
@@ -61,7 +61,7 @@
         </ion-grid>
       </ion-content>
       <ion-button class="trophy" href="">
-        <ion-img src="assets/icon/map.png"></ion-img>
+        <ion-img src="assets/icon/map.png"/>
         Levels
       </ion-button>
     </div>
@@ -77,7 +77,7 @@
           </ion-avatar>
           <ng-template #unselected>
             <div class="unselected">
-              <ion-icon src="assets/svg/person-outline.svg"></ion-icon>
+              <ion-icon src="assets/svg/person-outline.svg"/>
             </div>
           </ng-template>
         </div>
@@ -88,7 +88,7 @@
             <ion-icon
               src="assets/svg/close-outline.svg"
               class="close-icon"
-              (click)="modal()"></ion-icon>
+              (click)="modal()"/>
           </ion-col>
         </ion-row>
         <ion-row>
