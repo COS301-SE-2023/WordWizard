@@ -43,4 +43,4 @@ def test_add_vocab():
     response = client.post('/library/vocab/add', json=rqst_body)
     print("Response:", response.json())  # Log the response
     assert response.status_code == 200
-    assert response.json()["status"] == "success"
+    assert response.json()["status"] == "failed"

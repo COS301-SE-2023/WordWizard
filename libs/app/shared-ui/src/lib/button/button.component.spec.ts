@@ -20,4 +20,22 @@ describe('ButtonComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should emit an event when clicked', () => {
+    spyOn(component.event, 'emit');
+    const buttonElement = fixture.nativeElement.querySelector('button');
+
+    buttonElement.click();
+
+    expect(component.event.emit).toHaveBeenCalled();
+  });
+
+  it('should display the provided text', () => {
+    const buttonText = 'Click Me';
+    component.text = buttonText;
+    fixture.detectChanges();
+    const buttonElement = fixture.nativeElement.querySelector('button');
+
+    expect(buttonElement.textContent).toContain(buttonText);
+  });
 });
