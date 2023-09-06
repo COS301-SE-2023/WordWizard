@@ -5,6 +5,8 @@ from dotenv import load_dotenv
 from pymongo import MongoClient
 from dataclasses import dataclass
 load_dotenv()
+from bson import ObjectId
+
 
 
 router = APIRouter()
@@ -61,40 +63,41 @@ def add_create(rqst: AddChildRqst):
             'username': rqst.name,
             'age': rqst.age,
             'preferences': [],
-            'parent': str(existing_parent['_id']),
+            'parent': str(existing_parent['_id']),  # Convert ObjectId to string
             'profile_photo': rqst.profile_picture,
             'vocab_list': '',
             'practice_list': '',
             'progress': ''
         }
-    result_parent = parents_collection.insert_one(parent_data)
-    children_collection = db['Children']
-    result_child = children_collection.insert_one({
-        'username': rqst.name,
-        'age': rqst.age,
-        'parent': result_parent.inserted_id,
-        'profile_photo': rqst.profile_picture,
-        'vocab_list': '',
-        'practice_list': '',
-        'progress': ''
-    })
-    parents_collection.update_one(
-        {'_id': result_parent.inserted_id},
-        {'$push': {'children': result_child.inserted_id}}
-    )
-    create_practice_list(result_child.inserted_id)
-    create_progress(result_child.inserted_id)
-    create_vocab_list(result_child.inserted_id)
-    return {
-        '_id': str(result_child.inserted_id),
-        'username': rqst.name,
-        'age': rqst.age,
-        'parent': str(existing_parent['_id']),
-        'profile_photo': rqst.profile_picture,
-        'vocab_list': '',
-        'practice_list': '',
-        'progress': ''
-    }
+    else:
+        result_parent = parents_collection.insert_one(parent_data)
+        children_collection = db['Children']
+        result_child = children_collection.insert_one({
+            'username': rqst.name,
+            'age': rqst.age,
+            'parent': result_parent.inserted_id,
+            'profile_photo': rqst.profile_picture,
+            'vocab_list': '',
+            'practice_list': '',
+            'progress': ''
+        })
+        parents_collection.update_one(
+            {'_id': result_parent.inserted_id},
+            {'$push': {'children': result_child.inserted_id}}
+        )
+        create_practice_list(result_child.inserted_id)
+        create_progress(result_child.inserted_id)
+        create_vocab_list(result_child.inserted_id)
+        return {
+            '_id': str(result_child.inserted_id),
+            'username': rqst.name,
+            'age': rqst.age,
+            'parent': str(result_parent.inserted_id),  # Convert ObjectId to string
+            'profile_photo': rqst.profile_picture,
+            'vocab_list': '',
+            'practice_list': '',
+            'progress': ''
+        }
 
 
 def create_progress(db = None, child_id = ""):
@@ -234,7 +237,9 @@ def create_progress(db = None, child_id = ""):
             }
         }
     }
-    progress_collection.insert_one(document)
+    result = progress_collection.insert_one(document)
+    return progress_collection.find_one({"_id": child_id})
+
 
 def create_vocab_list(child_id, db=None):
     if db is None:
@@ -245,7 +250,9 @@ def create_vocab_list(child_id, db=None):
         "_id": child_id,
         "words": []
     }
-    vocab_list_collection.insert_one(document)
+    result = vocab_list_collection.insert_one(document)
+    return vocab_list_collection.find_one({"_id": child_id})
+
 
 def create_practice_list(child_id, db=None):
     if db is None:
@@ -256,4 +263,5 @@ def create_practice_list(child_id, db=None):
         "_id": child_id,
         "words": []
     }
-    practice_list_collection.insert_one(document)
+    result = practice_list_collection.insert_one(document)
+    return practice_list_collection.find_one({"_id": child_id})  
