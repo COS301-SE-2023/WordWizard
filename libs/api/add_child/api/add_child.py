@@ -97,7 +97,11 @@ def add_create(rqst: AddChildRqst):
     }
 
 
-def create_progress(child_id):
+def create_progress(db = None, child_id = ""):
+    
+    if db is None:
+        db = client["WordWizardDB"]
+    
     progress_collection = db["Progress"]
     document = {
         "_id": child_id,
@@ -232,7 +236,10 @@ def create_progress(child_id):
     }
     progress_collection.insert_one(document)
 
-def create_vocab_list(child_id):
+def create_vocab_list(child_id, db=None):
+    if db is None:
+        db = client["WordWizardDB"]
+    
     vocab_list_collection = db["Vocabulary"]
     document = {
         "_id": child_id,
@@ -240,7 +247,10 @@ def create_vocab_list(child_id):
     }
     vocab_list_collection.insert_one(document)
 
-def create_practice_list(child_id):
+def create_practice_list(child_id, db=None):
+    if db is None:
+        db = client["WordWizardDB"]
+    
     practice_list_collection = db["Practice"]
     document = {
         "_id": child_id,
