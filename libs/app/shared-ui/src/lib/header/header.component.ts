@@ -1,5 +1,6 @@
-import { Component, Input, EventEmitter, Output, OnInit } from '@angular/core';
+import { Component, Input, EventEmitter, Output, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'ww-header',
   templateUrl: './header.component.html',
@@ -11,10 +12,22 @@ export class HeaderComponent implements OnInit {
   @Input() settingsActive!: boolean;
   @Input() settingsRoute!: string;
   @Input() font!: boolean;
-  @Output() settingsClick = new EventEmitter();
+  @Output() settingsClick = new EventEmitter<void>();
+  @Output() back = new EventEmitter<void>();
+
+  //burgermenu inputs
+  @Input () volumeChanger! : boolean;
+  @Input () fontChanger! : boolean;
+  @Input () help! : boolean;
+  @Input () helpText!: string[];
+  @Input () audioSources!: string[];
+
+
   backActive!: boolean;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) {
+
+  }
 
   ngOnInit() {
     if (this.backRoute != '') {
@@ -27,4 +40,11 @@ export class HeaderComponent implements OnInit {
   fontChange() {
     this.settingsClick.emit();
   }
+
+  backClick() {
+    this.back.emit();
+  }
+
 }
+
+

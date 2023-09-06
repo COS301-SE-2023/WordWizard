@@ -1,0 +1,7 @@
+{
+  "name": "wordwizard",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

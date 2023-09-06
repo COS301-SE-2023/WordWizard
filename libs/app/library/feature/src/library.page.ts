@@ -27,6 +27,10 @@ export class LibraryPage {
 
   @Select(ChildState.parentActive) parentActive$!: Observable<boolean>;
 
+
+  helpText: string[] = ["Click on Practice list to see words you got wrong in levels.", "Click on any word to try to get it right again.", "Press on Vocabulary to see all the words you have learned so far."];
+  audioSources: string[] = ["assets/mp3/library-1.wav", "assets/mp3/library-2.wav", "assets/mp3/library-3.wav"];
+
   constructor(private store: Store) {
     this.store.dispatch(new SetPractice());
     this.store.dispatch(new SetVocab());

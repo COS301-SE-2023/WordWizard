@@ -1,34 +1,37 @@
 from fastapi import APIRouter
 from ..util.reading_models import PassageRqst, Content, Word, Progress, UpdateProgressRqst
-from ..util.markov import MarkovChain
-from ..util.img import get_image
 from ..util.helper import get_prefixes_suffixes, find_phonotactics, count_syllables
+from ..util.Rating import Rating
 from bson import ObjectId
 from ...deps import Database
-import random
-from ..util.recomended import query
+import random   
+from ..util.Rating import Rating
+from ..util.passage import query_passage
+
 
 db = Database.getInstance().db
 router = APIRouter()
-markov = MarkovChain()
+
+def get_class(id:str):
+    practice = db['Practice'].find_one({'_id': ObjectId(id)},{'_id':0})
+    vocab = db['Vocabulary'].find_one({'_id': ObjectId(id)},{'_id':0})
+    child = db['Children'].find_one({'_id': ObjectId(id)},{'_id':0})
+    pref = []
+    if "preferences" in child:
+        pref = child["preferences"]
+    return Rating(vocab["words"], practice["words"])
+
 
 @router.post('/passage')
 def create_reading(reading: PassageRqst):
-    print("💯")
-    words = [Word(word=word, imageURL="img", correct=None) for word in markov.generate_passage(reading.level * 3, priority_words=query(reading.level)).split()]
-    content = Content(passage=words, focusWordsIndex=random.sample(range(len(words)), k=2))
-    for s in content.focusWordsIndex:
-        content.passage[s].imageURL = get_image()
-    return content
+    q = query_passage(get_class(reading.id).generatePrompt())
+    return q
 
 @router.post('/update-progress')
 def update_progress(updtProgress: UpdateProgressRqst):
     # Get the current progress from DB
     progress_collection = db['Progress']
     progress = progress_collection.find_one({'_id': ObjectId(updtProgress.child_id)})
-
-    print("Level ", updtProgress.progress.level)
-    print("Score: ", updtProgress.progress.score)
 
     # UPDATE THE VALUES 
     if progress:

@@ -22,6 +22,10 @@ export class AddChildPage {
   visible = false;
   selectedImage!: string;
   pictures: string[] = [];
+
+  helpText: string[] = [];
+  audioSources: string[] = ['assets/mp3/add-1.wav'];
+
   constructor(
     private readonly fb: FormBuilder,
     private auth: AuthService,

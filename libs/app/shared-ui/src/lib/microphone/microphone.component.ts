@@ -13,11 +13,8 @@ export class MicrophoneComponent {
 
   @Output() textChanged: EventEmitter<string> = new EventEmitter<string>();
 
-  constructor(public voiceService: VoiceRecognitionService) {
-    // this.voiceService.wordChanged.subscribe((word: string) => {
-    //   this.textChanged.emit(word);
-    // });
-  }
+
+  constructor(public voiceService: VoiceRecognitionService) {}
 
   async startRecording() {
     this.isRecording = true;
@@ -39,25 +36,11 @@ export class MicrophoneComponent {
       });
     });
   }
-  // startRecording(): void {
-  //   this.isRecording = true;
-  // }
 
-  // recording(){
-  //   if(this.isRecording){
-  //     this.voiceService.stop();
-  //     this.isRecording = false;
-  //   }else{
-  //     this.voiceService.start();
-  //     this.isRecording = true;
-  //   }
-  // }
-
-  // stopRecording(): void {
-  //   this.isRecording = false;
-  // }
-
-  getButtonClass(): string {
-    return this.isRecording ? 'microphone-button active' : 'microphone-button';
+  recording(){
+    if(this.isRecording)
+      this.isRecording = false;
+    else
+      this.isRecording = true;
   }
 }

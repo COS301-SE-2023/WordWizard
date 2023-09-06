@@ -31,6 +31,9 @@ export class DashboardPage {
   pictures: string[] = [];
   stage = 0;
 
+  helpText: string[] = ['Click on the trophy to see your achievements'];
+  audioSources: string[] = ['assets/mp3/dashboard-1.wav'];
+
   constructor(
     private store: Store,
     private readonly addChildService: AddChildService,
@@ -67,9 +70,7 @@ export class DashboardPage {
   }
 
   chooseImage(i: string) {
-    this.child.profile_photo = i;
     this.visible = false;
-    // (id:string, name: string, age: number, image: string
     this.childService
       .editChild(this.child._id, this.child.username, 8, i)
       .subscribe((res) => {
@@ -77,3 +78,4 @@ export class DashboardPage {
       });
   }
 }
+

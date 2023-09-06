@@ -16,15 +16,15 @@ db = client["WordWizardDB"]
 @router.get('/')
 def get_photos():
     return { 'images': [
-        "https://ww-img-bckt.s3.amazonaws.com/ww-ProfilePics/dragon_1.png",
-        "https://ww-img-bckt.s3.amazonaws.com/ww-ProfilePics/dragon_11.png",
-        "https://ww-img-bckt.s3.amazonaws.com/ww-ProfilePics/dragon_3.png",
-        "https://ww-img-bckt.s3.amazonaws.com/ww-ProfilePics/dragon_2.png",
-        "https://ww-img-bckt.s3.amazonaws.com/ww-ProfilePics/dragon_4.png",
-        "https://ww-img-bckt.s3.amazonaws.com/ww-ProfilePics/dragon_6.png",
-        "https://ww-img-bckt.s3.amazonaws.com/ww-ProfilePics/dragon_8.png",
-        "https://ww-img-bckt.s3.amazonaws.com/ww-ProfilePics/dragon_7.png",
-        "https://ww-img-bckt.s3.amazonaws.com/ww-ProfilePics/dragon_9.png",
+        "assets/img/ProfilePics/Beautiful_cute_0_8.png",
+        "assets/img/ProfilePics/Beautiful_cute_1_10.png",
+        "assets/img/ProfilePics/Beautiful_cute_1_9.png",
+        "assets/img/ProfilePics/Beautiful_cute_1_6.png",
+        "assets/img/ProfilePics/Beautiful_cute_1_1.png",
+        "assets/img/ProfilePics/Beautiful_cute_1_2.png",
+        "assets/img/ProfilePics/Beautiful_cute_1_4.png",
+        "assets/img/ProfilePics/cute_chibi_baby_0_1.png",
+        "assets/img/ProfilePics/cute_chibi_blue_1.png",
     ]}
 
 
@@ -42,6 +42,7 @@ def add_create(rqst: AddChildRqst):
         result_child = children_collection.insert_one({
             'username': rqst.name,
             'age': rqst.age,
+            'preferences': [],
             'parent': existing_parent['_id'],
             'profile_photo': rqst.profile_picture,
             'vocab_list': '',
@@ -59,6 +60,7 @@ def add_create(rqst: AddChildRqst):
             '_id': str(result_child.inserted_id),
             'username': rqst.name,
             'age': rqst.age,
+            'preferences': [],
             'parent': str(existing_parent['_id']),
             'profile_photo': rqst.profile_picture,
             'vocab_list': '',
@@ -112,28 +114,28 @@ def create_progress(child_id):
                     "progress": 0,
                     "description": "Complete level 1",
                     "completed": False,
-                    "img": "https://ww-img-bckt.s3.amazonaws.com/ww-awards/caldron.jpg"
+                    "img": "assets/img/Awards/caldron.jpg"
                 },
                 "Level 5 Prodigy": {
                     "goal": 5,
                     "progress": 0,
                     "description": "Complete level 5",
                     "completed": False,
-                    "img": "https://ww-img-bckt.s3.amazonaws.com/ww-awards/crown.jpg"
+                    "img": "assets/img/Awards/crown.jpg"
                 },
                 "Level 10 Guru": {
                     "goal": 10,
                     "progress": 0,
                     "description": "Complete level 10",
                     "completed": False,
-                    "img": "https://ww-img-bckt.s3.amazonaws.com/ww-awards/diamond_bracelet1.jpg"
+                    "img": "assets/img/Awards/diamond_bracelet1.jpg"
                 },
                 "WordWizard Legend": {
                     "goal": 20,
                     "progress": 0,
                     "description": "Complete level 20",
                     "completed": False,
-                    "img": "https://ww-img-bckt.s3.amazonaws.com/ww-awards/diamond_necklace1.jpg"
+                    "img": "assets/img/Awards/diamond_necklace1.jpg"
                 }
             },
             "Word Learner": {
@@ -142,28 +144,28 @@ def create_progress(child_id):
                     "progress": 0,
                     "description": "Learn 25 new words",
                     "completed": False,
-                    "img": "https://ww-img-bckt.s3.amazonaws.com/ww-awards/diamond_ring1.jpg"
+                    "img": "assets/img/Awards/diamond_ring1.jpg"
                 },
                 "Word Apprentice": {
                     "goal": 50,
                     "progress": 0,
                     "description": "Learn 50 new words",
                     "completed": False,
-                    "img": "https://ww-img-bckt.s3.amazonaws.com/ww-awards/diamond_ring2.jpg"
+                    "img": "assets/img/Awards/diamond_ring2.jpg"
                 },
                 "Word Connoisseur": {
                     "goal": 100,
                     "progress": 0,
                     "description": "Learn 100 new words",
                     "completed": False,
-                    "img": "https://ww-img-bckt.s3.amazonaws.com/ww-awards/diamond_shoe.jpg"
+                    "img": "assets/img/Awards/diamond_shoe.jpg"
                 },
                 "Word Wizard": {
                     "goal": 200,
                     "progress": 0,
                     "description": "Learn 200 new words",
                     "completed": False,
-                    "img": "https://ww-img-bckt.s3.amazonaws.com/ww-awards/emerald_necklace.jpg"
+                    "img": "assets/img/Awards/emerald_necklace.jpg"
                 }
             },
             "Practice Enthusiast": {
@@ -172,28 +174,28 @@ def create_progress(child_id):
                     "progress": 0,
                     "description": "Have 25 words in your practice list",
                     "completed": False,
-                    "img": "https://ww-img-bckt.s3.amazonaws.com/ww-awards/emerald_ring.jpg"
+                    "img": "assets/img/Awards/emerald_ring.jpg"
                 },
                 "Practice Explorer": {
                     "goal": 50,
                     "progress": 0,
                     "description": "Have 50 words in your practice list",
                     "completed": False,
-                    "img": "https://ww-img-bckt.s3.amazonaws.com/ww-awards/glassAward.jpg"
+                    "img": "assets/img/Awards/glassAward.jpg"
                 },
                 "Practice Devotee": {
                     "goal": 100,
                     "progress": 0,
                     "description": "Have 100 words in your practice list",
                     "completed": False,
-                    "img": "https://ww-img-bckt.s3.amazonaws.com/ww-awards/goblet.jpg"
+                    "img": "assets/img/Awards/goblet.jpg"
                 },
                 "Practice Champion": {
                     "goal": 200,
                     "progress": 0,
                     "description": "Have 200 words in your practice list",
                     "completed": False,
-                    "img": "https://ww-img-bckt.s3.amazonaws.com/ww-awards/necklace.jpg"
+                    "img": "assets/img/Awards/necklace.jpg"
                 }
             },
             "Vocabulary Builder": {
@@ -202,28 +204,28 @@ def create_progress(child_id):
                     "progress": 0,
                     "description": "Build a vocabulary of 25 words",
                     "completed": False,
-                    "img": "https://ww-img-bckt.s3.amazonaws.com/ww-awards/potion_bottle.jpg"
+                    "img": "assets/img/Awards/potion_bottle.jpg"
                 },
                 "Vocabulary Explorer": {
                     "goal": 50,
                     "progress": 0,
                     "description": "Build a vocabulary of 50 words",
                     "completed": False,
-                    "img": "https://ww-img-bckt.s3.amazonaws.com/ww-awards/ruby_ring.jpg"
+                    "img": "assets/img/Awards/ruby_ring.jpg"
                 },
                 "Vocabulary Devotee": {
                     "goal": 100,
                     "progress": 0,
                     "description": "Build a vocabulary of 100 words",
                     "completed": False,
-                    "img": "https://ww-img-bckt.s3.amazonaws.com/ww-awards/totemAward.jpg"
+                    "img": "assets/img/Awards/totemAward.jpg"
                 },
                 "Vocabulary Champion": {
                     "goal": 200,
                     "progress": 0,
                     "description": "Build a vocabulary of 200 words",
                     "completed": False,
-                    "img": "https://ww-img-bckt.s3.amazonaws.com/ww-awards/wiazard_hat_2.jpg"
+                    "img": "assets/img/Awards/wiazard_hat_2.jpg"
                 }
             }
         }

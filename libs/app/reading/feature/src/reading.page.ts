@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import {
-  // ReadingStateModel,
   SetPassage,
   MakeAttempt,
   Content,
@@ -13,6 +12,8 @@ import {
 import { UpdateStage } from '@word-wizard/app/stage/data-access';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
+
 import * as confetti from 'canvas-confetti';
 
 @Component({
@@ -40,13 +41,16 @@ export class ReadingPage {
 
   progressPercentage = '0%';
   increment!: number;
-  textFromMicrophone: string[] = [];
+  textFromMicrophone: string[] = ['assets/mp3/add-1.wav'];
   practice!: Content;
   currentWord = 0;
   sentence = '';
   font = false;
 
-  constructor(private store: Store, private router: Router) {
+  helpText: string[] = [];
+  audioSources: string[] = ["assets/mp3/"];
+
+  constructor(private store: Store, private router: Router, private toastController: ToastController) {
     this.setStars();
     this.store.dispatch(new SetPassage());
     this.getStatus$.subscribe((data) => {
@@ -101,6 +105,14 @@ export class ReadingPage {
           500,
         );
       } else {
+        this.toastController.create({
+          message: 'Ooops, Try again!',
+          duration: 2000,
+          color: 'danger',
+          position: 'top',
+        }).then((toast) => {
+          toast.present();
+        });
         this.store.dispatch(new MakeAttempt({ newAttempt: '' }));
       }
     } else {
@@ -153,19 +165,19 @@ export class ReadingPage {
 
   controlModal() {
     this.store.dispatch(new SetStatus({ status: false }));
-    let strs = 0;
-    if (this.progressPercentage >= '50%') {
-      strs = 1;
-    }
-    if (this.progressPercentage >= '75%') {
-      strs = 2;
-    }
-    if (this.progressPercentage == '100%') {
-      strs = 3;
-    }
-    this.store.dispatch(new UpdateStage({ stars: strs }));
+    this.store.dispatch(new UpdateStage({ stars: this.getStars()}));
     this.store.dispatch(new ResetPassage());
     this.router.navigate(['/stage']);
+  }
+
+  getStars() {
+    if (this.progressPercentage >= '50%') 
+      return 1;
+    if (this.progressPercentage >= '75%') 
+      return 2;
+    if (this.progressPercentage == '100%') 
+      return 3;
+    return 0;
   }
 
   setStars() {
@@ -182,10 +194,6 @@ export class ReadingPage {
       this.congratularyMessage = 'Amazing!';
     }
   }
-
-  back() {
-    this.router.navigate(['/stage']);
-  }
   // eslint-disable-next-line
   updateFont(event: any) {
     this.value = event.target.value;
@@ -194,5 +202,9 @@ export class ReadingPage {
 
   show() {
     this.font = !this.font;
+  }
+
+  handle() {
+    this.store.dispatch(new UpdateStage({ stars: this.getStars()}));
   }
 }
