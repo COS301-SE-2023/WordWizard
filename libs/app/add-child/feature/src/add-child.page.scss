@@ -185,3 +185,24 @@ label {
   display: inline-block;
   cursor: pointer;
 }
+
+.agreement {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-content: center;
+
+  label {
+    // text-align: center;
+    // align-content: center;
+    height: fit-content;
+    margin-top: 1.2rem;
+    margin-left: 1rem;
+  }
+}
+
+#accept-agreement {
+  width: 3rem;
+}
+
+

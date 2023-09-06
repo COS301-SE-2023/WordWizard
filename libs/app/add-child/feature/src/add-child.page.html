@@ -1,5 +1,5 @@
 <ww-loading></ww-loading>
-<ion-content scrollY="false">
+<ion-content scrollY="true">
   <ww-header
     title="Add Child"
     [settingsActive]="false"
@@ -82,15 +82,14 @@
       <label htmlFor="age">Age:</label><br />
       <input type="number" id="age" formControlName="age" class="test1" />
     </div>
-    <div>
-      <label htmlFor="accept-agreement">Accept <a routerLink="user-agreement">Terms of Service</a></label><br />
+    <div class="agreement">
       <input type="checkbox" id="accept-agreement" formControlName="acceptAgreement" class="test1" />
+      <label htmlFor="accept-agreement">Accept <a routerLink="../user-agreement">Terms of Service</a></label><br />
     </div>
     <ion-button
       [disabled]="!form.valid || !selectedImage"
       type="submit"
       class="submit-btn"
-      >Add</ion-button
-    >
+      >Add</ion-button>
   </form>
 </ion-content>
