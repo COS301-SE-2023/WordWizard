@@ -22,5 +22,19 @@ def test_get_topics():
     assert len(response.json()["topics"]) > 0
 
 
+def test_get_children():
+    # Create a request body
+    rqst_body = {
+        "parent_email": sample_parent_email,
+        "parent_name": sample_parent_name,
+    }
 
+    # Send a POST request to get children
+    response = client.post("/child/", json=rqst_body)
+
+    # Check if the response status code is 200 (OK)
+    assert response.status_code == 200
+
+    # Check if the response contains a list of children
+    assert isinstance(response.json(), list)
 
