@@ -66,5 +66,25 @@ def test_update_preferences():
     assert response.status_code == 200
 
     # Check if the response contains a success message
+    assert "status" in response.json() and response.json()["status"] == "success"
+
+
+def test_edit_child():
+    # Create a request body
+    rqst_body = {
+        "child_id": sample_child_id,
+        "name": sample_child_name,
+        "age": sample_child_age,
+        "profile_picture": sample_profile_picture,
+    }
+
+    # Send a POST request to edit a child
+    response = client.post("/child/edit-child", json=rqst_body)
+
+    # Check if the response status code is 200 (OK)
+    assert response.status_code == 200
+
+    # Check if the response contains a success message
     assert "status" in response.json() and response.json()["status"] == "success"    
+        
 
