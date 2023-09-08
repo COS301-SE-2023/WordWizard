@@ -42,9 +42,6 @@ def test_get_children():
     
     
 def test_get_preferences():
-    # Generate a valid ObjectId for testing
-    sample_child_id = str(ObjectId())  # Convert ObjectId to string
-
     # Create a request body
     rqst_body = {"child_id": sample_child_id}
 
@@ -55,5 +52,5 @@ def test_get_preferences():
     assert response.status_code == 200
 
     # Check if the response contains preferences
-    assert "preferences" in response.json()    
+    assert "preferences" in response.json() 
 
