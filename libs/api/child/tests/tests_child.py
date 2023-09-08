@@ -1,6 +1,8 @@
 from fastapi.testclient import TestClient
 from ...test_api import app
 import pytest
+from bson import ObjectId  # Import ObjectId
+
 
 # Create a TestClient instance
 client = TestClient(app)
@@ -8,7 +10,7 @@ client = TestClient(app)
 # Define sample data for testing
 sample_parent_email = "parent@example.com"
 sample_parent_name = "Parent Name"
-sample_child_id = "mocked_object_id"  # Replace with a valid child_id
+sample_child_id = ""  # Replace with a valid child_id
 sample_preferences = ["Preference1", "Preference2"]
 sample_child_name = "Child Name"
 sample_child_age = 5
@@ -40,6 +42,9 @@ def test_get_children():
     
     
 def test_get_preferences():
+    # Generate a valid ObjectId for testing
+    sample_child_id = str(ObjectId())  # Convert ObjectId to string
+
     # Create a request body
     rqst_body = {"child_id": sample_child_id}
 
