@@ -54,3 +54,17 @@ def test_get_preferences():
     # Check if the response contains preferences
     assert "preferences" in response.json() 
 
+
+def test_update_preferences():
+    # Create a request body
+    rqst_body = {"child_id": sample_child_id, "preferences": sample_preferences}
+
+    # Send a POST request to update preferences
+    response = client.post("/child/update-preferences", json=rqst_body)
+
+    # Check if the response status code is 200 (OK)
+    assert response.status_code == 200
+
+    # Check if the response contains a success message
+    assert "status" in response.json() and response.json()["status"] == "success"    
+
