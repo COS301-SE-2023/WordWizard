@@ -10,7 +10,7 @@ client = TestClient(app)
 # Define sample data for testing
 sample_parent_email = "parent@example.com"
 sample_parent_name = "Parent Name"
-sample_child_id = ""  # Replace with a valid child_id
+sample_child_id = "64f9c5cbeb1d649f98debec2"  # Replace with a valid child_id
 sample_preferences = ["Preference1", "Preference2"]
 sample_child_name = "Child Name"
 sample_child_age = 5
