@@ -85,6 +85,19 @@ def test_edit_child():
     assert response.status_code == 200
 
     # Check if the response contains a success message
-    assert "status" in response.json() and response.json()["status"] == "success"    
+    assert "status" in response.json() and response.json()["status"] == "success"
+
+def test_delete_child():
+    # Create a request body
+    rqst_body = {"child_id": sample_child_id}
+
+    # Send a POST request to delete a child
+    response = client.post("/child/delete-child", json=rqst_body)
+
+    # Check if the response status code is 200 (OK)
+    assert response.status_code == 200
+
+    # Check if the response contains a success message
+    assert "status" in response.json() and response.json()["status"] == "success"      
         
 
