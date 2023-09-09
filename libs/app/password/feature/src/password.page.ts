@@ -7,7 +7,6 @@ import { Observable } from 'rxjs';
 import { AuthService } from '@auth0/auth0-angular';
 import { CookieService } from 'ngx-cookie-service';
 
-
 @Component({
   selector: 'word-wizard-password',
   templateUrl: './password.page.html',
@@ -18,7 +17,10 @@ export class PasswordPage {
   password =  '';
   validationWord = '';
   parent_email = '';
+  back = "../manage-children";
+  title = 'Set Password';
 
+  @Select(ChildState.passcode) passcode$!: Observable<string>;
   constructor(
     private router: Router, 
     private readonly passwordService: PasswordService, 
@@ -31,6 +33,16 @@ export class PasswordPage {
         this.cookieService.set('authToken', idToken, undefined, undefined, undefined, true, 'Strict');
       }
     });
+
+    this.passcode$.subscribe((passcode) => {
+      if (passcode === '') {
+        this.title = 'Set Passcode';
+        this.back = '';
+      }
+      else {
+        this.title = 'Change Passcode';
+      }
+    })
 
     this.auth.user$.subscribe((user) => {
       if (user) {
@@ -48,28 +60,28 @@ export class PasswordPage {
 
   setPassword(): void {
     if (this.isPasswordValid()) {
-      this.passwordService.addPin(this.parent_email, this.validationWord, this.password).subscribe((res) => {
-        if (res.status_code) {
-          this.store.dispatch(new SetPassword({ passcode: this.password}));
-          this.router.navigate(['/manage-children']);
-        } else {
-          alert(res.message);
+      this.passcode$.subscribe((passcode) => {
+        if (passcode === '') {
+          this.passwordService.addPin(this.parent_email, this.validationWord, this.password).subscribe((res) => {
+            if (res.status_code) {
+              this.store.dispatch(new SetPassword({ passcode: this.password}));
+              this.router.navigate(['/manage-children']);
+            } else {
+              alert(res.message);
+            }
+          });
         }
-      });
-    }
-  }
-
-
-  changePassword(): void {
-    if (this.isPasswordValid()) {
-      this.passwordService.changePin(this.parent_email, this.validationWord, this.password).subscribe((res) => {
-        if (res.status_code) {
-          this.store.dispatch(new SetPassword({ passcode: this.password}));
-          this.router.navigate(['/manage-children']);
-        } else {
-          alert(res.message);
+        else {
+          this.passwordService.changePin(this.parent_email, this.validationWord, this.password).subscribe((res) => {
+            if (res.status_code) {
+              this.store.dispatch(new SetPassword({ passcode: this.password}));
+              this.router.navigate(['/manage-children']);
+            } else {
+              alert(res.message);
+            }
+          });
         }
-      });
+      })
     }
   }
 }

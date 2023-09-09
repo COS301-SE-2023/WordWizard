@@ -7,8 +7,6 @@ import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { PasswordService } from '@word-wizard/app/password/data-access';
 import { AuthService } from '@auth0/auth0-angular';
-import { Store } from '@ngxs/store';
-import { SetPassword } from '@word-wizard/app/child/data-access';
 
 @Component({
   selector: 'ww-password',
@@ -29,7 +27,6 @@ export class PasswordComponent {
     private toastController: ToastController,
     private passwordService: PasswordService,
     private readonly auth: AuthService,
-    private readonly store: Store,
 
   ) {
     this.otpForm = this.fb.group({
@@ -39,7 +36,11 @@ export class PasswordComponent {
       otp4: [''],
     });
 
-    this.passcode$.subscribe((passcode) => this.pin = passcode);
+    this.passcode$.subscribe((passcode) => {
+      this.pin = passcode;
+      if(passcode == '') 
+        this.router.navigate(['/password']);
+    });
   }
 
   controlModal() {

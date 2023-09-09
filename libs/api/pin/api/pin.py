@@ -57,33 +57,10 @@ def change_pin(rqst: SetPinReq):
             'status_code': False
         }
 
-
-@router.post('/validate-word')
-def validate_word(rqst: ValidatePasswordReq):
-    parent_collection = db['Parents']
-    parent = parent_collection.find_one({'email': rqst.parent_email})
-    if parent:
-        if parent['validation_word'] == rqst.validation_word:
-            return True
-        else:
-            return False
-    else:
-        return False
-
-@router.post('/validate-pin')
-def validate_pin (rqst: PinReq):
-    parent_collection = db['Parents']
-    parent = parent_collection.find_one({'email': rqst.parent_email})
-    if parent:
-        return parent['pin']
-    else:
-        return False
-
 @router.post('/get-pin')
 def get_pin (rqst: PinReq):
     parent_collection = db['Parents']
     parent = parent_collection.find_one({'email': rqst.parent_email})
-    if parent:
+    if "pin" in parent:
         return parent['pin']
-    else:
-        return False
+    return ''
