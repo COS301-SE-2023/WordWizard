@@ -37,3 +37,8 @@ export class DeleteChild {
   static readonly type = '[Child] Delete Child';
   constructor(public payload: { childId: string }) {}
 }
+
+export class SetPassword {
+  static readonly type = '[Child] Set Password';
+  constructor(public payload: { passcode: string }) {}
+}

@@ -7,6 +7,7 @@ import {
   ChangeActive,
   AddChild,
   DeleteChild,
+  SetPassword,
 } from './child.actions';
 import { ChildService } from './child.service';
 import { produce } from 'immer';
@@ -151,6 +152,23 @@ export class ChildState {
       }),
     );
   }
+
+  @Action(SetPassword)
+  async SetPassword(
+    ctx: StateContext<ChildStateModel>,
+    { payload }: SetPassword,
+  ) {
+    const state = ctx.getState();
+    ctx.patchState({
+      Children: {
+        model: {
+          ...state.Children.model,
+          passcode: payload.passcode,
+        },
+      },
+    });
+  }
+
 
   @Selector()
   static Children(state: ChildStateModel) {
