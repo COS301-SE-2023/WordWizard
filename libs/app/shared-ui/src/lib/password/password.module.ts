@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { PasswordService } from './password.service';
+import { PasswordService } from '@word-wizard/app/password/data-access';
 import { PasswordComponent } from './password.component';
 import { ButtonModule } from '../button';
 

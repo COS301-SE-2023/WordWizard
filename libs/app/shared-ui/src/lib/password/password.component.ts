@@ -2,8 +2,13 @@ import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
-import { PasswordService } from './password.service';
-
+import { ChildState } from '@word-wizard/app/child/data-access';
+import { Select } from '@ngxs/store';
+import { Observable } from 'rxjs';
+import { PasswordService } from '@word-wizard/app/password/data-access';
+import { AuthService } from '@auth0/auth0-angular';
+import { Store } from '@ngxs/store';
+import { SetPassword } from '@word-wizard/app/child/data-access';
 
 @Component({
   selector: 'ww-password',
@@ -16,11 +21,16 @@ export class PasswordComponent {
   otpForm: FormGroup;
   @Output() correct = new EventEmitter<void>();
 
+  @Select(ChildState.passcode) passcode$!: Observable<string>;
+
   constructor(
     private fb: FormBuilder, 
     private router: Router, 
     private toastController: ToastController,
-    private passwordService: PasswordService
+    private passwordService: PasswordService,
+    private readonly auth: AuthService,
+    private readonly store: Store,
+
   ) {
     this.otpForm = this.fb.group({
       otp1: [''],
@@ -28,8 +38,8 @@ export class PasswordComponent {
       otp3: [''],
       otp4: [''],
     });
-    //Backend call to get pin
-    this.pin = "1234";
+
+    this.passcode$.subscribe((passcode) => this.pin = passcode);
   }
 
   controlModal() {
@@ -66,7 +76,7 @@ export class PasswordComponent {
 
   async presentToast() {
     const toast = await this.toastController.create({
-      message: 'Incoorect Pin, Try again',
+      message: 'Incorrect Pin, Try again',
       duration: 2000,
       position: 'bottom',
       color: 'danger',

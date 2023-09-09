@@ -7,6 +7,7 @@ import {
   ChildService,
   Child,
   ChangeActive,
+  SetPassword,
 } from '@word-wizard/app/child/data-access';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
@@ -15,6 +16,7 @@ import { ToastController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 import { CookieService } from 'ngx-cookie-service';
 import { LoadingService } from '@word-wizard/app/loading/data-access';
+import { PasswordService } from '@word-wizard/app/password/data-access';
 
 @Component({
   selector: 'word-wizard-manage-children',
@@ -40,6 +42,7 @@ export class ManageChildrenPage {
     private readonly alertController: AlertController,
     private cookieService: CookieService,
     private loadingService: LoadingService,
+    private passwordService: PasswordService,
   ) {
     loadingService.show();
     setTimeout(() => {
@@ -62,6 +65,12 @@ export class ManageChildrenPage {
           this.Children$.subscribe((data) => {
             this.children = data;
           });
+
+          this.passwordService.getPin(`${user?.email}`).subscribe(
+            (response) => {
+              this.store.dispatch(new SetPassword({passcode: `${response}`}));
+            }
+          );
         }
       });
       loadingService.hide();
