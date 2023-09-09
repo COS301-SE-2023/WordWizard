@@ -34,22 +34,30 @@ def add_pin(rqst: SetPinReq):
 
 @router.post('/change-pin')
 def change_pin(rqst: SetPinReq):
+    #check validation word before changing pin
     parent_collection = db['Parents']
     parent = parent_collection.find_one({'email': rqst.parent_email})
     if parent:
-        parent_collection.update_one(
-            {'email': rqst.parent_email},
-            {'$set': {'pin': rqst.new_pin}}
-        )
-        return {
-            'message': 'Pin successfully changed',
-            'status_code': True
-        }
+        if parent['validation_word'] == rqst.validation_word:
+            parent_collection.update_one(
+                {'email': rqst.parent_email},
+                {'$set': {'pin': rqst.new_pin}}
+            )
+            return {
+                'message': 'Pin successfully changed',
+                'status_code': True
+            }
+        else:
+            return {
+                'message': 'Incorrect validation word',
+                'status_code': False
+            }
     else:
         return {
             'message': 'Parent not found',
             'status_code': False
         }
+
 
 @router.post('/validate-word')
 def validate_word(rqst: ValidatePasswordReq):

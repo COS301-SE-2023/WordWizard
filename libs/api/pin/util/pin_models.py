@@ -3,6 +3,7 @@ from pydantic import BaseModel
 class SetPinReq(BaseModel):
     parent_email: str
     new_pin: str
+    validation_word: str
 class ValidatePasswordReq(BaseModel):
     parent_email: str
     validation_word: str
