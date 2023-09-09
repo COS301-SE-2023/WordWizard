@@ -10,8 +10,11 @@ import { AuthModule } from '@auth0/auth0-angular';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoadingService } from '@word-wizard/app/loading/data-access';
 import { LoadingInterceptorService } from '@word-wizard/app/loading/data-access';
+import { isPlatform } from '@ionic/angular';
 
-const redirect_uri = `${window.location.origin}`;
+const redirect_uri = isPlatform('android')
+  ? `com.umleiten.wordWizard://${process.env['WW_AUTH0_DOMAIN']}/capacitor/com.umleiten.wordWizard/callback`
+  : `${window.location.origin}`;
 
 @NgModule({
   declarations: [CoreShell],
