@@ -51,16 +51,19 @@ export class PasswordService {
     );
   }
 
+  getPin(email: string) {
+    const request: PinRqst = {
+      parent_email: email,
 
-  validateWord(p: any): Observable<any> {
-    return this.http.post(`${process.env["WW_API_ENDPOINT"]}/pin/validate-word`, { p });
-  }
+    };
 
-  validatePin(p: any): Observable<any> {
-    return this.http.post(`${process.env["WW_API_ENDPOINT"]}/pin/validate-pin`, { p });
-  }
-
-  getPin(p:any):Observable<any>{
-    return this.http.post(`${process.env["WW_API_ENDPOINT"]}/pin/get-pin`, { p });
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+    return this.http.post<PinRsp>(
+      `${process.env["WW_API_ENDPOINT"]}/pin/get-pin`,
+      request,
+      { headers },
+    );
   }
 }

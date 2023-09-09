@@ -34,7 +34,6 @@ def add_pin(rqst: SetPinReq):
 
 @router.post('/change-pin')
 def change_pin(rqst: SetPinReq):
-    #check validation word before changing pin
     parent_collection = db['Parents']
     parent = parent_collection.find_one({'email': rqst.parent_email})
     if parent:
