@@ -1,17 +1,17 @@
 from pydantic import BaseModel
 
 class SetPinReq(BaseModel):
-    parent_id: str
+    parent_email: str
     new_pin: str
 class ValidatePasswordReq(BaseModel):
-    parent_id: str
+    parent_email: str
     validation_word: str
 class SetPinRsp(BaseModel):
     message: str
     status_code: bool
 
 class PinReq(BaseModel):
-    parent_id: str
+    parent_email: str
 
 class PinRsp(BaseModel):
     pin: str

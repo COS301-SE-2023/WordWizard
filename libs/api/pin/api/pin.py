@@ -16,10 +16,10 @@ db = client["WordWizardDB"]
 @router.post('/add-pin')
 def add_pin(rqst: SetPinReq):
     parent_collection = db['Parents']
-    parent = parent_collection.find_one({'_id': ObjectId(rqst.parent_id)})
+    parent = parent_collection.find_one({'email': rqst.parent_email})
     if parent:
         parent_collection.update_one(
-            {'_id': ObjectId(rqst.parent_id)},
+            {'email': rqst.parent_email},
             {'$set': {'validation_word': rqst.validation_word, 'pin': rqst.new_pin}}
         )
         return {
@@ -35,10 +35,10 @@ def add_pin(rqst: SetPinReq):
 @router.post('/change-pin')
 def change_pin(rqst: SetPinReq):
     parent_collection = db['Parents']
-    parent = parent_collection.find_one({'_id': ObjectId(rqst.parent_id)})
+    parent = parent_collection.find_one({'email': rqst.parent_email})
     if parent:
         parent_collection.update_one(
-            {'_id': ObjectId(rqst.parent_id)},
+            {'email': rqst.parent_email},
             {'$set': {'pin': rqst.new_pin}}
         )
         return {
@@ -54,7 +54,7 @@ def change_pin(rqst: SetPinReq):
 @router.post('/validate-word')
 def validate_word(rqst: ValidatePasswordReq):
     parent_collection = db['Parents']
-    parent = parent_collection.find_one({'_id': ObjectId(rqst.parent_id)})
+    parent = parent_collection.find_one({'email': rqst.parent_email})
     if parent:
         if parent['validation_word'] == rqst.validation_word:
             return True
@@ -66,7 +66,7 @@ def validate_word(rqst: ValidatePasswordReq):
 @router.post('/validate-pin')
 def validate_pin (rqst: PinReq):
     parent_collection = db['Parents']
-    parent = parent_collection.find_one({'_id': ObjectId(rqst.parent_id)})
+    parent = parent_collection.find_one({'email': rqst.parent_email})
     if parent:
         return parent['pin']
     else:
@@ -75,7 +75,7 @@ def validate_pin (rqst: PinReq):
 @router.post('/get-pin')
 def get_pin (rqst: PinReq):
     parent_collection = db['Parents']
-    parent = parent_collection.find_one({'_id': ObjectId(rqst.parent_id)})
+    parent = parent_collection.find_one({'email': rqst.parent_email})
     if parent:
         return parent['pin']
     else:
