@@ -27,9 +27,9 @@ export class ManageChildrenPage {
   @Select(ChildState.Children) Children$!: Observable<Child[]>;
   children: Child[] = [];
   visible = false;
-  passwordSet = true;
+  passwordSet = false;
   selectedChild!: Child;
-
+  parentActive = true;
   helpText: string[] = [];
   audioSources: string[] = [];
 
@@ -96,7 +96,13 @@ export class ManageChildrenPage {
     }
   }
 
+  validate(val: boolean) {
+    this.handle();
+    this.setActive(val);
+  }
+
   setActive(val: boolean) {
+    this.parentActive = val;  
     this.store.dispatch(new ChangeActive({ parentActive: val }));
     this.controlModal();
   }
@@ -157,5 +163,11 @@ export class ManageChildrenPage {
 
   correctPin() {
     this.passwordSet = false;
+    if (this.parentActive) {
+      this.router.navigate(['/view-child']);
+    } 
+    else {
+      this.router.navigate(['/dashboard']);
+    }
   }
 }

@@ -35,9 +35,12 @@ export class PasswordComponent {
       otp3: [''],
       otp4: [''],
     });
+  }
 
+  ngOnInit() {
     this.passcode$.subscribe((passcode) => {
       this.pin = passcode;
+      console.error(passcode);
       if(passcode == '') 
         this.router.navigate(['/password']);
     });
@@ -56,8 +59,15 @@ export class PasswordComponent {
       if(n != '')
         n.focus()
       else {
-        if(this.otpForm.value.otp1 + this.otpForm.value.otp2 + this.otpForm.value.otp3 + this.otpForm.value.otp4 == this.pin)
+        if(this.otpForm.value.otp1 + this.otpForm.value.otp2 + this.otpForm.value.otp3 + this.otpForm.value.otp4 == this.pin) {
           this.correct.emit();
+          this.otpForm.patchValue({
+            otp1: '', 
+            otp2: '', 
+            otp3: '', 
+            otp4: '', 
+          });
+        }
         else {
           this.otpForm.patchValue({
             otp1: '', 

@@ -17,24 +17,20 @@ settingsRoute="/password"
           class="close-icon"
           (click)="controlModal()"></ion-icon>
       </div>
-      <ion-nav-link routerLink="/dashboard">
-        <ww-button
-          class="continueChild"
-          text="Continue as {{selectedChild?.username}}"
-          color="#861486"
-          activate="#510E51"
-          border="#fff"
-          (click)="setActive(false)" />
-      </ion-nav-link>
-      <ion-nav-link routerLink="/view-child">
-        <ww-button
-          class="continueParent"
-          text="View Progress"
-          color="#070527"
-          activate="#000000"
-          border="#fff"
-          (click)="setActive(true)" />
-      </ion-nav-link>
+      <ww-button
+        class="continueChild"
+        text="Continue as {{selectedChild?.username}}"
+        color="#861486"
+        activate="#510E51"
+        border="#fff"
+        (click)="validate(false)" />
+      <ww-button
+        class="continueParent"
+        text="View Progress"
+        color="#070527"
+        activate="#000000"
+        border="#fff"
+        (click)="validate(true)" />
     </div>
   </div>
   <ion-grid class="children-grid">

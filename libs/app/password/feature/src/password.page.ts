@@ -81,7 +81,7 @@ export class PasswordPage {
             }
           });
         }
-      })
+      }).unsubscribe();
     }
   }
 }
