@@ -30,7 +30,11 @@ export class CoreShell implements OnInit {
               .pipe(mergeMap(() => Browser.close()))
               .subscribe();
           } else {
-            Browser.close();
+            this.auth
+              .handleRedirectCallback(url)
+              .subscribe(() => {
+                Browser.close();
+              });
           }
         }
       });
