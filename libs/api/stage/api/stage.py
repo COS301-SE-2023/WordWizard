@@ -42,6 +42,3 @@ def create_reading(rqst: LevelRequest):
     except Exception as e:
         return {"message": "Invalid ObjectId format"}
 
-@router.get("/test")
-def test():
-    return {"message": "Hello World"}
