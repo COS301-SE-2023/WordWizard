@@ -70,9 +70,7 @@ export class DashboardPage {
   }
 
   chooseImage(i: string) {
-    this.child.profile_photo = i;
     this.visible = false;
-    // (id:string, name: string, age: number, image: string
     this.childService
       .editChild(this.child._id, this.child.username, 8, i)
       .subscribe((res) => {
@@ -80,3 +78,4 @@ export class DashboardPage {
       });
   }
 }
+

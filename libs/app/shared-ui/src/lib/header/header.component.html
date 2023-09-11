@@ -3,7 +3,8 @@
     <ion-nav-link
       routerDirection="back"
       [routerLink]="[backRoute]"
-      *ngIf="backActive">
+      *ngIf="backActive"
+      (click)="backClick()">
       <ion-icon
         size="large"
         name="arrow-back-outline"

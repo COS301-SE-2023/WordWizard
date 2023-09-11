@@ -8,6 +8,7 @@ import {
   AddChild,
   DeleteChild,
   SetPassword,
+  UpdateChild
 } from './child.actions';
 import { ChildService } from './child.service';
 import { produce } from 'immer';
@@ -84,6 +85,30 @@ export class ChildState {
           console.error(error);
         },
       );
+  }
+
+  @Action(UpdateChild)
+  async UpdateChild(
+    ctx: StateContext<ChildStateModel>,
+    { payload }: UpdateChild,
+  ) {
+    ctx.setState(
+      produce((draft: ChildStateModel) => {
+        const currChild = draft.Children.model.currentChild;
+        if(currChild._id == payload.childId) {
+          currChild.username = payload.name;
+          currChild.age = payload.age;
+          currChild.profile_photo = payload.image;
+        }
+        const children = draft.Children.model.children;
+        const child = children.find((c) => c._id === payload.childId);
+        if(child) {
+          child.username = payload.name;
+          child.age = payload.age;
+          child.profile_photo = payload.image;
+        }
+      }),
+    );
   }
 
   @Action(SetChild)
