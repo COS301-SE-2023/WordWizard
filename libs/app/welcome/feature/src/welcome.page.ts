@@ -15,7 +15,6 @@ export class WelcomePage {
     this.auth
       .loginWithRedirect({
         async openUrl(url: string) {
-          console.log(url);
           return Browser.open({ url, windowName: '_self' });
         }
       })

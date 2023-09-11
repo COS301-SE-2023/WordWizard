@@ -18,6 +18,7 @@ export class PasswordComponent {
   pin!:string;
   otpForm: FormGroup;
   @Output() correct = new EventEmitter<void>();
+  @Output() control = new EventEmitter<void>();
 
   @Select(ChildState.passcode) passcode$!: Observable<string>;
 
@@ -35,19 +36,18 @@ export class PasswordComponent {
       otp3: [''],
       otp4: [''],
     });
-  }
-
-  ngOnInit() {
     this.passcode$.subscribe((passcode) => {
       this.pin = passcode;
-      console.error(passcode);
-      if(passcode == '') 
+      // Quick fix!
+      if(passcode != '') 
+        this.router.navigate(['/manage-children']);
+      else if(passcode == '') 
         this.router.navigate(['/password']);
     });
   }
 
   controlModal() {
-    this.visible = !this.visible;
+    this.control.emit();
   }
 
   //eslint-disable-next-line
