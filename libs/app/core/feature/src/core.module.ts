@@ -6,15 +6,21 @@ import { CoreShell } from './core.shell';
 import { RouteReuseStrategy } from '@angular/router';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxsModule } from '@ngxs/store';
-import { AuthModule } from '@auth0/auth0-angular';
+import { AuthModule, AuthConfig } from '@auth0/auth0-angular';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoadingService } from '@word-wizard/app/loading/data-access';
 import { LoadingInterceptorService } from '@word-wizard/app/loading/data-access';
-import { isPlatform } from '@ionic/angular';
+import { domain, clientId, callbackUri } from './auth.config';
 
-const redirect_uri = isPlatform('android')
-  ? `com.umleiten.wordWizard://${process.env['WW_AUTH0_DOMAIN']}/capacitor/com.umleiten.wordWizard/callback`
-  : `${window.location.origin}`;
+const config: AuthConfig = {
+  domain,
+  clientId,
+  authorizationParams: {
+    redirect_uri: callbackUri,
+  },
+  useRefreshTokens: true,
+  useRefreshTokensFallback: false,
+};
 
 @NgModule({
   declarations: [CoreShell],
@@ -25,15 +31,7 @@ const redirect_uri = isPlatform('android')
     CoreRouting,
     NoopAnimationsModule,
     NgxsModule.forRoot([]),
-    AuthModule.forRoot({
-      domain: `${process.env['WW_AUTH0_DOMAIN']}`,
-      clientId: `${process.env['WW_AUTH0_CLIENT_ID']}`,
-      useRefreshTokens: true,
-      useRefreshTokensFallback: false,
-      authorizationParams: {
-        redirect_uri,
-      },
-    }),
+    AuthModule.forRoot(config),
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },{provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptorService, multi: true,}, LoadingService],
   bootstrap: [CoreShell],
