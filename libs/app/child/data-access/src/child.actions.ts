@@ -35,3 +35,7 @@ export class SetPassword {
   static readonly type = '[Child] Set Password';
   constructor(public payload: { passcode: string }) {}
 }
+export class UpdateChild{
+  static readonly type = '[Child] Update Child';
+  constructor(public payload: { childId: string; name: string; age: number; image: string }) {}
+}
