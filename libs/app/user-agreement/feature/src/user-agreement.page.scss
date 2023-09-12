@@ -53,16 +53,26 @@
         font-style: normal;
         font-weight: 700;
         line-height: 0;
-        margin-bottom: 1rem;
+        margin-bottom: 2rem;
         margin-top: 1rem;
       }
+
       .subtext {
         color: #070527;
-        font-size: 1.5rem;
+        margin-top: 1.5rem;
+        font-size: 1.2rem;
         font-family: Inter;
         font-style: normal;
         font-weight: 700;
-        text-align: center;
+        // text-align: center;
+      }
+
+      .section-title {
+        color: black;
+        font-family: Inter;
+        font-style: normal;
+        font-weight: 900;
+        font-size: 1.5rem;
       }
     }
     .button-container {

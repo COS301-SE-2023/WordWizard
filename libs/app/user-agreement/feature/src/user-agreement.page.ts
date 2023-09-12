@@ -7,25 +7,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./user-agreement.page.scss'],
 })
 export class UserAgreementPage {
-  agreement = `Click the button below to login/signup and start using the app
-  lick the button below to login/signup and start using the app
-  lick the button below to login/signup and start using the app
-  lick the button below to login/signup and start using the app
-  lick the button below to login/signup and start using the app
-  lick the button below to login/signup and start using the app
-  lick the button below to login/signup and start using the app
-
-  lick the button below to login/signup and start using the app
-  lick the button below to login/signup and start using the app
-  lick the button below to login/signup and start using the app
-  lick the button below to login/signup and start using the app
-  lick the button below to login/signup and start using the app
-
-  lick the button below to login/signup and start using the app
-  lick the button below to login/signup and start using the app
-  lick the button below to login/signup and start using the app
-  lick the button below to login/signup and start using the app
-  lick the button below to login/signup and start using the app`;
 
   constructor(private route: Router) {}
 
