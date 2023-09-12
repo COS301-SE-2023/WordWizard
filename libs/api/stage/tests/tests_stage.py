@@ -53,5 +53,26 @@ def test_create_reading_invalid_object_id_format():
     assert response.status_code == 200
 
     # Check if the response contains the "message" key indicating an invalid ObjectId format
-    assert "message" in response.json() and response.json()["message"] == "Invalid ObjectId format"    
+    assert "message" in response.json() and response.json()["message"] == "Invalid ObjectId format"
+    
+    
+# Import the necessary modules
+from ...util.stage import get_score_range
+
+def test_get_score_range():
+    # Test cases for different score values
+    test_cases = [
+        (30, 0),  # Score < 50, expected range 0
+        (50, 1),  # Score >= 50, expected range 1
+        (75, 2),  # Score >= 75, expected range 2
+        (90, 2),  # Score >= 75, expected range 2
+        (25, 0),  # Score < 50, expected range 0
+        (0, 0),   # Score < 50, expected range 0
+        (100, 2), # Score >= 75, expected range 2
+    ]
+
+    for score, expected_range in test_cases:
+        result = get_score_range(score)
+        assert result == expected_range
+        
      
