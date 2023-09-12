@@ -55,7 +55,6 @@ const routes: Routes = [
     path: 'welcome',
     loadChildren: () =>
       import('@word-wizard/app/welcome/feature').then((m) => m.WelcomeModule),
-    canActivate: [AuthGuard],
   },
   {
     path: 'achievements',
@@ -63,6 +62,7 @@ const routes: Routes = [
       import('@word-wizard/app/achievements/feature').then(
         (m) => m.AchievementModule,
       ),
+    canActivate: [AuthGuard],
   },
   {
     path: 'settings',

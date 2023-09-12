@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Word Wizard</string>
+    <string name="title_activity_main">Word Wizard</string>
+    <string name="package_name">com.umleiten.wordWizard</string>
+    <string name="custom_url_scheme">com.umleiten.wordWizard</string>
+</resources>
