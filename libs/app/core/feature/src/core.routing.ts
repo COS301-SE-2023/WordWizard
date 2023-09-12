@@ -55,12 +55,13 @@ const routes: Routes = [
     path: 'welcome',
     loadChildren: () =>
       import('@word-wizard/app/welcome/feature').then((m) => m.WelcomeModule),
-    canActivate: [AuthGuard],
   },
   {
     path: 'achievements',
     loadChildren: () =>
-      import('@word-wizard/app/achievements/feature').then((m) => m.AchievementModule),
+      import('@word-wizard/app/achievements/feature').then(
+        (m) => m.AchievementModule,
+      ),
     canActivate: [AuthGuard],
   },
   {
