@@ -40,4 +40,18 @@ def test_create_reading_progress_not_found():
 
     # Check if the response contains the "message" key indicating progress not found
     assert "message" in response.json() and response.json()["message"] == "Progress not found"
+    
+    
+def test_create_reading_invalid_object_id_format():
+    # Create a request body with an invalid ObjectId format
+    rqst_body = LevelRequest(progress_id="invalid_object_id_format")
+
+    # Send a POST request to create reading levels with an invalid ObjectId format
+    response = client.post("/stage/get-levels", json=rqst_body)
+
+    # Check if the response status code is 200 (OK)
+    assert response.status_code == 200
+
+    # Check if the response contains the "message" key indicating an invalid ObjectId format
+    assert "message" in response.json() and response.json()["message"] == "Invalid ObjectId format"    
      
