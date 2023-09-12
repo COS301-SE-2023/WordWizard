@@ -4,6 +4,8 @@ from ...test_api import app
 from ..util.stage_models import LevelRequest
 from bson import ObjectId
 import json
+from ..api.stage import get_score_range
+
 
 # Define the TestClient
 client = TestClient(app)
@@ -47,17 +49,17 @@ def test_create_reading_invalid_object_id_format():
     rqst_body = LevelRequest(progress_id="invalid_object_id_format")
 
     # Send a POST request to create reading levels with an invalid ObjectId format
-    response = client.post("/stage/get-levels", json=rqst_body)
+    response = client.post("/stage/get-levels", json=rqst_body.dict())  # Convert LevelRequest to a dictionary
 
     # Check if the response status code is 200 (OK)
     assert response.status_code == 200
 
     # Check if the response contains the "message" key indicating an invalid ObjectId format
     assert "message" in response.json() and response.json()["message"] == "Invalid ObjectId format"
+
     
     
 # Import the necessary modules
-from ...util.stage import get_score_range
 
 def test_get_score_range():
     # Test cases for different score values
