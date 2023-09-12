@@ -30,7 +30,7 @@ def test_create_reading_success():
         
 def test_create_reading_progress_not_found():
     # Create a request body with an invalid progress_id
-    rqst_body = LevelRequest(progress_id="invalid_progress_id")
+    rqst_body = {"progress_id": "611f48439b946a6d5f63227d"}  # Use an invalid progress_id
 
     # Send a POST request to create reading levels with an invalid progress_id
     response = client.post("/stage/get-levels", json=rqst_body)
@@ -39,4 +39,5 @@ def test_create_reading_progress_not_found():
     assert response.status_code == 200
 
     # Check if the response contains the "message" key indicating progress not found
-    assert "message" in response.json() and response.json()["message"] == "Progress not found"        
+    assert "message" in response.json() and response.json()["message"] == "Progress not found"
+     
