@@ -28,19 +28,6 @@
         height: 10rem;
       }
     }
-    // .hat {
-    //   position: absolute;
-    //   top: -30%;
-    //   left: 50%;
-    //   transform: translate(3%);
-    //   img {
-    //     transform: rotate(24deg);
-    //   }
-    //   width: 15rem;
-    //   height: 12rem;
-    //   border-radius: 50%;
-    //   z-index: 2;
-    // }
     .agreement-content {
       height: calc(100% - 3.5rem);
       overflow: scroll;
@@ -64,7 +51,6 @@
         font-family: Inter;
         font-style: normal;
         font-weight: 700;
-        // text-align: center;
       }
 
       .section-title {
@@ -76,7 +62,6 @@
       }
     }
     .button-container {
-      // margin-bottom: 2rem;
       position: absolute;
       bottom: 0;
       border-radius: 1.8rem;
