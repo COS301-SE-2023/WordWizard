@@ -73,4 +73,8 @@ export class ChildService {
       console.error(error);
     }
   }
+  
+  async getPassscode(){
+    //
+  }
 }

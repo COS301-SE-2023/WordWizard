@@ -1,4 +1,5 @@
-<ww-loading></ww-loading>
+<ww-loading/>
+<ww-password [visible]="passwordSet" (correct)="deleteProfile()" (control)="this.passwordSet = false"/>
 <ion-content [scrollY]="false">
   <div class="header-container">
     <ion-grid>
@@ -78,10 +79,6 @@
       <label htmlFor="age" class="input-lbl">Age:</label><br />
       <input type="text" id="age" formControlName="age" class="test" />
     </div>
-    <!-- <div>
-            <label htmlFor="stage" class="input-lbl">Stage:</label><br>
-            <input type="text" id="stage" formControlName="stage" class="test"/>
-        </div>  -->
     <ion-nav-link routerLink="/view-child" class="smbt-btn">
       <ww-button
         text="Save Changes"
