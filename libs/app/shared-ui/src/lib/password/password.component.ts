@@ -38,11 +38,6 @@ export class PasswordComponent {
     });
     this.passcode$.subscribe((passcode) => {
       this.pin = passcode;
-      // Quick fix!
-      if(passcode != '') 
-        this.router.navigate(['/manage-children']);
-      else if(passcode == '') 
-        this.router.navigate(['/password']);
     });
   }
 

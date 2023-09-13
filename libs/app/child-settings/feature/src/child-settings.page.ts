@@ -74,9 +74,9 @@ export class ChildSettingsPage {
       this.childSettingsService.deleteChild(data._id).subscribe((res) => {
         this.store.dispatch(new DeleteChild({ childId: data._id }));
         this.passwordSet = false;
-        this.router.navigate(['/manage-children']);
       });
     }).unsubscribe();
+    this.router.navigate(['/manage-children']);
   }
 
   modal() {

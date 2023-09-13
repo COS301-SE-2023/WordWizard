@@ -69,6 +69,11 @@ export class ManageChildrenPage {
           this.passwordService.getPin(`${user?.email}`).subscribe(
             (response) => {
               this.store.dispatch(new SetPassword({passcode: `${response}`}));
+              console.log(response);
+              // if(`${response}` != '') 
+              //   this.router.navigate(['/manage-children']);
+              if(`${response}` == '') 
+                this.router.navigate(['/password']);
             }
           );
         }

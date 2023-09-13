@@ -1,7 +1,7 @@
-<ww-loading></ww-loading>
+<ww-loading/>
+<ww-password [visible]="passwordSet" (correct)="deleteProfile()" (control)="this.passwordSet = false"/>
 <ion-content [scrollY]="false">
   <div class="header-container">
-    <ww-password [visible]="passwordSet" (correct)="deleteProfile()" (control)="this.passwordSet = false"/>
     <ion-grid>
       <ion-row>
         <ion-col size="6" (click)="modal()">
