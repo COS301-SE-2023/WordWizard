@@ -7,6 +7,7 @@ import {
   ChangeActive,
   AddChild,
   DeleteChild,
+  SetPassword,
   UpdateChild
 } from './child.actions';
 import { ChildService } from './child.service';
@@ -29,6 +30,7 @@ export interface ChildStateModel {
         progress: string;
       };
       parentActive: boolean;
+      passcode: string;
     };
   };
 }
@@ -50,6 +52,7 @@ export interface ChildStateModel {
           progress: '',
         },
         parentActive: true,
+        passcode: '',
       },
     },
   },
@@ -175,6 +178,23 @@ export class ChildState {
     );
   }
 
+  @Action(SetPassword)
+  async SetPassword(
+    ctx: StateContext<ChildStateModel>,
+    { payload }: SetPassword,
+  ) {
+    const state = ctx.getState();
+    ctx.patchState({
+      Children: {
+        model: {
+          ...state.Children.model,
+          passcode: payload.passcode,
+        },
+      },
+    });
+  }
+
+
   @Selector()
   static Children(state: ChildStateModel) {
     return state.Children.model.children;
@@ -188,5 +208,10 @@ export class ChildState {
   @Selector()
   static parentActive(state: ChildStateModel) {
     return state.Children.model.parentActive;
+  }
+
+  @Selector()
+  static passcode(state: ChildStateModel) {
+    return state.Children.model.passcode;
   }
 }

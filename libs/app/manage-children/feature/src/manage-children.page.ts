@@ -7,6 +7,7 @@ import {
   ChildService,
   Child,
   ChangeActive,
+  SetPassword,
 } from '@word-wizard/app/child/data-access';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
@@ -15,6 +16,7 @@ import { ToastController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 import { CookieService } from 'ngx-cookie-service';
 import { LoadingService } from '@word-wizard/app/loading/data-access';
+import { PasswordService } from '@word-wizard/app/password/data-access';
 
 @Component({
   selector: 'word-wizard-manage-children',
@@ -25,8 +27,9 @@ export class ManageChildrenPage {
   @Select(ChildState.Children) Children$!: Observable<Child[]>;
   children: Child[] = [];
   visible = false;
+  passwordSet = false;
   selectedChild!: Child;
-
+  parentActive = true;
   helpText: string[] = [];
   audioSources: string[] = [];
 
@@ -39,6 +42,7 @@ export class ManageChildrenPage {
     private readonly alertController: AlertController,
     private cookieService: CookieService,
     private loadingService: LoadingService,
+    private passwordService: PasswordService,
   ) {
     loadingService.show();
     setTimeout(() => {
@@ -61,6 +65,17 @@ export class ManageChildrenPage {
           this.Children$.subscribe((data) => {
             this.children = data;
           });
+
+          this.passwordService.getPin(`${user?.email}`).subscribe(
+            (response) => {
+              this.store.dispatch(new SetPassword({passcode: `${response}`}));
+              console.log(response);
+              // if(`${response}` != '') 
+              //   this.router.navigate(['/manage-children']);
+              if(`${response}` == '') 
+                this.router.navigate(['/password']);
+            }
+          );
         }
       });
       loadingService.hide();
@@ -86,7 +101,13 @@ export class ManageChildrenPage {
     }
   }
 
+  validate(val: boolean) {
+    this.handle();
+    this.setActive(val);
+  }
+
   setActive(val: boolean) {
+    this.parentActive = val;  
     this.store.dispatch(new ChangeActive({ parentActive: val }));
     this.controlModal();
   }
@@ -139,5 +160,19 @@ export class ManageChildrenPage {
       ],
     });
     await alert.present();
+  }
+
+  handle() {
+    this.passwordSet = !this.passwordSet;
+  }
+
+  correctPin() {
+    this.passwordSet = false;
+    if (this.parentActive) {
+      this.router.navigate(['/view-child']);
+    } 
+    else {
+      this.router.navigate(['/dashboard']);
+    }
   }
 }

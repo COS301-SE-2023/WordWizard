@@ -76,6 +76,12 @@
       "@word-wizard/app/manage-children/shared-ui": [
         "libs/app/manage-children/shared-ui/src/index.ts"
       ],
+      "@word-wizard/app/password/data-access": [
+        "libs/app/password/data-access/src/index.ts"
+      ],
+      "@word-wizard/app/password/feature": [
+        "libs/app/password/feature/src/index.ts"
+      ],
       "@word-wizard/app/preferences/data-access": [
         "libs/app/preferences/data-access/src/index.ts"
       ],

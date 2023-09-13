@@ -37,7 +37,9 @@ def update_progress(updtProgress: UpdateProgressRqst):
     if progress:
         # Level score
         if "level_scores" in progress:
-            progress["level_scores"][str(updtProgress.progress.level)] = updtProgress.progress.score
+            if progress["level_scores"].get(str(updtProgress.progress.level)):
+                if updtProgress.progress.score > progress["level_scores"][str(updtProgress.progress.level)]:
+                    progress["level_scores"][str(updtProgress.progress.level)] = updtProgress.progress.score
         else:
             progress["level_scores"] = {str(updtProgress.progress.level): updtProgress.progress.score}
 
