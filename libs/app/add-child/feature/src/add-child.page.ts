@@ -16,7 +16,16 @@ export class AddChildPage {
   form: FormGroup = this.fb.group({
     name: ['', Validators.required],
     age: ['', Validators.required],
+    acceptAgreement: [false, [Validators.required, this.mustBeTrueValidator]],
   });
+
+  //eslint-disable-next-line
+  mustBeTrueValidator(control:any) {
+    const value = control.value;
+    if (value !== true) 
+      return { mustBeTrue: true };
+    return null;
+  }
   // Set visible to true to debug modal
   visible = false;
   selectedImage!: string;

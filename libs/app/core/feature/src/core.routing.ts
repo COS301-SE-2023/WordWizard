@@ -102,7 +102,13 @@ const routes: Routes = [
       import('@word-wizard/app/preferences/feature').then(
         (m) => m.PreferencesModule,
       ),
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'user-agreement',
+    loadChildren: () =>
+      import('@word-wizard/app/user-agreement/feature').then((m) => m.UserAgreementModule),
+      // canActivate: [AuthGuard],
   },
   {
     path: 'password',
