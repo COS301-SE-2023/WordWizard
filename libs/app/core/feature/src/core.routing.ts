@@ -122,6 +122,11 @@ const routes: Routes = [
     path: 'sign-up',
     loadChildren: () =>
       import('@word-wizard/app/sign-up/feature').then((m) => m.SignUpModule),
+  },
+  {
+    path: 'login',
+    loadChildren: () =>
+      import('@word-wizard/app/login/feature').then((m) => m.LoginModule),
   }
 ];
 
