@@ -16,15 +16,15 @@ db = client["WordWizardDB"]
 @router.get('/')
 def get_photos():
     return { 'images': [
-        "assets/img/ProfilePics/Beautiful_cute_0_8.png",
-        "assets/img/ProfilePics/Beautiful_cute_1_10.png",
-        "assets/img/ProfilePics/Beautiful_cute_1_9.png",
-        "assets/img/ProfilePics/Beautiful_cute_1_6.png",
-        "assets/img/ProfilePics/Beautiful_cute_1_1.png",
-        "assets/img/ProfilePics/Beautiful_cute_1_2.png",
-        "assets/img/ProfilePics/Beautiful_cute_1_4.png",
-        "assets/img/ProfilePics/cute_chibi_baby_0_1.png",
-        "assets/img/ProfilePics/cute_chibi_blue_1.png",
+        "assets/img/ProfilePics/ProfilePicture_BlueOwl.png",
+        "assets/img/ProfilePics/ProfilePicture_Pheonix.png",
+        "assets/img/ProfilePics/ProfilePicture_GreenUnicorn.png",
+        "assets/img/ProfilePics/ProfilePicture_WhiteCat.png",
+        "assets/img/ProfilePics/ProfilePicture_PurpleOwl.png",
+        "assets/img/ProfilePics/ProfilePicture_RedDragon.png",
+        "assets/img/ProfilePics/ProfilePicture_BlueDragon.png",
+        "assets/img/ProfilePics/ProfilePicture_PinkUnicorn.png",
+        "assets/img/ProfilePics/ProfilePicture_BlackCat.png",
     ]}
 
 
