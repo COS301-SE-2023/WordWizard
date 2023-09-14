@@ -10,7 +10,7 @@ const routes: Routes = [
       import('@word-wizard/app/dashboard/feature').then(
         (m) => m.DashboardModule,
       ),
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
   {
     path: '',
@@ -21,19 +21,19 @@ const routes: Routes = [
     path: 'reading',
     loadChildren: () =>
       import('@word-wizard/app/reading/feature').then((m) => m.ReadingModule),
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
   {
     path: 'library',
     loadChildren: () =>
       import('@word-wizard/app/library/feature').then((m) => m.LibraryModule),
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
   {
     path: 'stage',
     loadChildren: () =>
       import('@word-wizard/app/stage/feature').then((m) => m.StageModule),
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
   {
     path: 'add-child',
@@ -41,7 +41,7 @@ const routes: Routes = [
       import('@word-wizard/app/add-child/feature').then(
         (m) => m.AddChildModule,
       ),
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
   {
     path: 'manage-children',
@@ -49,7 +49,7 @@ const routes: Routes = [
       import('@word-wizard/app/manage-children/feature').then(
         (m) => m.ManageChildrenModule,
       ),
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
   {
     path: 'welcome',
@@ -62,7 +62,7 @@ const routes: Routes = [
       import('@word-wizard/app/achievements/feature').then(
         (m) => m.AchievementModule,
       ),
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
   {
     path: 'settings',
@@ -86,7 +86,7 @@ const routes: Routes = [
       import('@word-wizard/app/child-statistics/feature').then(
         (m) => m.ChildStatisticsModule,
       ),
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
   {
     path: 'view-child',
@@ -94,7 +94,7 @@ const routes: Routes = [
       import('@word-wizard/app/view-child/feature').then(
         (m) => m.ViewChildModule,
       ),
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
   {
     path: 'preferences',
@@ -102,7 +102,7 @@ const routes: Routes = [
       import('@word-wizard/app/preferences/feature').then(
         (m) => m.PreferencesModule,
       ),
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
   {
     path: 'user-agreement',
@@ -116,8 +116,13 @@ const routes: Routes = [
       import('@word-wizard/app/password/feature').then(
         (m) => m.PasswordModule,
       ),
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
+  {
+    path: 'sign-up',
+    loadChildren: () =>
+      import('@word-wizard/app/sign-up/feature').then((m) => m.SignUpModule),
+  }
 ];
 
 @NgModule({
@@ -127,10 +132,10 @@ const routes: Routes = [
   exports: [RouterModule],
 })
 export class CoreRouting {
-  constructor(private auth: AuthService, private router: Router) {
-    this.auth.isAuthenticated$.subscribe((isAuthenticated) => {
-      if (isAuthenticated) this.router.navigate(['/manage-children']);
-      else this.router.navigate(['/welcome']);
-    });
-  }
+  // constructor(private auth: AuthService, private router: Router) {
+  //   this.auth.isAuthenticated$.subscribe((isAuthenticated) => {
+  //     if (isAuthenticated) this.router.navigate(['/manage-children']);
+  //     else this.router.navigate(['/welcome']);
+  //   });
+  // }
 }

@@ -1,1 +1,30 @@
-<p>signup works!</p>
+<ion-content scrollY="false">
+  <div id="container">
+    <div class="welcome">
+      <div class="hat">
+        <img src="assets/img/wizzard_hat.png" />
+      </div>
+      <p class="title">Sign-up</p>
+      <form [formGroup]="form" (ngSubmit)="submit()">
+        <div>
+          <label htmlFor="name" class="input-lbl">Email:</label><br />
+          <input type="text" id="name" formControlName="email" />
+        </div>
+        <div>
+          <label htmlFor="age" class="input-lbl">Password:</label><br />
+          <input type="password" id="age" formControlName="password" />
+        </div>
+        <div>
+          <label htmlFor="age" class="input-lbl">Confirm Password:</label><br />
+          <input type="password" id="age" formControlName="confirmPassword" />
+        </div>
+        <div class="button-container">
+          <ion-button type="submit">Sign Up</ion-button>
+        </div>
+      </form>
+      <div class="button-container">
+        <p class="login">Already a user? <a>Login</a></p>
+      </div>
+    </div>
+  </div>
+</ion-content>
