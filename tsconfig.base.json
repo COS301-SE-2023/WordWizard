@@ -98,6 +98,9 @@
         "libs/app/reading/shared-ui/src/index.ts"
       ],
       "@word-wizard/app/shared-ui": ["libs/app/shared-ui/src/index.ts"],
+      "@word-wizard/app/sign-up/feature": [
+        "libs/app/sign-up/feature/src/index.ts"
+      ],
       "@word-wizard/app/splash/feature": [
         "libs/app/splash/feature/src/index.ts"
       ],
