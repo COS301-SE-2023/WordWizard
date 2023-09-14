@@ -70,6 +70,7 @@
       "@word-wizard/app/loading/feature": [
         "libs/app/loading/feature/src/index.ts"
       ],
+      "@word-wizard/app/login/feature": ["libs/app/login/feature/src/index.ts"],
       "@word-wizard/app/manage-children/feature": [
         "libs/app/manage-children/feature/src/index.ts"
       ],
