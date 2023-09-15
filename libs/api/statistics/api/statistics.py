@@ -19,4 +19,7 @@ def get_stats(rqst: StatisticsReq):
             "progress_history": 1
         }
     )
-    return user
+    if user:
+        return user
+    else:
+        return {"message": "Child not found"}, 404  
