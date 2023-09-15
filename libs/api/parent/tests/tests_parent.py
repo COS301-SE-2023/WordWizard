@@ -2,7 +2,6 @@ from fastapi.testclient import TestClient
 from ..util.parent_models import DeleteParentRqst
 from ...test_api import app
 from bson import ObjectId  
-import json
 
 client = TestClient(app)
 
