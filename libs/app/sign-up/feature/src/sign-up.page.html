@@ -5,7 +5,7 @@
         <img src="assets/img/wizzard_hat.png" />
       </div>
       <p class="title">Sign-up</p>
-      <form [formGroup]="form" (ngSubmit)="submit()">
+      <form [formGroup]="form" (ngSubmit)="submit()" *ngIf="!submitted; else code">
         <div>
           <label htmlFor="name" class="input-lbl">Email:</label><br />
           <input type="text" id="name" formControlName="email" />
@@ -22,6 +22,17 @@
           <ion-button type="submit">Sign Up</ion-button>
         </div>
       </form>
+      <ng-template #code>
+        <form [formGroup]="pin" (ngSubmit)="submitPin()">
+          <div>
+            <label htmlFor="name" class="input-lbl">Pin:</label><br />
+            <input type="text" id="name" formControlName="pin" />
+          </div>
+          <div class="button-container">
+            <ion-button type="submit">Confirm pin</ion-button>
+          </div>
+        </form>
+      </ng-template>
       <div class="button-container">
         <p class="login">Already a user? <a routerLink="/login">Login</a></p>
       </div>

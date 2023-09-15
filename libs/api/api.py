@@ -25,7 +25,7 @@ user_collection = db['user']
 
 load_dotenv()
 
-JWT_SECRET = os.getenv("AUTH0_PUBLIC_KEY")
+JWT_SECRET = os.getenv("JWT_SECRET")
 
 app = FastAPI()
 
@@ -78,13 +78,15 @@ async def create_user(user: User):
         'password_hash': bcrypt.hash(user.password)
     })
     token = jwt.encode({'username':user.username}, JWT_SECRET)
-    return {'access_token': token, 'token_type': 'bearer'}
+    return {'access_token': token, 'token_type': 'bearer', 'status': 'success'}
 
 @app.post('/verify')
 async def verify_user(user: User):
+    if check_existing(user.username):
+        raise HTTPException(status_code=401, detail='Username already exists')
     code = generate_verification_code()
     send(user.username, code)
-    return {'code': hashlib.sha256(code.encode()).hexdigest()}
+    return {'code': hashlib.sha256(code.encode()).hexdigest(), 'status': 'success'}
 
 @app.get('/validate-token')
 async def get_user(user: User = Depends(get_current_user)):
