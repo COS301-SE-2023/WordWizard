@@ -88,8 +88,7 @@ export class ManageChildrenPage {
 
   logout() {
     try {
-      // this.auth.logout();
-      // TODO: CLEAR COOKIES AND LOGOUT
+      this.cookieService.deleteAll();
       this.router.navigate(['/welcome']);
     } catch (error) {
       console.error(error);

@@ -3,13 +3,14 @@ import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private readonly http: HttpClient) { }
+  constructor(private readonly http: HttpClient, private readonly cookieService: CookieService) { }
 
   signIn(email: string, password: string) {
     const headers = new HttpHeaders({
@@ -55,7 +56,7 @@ export class AuthService {
   getMe() {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${localStorage.getItem('token')}`
+      'Authorization': `Bearer ${this.cookieService.get('authToken')}`
     });
     return this.http.get(
       `${process.env['WW_API_ENDPOINT']}/validate-token`,

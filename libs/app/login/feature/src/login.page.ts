@@ -28,7 +28,9 @@ export class LoginPage {
       // eslint-disable-next-line
       (response: any) => {
         if(response.access_token) {
+          console.log(response);
           this.cookieService.set("email", this.form.value.email, undefined, undefined, undefined, true, 'Strict');
+          this.cookieService.set("authToken", response.access_token, undefined, undefined, undefined, true, 'Strict');
           this.router.navigate(['/manage-children']);
         }
       }

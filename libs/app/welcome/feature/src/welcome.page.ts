@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
 import { Browser } from '@capacitor/browser';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'word-wizard-welcome',
@@ -9,7 +10,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./welcome.page.scss'],
 })
 export class WelcomePage {
-  constructor(public auth: AuthService, private readonly router: Router) {}
+  constructor(public auth: AuthService, private readonly router: Router, private readonly cookieService: CookieService) {
+    if(this.cookieService.get('email') && this.cookieService.get('authToken')) {
+      this.router.navigate(['/manage-children']);
+    }
+  }
 
   getStarted() {
     this.auth
