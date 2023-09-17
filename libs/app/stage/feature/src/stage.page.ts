@@ -36,16 +36,6 @@ export class StagePage implements OnInit {
     { name: '' } as Coin,
     { name: '' } as Coin,
     { name: '' } as Coin,
-    { name: '' } as Coin,
-    { name: '' } as Coin,
-    { name: '' } as Coin,
-    { name: '' } as Coin,
-    { name: '' } as Coin,
-    { name: '' } as Coin,
-    { name: '' } as Coin,
-    { name: '' } as Coin,
-    { name: '' } as Coin,
-    { name: '' } as Coin,
   ];
 
   constructor(private router: Router, private store: Store) {}
