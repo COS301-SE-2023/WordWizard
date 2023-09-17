@@ -4,13 +4,16 @@ import {
   DeleteChildRqst,
   EditChildRqst,
 } from './requests/child-settings.requests';
+import { Store } from '@ngxs/store';
+import { UpdateChild } from '@word-wizard/app/child/data-access'
+
 import { status } from './responses/child-settings.responses';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ChildSettingsService {
-  constructor(private readonly http: HttpClient) {}
+  constructor(private readonly http: HttpClient, private store: Store) {}
 
   editChild(id: string, name: string, age: number, image: string) {
     const request: EditChildRqst = {
@@ -19,7 +22,7 @@ export class ChildSettingsService {
       age: age,
       profile_picture: image,
     };
-
+    this.store.dispatch(new UpdateChild({childId: id, name: name, age: age, image: image}));
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
     });

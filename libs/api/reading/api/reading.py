@@ -1,19 +1,16 @@
 from fastapi import APIRouter
 from ..util.reading_models import PassageRqst, Content, Word, Progress, UpdateProgressRqst
-from ..util.markov import MarkovChain
 from ..util.helper import get_prefixes_suffixes, find_phonotactics, count_syllables
 from ..util.Rating import Rating
 from bson import ObjectId
 from ...deps import Database
-import random
-from ..util.recomended import query     
+import random   
 from ..util.Rating import Rating
 from ..util.passage import query_passage
 
 
 db = Database.getInstance().db
 router = APIRouter()
-markov = MarkovChain()
 
 def get_class(id:str):
     practice = db['Practice'].find_one({'_id': ObjectId(id)},{'_id':0})
@@ -22,7 +19,7 @@ def get_class(id:str):
     pref = []
     if "preferences" in child:
         pref = child["preferences"]
-    return Rating(vocab["words"], practice["words"], pref=pref)
+    return Rating(vocab["words"], practice["words"])
 
 
 @router.post('/passage')
@@ -36,14 +33,13 @@ def update_progress(updtProgress: UpdateProgressRqst):
     progress_collection = db['Progress']
     progress = progress_collection.find_one({'_id': ObjectId(updtProgress.child_id)})
 
-    print("Level ", updtProgress.progress.level)
-    print("Score: ", updtProgress.progress.score)
-
     # UPDATE THE VALUES 
     if progress:
         # Level score
         if "level_scores" in progress:
-            progress["level_scores"][str(updtProgress.progress.level)] = updtProgress.progress.score
+            if progress["level_scores"].get(str(updtProgress.progress.level)):
+                if updtProgress.progress.score > progress["level_scores"][str(updtProgress.progress.level)]:
+                    progress["level_scores"][str(updtProgress.progress.level)] = updtProgress.progress.score
         else:
             progress["level_scores"] = {str(updtProgress.progress.level): updtProgress.progress.score}
 

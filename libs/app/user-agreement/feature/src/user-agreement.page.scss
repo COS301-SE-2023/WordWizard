@@ -1,0 +1,80 @@
+#container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url('../../../../../apps/word-wizard/src/assets/img/bg/welcome_background.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  .user-agreement {
+    width: 20rem;
+    background-color: white;
+    height: 92%;
+    border-radius: 1.8rem;
+    border: 3px solid #070527;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: absolute;
+    top: 2rem;
+    .logo {
+      margin-top: 1.3rem;
+      img {
+        width: 10rem;
+        height: 10rem;
+      }
+    }
+    .agreement-content {
+      height: calc(100% - 3.5rem);
+      overflow: scroll;
+      padding: 1rem;
+
+      .title {
+        color: #070527;
+        font-size: 2.5rem;
+        font-family: Inter;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 0;
+        margin-bottom: 2rem;
+        margin-top: 1rem;
+      }
+
+      .subtext {
+        color: #070527;
+        margin-top: 1.5rem;
+        font-size: 1.2rem;
+        font-family: Inter;
+        font-style: normal;
+        font-weight: 700;
+      }
+
+      .section-title {
+        color: black;
+        font-family: Inter;
+        font-style: normal;
+        font-weight: 900;
+        font-size: 1.5rem;
+      }
+    }
+    .button-container {
+      position: absolute;
+      bottom: 0;
+      border-radius: 1.8rem;
+      ion-button {
+        --background: #070527;
+        width: 18.5rem;
+        height: 3.5rem;
+        color: #fff;
+        font-size: 1.5rem;
+        font-family: Inter;
+        font-style: normal;
+        font-weight: 400;
+      }
+    }
+  }
+}

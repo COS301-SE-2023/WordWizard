@@ -10,14 +10,6 @@ export interface Content {
   done: boolean;
 }
 
-// export interface Progress {
-//   level: number;
-//   content: Content;
-//   score: number;
-//   incorrectWords: number;
-//   date: string;
-// }
-
 export interface Progress {
   level: number;
   content: Word[];

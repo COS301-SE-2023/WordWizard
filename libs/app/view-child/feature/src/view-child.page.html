@@ -2,7 +2,7 @@
 <ion-content [scrollY]="false">
   <ww-header
     title="View Child"
-    [settingsActive]="true"
+    [settingsActive]="false"
     [backRoute]="'../manage-children'"
     [settingsRoute]='"../settings"'
     [help]="true"
@@ -40,18 +40,18 @@
               <div class="stage">Level: {{stage}}</div>
             </ion-col>
           </ion-row>
-          <ion-row>
-            <ion-col>
-              <ion-nav-link routerLink="/child-statistics" class="stats">
-                <ion-img src="assets/img/stats-logo.png"/>
-                Stats
-              </ion-nav-link>
+          <ion-row class="bottom">
+            <ion-col size="6">
+              <a class="spellbook" routerLink="/settings">
+                <ion-img src="assets/img/stats-logo.png"></ion-img>
+                Statistics
+              </a>
             </ion-col>
-            <ion-col>
-              <ion-nav-link routerLink="/preferences" class="stats">
-                <ion-img src="assets/img/book-logo.png"/>
+            <ion-col size="6">
+              <a class="trophy" routerLink="/preferences">
+                <ion-img src="assets/img/book-logo.png"></ion-img>
                 Preferences
-              </ion-nav-link>
+              </a>
             </ion-col>
           </ion-row>
         </ion-grid>
