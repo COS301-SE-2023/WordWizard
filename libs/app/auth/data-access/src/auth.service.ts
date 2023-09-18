@@ -53,6 +53,21 @@ export class AuthService {
     );
   }
 
+  login(email: string, password: string) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+    const user = {
+      username: email,
+      password: password
+    };
+    return this.http.post(
+      `${process.env['WW_API_ENDPOINT']}/login`,
+      user,
+      { headers }
+    );
+  }
+
   getMe() {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -63,6 +78,8 @@ export class AuthService {
       { headers }
     );
   }
+
+
 
   verify(email: string) {
     const headers = new HttpHeaders({

@@ -63,20 +63,25 @@ async def get_current_user(token: str = Depends(oauth2_scheme)):
     try:
         payload = jwt.decode(token, JWT_SECRET, algorithms=['HS256'])
         user = user_collection.find_one({'username': payload.get('username')})
-        print(user)
     except:
         raise HTTPException(status_code=401, detail='Invalid username or password')
     return {'username': payload.get('username')}
 
 @app.post('/sign-up')
 async def create_user(user: User):
-    print(user)
     if check_existing(user.username):
         raise HTTPException(status_code=401, detail='Username already exists')
     res = user_collection.insert_one({
         'username': user.username,
         'password_hash': bcrypt.hash(user.password)
     })
+    token = jwt.encode({'username':user.username}, JWT_SECRET)
+    return {'access_token': token, 'token_type': 'bearer', 'status': 'success'}
+
+@app.post('/login')
+async def login_user(user: User):
+    if not authenticate_user(user.username, user.password):
+        raise HTTPException(status_code=401, detail='Invalid username or password')
     token = jwt.encode({'username':user.username}, JWT_SECRET)
     return {'access_token': token, 'token_type': 'bearer', 'status': 'success'}
 
@@ -115,4 +120,4 @@ app.include_router(child_router, prefix="/child", tags=["child"], dependencies=[
 app.include_router(achievements_router, prefix="/achievements", tags=["achievements"], dependencies=[Depends(get_current_user)])
 app.include_router(statistics_router, prefix="/statistics", tags=["statistics"], dependencies=[Depends(get_current_user)])
 app.include_router(parent_router, prefix="/parent", tags=["parent"], dependencies=[Depends(get_current_user)])
-app.include_router(pin_router, prefix="/pin", tags=["pin"], dependencies=[Depends(get_current_user)])
+app.include_router(pin_router, prefix="/pin", tags=["pin"])

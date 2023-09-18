@@ -24,7 +24,7 @@ export class LoginPage {
   }
 
   submit() {
-    this.auth.getToken(this.form.value.email, this.form.value.password).subscribe(
+    this.auth.login(this.form.value.email, this.form.value.password).subscribe(
       // eslint-disable-next-line
       (response: any) => {
         if(response.access_token) {
