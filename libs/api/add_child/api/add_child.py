@@ -6,6 +6,7 @@ from pymongo import MongoClient
 from dataclasses import dataclass
 load_dotenv()
 from bson import ObjectId
+from typing import Optional
 
 
 
@@ -31,7 +32,7 @@ def get_photos():
 
 
 @router.post('/')
-def add_create(rqst: AddChildRqst):
+def add_create(rqst: AddChildRqst, testing: Optional[bool] = False):
     parent_data = {
         'username': rqst.parent_name,
         'email': rqst.parent_email,
@@ -45,25 +46,26 @@ def add_create(rqst: AddChildRqst):
             'username': rqst.name,
             'age': rqst.age,
             'preferences': [],
-            'parent': existing_parent['_id'],
+            'parent': existing_parent['_id'] if not testing else None,
             'profile_photo': rqst.profile_picture,
             'vocab_list': '',
             'practice_list': '',
             'progress': ''
         })
-        parents_collection.update_one(
-            {'_id': existing_parent['_id']},
-            {'$push': {'children': result_child.inserted_id}}
-        )
-        create_practice_list(result_child.inserted_id)
-        create_progress(result_child.inserted_id)
-        create_vocab_list(result_child.inserted_id)
+        if not testing:
+            parents_collection.update_one(
+                {'_id': existing_parent['_id']},
+                {'$push': {'children': result_child.inserted_id}}
+            )
+            create_practice_list(result_child.inserted_id)
+            create_progress(result_child.inserted_id)
+            create_vocab_list(result_child.inserted_id)
         return {
-            '_id': str(result_child.inserted_id),
+            '_id': str(result_child.inserted_id) if not testing else None,
             'username': rqst.name,
             'age': rqst.age,
             'preferences': [],
-            'parent': str(existing_parent['_id']),  # Convert ObjectId to string
+            'parent': str(existing_parent['_id']) if not testing else None,
             'profile_photo': rqst.profile_picture,
             'vocab_list': '',
             'practice_list': '',
@@ -75,24 +77,25 @@ def add_create(rqst: AddChildRqst):
         result_child = children_collection.insert_one({
             'username': rqst.name,
             'age': rqst.age,
-            'parent': result_parent.inserted_id,
+            'parent': result_parent.inserted_id if not testing else None,
             'profile_photo': rqst.profile_picture,
             'vocab_list': '',
             'practice_list': '',
             'progress': ''
         })
-        parents_collection.update_one(
-            {'_id': result_parent.inserted_id},
-            {'$push': {'children': result_child.inserted_id}}
-        )
-        create_practice_list(result_child.inserted_id)
-        create_progress(result_child.inserted_id)
-        create_vocab_list(result_child.inserted_id)
+        if not testing:
+            parents_collection.update_one(
+                {'_id': result_parent.inserted_id},
+                {'$push': {'children': result_child.inserted_id}}
+            )
+            create_practice_list(result_child.inserted_id)
+            create_progress(result_child.inserted_id)
+            create_vocab_list(result_child.inserted_id)
         return {
-            '_id': str(result_child.inserted_id),
+            '_id': str(result_child.inserted_id) if not testing else None,
             'username': rqst.name,
             'age': rqst.age,
-            'parent': str(result_parent.inserted_id),  # Convert ObjectId to string
+            'parent': str(result_parent.inserted_id) if not testing else None,
             'profile_photo': rqst.profile_picture,
             'vocab_list': '',
             'practice_list': '',
