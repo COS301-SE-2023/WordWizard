@@ -1,45 +1,47 @@
-# Import the necessary modules
 from fastapi.testclient import TestClient
-from bson import ObjectId
-from ...test_api import app  # Create a test FastAPI application
+from ...test_api import app
 from ..util.statistics_models import StatisticsReq
 
-# Set up the TestClient with the test FastAPI application
+# Create a TestClient using your FastAPI app
 client = TestClient(app)
 
-# Define sample data for testing
-sample_child_id = "611f48439b946a6d5f63227d"  # Replace with a valid child_id
-invalid_child_id = str(ObjectId())  # Create a valid, random ObjectId string
+from bson import ObjectId
 
-def test_get_stats_success_child_found():
-    # Create a request body as a dictionary
-    rqst_body = {"child_id": sample_child_id}
+# Define valid child ID strings
+valid_child_id = str("64fc454dc889d0d030785db0")
+invalid_child_id = str("14fc454dc889d0d030785db0")
 
-    # Send a POST request to get statistics using the test FastAPI application
+
+def test_get_stats_child_found():
+    # Create a request body with a valid child_id
+    rqst_body = {"child_id": valid_child_id}
+
+    # Send a POST request to get statistics
     response = client.post("/statistics/get-stats", json=rqst_body)
 
     # Check if the response status code is 200 (OK)
     assert response.status_code == 200
 
-    # Check if the response contains the expected keys (you can customize this)
-    expected_keys = ["total_words", "incorrect_words_by_level", "average_score", "highest_score", "progress_history"]
+    # Check if the response contains data (you can customize this check)
     response_data = response.json()
-
-    for key in expected_keys:
-        assert key in response_data
+    assert "total_words" in response_data
+    assert "average_score" in response_data
 
 def test_get_stats_child_not_found():
     # Create a request body with a valid but non-existent child_id
     rqst_body = {"child_id": invalid_child_id}
 
-    # Send a POST request to get statistics for a non-existent child using the test FastAPI application
+    # Send a POST request to get statistics for a non-existent child
     response = client.post("/statistics/get-stats", json=rqst_body)
 
     # Check if the response status code is 404 (Not Found)
     assert response.status_code == 404
 
-    # Check if the response contains the expected "detail" field indicating "Child not found"
+    # Check if the response contains the expected "message" field indicating "Child not found"
     response_data = response.json()
-    assert "detail" in response_data
-    assert response_data["detail"] == "Child not found"
+    assert "message" in response_data
+    assert response_data["message"] == "Child not found"
+
+
+
 

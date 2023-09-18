@@ -5,6 +5,8 @@ from ...deps import Database
 db = Database.getInstance().db
 router = APIRouter()
 
+from fastapi import HTTPException
+
 @router.post('/get-stats')
 def get_stats(rqst: StatisticsReq):
     collection = db["Progress"]
@@ -22,4 +24,6 @@ def get_stats(rqst: StatisticsReq):
     if user:
         return user
     else:
-        return {"message": "Child not found"}, 404  
+        raise HTTPException(status_code=404, detail="Child not found")
+
+
