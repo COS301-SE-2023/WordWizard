@@ -24,7 +24,6 @@ def create_reading(rqst: LevelRequest):
     progress_collection = db["Progress"]
 
     try:
-        # Convert the provided string progress_id to ObjectId
         result = progress_collection.find_one({"_id": ObjectId(rqst.progress_id)})
 
         if result:
