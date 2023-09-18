@@ -11,7 +11,6 @@ from bson import ObjectId
 valid_child_id = str("64fc454dc889d0d030785db0")
 invalid_child_id = str("14fc454dc889d0d030785db0")
 
-
 def test_get_stats_child_found():
     # Create a request body with a valid child_id
     rqst_body = {"child_id": valid_child_id}
@@ -37,11 +36,7 @@ def test_get_stats_child_not_found():
     # Check if the response status code is 404 (Not Found)
     assert response.status_code == 404
 
-    # Check if the response contains the expected "message" field indicating "Child not found"
+    # Check if the response contains the expected "detail" field indicating "Child not found"
     response_data = response.json()
-    assert "message" in response_data
-    assert response_data["message"] == "Child not found"
-
-
-
-
+    assert "detail" in response_data
+    assert response_data["detail"] == "Child not found"
