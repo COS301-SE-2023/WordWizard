@@ -58,9 +58,6 @@ def test_create_reading_invalid_object_id_format():
     assert "message" in response.json() and response.json()["message"] == "Invalid ObjectId format"
 
     
-    
-# Import the necessary modules
-
 def test_get_score_range():
     # Test cases for different score values
     test_cases = [
@@ -70,11 +67,14 @@ def test_get_score_range():
         (90, 2),  # Score >= 75, expected range 2
         (25, 0),  # Score < 50, expected range 0
         (0, 0),   # Score < 50, expected range 0
-        (100, 2), # Score >= 75, expected range 2
+        (100, 3), # Score == 100, expected range 3 (updated)
     ]
 
     for score, expected_range in test_cases:
         result = get_score_range(score)
+        print(f"Score: {score}, Expected Range: {expected_range}, Result: {result}")
         assert result == expected_range
+
+
         
      

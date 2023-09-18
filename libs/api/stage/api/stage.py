@@ -9,14 +9,15 @@ from bson import ObjectId
 router = APIRouter()
 
 def get_score_range(score: int) -> int:
-    if score < 50:
-        return 0
-    elif score >= 50:
-        return 1
+    if score == 100:
+        return 3
     elif score >= 75:
         return 2
+    elif score >= 50:
+        return 1
     else:
-        return 3
+        return 0
+
 
 @router.post("/get-levels")
 def create_reading(rqst: LevelRequest):
