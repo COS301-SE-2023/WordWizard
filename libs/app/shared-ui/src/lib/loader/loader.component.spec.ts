@@ -21,4 +21,8 @@ describe('LoaderComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should initialise visible as false', () => {
+    expect(component.visible).toBeFalsy();
+  });
 });
