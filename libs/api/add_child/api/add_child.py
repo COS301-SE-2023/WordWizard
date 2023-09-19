@@ -8,8 +8,6 @@ load_dotenv()
 from bson import ObjectId
 from typing import Optional
 
-
-
 router = APIRouter()
 
 connection_string = os.getenv("MONGODB_CONNECTION_STRING")
@@ -29,7 +27,6 @@ def get_photos():
         "assets/img/ProfilePics/cute_chibi_baby_0_1.png",
         "assets/img/ProfilePics/cute_chibi_blue_1.png",
     ]}
-
 
 @router.post('/')
 def add_create(rqst: AddChildRqst, testing: Optional[bool] = False):
@@ -101,7 +98,6 @@ def add_create(rqst: AddChildRqst, testing: Optional[bool] = False):
             'practice_list': '',
             'progress': ''
         }
-
 
 def create_progress(db = None, child_id = ""):
     
@@ -243,7 +239,6 @@ def create_progress(db = None, child_id = ""):
     result = progress_collection.insert_one(document)
     return progress_collection.find_one({"_id": child_id})
 
-
 def create_vocab_list(child_id, db=None):
     if db is None:
         db = client["WordWizardDB"]
@@ -255,7 +250,6 @@ def create_vocab_list(child_id, db=None):
     }
     result = vocab_list_collection.insert_one(document)
     return vocab_list_collection.find_one({"_id": child_id})
-
 
 def create_practice_list(child_id, db=None):
     if db is None:
