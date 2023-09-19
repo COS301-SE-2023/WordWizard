@@ -1,9 +1,9 @@
 /* eslint-disable */
 export default {
-  displayName: 'app-user-agreement-feature',
+  displayName: 'app-stage-feature',
   preset: '../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-  coverageDirectory: '../../../../coverage/libs/app/user-agreement/feature',
+  coverageDirectory: '../../../../coverage/libs/app/stage/feature',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',
