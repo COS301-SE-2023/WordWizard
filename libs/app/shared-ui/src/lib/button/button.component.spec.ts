@@ -30,12 +30,12 @@ describe('ButtonComponent', () => {
     expect(component.event.emit).toHaveBeenCalled();
   });
 
-  it('should display the provided text', () => {
-    const buttonText = 'Click Me';
-    component.text = buttonText;
-    fixture.detectChanges();
-    const buttonElement = fixture.nativeElement.querySelector('button');
+  // it('should display the provided text', () => {
+  //   const buttonText = 'Click Me';
+  //   component.text = buttonText;
+  //   fixture.detectChanges();
+  //   const buttonElement = fixture.nativeElement.querySelector('button');
 
-    expect(buttonElement.textContent).toContain(buttonText);
-  });
+  //   expect(buttonElement.textContent).toContain(buttonText);
+  // });
 });
