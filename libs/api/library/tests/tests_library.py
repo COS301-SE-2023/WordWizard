@@ -3,7 +3,7 @@ from ...test_api import app
 
 client = TestClient(app)
 
-sample_user_id = "64c786a89a3bb62b5e333daa"
+sample_user_id = "64feea8cc606de65ef2628c9"
 sample_word = "Test"
 
 def test_create_reading():
