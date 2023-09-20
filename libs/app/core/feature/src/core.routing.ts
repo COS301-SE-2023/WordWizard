@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-// import { AuthGuard, AuthService } from '@auth0/auth0-angular';
-import { AuthGuard } from './auth.guard';
+import { AuthGuard, AuthService } from '@auth0/auth0-angular';
 import { Router } from '@angular/router';
 
 const routes: Routes = [
@@ -69,7 +68,7 @@ const routes: Routes = [
     path: 'settings',
     loadChildren: () =>
       import('@word-wizard/app/child-settings/feature').then((m) => m.ChildSettingsModule),
-    canActivate: [AuthGuard],
+      canActivate: [AuthGuard],
   },
   {
     path: 'loading',
@@ -109,6 +108,7 @@ const routes: Routes = [
     path: 'user-agreement',
     loadChildren: () =>
       import('@word-wizard/app/user-agreement/feature').then((m) => m.UserAgreementModule),
+      // canActivate: [AuthGuard],
   },
   {
     path: 'password',
@@ -116,18 +116,8 @@ const routes: Routes = [
       import('@word-wizard/app/password/feature').then(
         (m) => m.PasswordModule,
       ),
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
   },
-  {
-    path: 'sign-up',
-    loadChildren: () =>
-      import('@word-wizard/app/sign-up/feature').then((m) => m.SignUpModule),
-  },
-  {
-    path: 'login',
-    loadChildren: () =>
-      import('@word-wizard/app/login/feature').then((m) => m.LoginModule),
-  }
 ];
 
 @NgModule({
@@ -137,10 +127,10 @@ const routes: Routes = [
   exports: [RouterModule],
 })
 export class CoreRouting {
-  // constructor(private auth: AuthService, private router: Router) {
-  //   this.auth.isAuthenticated$.subscribe((isAuthenticated) => {
-  //     if (isAuthenticated) this.router.navigate(['/manage-children']);
-  //     else this.router.navigate(['/welcome']);
-  //   });
-  // }
+  constructor(private auth: AuthService, private router: Router) {
+    this.auth.isAuthenticated$.subscribe((isAuthenticated) => {
+      if (isAuthenticated) this.router.navigate(['/manage-children']);
+      else this.router.navigate(['/welcome']);
+    });
+  }
 }
