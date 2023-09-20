@@ -137,19 +137,19 @@ ion-avatar img {
 }
 
 .spellbook ion-img {
-  width: 100px;
-  height: 100px;
+  width: 25vw;
+  height: 25vw;
 }
 
 .trophy ion-img {
-  width: 100px;
-  height: 100px;
+  width: 25vw;
+  height: 25vw;
   margin: auto;
 }
 
 .stats ion-img {
-  width: 100px;
-  height: 100px;
+  width: 25vw;
+  height: 25vw;
   margin: auto;
 }
 
@@ -219,4 +219,8 @@ ion-col {
   text-align: center;
   display: flex;
   justify-content: center;
+}
+
+.bottom{
+  margin-top: 2.5vh;
 }

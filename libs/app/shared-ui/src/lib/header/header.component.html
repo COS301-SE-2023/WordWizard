@@ -12,14 +12,15 @@
       />
     </ion-nav-link>
 
-    <ion-title>{{ title }}</ion-title>
-
     <ion-nav-link [routerLink]="settingsRoute" *ngIf="settingsActive">
       <ion-icon
         size="large"
         name="settings-sharp"
         src="assets/svg/settings-sharp.svg" />
     </ion-nav-link>
+    
+    <ion-title>{{ title }}</ion-title>
+
 
     <ww-burger-menu [volumeChanger]="volumeChanger" [fontChanger]="fontChanger" [help]="help" [helpText]="helpText" [audioSources]="audioSources" (settingsClick)="fontChange()"></ww-burger-menu>
 

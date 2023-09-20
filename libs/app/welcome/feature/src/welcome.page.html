@@ -12,7 +12,10 @@
         Click the button below to login/signup and start using the app
       </p>
       <div class="button-container">
-        <ion-button (click)="getStarted()">Get Started</ion-button>
+        <!-- <ion-button (click)="getStarted()">Get Started</ion-button> -->
+        <ion-nav-link routerDirection="forward" routerLink="/sign-up">
+          <ion-button>Get Started</ion-button>
+        </ion-nav-link>
       </div>
     </div>
   </div>
