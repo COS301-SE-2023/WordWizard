@@ -31,7 +31,7 @@ export class DashboardPage {
   pictures: string[] = [];
   stage = 0;
 
-  helpText: string[] = ['Click on the trophy to see your achievements'];
+  helpText: string[] = ['Click on the trophy to see your achievements', 'Click on the map to view and complete levels', 'Click on the book to see all the words you have learned and struggled with'];
   audioSources: string[] = ['assets/mp3/dashboard-1.wav'];
 
   constructor(

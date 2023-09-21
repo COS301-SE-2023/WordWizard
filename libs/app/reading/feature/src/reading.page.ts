@@ -47,7 +47,7 @@ export class ReadingPage {
   sentence = '';
   font = false;
 
-  helpText: string[] = [];
+  helpText: string[] = ['Click and hold the microphone to speak', 'Click on the speaker to hear the word', 'Your progress is shown in the potion bottle and the amount of attempts you have left is shown in the top left corner'];
   audioSources: string[] = [];
 
   constructor(private store: Store, private router: Router, private toastController: ToastController) {
@@ -171,11 +171,11 @@ export class ReadingPage {
   }
 
   getStars() {
-    if (this.progressPercentage >= '50%') 
+    if (this.progressPercentage >= '50%')
       return 1;
-    if (this.progressPercentage >= '75%') 
+    if (this.progressPercentage >= '75%')
       return 2;
-    if (this.progressPercentage == '100%') 
+    if (this.progressPercentage == '100%')
       return 3;
     return 0;
   }

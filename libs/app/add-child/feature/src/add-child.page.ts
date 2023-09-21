@@ -22,7 +22,7 @@ export class AddChildPage {
   //eslint-disable-next-line
   mustBeTrueValidator(control:any) {
     const value = control.value;
-    if (value !== true) 
+    if (value !== true)
       return { mustBeTrue: true };
     return null;
   }
@@ -30,7 +30,7 @@ export class AddChildPage {
   selectedImage!: string;
   pictures: string[] = [];
 
-  helpText: string[] = ["Enter your child's name and age, Then proceed to, choose a profile picture, and press add."];
+  helpText: string[] = ["Enter your child's name and age, Then proceed to, choose a profile picture, and press add.","This will create a profile for your child to use."];
   audioSources: string[] = ['assets/mp3/add-1.wav'];
 
   constructor(

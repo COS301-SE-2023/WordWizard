@@ -33,7 +33,7 @@ export class ViewChildPage {
 
   stage = 0;
 
-  helpText: string[] = [];
+  helpText: string[] = ['Here you can navigate to the selected child\'s profile, achievements, progress and settings.'];
   audioSources: string[] = [];
 
   constructor(private store: Store, private stageService: StageService) {

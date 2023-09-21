@@ -21,7 +21,7 @@ export class ChildStatisticsPage implements AfterViewInit {
   @ViewChild('chartCanvas', { static: false }) chartCanvas!: ElementRef;
   chart!: Chart;
 
-  helpText: string[] = [];
+  helpText: string[] = ["Here you can see your child's progress over time.","The graph shows the score of each lesson your child has completed."];
   audioSources: string[] = [];
 
   constructor(
