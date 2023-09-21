@@ -62,7 +62,6 @@ export class ManageChildrenPage {
       this.passwordService.getPin(`${this.cookieService.get('email')}`).subscribe(
         (response) => {
           this.store.dispatch(new SetPassword({passcode: `${response}`}));
-          console.log(response);
           if(`${response}` == '')
             this.router.navigate(['/password']);
         }

@@ -53,7 +53,7 @@ export interface ReadingStateModel {
         Content: {
           passage: [],
           focusWordsIndex: [],
-          done: false,
+          done: true,
         },
         Word: {
           current: 0,
@@ -126,19 +126,20 @@ export class ReadingState {
 
         const currentWord = passage[focus[current]];
         attemptsRemaining--;
+        
         if (draft.Passage.model.Content.done) {
+          if(attemptsRemaining > 0)
+            Word.attemptsRemaining = Word.attemptsRemaining - 1;
           if (attemptsRemaining > 0) {
             passage.forEach((word) => {
               if (word.word.toLowerCase() === payload.newAttempt.toLowerCase())
                 word.correct = true;
             });
-            Word.attemptsRemaining = Word.attemptsRemaining - 1;
             if (passage.every((word) => word.correct !== null)) {
               this.store.dispatch(new UpdateProgress());
             }
-          } else {
+          } else
             this.store.dispatch(new UpdateProgress());
-          }
         } else {
           if (currentWord.word.toLowerCase() === payload.newAttempt.toLowerCase()) {
             currentWord.correct = true;
@@ -153,7 +154,7 @@ export class ReadingState {
           }
 
           if (Word.current === focus.length) {
-            Word.attemptsRemaining = 2;
+            Word.attemptsRemaining = focus.length*2;
             draft.Passage.model.Content.done = true;
           }
         }
