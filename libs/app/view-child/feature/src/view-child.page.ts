@@ -34,7 +34,7 @@ export class ViewChildPage {
   stage = 0;
 
   helpText: string[] = [];
-  audioSources: string[] = ['assets/mp3/view-page.wav'];
+  audioSources: string[] = [];
 
   constructor(private store: Store, private stageService: StageService) {
     this.currentChild$.subscribe((data) => {

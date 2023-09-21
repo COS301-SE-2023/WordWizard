@@ -30,7 +30,7 @@ export class AddChildPage {
   selectedImage!: string;
   pictures: string[] = [];
 
-  helpText: string[] = [];
+  helpText: string[] = ["Enter your child's name and age, Then proceed to, choose a profile picture, and press add."];
   audioSources: string[] = ['assets/mp3/add-1.wav'];
 
   constructor(

@@ -29,9 +29,12 @@ export class ManageChildrenPage {
   visible = false;
   passwordSet = false;
   selectedChild!: Child;
+
+
+  helpText: string[] = ['Welcome, press on the plus-button to add a child', 'You can sign out or delete your account, but be careful','If you want to read, navigate to your profile'];
+  audioSources: string[] = ['assets/mp3/manage-3.wav', 'assets/mp3/manage-2.wav', 'assets/mp3/manage-1.wav'];
+
   parentActive = true;
-  helpText: string[] = [];
-  audioSources: string[] = [];
 
   constructor(
     private router: Router,
@@ -68,7 +71,7 @@ export class ManageChildrenPage {
         (response) => {
           this.store.dispatch(new SetPassword({passcode: `${response}`}));
           console.log(response);
-          if(`${response}` == '') 
+          if(`${response}` == '')
             this.router.navigate(['/password']);
         }
       );
@@ -101,7 +104,7 @@ export class ManageChildrenPage {
   }
 
   setActive(val: boolean) {
-    this.parentActive = val;  
+    this.parentActive = val;
     this.store.dispatch(new ChangeActive({ parentActive: val }));
     this.controlModal();
   }
@@ -160,7 +163,7 @@ export class ManageChildrenPage {
     this.passwordSet = false;
     if (this.parentActive) {
       this.router.navigate(['/view-child']);
-    } 
+    }
     else {
       this.router.navigate(['/dashboard']);
     }
