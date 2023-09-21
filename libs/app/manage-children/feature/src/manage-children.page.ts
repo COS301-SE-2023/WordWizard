@@ -39,7 +39,6 @@ export class ManageChildrenPage {
   constructor(
     private router: Router,
     private store: Store,
-    // private readonly auth: AuthService,
     private readonly childService: ChildService,
     private readonly toastController: ToastController,
     private readonly alertController: AlertController,
@@ -49,13 +48,6 @@ export class ManageChildrenPage {
   ) {
     loadingService.show();
     setTimeout(() => {
-
-      // this.auth.idTokenClaims$.subscribe((claims) => {
-      //   if (claims) {
-      //     const idToken = claims.__raw;
-      //     this.cookieService.set('authToken', idToken, undefined, undefined, undefined, true, 'Strict');
-      //   }
-      // });
 
       this.store.dispatch(
         new GetChildren({
@@ -110,15 +102,10 @@ export class ManageChildrenPage {
   }
 
   deleteAccount() {
-    try {
-      this.childService.deleteAuthAccount();
-    } catch (error) {
-      console.error(error);
-      return;
-    }
-    this.childService.deleteAccount(this.cookieService.get('email') || '').subscribe((data) => {
+    this.childService.deleteAccount(this.cookieService.get('email')).subscribe((data) => {
       if (data.status === 'success') {
         this.router.navigate(['/welcome']);
+        this.cookieService.deleteAll();
       } else {
         this.presentToast();
       }

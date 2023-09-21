@@ -52,29 +52,4 @@ export class ChildService {
       { headers },
     );
   }
-
-  async deleteAuthAccount() {
-    try {
-      const accessToken = await this.authService.getAccessTokenSilently();
-      this.authService.user$.subscribe((user) => {
-        if (!user) {
-          return;
-        }
-        const userId = user.sub;
-        const apiUrl = `https://${process.env['WW_AUTH0_DOMAIN']}/api/v2/users/${userId}`;
-        const headers = new HttpHeaders().set(
-          'Authorization',
-          `Bearer ${accessToken}`,
-        );
-        this.http.delete(apiUrl, { headers });
-        this.authService.logout();
-      });
-    } catch (error) {
-      console.error(error);
-    }
-  }
-  
-  async getPassscode(){
-    //
-  }
 }
