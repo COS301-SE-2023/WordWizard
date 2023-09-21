@@ -32,7 +32,7 @@ export class ManageChildrenPage {
 
 
   helpText: string[] = ['Welcome, press on the plus-button to add a child', 'You can sign out or delete your account, but be careful','If you want to read, navigate to your profile'];
-  audioSources: string[] = ['assets/mp3/manage-3.wav', 'assets/mp3/manage-2.wav', 'assets/mp3/manage-1.wav'];
+  audioSources: string[] = ['assets/mp3/manage1.mp3', 'assets/mp3/manage2.mp3', 'assets/mp3/manage3.mp3'];
 
   parentActive = true;
 

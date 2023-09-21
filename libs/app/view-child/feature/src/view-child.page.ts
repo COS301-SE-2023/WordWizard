@@ -34,7 +34,7 @@ export class ViewChildPage {
   stage = 0;
 
   helpText: string[] = ['Here you can navigate to the selected child\'s profile, achievements, progress and settings.'];
-  audioSources: string[] = [];
+  audioSources: string[] = ['assets/mp3/view-child1.mp3'];
 
   constructor(private store: Store, private stageService: StageService) {
     this.currentChild$.subscribe((data) => {

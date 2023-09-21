@@ -29,7 +29,7 @@ export class LibraryPage {
 
 
   helpText: string[] = ["Click on Practice list to see words you got wrong in levels.", "Click on any word to try to get it right again.", "Press on Vocabulary to see all the words you have learned so far."];
-  audioSources: string[] = ["assets/mp3/library-1.wav", "assets/mp3/library-2.wav", "assets/mp3/library-3.wav"];
+  audioSources: string[] = ['assets/mp3/library1.mp3', 'assets/mp3/library2.mp3', 'assets/mp3/library3.mp3'];
 
   constructor(private store: Store) {
     this.store.dispatch(new SetPractice());

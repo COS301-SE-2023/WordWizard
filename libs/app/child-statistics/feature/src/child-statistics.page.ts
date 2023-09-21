@@ -22,7 +22,7 @@ export class ChildStatisticsPage implements AfterViewInit {
   chart!: Chart;
 
   helpText: string[] = ["Here you can see your child's progress over time.","The graph shows the score of each lesson your child has completed."];
-  audioSources: string[] = [];
+  audioSources: string[] = ['assets/mp3/stats1.mp3', 'assets/mp3/stats2.mp3'];
 
   constructor(
     private readonly childStatisticsService: ChildStatisticsService,

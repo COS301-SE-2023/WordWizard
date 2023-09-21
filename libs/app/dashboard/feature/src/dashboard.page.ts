@@ -32,7 +32,7 @@ export class DashboardPage {
   stage = 0;
 
   helpText: string[] = ['Click on the trophy to see your achievements', 'Click on the map to view and complete levels', 'Click on the book to see all the words you have learned and struggled with'];
-  audioSources: string[] = ['assets/mp3/dashboard-1.wav'];
+  audioSources: string[] = ['assets/mp3/dashboard1.mp3', 'assets/mp3/dashboard2.mp3', 'assets/mp3/dashboard3.mp3'];
 
   constructor(
     private store: Store,

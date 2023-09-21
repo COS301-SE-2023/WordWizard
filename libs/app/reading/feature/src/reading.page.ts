@@ -48,7 +48,7 @@ export class ReadingPage {
   font = false;
 
   helpText: string[] = ['Click and hold the microphone to speak', 'Click on the speaker to hear the word', 'Your progress is shown in the potion bottle and the amount of attempts you have left is shown in the top left corner'];
-  audioSources: string[] = [];
+  audioSources: string[] = ['assets/mp3/reading1.mp3', 'assets/mp3/reading2.mp3', 'assets/mp3/reading3.mp3'];
 
   constructor(private store: Store, private router: Router, private toastController: ToastController) {
     this.setStars();
