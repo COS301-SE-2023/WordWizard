@@ -47,8 +47,8 @@ export class ReadingPage {
   sentence = '';
   font = false;
 
-  helpText: string[] = [];
-  audioSources: string[] = [];
+  helpText: string[] = ['Click and hold the microphone to speak', 'Click on the speaker to hear the word', 'Your progress is shown in the potion bottle and the amount of attempts you have left is shown in the top left corner'];
+  audioSources: string[] = ['assets/mp3/reading1.mp3', 'assets/mp3/reading2.mp3', 'assets/mp3/reading3.mp3'];
 
   constructor(private store: Store, private router: Router, private toastController: ToastController) {
     this.setStars();
@@ -171,11 +171,11 @@ export class ReadingPage {
   }
 
   getStars() {
-    if (this.progressPercentage >= '50%') 
+    if (this.progressPercentage >= '50%')
       return 1;
-    if (this.progressPercentage >= '75%') 
+    if (this.progressPercentage >= '75%')
       return 2;
-    if (this.progressPercentage == '100%') 
+    if (this.progressPercentage == '100%')
       return 3;
     return 0;
   }

@@ -34,7 +34,7 @@ export class AchievementPage {
   badges: Badge[] = [];
 
   helpText: string[] = ['Click on each badge to see more details.', 'You collect badges by completing more levels.'];
-  audioSources: string[] = ['assets/mp3/achievements-1.wav', 'assets/mp3/achievements-2.wav'];
+  audioSources: string[] = ['assets/mp3/achievements1.mp3', 'assets/mp3/achievements2.mp3'];
 
 
 
