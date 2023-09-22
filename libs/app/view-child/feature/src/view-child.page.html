@@ -14,6 +14,17 @@
       <div class="pfp">
         <ion-avatar>
           <img [src]="child.profile_photo" />
+          <div class="edit-pfp">
+            <ion-grid>
+              <ion-row>
+                <ion-col class="centre">
+                  <ion-button routerLink="/settings">
+                    <ion-icon name="settings-outline"></ion-icon>
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </div>
         </ion-avatar>
       </div>
       <div class="name">
@@ -29,8 +40,8 @@
               </a>
             </ion-col>
             <ion-col size="6">
-              <a class="trophy" routerLink="/achievements">
-                <ion-img src="assets/icon/trophy-cropped.png"></ion-img>
+              <a class="trophy" id="badges" routerLink="/achievements">
+                <ion-img src="assets/icon/trophy_new.png"></ion-img>
                 Badges
               </a>
             </ion-col>
@@ -42,7 +53,7 @@
           </ion-row>
           <ion-row class="bottom">
             <ion-col size="6">
-              <a class="spellbook" routerLink="/settings">
+              <a class="spellbook" routerLink="/child-statistics">
                 <ion-img src="assets/img/stats-logo.png"></ion-img>
                 Statistics
               </a>

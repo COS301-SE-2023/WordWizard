@@ -53,7 +53,7 @@ export class CoreShell implements OnInit {
     this.bgAudioHelper = new Audio('assets/mp3/AmbientHelper.mp3');
     this.bgAudio.loop = true;
     this.bgAudioHelper.loop = true;
-    this.coreService.volumeChange(0.06);
+    this.coreService.volumeChange(0.0);
     this.clickSound.volume = 0.085;
     // this.bgAudio.play();
     // this.bgAudioHelper.play();
