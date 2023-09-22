@@ -29,14 +29,16 @@ export class ManageChildrenPage {
   visible = false;
   passwordSet = false;
   selectedChild!: Child;
+
+
+  helpText: string[] = ['Welcome, press on the plus-button to add a child', 'You can sign out or delete your account, but be careful','If you want to read, navigate to your profile'];
+  audioSources: string[] = ['assets/mp3/manage-3.wav', 'assets/mp3/manage-2.wav', 'assets/mp3/manage-1.wav'];
+
   parentActive = true;
-  helpText: string[] = [];
-  audioSources: string[] = [];
 
   constructor(
     private router: Router,
     private store: Store,
-    private readonly auth: AuthService,
     private readonly childService: ChildService,
     private readonly toastController: ToastController,
     private readonly alertController: AlertController,
@@ -47,37 +49,24 @@ export class ManageChildrenPage {
     loadingService.show();
     setTimeout(() => {
 
-      this.auth.idTokenClaims$.subscribe((claims) => {
-        if (claims) {
-          const idToken = claims.__raw;
-          this.cookieService.set('authToken', idToken, undefined, undefined, undefined, true, 'Strict');
-        }
+      this.store.dispatch(
+        new GetChildren({
+          parent_email: this.cookieService.get('email') || '',
+          parent_name: '',
+        }),
+      );
+      this.Children$.subscribe((data) => {
+        this.children = data;
       });
 
-      this.auth.user$.subscribe((user) => {
-        if (user) {
-          this.store.dispatch(
-            new GetChildren({
-              parent_email: user?.email || '',
-              parent_name: user?.nickname || '',
-            }),
-          );
-          this.Children$.subscribe((data) => {
-            this.children = data;
-          });
-
-          this.passwordService.getPin(`${user?.email}`).subscribe(
-            (response) => {
-              this.store.dispatch(new SetPassword({passcode: `${response}`}));
-              console.log(response);
-              // if(`${response}` != '') 
-              //   this.router.navigate(['/manage-children']);
-              if(`${response}` == '') 
-                this.router.navigate(['/password']);
-            }
-          );
+      this.passwordService.getPin(`${this.cookieService.get('email')}`).subscribe(
+        (response) => {
+          this.store.dispatch(new SetPassword({passcode: `${response}`}));
+          console.log(response);
+          if(`${response}` == '')
+            this.router.navigate(['/password']);
         }
-      });
+      );
       loadingService.hide();
     }, 2000);
   }
@@ -94,7 +83,7 @@ export class ManageChildrenPage {
 
   logout() {
     try {
-      this.auth.logout();
+      this.cookieService.deleteAll();
       this.router.navigate(['/welcome']);
     } catch (error) {
       console.error(error);
@@ -107,27 +96,18 @@ export class ManageChildrenPage {
   }
 
   setActive(val: boolean) {
-    this.parentActive = val;  
+    this.parentActive = val;
     this.store.dispatch(new ChangeActive({ parentActive: val }));
     this.controlModal();
   }
 
   deleteAccount() {
-    this.auth.user$.subscribe((user) => {
-      if (user) {
-        try {
-          this.childService.deleteAuthAccount();
-        } catch (error) {
-          console.error(error);
-          return;
-        }
-        this.childService.deleteAccount(user.email || '').subscribe((data) => {
-          if (data.status === 'success') {
-            this.router.navigate(['/welcome']);
-          } else {
-            this.presentToast();
-          }
-        });
+    this.childService.deleteAccount(this.cookieService.get('email')).subscribe((data) => {
+      if (data.status === 'success') {
+        this.router.navigate(['/welcome']);
+        this.cookieService.deleteAll();
+      } else {
+        this.presentToast();
       }
     });
   }
@@ -170,7 +150,7 @@ export class ManageChildrenPage {
     this.passwordSet = false;
     if (this.parentActive) {
       this.router.navigate(['/view-child']);
-    } 
+    }
     else {
       this.router.navigate(['/dashboard']);
     }

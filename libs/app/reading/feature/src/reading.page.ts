@@ -48,7 +48,7 @@ export class ReadingPage {
   font = false;
 
   helpText: string[] = [];
-  audioSources: string[] = ["assets/mp3/"];
+  audioSources: string[] = [];
 
   constructor(private store: Store, private router: Router, private toastController: ToastController) {
     this.setStars();

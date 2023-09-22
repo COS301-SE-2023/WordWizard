@@ -55,11 +55,11 @@ export class CoreShell implements OnInit {
     this.bgAudioHelper.loop = true;
     this.coreService.volumeChange(0.0);
     this.clickSound.volume = 0.085;
-    this.bgAudio.play();
-    this.bgAudioHelper.play();
+    // this.bgAudio.play();
+    // this.bgAudioHelper.play();
   }
 
   @HostListener('click') onClick() {
-    this.clickSound.play();
+    // this.clickSound.play();
   }
 }

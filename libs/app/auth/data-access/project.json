@@ -3,7 +3,7 @@
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/app/auth/data-access/src",
   "prefix": "word-wizard",
-  "tags": ["state"],
+  "tags": [],
   "projectType": "library",
   "targets": {
     "build": {
