@@ -29,14 +29,16 @@ export class ManageChildrenPage {
   visible = false;
   passwordSet = false;
   selectedChild!: Child;
+
+
+  helpText: string[] = ['Welcome, press on the plus-button to add a child', 'You can sign out or delete your account, but be careful','If you want to read, navigate to your profile'];
+  audioSources: string[] = ['assets/mp3/manage1.mp3', 'assets/mp3/manage2.mp3', 'assets/mp3/manage3.mp3'];
+
   parentActive = true;
-  helpText: string[] = [];
-  audioSources: string[] = [];
 
   constructor(
     private router: Router,
     private store: Store,
-    // private readonly auth: AuthService,
     private readonly childService: ChildService,
     private readonly toastController: ToastController,
     private readonly alertController: AlertController,
@@ -46,13 +48,6 @@ export class ManageChildrenPage {
   ) {
     loadingService.show();
     setTimeout(() => {
-
-      // this.auth.idTokenClaims$.subscribe((claims) => {
-      //   if (claims) {
-      //     const idToken = claims.__raw;
-      //     this.cookieService.set('authToken', idToken, undefined, undefined, undefined, true, 'Strict');
-      //   }
-      // });
 
       this.store.dispatch(
         new GetChildren({
@@ -67,8 +62,7 @@ export class ManageChildrenPage {
       this.passwordService.getPin(`${this.cookieService.get('email')}`).subscribe(
         (response) => {
           this.store.dispatch(new SetPassword({passcode: `${response}`}));
-          console.log(response);
-          if(`${response}` == '') 
+          if(`${response}` == '')
             this.router.navigate(['/password']);
         }
       );
@@ -101,21 +95,16 @@ export class ManageChildrenPage {
   }
 
   setActive(val: boolean) {
-    this.parentActive = val;  
+    this.parentActive = val;
     this.store.dispatch(new ChangeActive({ parentActive: val }));
     this.controlModal();
   }
 
   deleteAccount() {
-    try {
-      this.childService.deleteAuthAccount();
-    } catch (error) {
-      console.error(error);
-      return;
-    }
-    this.childService.deleteAccount(this.cookieService.get('email') || '').subscribe((data) => {
+    this.childService.deleteAccount(this.cookieService.get('email')).subscribe((data) => {
       if (data.status === 'success') {
         this.router.navigate(['/welcome']);
+        this.cookieService.deleteAll();
       } else {
         this.presentToast();
       }
@@ -160,7 +149,7 @@ export class ManageChildrenPage {
     this.passwordSet = false;
     if (this.parentActive) {
       this.router.navigate(['/view-child']);
-    } 
+    }
     else {
       this.router.navigate(['/dashboard']);
     }

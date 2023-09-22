@@ -24,6 +24,9 @@
       </form>
       <ng-template #code>
         <form [formGroup]="pin" (ngSubmit)="submitPin()">
+          <div class="button-container">
+            <p class="login">Check your email for a pin</p>
+          </div>
           <div>
             <label htmlFor="name" class="input-lbl">Pin:</label><br />
             <input type="text" id="name" formControlName="pin" />
