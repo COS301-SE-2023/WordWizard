@@ -15,9 +15,11 @@ def create_reading(rqst: PracticeRqst):
     word_list = WordList()
     for doc in result["words"]:
         if isinstance(doc, str):
-            word_list.add_word(doc, get_image(doc)) 
+            word_list.add_word(doc, get_image(doc))
+            print("Added word:", doc)  # Log the added word
         else:
             word_list.add_word(doc["word"], get_image(doc["word"]))
+            print("Added word:", doc["word"])  # Log the added word
     return word_list
 
 
@@ -30,9 +32,11 @@ def get_vocab(rqst: VocabRqst):
     word_list = WordList()
     for doc in result["words"]:
         if isinstance(doc, str):
-            word_list.add_word(doc, get_image(doc)) 
+            word_list.add_word(doc, get_image(doc))
+            print("Added word:", doc)  # Log the added word
         else:
             word_list.add_word(doc["word"], get_image(doc["word"]))
+            print("Added word:", doc["word"])  # Log the added word
     return word_list
 
 @router.post('/practice/remove')
@@ -44,6 +48,7 @@ def remove_practice(rqst: UpdateRqst):
             {"_id": ObjectId(rqst.userID)},
             {"$pull": {"words": rqst.word}}
         )
+        print("Removed word:", rqst.word)  # Log the removed word
         return {"status":"success"}
     return {"status":"failed"}
 
@@ -61,6 +66,7 @@ def add_practice(rqst: UpdateRqst):
         {"$addToSet": {"words": rqst.word}},
         upsert=True
     )
+    print("Added word:", rqst.word)  # Log the added word
     return {"status": "success"}
 
 
@@ -68,13 +74,15 @@ def add_practice(rqst: UpdateRqst):
 def add_vocab(rqst: UpdateRqst):
     vocab_collection = db["Vocabulary"]
     if check_duplicate_words(vocab_collection, rqst.userID, rqst.word):
-        return {"status": "failed", "message": "Word already exists in the vocabulary collection."}
+        return {"status": "success", "message": "Word already exists in the vocabulary collection."}
     vocab_collection.update_one(
         {"_id": ObjectId(rqst.userID)},
         {"$addToSet": {"words": rqst.word}},
         upsert=True
     )
+    print("Added word:", rqst.word)  # Log the added word
     return {"status": "success"}
+
 
 
 def get_image(word: str):
