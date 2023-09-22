@@ -60,7 +60,10 @@ def update_progress(updtProgress: UpdateProgressRqst):
         for lvl in progress["level_scores"]:
             # print(progress["level_scores"][lvl]) 
             progress["average_score"] += int(progress["level_scores"][lvl])
-        progress["average_score"] = progress["average_score"]/len(progress["level_scores"])
+        if len(progress["level_scores"]) > 0:
+            progress["average_score"] = progress["average_score"]/len(progress["level_scores"])
+        else:
+            progress["average_score"] = 0
 
         # Highest score
         if progress["highest_score"] == 0 or updtProgress.progress.score > progress["highest_score"]:
