@@ -1,47 +1,18 @@
-import { Component, HostListener, OnInit, NgZone } from '@angular/core';
+import { Component, HostListener, NgZone } from '@angular/core';
 import { CoreService } from '@word-wizard/app/core/data-access';
-import { App } from '@capacitor/app';
-import { AuthService } from '@auth0/auth0-angular';
-import { mergeMap } from 'rxjs/operators';
-import { Browser } from '@capacitor/browser';
-import { callbackUri } from './auth.config';
 
 @Component({
   selector: 'ww-core',
   templateUrl: './core.shell.html',
   styleUrls: ['./core.shell.scss'],
 })
-export class CoreShell implements OnInit {
+export class CoreShell {
 
   private clickSound!: HTMLAudioElement;
   private bgAudio!: HTMLAudioElement;
   private bgAudioHelper!: HTMLAudioElement;
 
-  ngOnInit(): void {
-    App.addListener('appUrlOpen', ({ url }) => {
-      this.ngZone.run(() => {
-        if (url?.startsWith(callbackUri)) {
-          if (
-            url.includes('state=') &&
-            (url.includes('error=') || url.includes('code='))
-          ) {
-            this.auth
-              .handleRedirectCallback(url)
-              .pipe(mergeMap(() => Browser.close()))
-              .subscribe();
-          } else {
-            this.auth
-              .handleRedirectCallback(url)
-              .subscribe(() => {
-                Browser.close();
-              });
-          }
-        }
-      });
-    });
-  }
-
-  constructor(private coreService: CoreService, private auth: AuthService, private ngZone: NgZone) {
+  constructor(private coreService: CoreService, private ngZone: NgZone) {
 
 
 

@@ -16,7 +16,10 @@ export class CauldronComponent {
 
   handleTextChange(text: string) {
     this.textFromMicrophone = text;
-    if (text.toLocaleLowerCase() === this.vocab.word.toLocaleLowerCase())
-      this.textChanged.emit(text);
+    const textArray = text.split(' ');
+    textArray.forEach((word) => {
+      if (word.toLocaleLowerCase() === this.vocab.word.toLocaleLowerCase())
+        this.textChanged.emit(word);
+    });
   }
 }

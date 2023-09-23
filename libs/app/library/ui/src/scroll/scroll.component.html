@@ -11,18 +11,20 @@
     class="scroll-opened no-padding">
     <ng-template>
       <div class="wrapper" class="open-scroll-content">
-        <h1 class="word">{{ vocab.word }}</h1>
         <ion-grid>
           <ion-row>
-            <ion-col size="11" class="ion-text-center ion-align-items-center">
-              <ion-img
-                [src]="vocab.img"
-                style="width: 60%; height: auto"></ion-img>
+            <ion-col size="12">
+              <ion-icon name="close-outline" (click)="modal.dismiss()" class="close"></ion-icon>
             </ion-col>
           </ion-row>
           <ion-row>
             <ion-col size="12" class="ion-text-center ion-align-items-center">
-              <ww-speaker [speakPhrase]="vocab.word"></ww-speaker>
+              <h1 class="word">{{ vocab.word }}</h1>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="12" class="ion-text-center ion-align-items-center">
+              <ww-speaker [speakPhrase]="vocab.word"/>
             </ion-col>
           </ion-row>
         </ion-grid>
