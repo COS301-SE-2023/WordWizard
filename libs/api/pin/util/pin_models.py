@@ -16,3 +16,6 @@ class PinReq(BaseModel):
 
 class PinRsp(BaseModel):
     pin: str
+
+class User(BaseModel):
+    email: str

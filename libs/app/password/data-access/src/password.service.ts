@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { CookieService } from 'ngx-cookie-service';
 //import the request models and response models
 import {
   SetPinRqst,
@@ -15,7 +16,7 @@ import {
   providedIn: 'root'
 })
 export class PasswordService {
-  constructor(private readonly http: HttpClient) { }
+  constructor(private readonly http: HttpClient, private readonly cookieService: CookieService) { }
 
   addPin(email: string, validationWord: string, passcode: string) {
     const request: SetPinRqst = {
@@ -46,6 +47,22 @@ export class PasswordService {
     });
     return this.http.post<SetPinRsp>(
       `${process.env["WW_API_ENDPOINT"]}/pin/change-pin`,
+      request,
+      { headers },
+    );
+  }
+
+  updatePin() {
+    const request = {
+      email: this.cookieService.get('email')
+    }
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+
+    return this.http.post(
+      `${process.env["WW_API_ENDPOINT"]}/pin/forgot-pin`,
       request,
       { headers },
     );
