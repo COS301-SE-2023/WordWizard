@@ -127,7 +127,14 @@ const routes: Routes = [
     path: 'login',
     loadChildren: () =>
       import('@word-wizard/app/login/feature').then((m) => m.LoginModule),
-  }
+  },
+  {
+    path: 'forgot-password',
+    loadChildren: () =>
+      import('@word-wizard/app/forgot-password/feature').then(
+        (m) => m.ForgotPasswordModule,
+      ),
+  },
 ];
 
 @NgModule({
