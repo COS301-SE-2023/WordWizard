@@ -161,7 +161,7 @@ ion-avatar img {
 }
 
 .stage {
-  width: fit-content;
+  width: 50vw;
   height: fit-content;
   background-color: #861486;
   border-radius: 10px;
@@ -180,11 +180,6 @@ ion-avatar img {
   margin-top: 5%;
 }
 
-// ion-col {
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-// }
 .centre {
   display: flex;
   justify-content: center;

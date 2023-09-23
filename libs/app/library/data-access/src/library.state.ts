@@ -61,6 +61,7 @@ export class LibraryState {
     ctx: StateContext<LibraryStateModel>,
     { payload }: UpdatePractice,
   ) {
+    console.log("state: ", payload.word);
     let id!: string;
     this.currentChild$
       .subscribe((data) => {

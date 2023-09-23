@@ -22,19 +22,19 @@ export class ViewChildPage {
 
   child: Child = {
     _id: '0',
-    username: 'Martie',
+    username: '',
     age: 0,
     parent: '',
     vocab_list: '',
     practice_list: '',
     progress: '',
-    profile_photo: 'assets/img/item/cauldron-cropped.png',
+    profile_photo: '',
   };
 
   stage = 0;
 
-  helpText: string[] = [];
-  audioSources: string[] = ['assets/mp3/view-page.wav'];
+  helpText: string[] = ['Here you can navigate to the selected child\'s profile, achievements, progress and settings.'];
+  audioSources: string[] = ['assets/mp3/view-child1.mp3'];
 
   constructor(private store: Store, private stageService: StageService) {
     this.currentChild$.subscribe((data) => {

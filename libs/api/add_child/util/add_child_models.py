@@ -6,4 +6,3 @@ class AddChildRqst(BaseModel):
     name: str
     age: int
     profile_picture: str
-    

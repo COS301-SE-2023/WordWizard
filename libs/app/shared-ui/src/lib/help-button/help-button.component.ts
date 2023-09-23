@@ -12,10 +12,15 @@ export class HelpButtonComponent {
 
   @Input() helpText!: string[];
   @Input() audioSources!: string[];
+  show = false;
 
   help(){
-    console.table(this.helpText)
+    this.show = true;
     this.helpService.show(this.helpText, this.audioSources);
+  }
+
+  close(){
+    this.show = false;
   }
 
 }

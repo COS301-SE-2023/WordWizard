@@ -14,7 +14,10 @@ def create_reading(rqst: PracticeRqst):
         return None
     word_list = WordList()
     for doc in result["words"]:
-        word_list.add_word(doc, get_image(doc)) # Call api or something to generate img url
+        if isinstance(doc, str):
+            word_list.add_word(doc, get_image(doc))
+        else:
+            word_list.add_word(doc["word"], get_image(doc["word"]))
     return word_list
 
 
@@ -26,7 +29,10 @@ def get_vocab(rqst: VocabRqst):
         return None
     word_list = WordList()
     for doc in result["words"]:
-        word_list.add_word(doc, get_image(doc)) # Call api or something to generate img url
+        if isinstance(doc, str):
+            word_list.add_word(doc, get_image(doc))
+        else:
+            word_list.add_word(doc["word"], get_image(doc["word"]))
     return word_list
 
 @router.post('/practice/remove')
@@ -62,13 +68,14 @@ def add_practice(rqst: UpdateRqst):
 def add_vocab(rqst: UpdateRqst):
     vocab_collection = db["Vocabulary"]
     if check_duplicate_words(vocab_collection, rqst.userID, rqst.word):
-        return {"status": "failed", "message": "Word already exists in the vocabulary collection."}
+        return {"status": "success", "message": "Word already exists in the vocabulary collection."}
     vocab_collection.update_one(
         {"_id": ObjectId(rqst.userID)},
         {"$addToSet": {"words": rqst.word}},
         upsert=True
     )
     return {"status": "success"}
+
 
 
 def get_image(word: str):

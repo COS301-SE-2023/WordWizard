@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, NgZone } from '@angular/core';
 import { CoreService } from '@word-wizard/app/core/data-access';
 
 @Component({
@@ -12,11 +12,15 @@ export class CoreShell {
   private bgAudio!: HTMLAudioElement;
   private bgAudioHelper!: HTMLAudioElement;
 
-  constructor(private coreService: CoreService) {
+  constructor(private coreService: CoreService, private ngZone: NgZone) {
+
+
 
     this.coreService.volumeChangeSubject.subscribe(volume => {
       this.bgAudio.volume = volume;
       this.bgAudioHelper.volume = volume;
+      //save volume in local storage
+      localStorage.setItem('volume', volume.toString());
     });
 
     this.clickSound = new Audio('assets/mp3/Haptic.mp3');
@@ -24,17 +28,18 @@ export class CoreShell {
     this.bgAudioHelper = new Audio('assets/mp3/AmbientHelper.mp3');
     this.bgAudio.loop = true;
     this.bgAudioHelper.loop = true;
-    this.coreService.volumeChange(0.06);
+    this.coreService.volumeChange(0.0);
     this.clickSound.volume = 0.085;
+    // this.bgAudio.play();
+    // this.bgAudioHelper.play();
 
-    this.bgAudio.play();
-    this.bgAudioHelper.play();
+    const storedVolume = localStorage.getItem('volume');
 
-
+    if(storedVolume!= null)
+      this.bgAudio.volume = parseInt(storedVolume);
   }
 
   @HostListener('click') onClick() {
-    this.clickSound.play();
+    // this.clickSound.play();
   }
-
 }

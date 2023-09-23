@@ -5,7 +5,8 @@ from dotenv import load_dotenv
 from pymongo import MongoClient
 from dataclasses import dataclass
 load_dotenv()
-
+from bson import ObjectId
+from typing import Optional
 
 router = APIRouter()
 
@@ -16,20 +17,19 @@ db = client["WordWizardDB"]
 @router.get('/')
 def get_photos():
     return { 'images': [
-        "assets/img/ProfilePics/Beautiful_cute_0_8.png",
-        "assets/img/ProfilePics/Beautiful_cute_1_10.png",
-        "assets/img/ProfilePics/Beautiful_cute_1_9.png",
-        "assets/img/ProfilePics/Beautiful_cute_1_6.png",
-        "assets/img/ProfilePics/Beautiful_cute_1_1.png",
-        "assets/img/ProfilePics/Beautiful_cute_1_2.png",
-        "assets/img/ProfilePics/Beautiful_cute_1_4.png",
-        "assets/img/ProfilePics/cute_chibi_baby_0_1.png",
-        "assets/img/ProfilePics/cute_chibi_blue_1.png",
+        "assets/img/ProfilePics/ProfilePicture_BlueOwl.png",
+        "assets/img/ProfilePics/ProfilePicture_Pheonix.png",
+        "assets/img/ProfilePics/ProfilePicture_GreenUnicorn.png",
+        "assets/img/ProfilePics/ProfilePicture_WhiteCat.png",
+        "assets/img/ProfilePics/ProfilePicture_PurpleOwl.png",
+        "assets/img/ProfilePics/ProfilePicture_RedDragon.png",
+        "assets/img/ProfilePics/ProfilePicture_BlueDragon.png",
+        "assets/img/ProfilePics/ProfilePicture_PinkUnicorn.png",
+        "assets/img/ProfilePics/ProfilePicture_BlackCat.png",
     ]}
 
-
 @router.post('/')
-def add_create(rqst: AddChildRqst):
+def add_create(rqst: AddChildRqst, testing: Optional[bool] = False):
     parent_data = {
         'username': rqst.parent_name,
         'email': rqst.parent_email,
@@ -43,61 +43,65 @@ def add_create(rqst: AddChildRqst):
             'username': rqst.name,
             'age': rqst.age,
             'preferences': [],
-            'parent': existing_parent['_id'],
+            'parent': existing_parent['_id'] if not testing else None,
             'profile_photo': rqst.profile_picture,
             'vocab_list': '',
             'practice_list': '',
             'progress': ''
         })
-        parents_collection.update_one(
-            {'_id': existing_parent['_id']},
-            {'$push': {'children': result_child.inserted_id}}
-        )
-        create_practice_list(result_child.inserted_id)
-        create_progress(result_child.inserted_id)
-        create_vocab_list(result_child.inserted_id)
+        if not testing:
+            parents_collection.update_one(
+                {'_id': existing_parent['_id']},
+                {'$push': {'children': result_child.inserted_id}}
+            )
+            create_practice_list(result_child.inserted_id)
+            create_progress(result_child.inserted_id)
+            create_vocab_list(result_child.inserted_id)
         return {
-            '_id': str(result_child.inserted_id),
+            '_id': str(result_child.inserted_id) if not testing else None,
             'username': rqst.name,
             'age': rqst.age,
             'preferences': [],
-            'parent': str(existing_parent['_id']),
+            'parent': str(existing_parent['_id']) if not testing else None,
             'profile_photo': rqst.profile_picture,
             'vocab_list': '',
             'practice_list': '',
             'progress': ''
         }
-    result_parent = parents_collection.insert_one(parent_data)
-    children_collection = db['Children']
-    result_child = children_collection.insert_one({
-        'username': rqst.name,
-        'age': rqst.age,
-        'parent': result_parent.inserted_id,
-        'profile_photo': rqst.profile_picture,
-        'vocab_list': '',
-        'practice_list': '',
-        'progress': ''
-    })
-    parents_collection.update_one(
-        {'_id': result_parent.inserted_id},
-        {'$push': {'children': result_child.inserted_id}}
-    )
-    create_practice_list(result_child.inserted_id)
-    create_progress(result_child.inserted_id)
-    create_vocab_list(result_child.inserted_id)
-    return {
-        '_id': str(result_child.inserted_id),
-        'username': rqst.name,
-        'age': rqst.age,
-        'parent': str(existing_parent['_id']),
-        'profile_photo': rqst.profile_picture,
-        'vocab_list': '',
-        'practice_list': '',
-        'progress': ''
-    }
+    else:
+        result_parent = parents_collection.insert_one(parent_data)
+        children_collection = db['Children']
+        result_child = children_collection.insert_one({
+            'username': rqst.name,
+            'age': rqst.age,
+            'parent': result_parent.inserted_id if not testing else None,
+            'profile_photo': rqst.profile_picture,
+            'vocab_list': '',
+            'practice_list': '',
+            'progress': ''
+        })
+        if not testing:
+            parents_collection.update_one(
+                {'_id': result_parent.inserted_id},
+                {'$push': {'children': result_child.inserted_id}}
+            )
+            create_practice_list(result_child.inserted_id)
+            create_progress(result_child.inserted_id)
+            create_vocab_list(result_child.inserted_id)
+        return {
+            '_id': str(result_child.inserted_id) if not testing else None,
+            'username': rqst.name,
+            'age': rqst.age,
+            'parent': str(result_parent.inserted_id) if not testing else None,
+            'profile_photo': rqst.profile_picture,
+            'vocab_list': '',
+            'practice_list': '',
+            'progress': ''
+        }
 
-
-def create_progress(child_id):
+def create_progress(child_id, db=None):
+    if db is None:
+        db = client["WordWizardDB"]
     progress_collection = db["Progress"]
     document = {
         "_id": child_id,
@@ -232,18 +236,26 @@ def create_progress(child_id):
     }
     progress_collection.insert_one(document)
 
-def create_vocab_list(child_id):
+def create_vocab_list(child_id, db=None):
+    if db is None:
+        db = client["WordWizardDB"]
+    
     vocab_list_collection = db["Vocabulary"]
     document = {
         "_id": child_id,
         "words": []
     }
-    vocab_list_collection.insert_one(document)
+    result = vocab_list_collection.insert_one(document)
+    return vocab_list_collection.find_one({"_id": child_id})
 
-def create_practice_list(child_id):
+def create_practice_list(child_id, db=None):
+    if db is None:
+        db = client["WordWizardDB"]
+    
     practice_list_collection = db["Practice"]
     document = {
         "_id": child_id,
         "words": []
     }
-    practice_list_collection.insert_one(document)
+    result = practice_list_collection.insert_one(document)
+    return practice_list_collection.find_one({"_id": child_id})  

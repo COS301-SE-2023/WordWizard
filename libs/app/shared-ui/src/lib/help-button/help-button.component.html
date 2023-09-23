@@ -1,4 +1,4 @@
-<ww-help></ww-help>
+<ww-help *ngIf="show" (closeHelp)="close()"></ww-help>
 
 <ion-icon (click)="help()" size="large" name="help-circle-outline">
 </ion-icon>

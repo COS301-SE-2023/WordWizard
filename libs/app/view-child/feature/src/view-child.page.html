@@ -2,7 +2,7 @@
 <ion-content [scrollY]="false">
   <ww-header
     title="View Child"
-    [settingsActive]="true"
+    [settingsActive]="false"
     [backRoute]="'../manage-children'"
     [settingsRoute]='"../settings"'
     [help]="true"
@@ -14,6 +14,17 @@
       <div class="pfp">
         <ion-avatar>
           <img [src]="child.profile_photo" />
+          <div class="edit-pfp">
+            <ion-grid>
+              <ion-row>
+                <ion-col class="centre">
+                  <ion-button routerLink="/settings">
+                    <ion-icon name="settings-outline"></ion-icon>
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </div>
         </ion-avatar>
       </div>
       <div class="name">
@@ -29,8 +40,8 @@
               </a>
             </ion-col>
             <ion-col size="6">
-              <a class="trophy" routerLink="/achievements">
-                <ion-img src="assets/icon/trophy-cropped.png"></ion-img>
+              <a class="trophy" id="badges" routerLink="/achievements">
+                <ion-img src="assets/icon/trophy_new.png"></ion-img>
                 Badges
               </a>
             </ion-col>
@@ -40,18 +51,18 @@
               <div class="stage">Level: {{stage}}</div>
             </ion-col>
           </ion-row>
-          <ion-row>
-            <ion-col>
-              <ion-nav-link routerLink="/child-statistics" class="stats">
-                <ion-img src="assets/img/stats-logo.png"/>
-                Stats
-              </ion-nav-link>
+          <ion-row class="bottom">
+            <ion-col size="6">
+              <a class="spellbook" routerLink="/child-statistics">
+                <ion-img src="assets/img/stats-logo.png"></ion-img>
+                Statistics
+              </a>
             </ion-col>
-            <ion-col>
-              <ion-nav-link routerLink="/preferences" class="stats">
-                <ion-img src="assets/img/book-logo.png"/>
+            <ion-col size="6">
+              <a class="trophy" routerLink="/preferences">
+                <ion-img src="assets/img/book-logo.png"></ion-img>
                 Preferences
-              </ion-nav-link>
+              </a>
             </ion-col>
           </ion-row>
         </ion-grid>

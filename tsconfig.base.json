@@ -30,7 +30,6 @@
       "@word-wizard/app/auth/data-access": [
         "libs/app/auth/data-access/src/index.ts"
       ],
-      "@word-wizard/app/auth/feature": ["libs/app/auth/feature/src/index.ts"],
       "@word-wizard/app/child-settings/data-access": [
         "libs/app/child-settings/data-access/src/index.ts"
       ],
@@ -53,6 +52,9 @@
       "@word-wizard/app/dashboard/feature": [
         "libs/app/dashboard/feature/src/index.ts"
       ],
+      "@word-wizard/app/forgot-password/feature": [
+        "libs/app/forgot-password/feature/src/index.ts"
+      ],
       "@word-wizard/app/help/data-access": [
         "libs/app/help/data-access/src/index.ts"
       ],
@@ -70,11 +72,18 @@
       "@word-wizard/app/loading/feature": [
         "libs/app/loading/feature/src/index.ts"
       ],
+      "@word-wizard/app/login/feature": ["libs/app/login/feature/src/index.ts"],
       "@word-wizard/app/manage-children/feature": [
         "libs/app/manage-children/feature/src/index.ts"
       ],
       "@word-wizard/app/manage-children/shared-ui": [
         "libs/app/manage-children/shared-ui/src/index.ts"
+      ],
+      "@word-wizard/app/password/data-access": [
+        "libs/app/password/data-access/src/index.ts"
+      ],
+      "@word-wizard/app/password/feature": [
+        "libs/app/password/feature/src/index.ts"
       ],
       "@word-wizard/app/preferences/data-access": [
         "libs/app/preferences/data-access/src/index.ts"
@@ -92,6 +101,9 @@
         "libs/app/reading/shared-ui/src/index.ts"
       ],
       "@word-wizard/app/shared-ui": ["libs/app/shared-ui/src/index.ts"],
+      "@word-wizard/app/sign-up/feature": [
+        "libs/app/sign-up/feature/src/index.ts"
+      ],
       "@word-wizard/app/splash/feature": [
         "libs/app/splash/feature/src/index.ts"
       ],
@@ -101,6 +113,9 @@
       "@word-wizard/app/stage/feature": ["libs/app/stage/feature/src/index.ts"],
       "@word-wizard/app/stage/shared-ui": [
         "libs/app/stage/shared-ui/src/index.ts"
+      ],
+      "@word-wizard/app/user-agreement/feature": [
+        "libs/app/user-agreement/feature/src/index.ts"
       ],
       "@word-wizard/app/view-child/feature": [
         "libs/app/view-child/feature/src/index.ts"

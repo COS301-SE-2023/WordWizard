@@ -3,10 +3,7 @@ from ..util.achievements_models import AwardsRqst, AwardSection, Award, AwardsLi
 from bson import ObjectId
 from ...deps import Database
 db = Database.getInstance().db
-
 router = APIRouter()
-
-
 
 @router.post('/')
 def get_Awards(rqst: AwardsRqst):

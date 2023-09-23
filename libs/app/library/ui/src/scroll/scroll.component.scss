@@ -1,21 +1,19 @@
-// .container {
-//     display: grid;
-//     grid-template-columns: repeat(2, 1fr);
-//     grid-gap: 20px;
-//   }
-
 .box {
-  width: 100%; /* Set the desired width */
-  height: 150px; /* Set the desired height */
+  width: 100%;
+  height: 150px;
   background: transparent
     url('../../../../../../apps/word-wizard/src/assets/img/item/scroll-closed-cropped.png')
     no-repeat center center;
   background-size: contain;
-  border: none; /* Remove the button border */
+  border: none;
   padding-bottom: 10%;
   padding-right: 15%;
+}
 
-  //padding: 0;
+.close {
+  color: black !important;
+  margin-left: 50%;
+  margin-top: 10%;
 }
 
 .transparent-background {
@@ -37,41 +35,10 @@
   padding-top: 7%;
 }
 
-//   .defention{
-//     font-family: 'Inter';
-//     font-style: normal;
-//     font-weight: 800;
-//     font-size: 15px;
-//     line-height: 18px;
-//     color: #000000;
-//   }
-
-//   .box.clicked {
-//     transform: translate(100px, 100px);
-//     width: 200px;
-//     height: 500px;
-//   }
-
-//   .close-button {
-//     position: absolute;
-//     top: 10px;
-//     right: 10px;
-//     cursor: pointer;
-//   }
-
-//   .scroll {
-//     // --background: url(../apps/word-wizard/src/assets/icon/scroll-closed.PNG) 0 0/100% 100% no-repeat;
-//     --background: url(../../../../../../apps/word-wizard/src/assets/img/item/scroll-closed-cropped.png) 0 0/100% 100% no-repeat;
-//   }
-
 ion-modal#example-modal {
   --width: 100%;
-  // --min-width: 250px;
   --height: auto;
   --border-radius: 6px;
-  // --box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);
-
-  // --backdrop-opacity: 0;
   pointer-events: none;
   --border-width: 0;
   --box-shadow: none;
@@ -122,8 +89,6 @@ ion-item ion-label {
 
 ion-list {
   background: transparent !important;
-  // --color: #000000;
-  // opacity: 0.5;
 }
 
 ion-col {
@@ -133,7 +98,6 @@ ion-col {
 }
 
 h1.word {
-  // color: white;
   text-align: center;
   padding-top: 15%;
   font-size: 2.5rem;

@@ -31,8 +31,8 @@ export class DashboardPage {
   pictures: string[] = [];
   stage = 0;
 
-  helpText: string[] = ['Click on the trophy to see your achievements'];
-  audioSources: string[] = ['assets/mp3/dashboard-1.wav'];
+  helpText: string[] = ['Click on the trophy to see your achievements', 'Click on the map to view and complete levels', 'Click on the book to see all the words you have learned and struggled with'];
+  audioSources: string[] = ['assets/mp3/dashboard1.mp3', 'assets/mp3/dashboard2.mp3', 'assets/mp3/dashboard3.mp3'];
 
   constructor(
     private store: Store,
@@ -70,9 +70,7 @@ export class DashboardPage {
   }
 
   chooseImage(i: string) {
-    this.child.profile_photo = i;
     this.visible = false;
-    // (id:string, name: string, age: number, image: string
     this.childService
       .editChild(this.child._id, this.child.username, 8, i)
       .subscribe((res) => {
@@ -80,3 +78,4 @@ export class DashboardPage {
       });
   }
 }
+

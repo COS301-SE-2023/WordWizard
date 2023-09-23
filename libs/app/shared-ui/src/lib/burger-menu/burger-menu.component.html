@@ -5,15 +5,6 @@
 
   <div class="dropdown" *ngIf="open">
 
-    <!-- font size -->
-    <ion-icon
-    *ngIf="fontChanger"
-    size="large"
-    name="settings-sharp"
-    src="assets/svg/settings-sharp.svg"
-    (click)="fontChange()" />
-
-
     <!-- audio level -->
   <div class="audioLevel" *ngIf="volumeChanger">
     <ion-icon *ngIf="audioLevel === 6"
@@ -38,6 +29,15 @@
   <!-- help button -->
 
   <ww-help-button *ngIf="help" [helpText]="helpText" [audioSources]="audioSources"></ww-help-button>
+
+      <!-- font size -->
+      <ion-icon
+      id="font-size"
+      *ngIf="fontChanger"
+      size="large"
+      name="settings-sharp"
+      src="assets/svg/settings-sharp.svg"
+      (click)="fontChange()" />
 
   </div>
 

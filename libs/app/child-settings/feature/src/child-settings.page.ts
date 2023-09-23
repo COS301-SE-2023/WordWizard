@@ -28,6 +28,7 @@ export class ChildSettingsPage {
   form!: FormGroup;
   selectedImage!: string;
   pictures: string[] = [];
+  passwordSet = false;
   @Select(ChildState.currentChild) currentChild$!: Observable<Child>;
 
   constructor(
@@ -72,9 +73,10 @@ export class ChildSettingsPage {
     this.currentChild$.subscribe((data) => {
       this.childSettingsService.deleteChild(data._id).subscribe((res) => {
         this.store.dispatch(new DeleteChild({ childId: data._id }));
-        this.router.navigate(['/manage-children']);
+        this.passwordSet = false;
       });
     }).unsubscribe();
+    this.router.navigate(['/manage-children']);
   }
 
   modal() {
@@ -102,7 +104,7 @@ export class ChildSettingsPage {
         {
           text: 'OK',
           handler: () => {
-            this.deleteProfile();
+            this.passwordSet = true;
           },
         },
       ],

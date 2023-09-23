@@ -3,6 +3,7 @@ from ...test_api import app
 from ..util.reading_models import PassageRqst, Content, Word  # Adjust the import path
 from unittest.mock import patch, MagicMock
 from ..util.helper import *
+from ..util.Rating import Rating
 
 
 client = TestClient(app)
@@ -67,7 +68,6 @@ def test_get_phonotactic():
     assert get_phonotactic("CVC") == 3
     assert get_phonotactic("V") == 1
 
-from ..util.Rating import Rating
 
 def test_rating_initialization():
     vcb = ["hello", "world"]
@@ -83,6 +83,5 @@ def test_rating_fit():
     prtc = ["preheat", "postpone"]
     pref = ["pre"]
     rating = Rating(vcb, prtc, pref)
-    print(f"{rating.phono_dic=}")
     assert 1 == 1
 

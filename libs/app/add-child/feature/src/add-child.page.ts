@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { AuthService } from '@auth0/auth0-angular';
 import { AddChildService } from '@word-wizard/app/add-child/data-access';
 import { AddChild } from '@word-wizard/app/child/data-access';
 import { Store } from '@ngxs/store';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'ww-add-child',
@@ -16,22 +16,30 @@ export class AddChildPage {
   form: FormGroup = this.fb.group({
     name: ['', Validators.required],
     age: ['', Validators.required],
+    acceptAgreement: [false, [Validators.required, this.mustBeTrueValidator]],
   });
-  // Set visible to true to debug modal
+
+  //eslint-disable-next-line
+  mustBeTrueValidator(control:any) {
+    const value = control.value;
+    if (value !== true)
+      return { mustBeTrue: true };
+    return null;
+  }
   visible = false;
   selectedImage!: string;
   pictures: string[] = [];
 
-  helpText: string[] = [];
-  audioSources: string[] = ['assets/mp3/add-1.wav'];
+  helpText: string[] = ["Enter your child's name and age, Then proceed to, choose a profile picture, and press add."];
+  audioSources: string[] = ['assets/mp3/addChild1.mp3', 'assets/mp3/addChild2.mp3'];
 
   constructor(
     private readonly fb: FormBuilder,
-    private auth: AuthService,
     private addChildService: AddChildService,
     public toastController: ToastController,
     private router: Router,
     private store: Store,
+    private cookieService: CookieService,
   ) {
     this.addChildService.getImages().subscribe((res) => {
       this.pictures = res.images;
@@ -47,21 +55,15 @@ export class AddChildPage {
   }
 
   submit() {
-    this.auth.user$.subscribe((user) => {
-      if (user) {
-        this.store.dispatch(
-          new AddChild({
-            parentName: user.nickname || '',
-            parentEmail: user.email || '',
-            name: this.form.value.name,
-            age: this.form.value.age,
-            image: this.selectedImage,
-          }),
-        );
-      } else {
-        console.error('user is not logged in');
-      }
-    });
+    this.store.dispatch(
+      new AddChild({
+        parentName: '',
+        parentEmail: this.cookieService.get('email'),
+        name: this.form.value.name,
+        age: this.form.value.age,
+        image: this.selectedImage,
+      }),
+    );
     this.router.navigate(['/manage-children']);
   }
 

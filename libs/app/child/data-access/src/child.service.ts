@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { GetChildrenRqst, deleteAccountRqst } from './requests/child.requests';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Child, DeleteAccountRsps } from './interfaces/child.interfaces';
-import { AuthService} from '@auth0/auth0-angular';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +9,6 @@ import { AuthService} from '@auth0/auth0-angular';
 export class ChildService {
   constructor(
     private readonly http: HttpClient,
-    private readonly authService: AuthService,
   ) {}
   getChildren(email: string, name: string) {
     const request: GetChildrenRqst = {
@@ -51,26 +49,5 @@ export class ChildService {
       request,
       { headers },
     );
-  }
-
-  async deleteAuthAccount() {
-    try {
-      const accessToken = await this.authService.getAccessTokenSilently();
-      this.authService.user$.subscribe((user) => {
-        if (!user) {
-          return;
-        }
-        const userId = user.sub;
-        const apiUrl = `https://${process.env['WW_AUTH0_DOMAIN']}/api/v2/users/${userId}`;
-        const headers = new HttpHeaders().set(
-          'Authorization',
-          `Bearer ${accessToken}`,
-        );
-        this.http.delete(apiUrl, { headers });
-        this.authService.logout();
-      });
-    } catch (error) {
-      console.error(error);
-    }
   }
 }

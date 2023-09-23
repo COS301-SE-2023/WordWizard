@@ -7,6 +7,9 @@ import {
   ChangeActive,
   AddChild,
   DeleteChild,
+  SetPassword,
+  UpdateChild,
+  DeleteAccount,
 } from './child.actions';
 import { ChildService } from './child.service';
 import { produce } from 'immer';
@@ -28,6 +31,7 @@ export interface ChildStateModel {
         progress: string;
       };
       parentActive: boolean;
+      passcode: string;
     };
   };
 }
@@ -49,6 +53,7 @@ export interface ChildStateModel {
           progress: '',
         },
         parentActive: true,
+        passcode: '',
       },
     },
   },
@@ -60,6 +65,29 @@ export class ChildState {
     private readonly childService: ChildService,
     private readonly addChildService: AddChildService,
   ) {}
+
+  @Action(DeleteAccount)
+  async DeleteAccount(ctx: StateContext<ChildStateModel>) {
+    ctx.patchState({
+      Children: {
+        model: {
+          children: [],
+          currentChild: {
+            _id: '',
+            username: '',
+            age: 0,
+            parent: '',
+            profile_photo: '',
+            vocab_list: '',
+            practice_list: '',
+            progress: '',
+          },
+          parentActive: true,
+          passcode: '',
+        },
+      },
+    })
+  }
 
   @Action(GetChildren)
   async GetChildren(
@@ -81,6 +109,30 @@ export class ChildState {
           console.error(error);
         },
       );
+  }
+
+  @Action(UpdateChild)
+  async UpdateChild(
+    ctx: StateContext<ChildStateModel>,
+    { payload }: UpdateChild,
+  ) {
+    ctx.setState(
+      produce((draft: ChildStateModel) => {
+        const currChild = draft.Children.model.currentChild;
+        if(currChild._id == payload.childId) {
+          currChild.username = payload.name;
+          currChild.age = payload.age;
+          currChild.profile_photo = payload.image;
+        }
+        const children = draft.Children.model.children;
+        const child = children.find((c) => c._id === payload.childId);
+        if(child) {
+          child.username = payload.name;
+          child.age = payload.age;
+          child.profile_photo = payload.image;
+        }
+      }),
+    );
   }
 
   @Action(SetChild)
@@ -150,6 +202,23 @@ export class ChildState {
     );
   }
 
+  @Action(SetPassword)
+  async SetPassword(
+    ctx: StateContext<ChildStateModel>,
+    { payload }: SetPassword,
+  ) {
+    const state = ctx.getState();
+    ctx.patchState({
+      Children: {
+        model: {
+          ...state.Children.model,
+          passcode: payload.passcode,
+        },
+      },
+    });
+  }
+
+
   @Selector()
   static Children(state: ChildStateModel) {
     return state.Children.model.children;
@@ -163,5 +232,10 @@ export class ChildState {
   @Selector()
   static parentActive(state: ChildStateModel) {
     return state.Children.model.parentActive;
+  }
+
+  @Selector()
+  static passcode(state: ChildStateModel) {
+    return state.Children.model.passcode;
   }
 }
