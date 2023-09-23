@@ -99,11 +99,9 @@ def add_create(rqst: AddChildRqst, testing: Optional[bool] = False):
             'progress': ''
         }
 
-def create_progress(db = None, child_id = ""):
-    
+def create_progress(child_id, db=None):
     if db is None:
         db = client["WordWizardDB"]
-    
     progress_collection = db["Progress"]
     document = {
         "_id": child_id,
@@ -236,8 +234,7 @@ def create_progress(db = None, child_id = ""):
             }
         }
     }
-    result = progress_collection.insert_one(document)
-    return progress_collection.find_one({"_id": child_id})
+    progress_collection.insert_one(document)
 
 def create_vocab_list(child_id, db=None):
     if db is None:

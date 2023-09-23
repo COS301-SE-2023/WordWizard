@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthService } from '@word-wizard/app/auth/data-access';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'word-wizard-login',
@@ -16,6 +17,7 @@ export class LoginPage {
     private readonly auth: AuthService, 
     private readonly router: Router,
     private readonly cookieService: CookieService,
+    public toastController: ToastController,
   ) {
     this.form = this.fb.group({
       email: ['', Validators.required],
@@ -32,7 +34,19 @@ export class LoginPage {
           this.cookieService.set("authToken", response.access_token, undefined, undefined, undefined, true, 'Strict');
           this.router.navigate(['/manage-children']);
         }
+      },
+      (error) => {
+        this.presentToast("Invalid email or password", "danger");
       }
     );
+  }
+
+  async presentToast(text: string, color: string) {
+    const toast = await this.toastController.create({
+      message: text,
+      duration: 2000,
+      color: color,
+    });
+    toast.present();
   }
 }

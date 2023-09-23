@@ -7,11 +7,12 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 load_dotenv()
 
-def send(recipient_email, verification_code):
+def send(recipient_email, verification_code, msg=''):
     message = MIMEMultipart('alternative')
     message['Subject'] = 'Email Verification'
     message['From'] = os.getenv("ADMIN_EMAIL")
     message['To'] = recipient_email
+
     html = f'''
     <html>
       <body>
@@ -22,6 +23,9 @@ def send(recipient_email, verification_code):
       </body>
     </html>
     '''
+
+    if msg != '':
+        html = msg
     message.attach(MIMEText(html, 'html'))
     try:
         server = smtplib.SMTP('smtp.gmail.com', 587)
@@ -34,6 +38,6 @@ def send(recipient_email, verification_code):
         server.quit()
 
 def generate_verification_code(length=6):
-    characters = string.digits
-    verification_code = ''.join(random.choice(characters) for _ in range(length))
-    return verification_code
+  characters = string.digits
+  verification_code = ''.join(random.choice(characters) for _ in range(length))
+  return verification_code

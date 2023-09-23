@@ -96,4 +96,39 @@ export class AuthService {
       })
     );
   }
+
+  forgotPassword(email: string) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+
+    const user = {
+      username: email,
+      password: '',
+    };
+
+    return this.http.post(`${process.env['WW_API_ENDPOINT']}/forgot`, user, { headers }).pipe(
+      catchError((error: HttpErrorResponse) => {
+        return throwError(error);
+      })
+    );
+  }
+
+  resetPassword(email: string, password: string, code: string) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+
+    const user = {
+      username: email,
+      password: password,
+      code: code,
+    };
+
+    return this.http.post(`${process.env['WW_API_ENDPOINT']}/reset`, user, { headers }).pipe(
+      catchError((error: HttpErrorResponse) => {
+        return throwError(error);
+      })
+    );
+  }
 }

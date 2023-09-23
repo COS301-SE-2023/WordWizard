@@ -1,9 +1,11 @@
 from fastapi import APIRouter
 import os
+import hashlib
 from dotenv import load_dotenv
-from ..util.pin_models import SetPinReq, ValidatePasswordReq, SetPinRsp, PinReq, PinRsp
+from ..util.pin_models import SetPinReq, ValidatePasswordReq, SetPinRsp, PinReq, PinRsp, User
 from pymongo import MongoClient
 from bson import ObjectId
+from ...verify_email import send, generate_verification_code
 load_dotenv()
 
 
@@ -37,20 +39,14 @@ def change_pin(rqst: SetPinReq):
     parent_collection = db['Parents']
     parent = parent_collection.find_one({'email': rqst.parent_email})
     if parent:
-        if parent['validation_word'] == rqst.validation_word:
-            parent_collection.update_one(
-                {'email': rqst.parent_email},
-                {'$set': {'pin': rqst.new_pin}}
-            )
-            return {
-                'message': 'Pin successfully changed',
-                'status_code': True
-            }
-        else:
-            return {
-                'message': 'Incorrect validation word',
-                'status_code': False
-            }
+        parent_collection.update_one(
+            {'email': rqst.parent_email},
+            {'$set': {'pin': rqst.new_pin}}
+        )
+        return {
+            'message': 'Pin successfully changed',
+            'status_code': True
+        }
     else:
         return {
             'message': 'Parent not found',
@@ -64,3 +60,19 @@ def get_pin (rqst: PinReq):
     if "pin" in parent:
         return parent['pin']
     return ''
+
+@router.post('/forgot-pin')
+def forgot_pin(rqst: User):
+    code = generate_verification_code()
+    html = f'''
+    <html>
+      <body>
+        <h2>Reset Pin</h2>
+        <p>Hello,</p>
+        <p style='color:black'>Please use the following verification code to reset your pin: <strong>{code}</strong></p>
+        <p>Thank you!</p>
+      </body>
+    </html>
+    '''
+    send(rqst.email, code, msg=html)
+    return {'code': code, 'status': 'success'}

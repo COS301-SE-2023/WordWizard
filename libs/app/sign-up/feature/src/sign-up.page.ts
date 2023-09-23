@@ -64,7 +64,7 @@ export class SignUpPage {
         // console.log(res);
         this.cookieService.set("email", this.form.value.email, undefined, undefined, undefined, true, 'Strict');
         this.cookieService.set('authToken', res.access_token, undefined, undefined, undefined, true, 'Strict');
-        this.router.navigate(['/manage-children']);
+        this.router.navigate(['/password']);
       });
     }
   }

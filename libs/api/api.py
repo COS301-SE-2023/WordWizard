@@ -40,6 +40,11 @@ app.add_middleware(
 class User(BaseModel):
     username: str
     password: str
+
+class Forgot(BaseModel):
+    username: str
+    code: str
+    password: str
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl='token')
 
 def authenticate_user(username: str, password: str):
@@ -69,6 +74,12 @@ async def get_current_user(token: str = Depends(oauth2_scheme)):
 
 @app.post('/sign-up')
 async def create_user(user: User):
+    parent_data = {
+        'username': user.username,
+        'email': user.username,
+        'children': []
+    }
+    db['Parents'].insert_one(parent_data)
     if check_existing(user.username):
         raise HTTPException(status_code=401, detail='Username already exists')
     res = user_collection.insert_one({
@@ -90,12 +101,41 @@ async def verify_user(user: User):
     if check_existing(user.username):
         raise HTTPException(status_code=401, detail='Username already exists')
     code = generate_verification_code()
-    send(user.username, code)
+    print(code)
+    # send(user.username, code)
     return {'code': hashlib.sha256(code.encode()).hexdigest(), 'status': 'success'}
 
 @app.get('/validate-token')
 async def get_user(user: User = Depends(get_current_user)):
     return user
+
+@app.post('/forgot')
+async def forgot_password(user: User):
+    code = generate_verification_code()
+    html = f'''
+    <html>
+      <body>
+        <h2>Reset Password</h2>
+        <p>Hello,</p>
+        <p style='color:black'>Please use the following verification code to reset your password: <strong>{code}</strong></p>
+        <p>Thank you!</p>
+      </body>
+    </html>
+    '''
+    send(user.username, code, msg=html)
+    user_collection.update_one({'username': user.username}, {'$set': {'code': hashlib.sha256(code.encode()).hexdigest()}})
+    return {'code': hashlib.sha256(code.encode()).hexdigest(), 'status': 'success'}
+
+@app.post('/reset')
+async def reset_password(user: Forgot):
+    user_obj = user_collection.find_one({'username': user.username})
+    if not user_obj:
+        raise HTTPException(status_code=401, detail='Invalid username')
+    if user_obj['code'] != hashlib.sha256(user.code.encode()).hexdigest():
+        raise HTTPException(status_code=401, detail='Invalid code')
+    user_collection.update_one({'username': user.username}, {'$set': {'password_hash': bcrypt.hash(user.password)}})
+    user_collection.update_one({'username': user.username}, {'$unset': {'code': 1}})
+    return {'status': 'success'}
 
 @app.get('/items')
 async def read_items(token: str = Depends(oauth2_scheme)):

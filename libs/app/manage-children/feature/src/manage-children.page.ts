@@ -8,10 +8,10 @@ import {
   Child,
   ChangeActive,
   SetPassword,
+  DeleteAccount
 } from '@word-wizard/app/child/data-access';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { AuthService } from '@auth0/auth0-angular';
 import { ToastController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 import { CookieService } from 'ngx-cookie-service';
@@ -62,8 +62,6 @@ export class ManageChildrenPage {
       this.passwordService.getPin(`${this.cookieService.get('email')}`).subscribe(
         (response) => {
           this.store.dispatch(new SetPassword({passcode: `${response}`}));
-          if(`${response}` == '')
-            this.router.navigate(['/password']);
         }
       );
       loadingService.hide();
@@ -105,6 +103,7 @@ export class ManageChildrenPage {
       if (data.status === 'success') {
         this.router.navigate(['/welcome']);
         this.cookieService.deleteAll();
+        this.store.dispatch(new DeleteAccount());
       } else {
         this.presentToast();
       }

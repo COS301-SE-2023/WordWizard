@@ -52,6 +52,9 @@
       "@word-wizard/app/dashboard/feature": [
         "libs/app/dashboard/feature/src/index.ts"
       ],
+      "@word-wizard/app/forgot-password/feature": [
+        "libs/app/forgot-password/feature/src/index.ts"
+      ],
       "@word-wizard/app/help/data-access": [
         "libs/app/help/data-access/src/index.ts"
       ],
