@@ -84,8 +84,8 @@
         font-style: normal;
         font-weight: 700;
         line-height: 0;
-        margin-bottom: 1rem;
-        margin-top: 20%;
+        margin-bottom: 2rem;
+        margin-top: 4rem;
       }
       .subtext {
         color: #070527;
@@ -96,10 +96,11 @@
         text-align: center;
       }
       .button-container {
-        margin-bottom: 2rem;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
         ion-button {
           --background: #070527;
-          width: 18.5rem;
+          width: 17rem;
           height: 3.5rem;
           color: #fff;
           font-size: 1.5rem;
