@@ -8,7 +8,8 @@ import {
   AddChild,
   DeleteChild,
   SetPassword,
-  UpdateChild
+  UpdateChild,
+  DeleteAccount,
 } from './child.actions';
 import { ChildService } from './child.service';
 import { produce } from 'immer';
@@ -64,6 +65,29 @@ export class ChildState {
     private readonly childService: ChildService,
     private readonly addChildService: AddChildService,
   ) {}
+
+  @Action(DeleteAccount)
+  async DeleteAccount(ctx: StateContext<ChildStateModel>) {
+    ctx.patchState({
+      Children: {
+        model: {
+          children: [],
+          currentChild: {
+            _id: '',
+            username: '',
+            age: 0,
+            parent: '',
+            profile_photo: '',
+            vocab_list: '',
+            practice_list: '',
+            progress: '',
+          },
+          parentActive: true,
+          passcode: '',
+        },
+      },
+    })
+  }
 
   @Action(GetChildren)
   async GetChildren(

@@ -74,6 +74,12 @@ async def get_current_user(token: str = Depends(oauth2_scheme)):
 
 @app.post('/sign-up')
 async def create_user(user: User):
+    parent_data = {
+        'username': user.username,
+        'email': user.username,
+        'children': []
+    }
+    db['Parents'].insert_one(parent_data)
     if check_existing(user.username):
         raise HTTPException(status_code=401, detail='Username already exists')
     res = user_collection.insert_one({
@@ -95,7 +101,8 @@ async def verify_user(user: User):
     if check_existing(user.username):
         raise HTTPException(status_code=401, detail='Username already exists')
     code = generate_verification_code()
-    send(user.username, code)
+    print(code)
+    # send(user.username, code)
     return {'code': hashlib.sha256(code.encode()).hexdigest(), 'status': 'success'}
 
 @app.get('/validate-token')
