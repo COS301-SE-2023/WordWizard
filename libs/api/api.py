@@ -101,8 +101,7 @@ async def verify_user(user: User):
     if check_existing(user.username):
         raise HTTPException(status_code=401, detail='Username already exists')
     code = generate_verification_code()
-    print(code)
-    # send(user.username, code)
+    send(user.username, code)
     return {'code': hashlib.sha256(code.encode()).hexdigest(), 'status': 'success'}
 
 @app.get('/validate-token')

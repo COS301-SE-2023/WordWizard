@@ -53,7 +53,6 @@ def test_get_score_range():
 
     for score, expected_range in test_cases:
         result = get_score_range(score)
-        print(f"Score: {score}, Expected Range: {expected_range}, Result: {result}")
         assert result == expected_range
 
 
