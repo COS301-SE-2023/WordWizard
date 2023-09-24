@@ -13,7 +13,7 @@ export class HelpComponent implements OnDestroy{
   show = false;
   audioSources : string[] = [];
   currentMessage = 0;
-  audio!: HTMLAudioElement;
+  audio!: HTMLAudioElement | null;
 
   @Output() closeHelp = new EventEmitter<void>();
 
@@ -23,14 +23,15 @@ export class HelpComponent implements OnDestroy{
       this.currentMessage = 0;
       this.messages = help.text;
       this.show = help.show;
-      console.log(help.show)
       this.audioSources = help.audioSources;
       this.playAudio();
     });
   }
 
   ngOnDestroy(): void {
-    this.audio.pause();
+    this.audio?.pause();
+    this.audio?.load();
+    this.audio = null;
     this.show = false;
     this.currentMessage = 0;
     this.closeHelp.emit();
@@ -38,10 +39,11 @@ export class HelpComponent implements OnDestroy{
 
 
   next(){
-    this.audio.pause();
+    this.audio?.pause();
     this.currentMessage++;
     if(this.currentMessage >= this.messages.length){
       this.show = false;
+      this.audio = null;
       this.closeHelp.emit();
       return;
     }
@@ -53,12 +55,22 @@ export class HelpComponent implements OnDestroy{
 
 
   playAudio() {
-    this.audio = new Audio(this.audioSources[this.currentMessage]);
-    this.audio.play();
-    this.audio.onended = () => {
-      this.next();
+    if (this.audio) {
+      this.audio.pause();
+      this.audio.removeEventListener('ended', this.audioEndedHandler);
+      this.audio = null;
     }
+
+    this.audio = new Audio(this.audioSources[this.currentMessage]);
+    this.audio.addEventListener('ended', this.audioEndedHandler);
+
+    this.audio.load();
+    this.audio.play();
   }
+
+  audioEndedHandler = () => {
+    this.next();
+  };
 
 
 }
