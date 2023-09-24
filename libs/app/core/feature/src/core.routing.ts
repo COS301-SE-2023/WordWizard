@@ -68,7 +68,7 @@ const routes: Routes = [
     path: 'settings',
     loadChildren: () =>
       import('@word-wizard/app/child-settings/feature').then((m) => m.ChildSettingsModule),
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, ChildGuard],
   },
   {
     path: 'loading',
