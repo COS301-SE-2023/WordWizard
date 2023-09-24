@@ -58,7 +58,6 @@ def update_progress(updtProgress: UpdateProgressRqst):
         # AVG score
         progress["average_score"] = 0
         for lvl in progress["level_scores"]:
-            # print(progress["level_scores"][lvl]) 
             progress["average_score"] += int(progress["level_scores"][lvl])
         if len(progress["level_scores"]) > 0:
             progress["average_score"] = progress["average_score"]/len(progress["level_scores"])
@@ -106,10 +105,8 @@ def update_progress(updtProgress: UpdateProgressRqst):
         progress["awards"] = awards
         for word in updtProgress.progress.content:
             if word.correct:
-                # print(word.correct)
                 add_vocab(updtProgress.child_id, word.word)
             if not word.correct or word.correct == None:
-                # print(word.correct)
                 add_practice(updtProgress.child_id, word.word, updtProgress.progress.level)
         progress_collection.update_one({'_id': ObjectId(updtProgress.child_id)}, {"$set": progress})
         return {"status": "success"}
@@ -121,16 +118,7 @@ def add_practice(userID, word, level=1):
     pref = get_prefixes_suffixes(word)
     db["Practice"].update_one(
         {"_id": ObjectId(userID)},
-        {"$addToSet": {"words": 
-            {
-                "word": word,
-                "phonotactics": find_phonotactics(word),
-                "prefixes": pref[0],
-                "suffixes": pref[1],
-                "syllables": count_syllables(word),
-                "level": level
-            }
-        }},
+        {"$addToSet": {"words": word}},
         upsert=True
     )
     return True

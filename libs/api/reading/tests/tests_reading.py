@@ -83,6 +83,5 @@ def test_rating_fit():
     prtc = ["preheat", "postpone"]
     pref = ["pre"]
     rating = Rating(vcb, prtc, pref)
-    print(f"{rating.phono_dic=}")
     assert 1 == 1
 
