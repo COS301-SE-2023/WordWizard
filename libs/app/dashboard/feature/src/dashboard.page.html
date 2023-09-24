@@ -1,4 +1,5 @@
 <ww-loading/>
+<ion-content [scrollY]="false">
 <ww-header
   [title]="'Dashboard'"
   [settingsActive]="false"
@@ -7,7 +8,6 @@
   [helpText]="helpText"
   [audioSources]="audioSources"
   [volumeChanger]="true"/>
-<ion-content [scrollY]="false">
   <div class="dashboard">
     <div class="background">
       <div class="pfp">
@@ -60,13 +60,13 @@
           </ion-row>
         </ion-grid>
       </ion-content>
-      <ion-button class="trophy" href="">
+      <!-- <ion-button class="trophy" href="">
         <ion-img src="assets/icon/map.png"/>
         Levels
-      </ion-button>
+      </ion-button> -->
     </div>
   </div>
-  <div class="overlay-container" [class.hidden-overlay]="!visible">
+  <!-- <div class="overlay-container" [class.hidden-overlay]="!visible">
     <div class="overlay">
       <div class="selected-outer">
         <div class="selected-image">
@@ -112,5 +112,5 @@
         </ion-row>
       </ion-grid>
     </div>
-  </div>
+  </div> -->
 </ion-content>
