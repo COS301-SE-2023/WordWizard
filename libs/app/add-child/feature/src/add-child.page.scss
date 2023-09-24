@@ -10,9 +10,10 @@ ion-content {
   font-style: normal;
   line-height: normal;
   height: 3rem;
-  width: 7rem;
+  width: 17rem;
   --border-radius: 1.25rem;
-  margin-top: 6.5rem;
+  margin-top: 3.5rem;
+  margin-bottom: 3rem;
 }
 
 input {
@@ -25,7 +26,7 @@ input {
   margin-top: 0.5rem;
   margin-bottom: 1.3rem;
   font-size: 1.5rem;
-  color: black;
+  color: white;
   &:focus {
     outline: none;
     border-color: #007bff;
@@ -56,10 +57,17 @@ label {
 }
 
 .container {
-  margin-top: 6.5rem;
-  margin-bottom: 4rem;
+  margin-top: 3.5rem;
+  margin-bottom: 2rem;
   display: flex;
   justify-content: center;
+  font-size: 24px;
+  font-family: Inter;
+
+  .plus-button-container {
+    display: flex;
+    justify-content: center;
+  }
 }
 
 .overlay {

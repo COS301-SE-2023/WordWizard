@@ -34,21 +34,31 @@ export class SignUpPage {
   }
 
   submit() {
-    this.submitted = true;
+  
     if(this.form.valid) {
       if(this.form.value.password == this.form.value.confirmPassword) {
         this.auth.verify(this.form.value.email).subscribe(
           // eslint-disable-next-line
           (response: any) => {
+            this.submitted = true;
             this.code = response.code;
           },
           (error) => {
             this.presentToast();
-            this.router.navigate(['/login']);
-            this.clearInput();
+            // this.router.navigate(['/login']);
+            // this.clearInput();
           }
         );
       }
+      else
+      {
+        this.presentCustomToast('Passwords do not match', 'danger');
+      }
+
+    }
+    else
+    {
+      this.presentCustomToast('Please fill in all the fields', 'danger');
     }
   }
 
@@ -67,6 +77,9 @@ export class SignUpPage {
         this.router.navigate(['/password']);
       });
     }
+    else {
+      this.presentCustomToast('Invalid code', 'danger');
+    }
   }
 
   async presentToast() {
@@ -74,6 +87,15 @@ export class SignUpPage {
       message: 'Account with this email already exists',
       duration: 2000,
       color: 'danger',
+    });
+    toast.present();
+  }
+
+  async presentCustomToast(msg: string, color: string) {
+    const toast = await this.toastController.create({
+      message: msg,
+      duration: 2000,
+      color: color,
     });
     toast.present();
   }

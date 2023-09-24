@@ -18,7 +18,7 @@ def send(recipient_email, verification_code, msg=''):
       <body>
         <h2>Email Verification</h2>
         <p>Hello,</p>
-        <p style='color:red'>Please use the following verification code: <strong>{verification_code}</strong></p>
+        <p style='color:blue'>Please use the following verification code: <strong>{verification_code}</strong></p>
         <p>Thank you!</p>
       </body>
     </html>
