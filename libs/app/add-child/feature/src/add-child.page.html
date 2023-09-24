@@ -58,8 +58,6 @@
         </ion-grid>
       </div>
     </div>
-    <!-- <div>
-    </div> -->
     <div class="container">
       <ion-grid>
         <ion-row>
@@ -90,10 +88,6 @@
     <div>
       <label htmlFor="age">Age:</label><br />
       <input type="number" id="age" formControlName="age" class="test1" />
-    </div>
-    <div class="agreement">
-      <input type="checkbox" id="accept-agreement" formControlName="acceptAgreement" class="test1" />
-      <label htmlFor="accept-agreement">Accept <a routerLink="../user-agreement">Terms of Service</a></label><br />
     </div>
     <ion-button
       [disabled]="!form.valid || !selectedImage"

@@ -48,7 +48,7 @@
       ngClass="practice-list">
       <ion-grid *ngIf="hasPractice">
         <ion-row>
-          <ion-col *ngFor="let j of practice.words; let i = index" size="6">
+          <ion-col *ngFor="let j of practice?.words; let i = index" size="6">
             <ww-cauldron
               [vocab]="j"
               [number]="i"
