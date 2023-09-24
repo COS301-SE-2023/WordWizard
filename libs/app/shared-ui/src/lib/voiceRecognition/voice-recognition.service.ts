@@ -1,18 +1,27 @@
 /* eslint-disable */
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders  } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class VoiceRecognitionService {
-  convertSpeechToText(file: Blob): Observable<any> {
-    const formData = new FormData();
-    formData.append('file', file, 'audio.wav');
+  convertSpeechToText(file: any): Observable<any> {
+    // const formData = new FormData();
+    // formData.append('file', file, 'audio.wav');
+    // return this.http.post(
+    //   `${process.env['WW_API_ENDPOINT']}/speech/speech-to-text`,
+    //   formData,
+    // );
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/octet-stream'
+    });
+
     return this.http.post(
       `${process.env['WW_API_ENDPOINT']}/speech/speech-to-text`,
-      formData,
+      file,
+      { headers }
     );
   }
   constructor(private http: HttpClient){}

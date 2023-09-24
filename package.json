@@ -15,7 +15,8 @@
     "lint": "nx run-many --target=lint --all --skip-nx-cache --parallel=5",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,html,scss}\"",
     "check-format": "prettier --check \"**/*.{js,jsx,ts,tsx,html,scss}\"",
-    "analytics": "npx unlighthouse --site localhost:4200"
+    "analytics": "npx unlighthouse --site localhost:4200",
+    "fuck:mobile": "npm run build:app:dev && npx run cap sync android && npx cap open android"
   },
   "private": true,
   "dependencies": {
@@ -30,8 +31,10 @@
     "@angular/service-worker": "^16.1.3",
     "@auth0/angular-jwt": "^5.1.2",
     "@auth0/auth0-angular": "^2.1.0",
+    "@capacitor-community/media": "^5.2.2",
     "@capacitor/core": "^5.0.3",
-    "@capacitor/haptics": "5.0.2",
+    "@capacitor/filesystem": "^5.1.4",
+    "@capacitor/haptics": "^5.0.2",
     "@capacitor/keyboard": "5.0.2",
     "@capacitor/status-bar": "5.0.2",
     "@ionic/angular": "^7.1.1",
@@ -41,6 +44,7 @@
     "@nxext/ionic-angular": "^16.2.0",
     "auth0": "^3.5.0",
     "canvas-confetti": "^1.6.0",
+    "capacitor-voice-recorder": "^5.0.0",
     "chart.js": "^4.3.0",
     "crypto-js": "^4.1.1",
     "immer": "^10.0.2",
