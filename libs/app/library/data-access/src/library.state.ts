@@ -61,7 +61,6 @@ export class LibraryState {
     ctx: StateContext<LibraryStateModel>,
     { payload }: UpdatePractice,
   ) {
-    console.log("state: ", payload.word);
     let id!: string;
     this.currentChild$
       .subscribe((data) => {
@@ -85,6 +84,14 @@ export class LibraryState {
             (word) => word.word === payload.word,
           );
           if (wordIndex !== -1) practiceList.words.splice(wordIndex, 1);
+          const vocabList = draft.Library.model.Vocab;
+          this.libraryService.addVocab(rqst).subscribe((res) => {
+            // console.log(res);
+          });
+          vocabList.words.push({
+            word: payload.word,
+            img: ""
+          });
         }),
       );
     }
