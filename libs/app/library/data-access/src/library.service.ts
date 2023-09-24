@@ -26,6 +26,17 @@ export class LibraryService {
     );
   }
 
+  addVocab(request: UpdateRequest) : Observable<UpdateResponse> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+    return this.http.post<UpdateResponse>(
+      `${process.env['WW_API_ENDPOINT']}/library/vocab/add`,
+      request,
+      { headers },
+    );
+  }
+
   getPractice(request: PracticeRequest): Observable<WordList> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
