@@ -60,6 +60,7 @@ export class PasswordPage {
           if (res.status_code) {
             this.store.dispatch(new SetPassword({ passcode: temp}));
             this.router.navigate(['/manage-children']);
+            this.presentToast("PIN successfully changed!", "success");
           }
         });
         this.password = '';
@@ -72,6 +73,7 @@ export class PasswordPage {
           if (res.status_code) {
             this.store.dispatch(new SetPassword({ passcode: this.password}));
             this.router.navigate(['/manage-children']);
+            this.presentToast("PIN successfully set!", "success");
           }
         });
       }
