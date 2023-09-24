@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import {
   GetChildren,
   SetChild,
@@ -11,12 +11,13 @@ import {
   DeleteAccount
 } from '@word-wizard/app/child/data-access';
 import { Select, Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { ToastController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 import { CookieService } from 'ngx-cookie-service';
 import { LoadingService } from '@word-wizard/app/loading/data-access';
 import { PasswordService } from '@word-wizard/app/password/data-access';
+import { HelpService } from '@word-wizard/app/help/data-access';
 
 @Component({
   selector: 'word-wizard-manage-children',
@@ -29,6 +30,8 @@ export class ManageChildrenPage {
   visible = false;
   passwordSet = false;
   selectedChild!: Child;
+  showInitialHelp = false;
+  helpSub: Subscription;
 
 
   helpText: string[] = ['Welcome, press on the plus-button to add a child', 'You can sign out or delete your account, but be careful','If you want to read, navigate to your profile'];
@@ -45,10 +48,11 @@ export class ManageChildrenPage {
     private cookieService: CookieService,
     private loadingService: LoadingService,
     private passwordService: PasswordService,
+    private route: ActivatedRoute,
+    private helpService: HelpService
   ) {
     loadingService.show();
     setTimeout(() => {
-
       this.store.dispatch(
         new GetChildren({
           parent_email: this.cookieService.get('email') || '',
@@ -58,7 +62,6 @@ export class ManageChildrenPage {
       this.Children$.subscribe((data) => {
         this.children = data;
       });
-
       this.passwordService.getPin(`${this.cookieService.get('email')}`).subscribe(
         (response) => {
           this.store.dispatch(new SetPassword({passcode: `${response}`}));
@@ -66,6 +69,22 @@ export class ManageChildrenPage {
       );
       loadingService.hide();
     }, 2000);
+
+    const routeSub = this.route.queryParams.subscribe(params => {
+      this.showInitialHelp =  params['first'].toLowerCase() === 'true' ? true : false;
+      if(this.showInitialHelp) {
+        helpService.show(['Welcome to WordWizard, I am wizzy and I will guide you along your journey', 'If you need help with anything press on the menu button on the top right of the screen and then press on the question mark'], ['assets/mp3/first1.mp3', 'assets/mp3/first2.mp3']);
+        routeSub.unsubscribe();
+      }
+
+    });
+
+    this.helpSub = helpService.help$.subscribe((help) => {
+
+      if(help.show === false){
+        this.showInitialHelp = false;
+      }
+      });
   }
 
   setChild(child: Child) {

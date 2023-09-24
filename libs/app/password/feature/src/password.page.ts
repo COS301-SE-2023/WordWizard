@@ -27,8 +27,8 @@ export class PasswordPage {
   @Select(ChildState.passcode) passcode$!: Observable<string>;
   @Select(ChildState.currentChild) currentChild$!: Observable<Child>;
   constructor(
-    private router: Router, 
-    private readonly passwordService: PasswordService, 
+    private router: Router,
+    private readonly passwordService: PasswordService,
     private cookieService: CookieService,
     private store: Store,
     public toastController: ToastController,
@@ -47,7 +47,7 @@ export class PasswordPage {
     });
     this.parent_email = cookieService.get('email');
   }
-  
+
   isPasswordValid(): boolean {
     return /^\d{4}$/.test(this.password);
   }

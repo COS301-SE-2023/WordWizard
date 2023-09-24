@@ -13,8 +13,4 @@ export class WelcomePage {
       this.router.navigate(['/manage-children']);
     }
   }
-
-  getStarted() {
-    //
-  }
 }

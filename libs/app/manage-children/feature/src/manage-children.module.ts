@@ -8,6 +8,7 @@ import { NgxsModule } from '@ngxs/store';
 import { HttpClientModule } from '@angular/common/http';
 import { ChildState, ChildService } from '@word-wizard/app/child/data-access';
 import { LoadingModule } from '@word-wizard/app/loading/feature';
+import { HelpModule } from '@word-wizard/app/help/feature';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { LoadingModule } from '@word-wizard/app/loading/feature';
     SharedUiModule,
     NgxsModule.forFeature([ChildState]),
     HttpClientModule,
-    LoadingModule
+    LoadingModule,
+    HelpModule,
   ],
   declarations: [ManageChildrenPage],
   providers: [ChildService],

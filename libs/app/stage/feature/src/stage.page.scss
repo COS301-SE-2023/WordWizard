@@ -5,4 +5,11 @@
   background-position: center;
   height: 100vh;
   width: 100%;
+  z-index: 0;
+  position: relative;
+}
+
+ww-header{
+  z-index: 100;
+  position: relative;
 }
