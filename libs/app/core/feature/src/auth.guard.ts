@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
+import { CanActivate, UrlTree, Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { catchError, switchMap } from 'rxjs/operators';
 import { AuthService } from '@word-wizard/app/auth/data-access';
@@ -8,7 +8,7 @@ import { AuthService } from '@word-wizard/app/auth/data-access';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-  canActivate(route: ActivatedRouteSnapshot,state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+  canActivate(): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     return this.authService.getMe().pipe(
       switchMap((data) => {
         if (data)
