@@ -44,10 +44,7 @@ def add_create(rqst: AddChildRqst, testing: Optional[bool] = False):
             'age': rqst.age,
             'preferences': [],
             'parent': existing_parent['_id'] if not testing else None,
-            'profile_photo': rqst.profile_picture,
-            'vocab_list': '',
-            'practice_list': '',
-            'progress': ''
+            'profile_photo': rqst.profile_picture
         })
         if not testing:
             parents_collection.update_one(
@@ -63,10 +60,7 @@ def add_create(rqst: AddChildRqst, testing: Optional[bool] = False):
             'age': rqst.age,
             'preferences': [],
             'parent': str(existing_parent['_id']) if not testing else None,
-            'profile_photo': rqst.profile_picture,
-            'vocab_list': '',
-            'practice_list': '',
-            'progress': ''
+            'profile_photo': rqst.profile_picture
         }
     else:
         result_parent = parents_collection.insert_one(parent_data)
@@ -75,10 +69,7 @@ def add_create(rqst: AddChildRqst, testing: Optional[bool] = False):
             'username': rqst.name,
             'age': rqst.age,
             'parent': result_parent.inserted_id if not testing else None,
-            'profile_photo': rqst.profile_picture,
-            'vocab_list': '',
-            'practice_list': '',
-            'progress': ''
+            'profile_photo': rqst.profile_picture
         })
         if not testing:
             parents_collection.update_one(
@@ -93,10 +84,7 @@ def add_create(rqst: AddChildRqst, testing: Optional[bool] = False):
             'username': rqst.name,
             'age': rqst.age,
             'parent': str(result_parent.inserted_id) if not testing else None,
-            'profile_photo': rqst.profile_picture,
-            'vocab_list': '',
-            'practice_list': '',
-            'progress': ''
+            'profile_photo': rqst.profile_picture
         }
 
 def create_progress(db = None, child_id = ""):
@@ -107,7 +95,6 @@ def create_progress(db = None, child_id = ""):
     progress_collection = db["Progress"]
     document = {
         "_id": child_id,
-        "level_scores": {},
         "total_words": 0,
         "incorrect_words_by_level": {},
         "average_score": 0,
@@ -117,28 +104,24 @@ def create_progress(db = None, child_id = ""):
             "Level Master": {
                 "Level 1 Conqueror": {
                     "goal": 1,
-                    "progress": 0,
                     "description": "Complete level 1",
                     "completed": False,
                     "img": "assets/img/Awards/caldron.jpg"
                 },
                 "Level 5 Prodigy": {
                     "goal": 5,
-                    "progress": 0,
                     "description": "Complete level 5",
                     "completed": False,
                     "img": "assets/img/Awards/crown.jpg"
                 },
                 "Level 10 Guru": {
                     "goal": 10,
-                    "progress": 0,
                     "description": "Complete level 10",
                     "completed": False,
                     "img": "assets/img/Awards/diamond_bracelet1.jpg"
                 },
                 "WordWizard Legend": {
                     "goal": 20,
-                    "progress": 0,
                     "description": "Complete level 20",
                     "completed": False,
                     "img": "assets/img/Awards/diamond_necklace1.jpg"
@@ -147,28 +130,24 @@ def create_progress(db = None, child_id = ""):
             "Word Learner": {
                 "Word Novice": {
                     "goal": 25,
-                    "progress": 0,
                     "description": "Learn 25 new words",
                     "completed": False,
                     "img": "assets/img/Awards/diamond_ring1.jpg"
                 },
                 "Word Apprentice": {
                     "goal": 50,
-                    "progress": 0,
                     "description": "Learn 50 new words",
                     "completed": False,
                     "img": "assets/img/Awards/diamond_ring2.jpg"
                 },
                 "Word Connoisseur": {
                     "goal": 100,
-                    "progress": 0,
                     "description": "Learn 100 new words",
                     "completed": False,
                     "img": "assets/img/Awards/diamond_shoe.jpg"
                 },
                 "Word Wizard": {
                     "goal": 200,
-                    "progress": 0,
                     "description": "Learn 200 new words",
                     "completed": False,
                     "img": "assets/img/Awards/emerald_necklace.jpg"
@@ -177,28 +156,24 @@ def create_progress(db = None, child_id = ""):
             "Practice Enthusiast": {
                 "Practice Starter": {
                     "goal": 25,
-                    "progress": 0,
                     "description": "Have 25 words in your practice list",
                     "completed": False,
                     "img": "assets/img/Awards/emerald_ring.jpg"
                 },
                 "Practice Explorer": {
                     "goal": 50,
-                    "progress": 0,
                     "description": "Have 50 words in your practice list",
                     "completed": False,
                     "img": "assets/img/Awards/glassAward.jpg"
                 },
                 "Practice Devotee": {
                     "goal": 100,
-                    "progress": 0,
                     "description": "Have 100 words in your practice list",
                     "completed": False,
                     "img": "assets/img/Awards/goblet.jpg"
                 },
                 "Practice Champion": {
                     "goal": 200,
-                    "progress": 0,
                     "description": "Have 200 words in your practice list",
                     "completed": False,
                     "img": "assets/img/Awards/necklace.jpg"
@@ -207,28 +182,24 @@ def create_progress(db = None, child_id = ""):
             "Vocabulary Builder": {
                 "Vocabulary Starter": {
                     "goal": 25,
-                    "progress": 0,
                     "description": "Build a vocabulary of 25 words",
                     "completed": False,
                     "img": "assets/img/Awards/potion_bottle.jpg"
                 },
                 "Vocabulary Explorer": {
                     "goal": 50,
-                    "progress": 0,
                     "description": "Build a vocabulary of 50 words",
                     "completed": False,
                     "img": "assets/img/Awards/ruby_ring.jpg"
                 },
                 "Vocabulary Devotee": {
                     "goal": 100,
-                    "progress": 0,
                     "description": "Build a vocabulary of 100 words",
                     "completed": False,
                     "img": "assets/img/Awards/totemAward.jpg"
                 },
                 "Vocabulary Champion": {
                     "goal": 200,
-                    "progress": 0,
                     "description": "Build a vocabulary of 200 words",
                     "completed": False,
                     "img": "assets/img/Awards/wiazard_hat_2.jpg"
