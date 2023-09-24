@@ -40,6 +40,9 @@ def update_progress(updtProgress: UpdateProgressRqst):
             if progress["level_scores"].get(str(updtProgress.progress.level)):
                 if updtProgress.progress.score > progress["level_scores"][str(updtProgress.progress.level)]:
                     progress["level_scores"][str(updtProgress.progress.level)] = updtProgress.progress.score
+
+            else: 
+                progress["level_scores"][str(updtProgress.progress.level)] = updtProgress.progress.score
         else:
             progress["level_scores"] = {str(updtProgress.progress.level): updtProgress.progress.score}
 
@@ -77,6 +80,14 @@ def update_progress(updtProgress: UpdateProgressRqst):
         }
         progress["progress_history"].append(newScore)
 
+
+        vocabulary_collection = db['Vocabulary']
+        vocabulary_Total = len(vocabulary_collection.find_one({'_id': ObjectId(updtProgress.child_id)})["words"])
+
+        practice_collection = db['Practice']
+        practice_Total = len(practice_collection.find_one({'_id': ObjectId(updtProgress.child_id)})["words"])
+
+
         # Awards
         awards = progress["awards"]
         lvlMaster = awards.get("Level Master")
@@ -92,11 +103,12 @@ def update_progress(updtProgress: UpdateProgressRqst):
         practiceEnth = awards.get("Practice Enthusiast")
         if practiceEnth and isinstance(practiceEnth, dict):
             for award_name, award_details in practiceEnth.items():
-                award_details['completed'] = True
+                if award_details["goal"] <= practice_Total:
+                    award_details['completed'] = True
         vocabBuilder = awards.get("Vocabulary Builder")
         if vocabBuilder and isinstance(vocabBuilder, dict):
             for award_name, award_details in vocabBuilder.items():
-                if award_details["goal"] <= progress["total_words"]:
+                if award_details["goal"] <= vocabulary_Total:
                     award_details["completed"] = True
         awards["Level Master"] = lvlMaster
         awards["Word Learner"] = wordLearner

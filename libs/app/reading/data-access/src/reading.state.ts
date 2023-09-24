@@ -101,6 +101,7 @@ export class ReadingState {
         ctx.setState(
           produce((draft: ReadingStateModel) => {
             draft.Passage.model.Content.passage = passage.passage;
+            draft.Passage.model.level = lvl;
             draft.Passage.model.Content.focusWordsIndex = passage.focusWordsIndex;
             draft.Passage.model.Content.done = false;
           }),
