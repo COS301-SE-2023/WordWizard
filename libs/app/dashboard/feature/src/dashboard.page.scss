@@ -6,6 +6,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  overflow: scroll;
 }
 
 .name {
@@ -29,6 +30,7 @@
   margin: 0;
   background-color: rgba($color: #000000, $alpha: 0.4);
   height: 100%;
+  overflow: scroll;
 }
 
 .settings {
@@ -163,8 +165,10 @@ ion-avatar img {
 .stage {
   width: 50vw;
   height: fit-content;
-  background-color: #861486;
+  // background-color:  rgba($color: #861486, $alpha: 0.6);
+  background-color:  rgba($color: #000000, $alpha: 0.6);
   border-radius: 10px;
+  border: solid white 1px;
   box-shadow: 0 0 10px black;
   text-shadow: -1px 1px 0 #000, 1px 1px 0 #000, 1px -1px 0 #000,
     -1px -1px 0 #000;
