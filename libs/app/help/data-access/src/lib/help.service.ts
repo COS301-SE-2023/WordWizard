@@ -11,7 +11,6 @@ export class HelpService {
   public help$ = this.helpSubject.asObservable();
 
   show(text: string[], audioSources: string[]) {
-    console.log('service');
     this.helpSubject.next({ show: true, text: text, audioSources: audioSources } as Help);
   }
 
