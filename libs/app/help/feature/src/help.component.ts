@@ -23,7 +23,6 @@ export class HelpComponent implements OnDestroy{
       this.currentMessage = 0;
       this.messages = help.text;
       this.show = help.show;
-      console.log(help.show)
       this.audioSources = help.audioSources;
       this.playAudio();
     });
