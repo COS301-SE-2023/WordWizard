@@ -44,6 +44,7 @@ export class HelpComponent implements OnDestroy{
     if(this.currentMessage >= this.messages.length){
       this.show = false;
       this.audio = null;
+      this.helpService.hide();
       this.closeHelp.emit();
       return;
     }
