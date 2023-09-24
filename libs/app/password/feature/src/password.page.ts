@@ -67,12 +67,17 @@ export class PasswordPage {
         this,this.presentToast("Invalid code", "danger");
       this.validationCode = '';
     } else {
-      this.passwordService.addPin(this.parent_email, '', this.password).subscribe((res) => {
-        if (res.status_code) {
-          this.store.dispatch(new SetPassword({ passcode: this.password}));
-          this.router.navigate(['/manage-children']);
-        }
-      });
+      if (this.password.length == 4 && this.password.indexOf(' ') < 0) {
+        this.passwordService.addPin(this.parent_email, '', this.password).subscribe((res) => {
+          if (res.status_code) {
+            this.store.dispatch(new SetPassword({ passcode: this.password}));
+            this.router.navigate(['/manage-children']);
+          }
+        });
+      }
+      else {
+        this.presentToast("Please enter a 4-digit PIN", "danger");
+      }
     }
   }
 
