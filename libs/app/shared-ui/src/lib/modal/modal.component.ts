@@ -28,7 +28,7 @@ export class ModalComponent implements OnInit {
       this.title = 'Achievement';
       if (
         this.badge.img ==
-        'https://ww-img-bckt.s3.amazonaws.com/ww-awards/Blankbadge.png'
+        'assets/img/Awards/Blankbadge.png'
       ) {
         this.badge.name = 'Locked';
       }
