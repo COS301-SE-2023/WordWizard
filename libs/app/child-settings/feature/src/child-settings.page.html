@@ -1,6 +1,14 @@
 <ww-loading/>
+<ww-header 
+title="Child Settings" 
+backRoute="/view-child" 
+[help]="true"
+[helpText]="helpText"
+[audioSources]="audioSources"
+[volumeChanger]="true"
+></ww-header>
 <ww-password [visible]="passwordSet" (correct)="deleteProfile()" (control)="this.passwordSet = false"/>
-<ion-content [scrollY]="false">
+<ion-content [scrollY]="true">
   <div class="header-container">
     <ion-grid>
       <ion-row>
@@ -12,13 +20,13 @@
             </div>
           </div>
         </ion-col>
-        <ion-col size="1">
+        <!-- <ion-col size="1">
           <ion-nav-link routerLink="/view-child">
             <div class="cancel">
               <ion-icon name="close-sharp"></ion-icon>
             </div>
           </ion-nav-link>
-        </ion-col>
+        </ion-col> -->
       </ion-row>
     </ion-grid>
   </div>
