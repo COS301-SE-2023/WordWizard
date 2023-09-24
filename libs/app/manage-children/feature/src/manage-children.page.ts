@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import {
   GetChildren,
   SetChild,
@@ -29,6 +29,7 @@ export class ManageChildrenPage {
   visible = false;
   passwordSet = false;
   selectedChild!: Child;
+  showInitialHelp = false;
 
 
   helpText: string[] = ['Welcome, press on the plus-button to add a child', 'You can sign out or delete your account, but be careful','If you want to read, navigate to your profile'];
@@ -45,10 +46,10 @@ export class ManageChildrenPage {
     private cookieService: CookieService,
     private loadingService: LoadingService,
     private passwordService: PasswordService,
+    private route: ActivatedRoute
   ) {
     loadingService.show();
     setTimeout(() => {
-
       this.store.dispatch(
         new GetChildren({
           parent_email: this.cookieService.get('email') || '',
@@ -58,7 +59,6 @@ export class ManageChildrenPage {
       this.Children$.subscribe((data) => {
         this.children = data;
       });
-
       this.passwordService.getPin(`${this.cookieService.get('email')}`).subscribe(
         (response) => {
           this.store.dispatch(new SetPassword({passcode: `${response}`}));
@@ -66,6 +66,9 @@ export class ManageChildrenPage {
       );
       loadingService.hide();
     }, 2000);
+    this.route.queryParams.subscribe(params => {
+      this.showInitialHelp =  params['first'].toLowerCase() === 'true' ? true : false;
+    });
   }
 
   setChild(child: Child) {
