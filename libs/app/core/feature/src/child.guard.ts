@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
+import { CanActivate, UrlTree, Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { catchError, switchMap } from 'rxjs/operators';
 import { Select } from '@ngxs/store';
@@ -10,7 +10,7 @@ import { ChildState, Child } from '@word-wizard/app/child/data-access';
 })
 export class ChildGuard implements CanActivate {
   @Select(ChildState.currentChild) currentChild$!: Observable<Child>;
-  canActivate(route: ActivatedRouteSnapshot,state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+  canActivate(): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     return this.currentChild$.pipe(
       switchMap((data) => {
         if (data._id !== '')

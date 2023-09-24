@@ -9,21 +9,27 @@ ion-content{
             background: #FFFAFA;
             border-radius: 20px;
             border: 3px solid #861486;
-
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-    
-            width: 349px;
-            height: 652px;
+            width: 90%;
+            height: 80vh;
             flex-shrink: 0;
+            .topic-container {
+                margin-top:5vh;
+            }
+            .topic-content {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100%;
+            }
             .add-btn{
-                width: 104px;
-                height: 33px;
+                width: 30vw;
+                height: 3.5vh;
                 flex-shrink: 0;
                 border-radius: 12px;
-                // border: 1px solid #070527;
                 --background: linear-gradient(180deg, #861486 0%, #070527 98.44%);
             }
             .btn-tpc{
@@ -32,7 +38,7 @@ ion-content{
             }
             .op-chip {
                 --color: #FFF;
-                width: 132px;
+                width: 40vw;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -42,9 +48,8 @@ ion-content{
                 border-radius: 30px;
                 border: 3px solid #070527;
                 background: #f8f8f8;
-                // box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
                 height: 3rem;
-                width: 19rem;
+                width: 80vw;
                 margin-top: 0.5rem;
                 margin-bottom: 1.3rem;
                 font-size: 1.5rem;
@@ -55,8 +60,8 @@ ion-content{
                 }
             }
             .selected-container{
-                width: 309px;
-                height: 267px;
+                width: 80vw;
+                height: 40vh;
                 flex-shrink: 0;
                 border-radius: 20px;
                 border: 3px solid #070527;
@@ -74,16 +79,15 @@ ion-content{
                     .sel-chip {
                         --background: #EC1919;
                         --color: #FFF;
-                        width: 132px;
+                        width: 50vw;
                         display: flex;
                         justify-content: center;
                         align-items: center;
                         box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-                        margin-top:15%;
-                        margin-bottom: 15%;
-                        width:150%;
+                        margin-top:10%;
+                        margin-bottom: 10%;
                         .close{
-                            margin-left: 35%;
+                            margin-left: 20vw;
                             color: #FFF;
                         }
 
@@ -94,14 +98,17 @@ ion-content{
         .text-container{
             color: #FFF;
             font-family: Inter;
-            font-size: 16px;
+            font-size: 1rem;
             font-style: normal;
             font-weight: 700;
             line-height: normal;
-            margin-top:20px;
-            width: 276px;
+            margin-top:1vh;
+            width: 90vw;
             height: 79px;
             flex-shrink: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
     }
 }
