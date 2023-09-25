@@ -30,8 +30,8 @@ export class ChildSettingsPage {
   passwordSet = false;
   @Select(ChildState.currentChild) currentChild$!: Observable<Child>;
 
-  helpText: string[] = ['Welcome, press on the plus-button to add a child', 'You can sign out or delete your account, but be careful','If you want to read, navigate to your profile'];
-  audioSources: string[] = ['assets/mp3/manage1.mp3', 'assets/mp3/manage2.mp3', 'assets/mp3/manage3.mp3'];
+  helpText: string[] = ["You can change your child's profile or delete their profile here"];
+  audioSources: string[] = ['assets/mp3/childsettings1.mp3'];
 
 
   constructor(
