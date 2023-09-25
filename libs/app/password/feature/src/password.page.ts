@@ -72,7 +72,7 @@ export class PasswordPage {
         this.passwordService.addPin(this.parent_email, '', this.password).subscribe((res) => {
           if (res.status_code) {
             this.store.dispatch(new SetPassword({ passcode: this.password}));
-            this.router.navigate(['/manage-children']);
+            this.router.navigate(['/manage-children'], {queryParams: {first: true}});
             this.presentToast("PIN successfully set!", "success");
           }
         });
