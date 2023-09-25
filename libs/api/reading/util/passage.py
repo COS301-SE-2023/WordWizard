@@ -7,8 +7,8 @@ api_key = os.getenv("OPEN_AI_KEY")
 openai.api_key = api_key
 
 def query_passage(query:str):
-    q = "Sentence: the wizards clean their toys.\nFocus Words: wizards, clean"
-    # q = query_chat(query)
+    # q = "Sentence: the wizards clean their toys.\nFocus Words: wizards, clean"
+    q = query_chat(query)
     return santise_string(q)
 
 def query_chat(query:str):
