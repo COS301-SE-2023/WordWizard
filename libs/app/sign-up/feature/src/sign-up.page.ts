@@ -60,9 +60,6 @@ export class SignUpPage {
           (response: any) => {
             this.submitted = true;
             this.code = response.code;
-            this.form.value.email = '';
-            this.form.value.password = '';
-            this.form.value.confirmPassword = '';
             this.form.value.acceptAgreement = false;
           },
           (error) => {
@@ -92,6 +89,7 @@ export class SignUpPage {
       this.auth.signUp(this.form.value.email.toLowerCase(), this.form.value.password).subscribe((res: any) => {
         this.cookieService.set("email", this.form.value.email.toLowerCase(), undefined, undefined, undefined, true, 'Strict');
         this.cookieService.set('authToken', res.access_token, undefined, undefined, undefined, true, 'Strict');
+        this.form.reset();
         this.router.navigate(['/password']);
       });
     }
