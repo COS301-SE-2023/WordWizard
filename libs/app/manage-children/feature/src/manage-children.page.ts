@@ -71,7 +71,8 @@ export class ManageChildrenPage {
     }, 2000);
 
     const routeSub = this.route.queryParams.subscribe(params => {
-      this.showInitialHelp =  params['first'].toLowerCase() === 'true' ? true : false;
+      if(params['first'])
+        this.showInitialHelp =  params['first'].toLowerCase() === 'true' ? true : false;
       if(this.showInitialHelp) {
         helpService.show(['Welcome to WordWizard, I am wizzy and I will guide you along your journey', 'If you need help with anything press on the menu button on the top right of the screen and then press on the question mark'], ['assets/mp3/first1.mp3', 'assets/mp3/first2.mp3']);
         routeSub.unsubscribe();
