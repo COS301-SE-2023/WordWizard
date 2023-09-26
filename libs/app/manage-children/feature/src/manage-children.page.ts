@@ -119,7 +119,7 @@ export class ManageChildrenPage {
   }
 
   deleteAccount() {
-    this.childService.deleteAccount(this.cookieService.get('email')).subscribe((data) => {
+    this.childService.deleteAccount().subscribe((data) => {
       if (data.status === 'success') {
         this.router.navigate(['/welcome']);
         this.cookieService.deleteAll();
