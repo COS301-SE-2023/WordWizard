@@ -7,9 +7,11 @@ from .Metrics import Metrics
 from .Child import Child
 
 class Rating:
-    def __init__(self, vcb, prtc):
+    def __init__(self, vcb, prtc, pref:str, level:int = 10):
         self.vcb = vcb
         self.prtc = prtc
+        self.pref = pref
+        self.level = level
         self.construct_dic()
         self.metrices = Metrics(self.syllables, self.phono_arr, self.prefixes, self.suffixes)
         self.child = Child(self.metrices, 10)
@@ -42,7 +44,8 @@ class Rating:
         for w in self.vcb:
             if isinstance(w, str):
                 pref,suff = get_prefixes_suffixes(w)
-                self.phono_dic[find_phonotactics(w)].add()
+                if find_phonotactics(w) != None:
+                    self.phono_dic[find_phonotactics(w)].add()
                 self.syllables[count_syllables(w)-1].add()
                 if pref:
                     self.prefixes[len(pref)].add(-1)
@@ -124,10 +127,15 @@ Now evaluate the following function, {self.get_function()}
 
 Your response should be in the follow format:
 
-Sentence: ...
-Focus Words: ...
+Sentence: ---Sentence---
+Focus Words: ---Focus Word 1---, ---Focus Word 2---
         """
+    # Fair
+    def get_length(self) -> int:
+        if self.level <= 3:
+            return self.level * 2
+        return self.level
     def __str__(self) -> str:
         return self.generatePrompt()
     def get_function(self) -> str:
-        return f"G(THEME='Wizards',COM={self.calc_met()}, LEN=5 , SYL={self.evaluateSyllables().numberOf}, PHONA='{self.evaluatePhonotactics().pattern}', PRE='{get_prefix(self.evaluatePrefixes().length)}', SUF='{get_suffix(self.evaluateSuffixes().length)}')"
+        return f"G(THEME='{self.pref}',COM={self.calc_met()}, LEN={self.get_length()} , SYL={self.evaluateSyllables().numberOf}, PHONA='{self.evaluatePhonotactics().pattern}', PRE='{get_prefix(self.evaluatePrefixes().length)}', SUF='{get_suffix(self.evaluateSuffixes().length)}')"

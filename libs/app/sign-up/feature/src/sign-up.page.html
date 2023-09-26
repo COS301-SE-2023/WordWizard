@@ -1,3 +1,4 @@
+<ww-loading/>
 <ion-content scrollY="false">
   <div id="container">
     <div class="welcome">
@@ -18,6 +19,10 @@
           <label htmlFor="age" class="input-lbl">Confirm Password:</label><br />
           <input type="password" id="age" formControlName="confirmPassword" />
         </div>
+        <div class="agreement">
+          <input type="checkbox" id="accept-agreement" formControlName="acceptAgreement" class="test1" />
+          <label htmlFor="accept-agreement">Accept <a routerLink="../user-agreement">Terms of Service</a></label><br />
+        </div>
         <div class="button-container">
           <ion-button type="submit">Sign Up</ion-button>
         </div>
@@ -25,10 +30,10 @@
       <ng-template #code>
         <form [formGroup]="pin" (ngSubmit)="submitPin()">
           <div class="button-container">
-            <p class="login">Check your email for a pin</p>
+            <p class="login">Check your email for a verification pin.</p>
           </div>
           <div>
-            <label htmlFor="name" class="input-lbl">Pin:</label><br />
+            <label htmlFor="name" class="input-lbl">Enter the pin:</label><br />
             <input type="text" id="name" formControlName="pin" />
           </div>
           <div class="button-container">
@@ -36,7 +41,7 @@
           </div>
         </form>
       </ng-template>
-      <div class="button-container">
+      <div >
         <p class="login">Already a user? <a routerLink="/login">Login</a></p>
       </div>
     </div>

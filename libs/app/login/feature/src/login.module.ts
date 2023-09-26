@@ -4,9 +4,10 @@ import { IonicModule } from '@ionic/angular';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginRouting } from './login.routing';
 import { LoginPage } from './login.page';
+import { LoadingModule } from '@word-wizard/app/loading/feature';
 
 @NgModule({
-  imports: [CommonModule, LoginRouting, IonicModule, ReactiveFormsModule],
+  imports: [CommonModule, LoginRouting, IonicModule, ReactiveFormsModule, LoadingModule],
   declarations: [LoginPage],
 })
 export class LoginModule {}

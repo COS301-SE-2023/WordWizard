@@ -33,7 +33,6 @@ export class ForgotPasswordPage {
   }
 
   submit() {
-    this.submitted = true;
     if(this.form.valid) {
       this.auth.forgotPassword(this.form.value.email).subscribe(
         // eslint-disable-next-line
@@ -41,6 +40,11 @@ export class ForgotPasswordPage {
           this.code = response.code;
         }
       );
+      this.submitted = true;
+    }
+    else 
+    {
+      this.presentToast('Please enter a valid email', 'danger');
     }
   }
 
@@ -50,15 +54,25 @@ export class ForgotPasswordPage {
   }
 
   submitPin() {
-    if(this.code === SHA256(this.pin.value.pin).toString()){
-      if(this.pin.value.password !== this.pin.value.confirmPassword) {
-        this.presentToast('Password does not match', 'danger')
-        return;
+    if (this.pin.valid) {
+      if(this.code === SHA256(this.pin.value.pin).toString()){
+        if(this.pin.value.password !== this.pin.value.confirmPassword) {
+          this.presentToast('Password does not match', 'danger')
+          return;
+        }
+        this.auth.resetPassword(this.form.value.email, this.pin.value.password, this.pin.value.pin).subscribe((res: any) => {
+          this.presentToast('Password reset successfully', 'success')
+          this.router.navigate(['/login']);
+        })
       }
-      this.auth.resetPassword(this.form.value.email, this.pin.value.password, this.pin.value.pin).subscribe((res: any) => {
-        this.presentToast('Password reset successfully', 'success')
-        this.router.navigate(['/login']);
-      })
+      else 
+      {
+        this.presentToast('Invalid code', 'danger');
+      }
+    }
+    else 
+    {
+      this.presentToast('Please fill out all the fields', 'danger');
     }
   }
 

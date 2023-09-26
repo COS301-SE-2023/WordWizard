@@ -53,7 +53,7 @@ export interface ReadingStateModel {
         Content: {
           passage: [],
           focusWordsIndex: [],
-          done: true,
+          done: false,
         },
         Word: {
           current: 0,
@@ -90,24 +90,16 @@ export class ReadingState {
         id: data._id,
         level: lvl,
       } as PassageRequest;
-      const defaultVal: Content = {
-        passage: [],
-        focusWordsIndex: [],
-        done: false,
-      };
-      const passage: Content =
-        (await this.readingService.getPassage(rqst).toPromise()) ?? defaultVal;
-      try {
+      this.readingService.getPassage(rqst).subscribe((data) => {
         ctx.setState(
           produce((draft: ReadingStateModel) => {
-            draft.Passage.model.Content.passage = passage.passage;
-            draft.Passage.model.Content.focusWordsIndex = passage.focusWordsIndex;
+            draft.Passage.model.Content.passage = data.passage;
+            draft.Passage.model.level = lvl;
+            draft.Passage.model.Content.focusWordsIndex = data.focusWordsIndex;
             draft.Passage.model.Content.done = false;
           }),
         );
-      } catch (err) {
-        console.log(err);
-      }
+      });
     }).unsubscribe();
   }
 
@@ -128,6 +120,8 @@ export class ReadingState {
         attemptsRemaining--;
         
         if (draft.Passage.model.Content.done) {
+          if(Word.attemptsRemaining != 0) 
+            Word.attemptsRemaining--;
           if(attemptsRemaining > 0)
             Word.attemptsRemaining = Word.attemptsRemaining - 1;
           if (attemptsRemaining > 0) {
@@ -149,12 +143,11 @@ export class ReadingState {
             currentWord.correct = false;
             Word.current++;
             Word.attemptsRemaining = 2;
-          } else {
+          } else
             Word.attemptsRemaining = Word.attemptsRemaining - 1;
-          }
 
           if (Word.current === focus.length) {
-            Word.attemptsRemaining = focus.length*2;
+            Word.attemptsRemaining = passage.length;
             draft.Passage.model.Content.done = true;
           }
         }

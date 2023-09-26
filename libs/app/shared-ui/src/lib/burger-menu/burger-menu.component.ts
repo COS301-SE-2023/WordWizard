@@ -33,17 +33,14 @@ export class BurgerMenuComponent {
   }
 
   toggleBackgroundMusic() {
-
-    if (this.audioLevel === 6) {
+    if (this.audioLevel === 6)
       this.audioLevel = 3;
-    } else if (this.audioLevel === 3) {
+    else if (this.audioLevel === 3)
       this.audioLevel = 0;
-    } else if (this.audioLevel === 0) {
+    else if (this.audioLevel === 0)
       this.audioLevel = 6;
-    }
+    localStorage.setItem('volume', `0.0${this.audioLevel.toString()}`);
     this.coreService.volumeChange((this.audioLevel / 100));
-
-    console.log(this.audioLevel + " is the new level");
   }
 
 

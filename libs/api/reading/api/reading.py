@@ -12,19 +12,23 @@ from ..util.passage import query_passage
 db = Database.getInstance().db
 router = APIRouter()
 
-def get_class(id:str):
+def get_class(id:str, level:int):
     practice = db['Practice'].find_one({'_id': ObjectId(id)},{'_id':0})
     vocab = db['Vocabulary'].find_one({'_id': ObjectId(id)},{'_id':0})
     child = db['Children'].find_one({'_id': ObjectId(id)},{'_id':0})
     pref = []
     if "preferences" in child:
         pref = child["preferences"]
-    return Rating(vocab["words"], practice["words"])
+    
+    chosen = ''
+    if len(pref) > 0:
+        chosen = random.choice(pref)
+    return Rating(vocab["words"], practice["words"], chosen, level)
 
 
 @router.post('/passage')
 def create_reading(reading: PassageRqst):
-    q = query_passage(get_class(reading.id).generatePrompt())
+    q = query_passage(get_class(reading.id, reading.level).generatePrompt())
     return q
 
 @router.post('/update-progress')
@@ -40,6 +44,9 @@ def update_progress(updtProgress: UpdateProgressRqst):
             if progress["level_scores"].get(str(updtProgress.progress.level)):
                 if updtProgress.progress.score > progress["level_scores"][str(updtProgress.progress.level)]:
                     progress["level_scores"][str(updtProgress.progress.level)] = updtProgress.progress.score
+
+            else: 
+                progress["level_scores"][str(updtProgress.progress.level)] = updtProgress.progress.score
         else:
             progress["level_scores"] = {str(updtProgress.progress.level): updtProgress.progress.score}
 
@@ -58,7 +65,6 @@ def update_progress(updtProgress: UpdateProgressRqst):
         # AVG score
         progress["average_score"] = 0
         for lvl in progress["level_scores"]:
-            # print(progress["level_scores"][lvl]) 
             progress["average_score"] += int(progress["level_scores"][lvl])
         if len(progress["level_scores"]) > 0:
             progress["average_score"] = progress["average_score"]/len(progress["level_scores"])
@@ -78,6 +84,14 @@ def update_progress(updtProgress: UpdateProgressRqst):
         }
         progress["progress_history"].append(newScore)
 
+
+        vocabulary_collection = db['Vocabulary']
+        vocabulary_Total = len(vocabulary_collection.find_one({'_id': ObjectId(updtProgress.child_id)})["words"])
+
+        practice_collection = db['Practice']
+        practice_Total = len(practice_collection.find_one({'_id': ObjectId(updtProgress.child_id)})["words"])
+
+
         # Awards
         awards = progress["awards"]
         lvlMaster = awards.get("Level Master")
@@ -93,11 +107,12 @@ def update_progress(updtProgress: UpdateProgressRqst):
         practiceEnth = awards.get("Practice Enthusiast")
         if practiceEnth and isinstance(practiceEnth, dict):
             for award_name, award_details in practiceEnth.items():
-                award_details['completed'] = True
+                if award_details["goal"] <= practice_Total:
+                    award_details['completed'] = True
         vocabBuilder = awards.get("Vocabulary Builder")
         if vocabBuilder and isinstance(vocabBuilder, dict):
             for award_name, award_details in vocabBuilder.items():
-                if award_details["goal"] <= progress["total_words"]:
+                if award_details["goal"] <= vocabulary_Total:
                     award_details["completed"] = True
         awards["Level Master"] = lvlMaster
         awards["Word Learner"] = wordLearner
@@ -106,10 +121,8 @@ def update_progress(updtProgress: UpdateProgressRqst):
         progress["awards"] = awards
         for word in updtProgress.progress.content:
             if word.correct:
-                # print(word.correct)
                 add_vocab(updtProgress.child_id, word.word)
             if not word.correct or word.correct == None:
-                # print(word.correct)
                 add_practice(updtProgress.child_id, word.word, updtProgress.progress.level)
         progress_collection.update_one({'_id': ObjectId(updtProgress.child_id)}, {"$set": progress})
         return {"status": "success"}
@@ -121,16 +134,7 @@ def add_practice(userID, word, level=1):
     pref = get_prefixes_suffixes(word)
     db["Practice"].update_one(
         {"_id": ObjectId(userID)},
-        {"$addToSet": {"words": 
-            {
-                "word": word,
-                "phonotactics": find_phonotactics(word),
-                "prefixes": pref[0],
-                "suffixes": pref[1],
-                "syllables": count_syllables(word),
-                "level": level
-            }
-        }},
+        {"$addToSet": {"words": word}},
         upsert=True
     )
     return True

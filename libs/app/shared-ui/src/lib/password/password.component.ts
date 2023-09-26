@@ -6,7 +6,6 @@ import { ChildState } from '@word-wizard/app/child/data-access';
 import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { PasswordService } from '@word-wizard/app/password/data-access';
-import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
   selector: 'ww-password',
@@ -27,7 +26,6 @@ export class PasswordComponent {
     private router: Router, 
     private toastController: ToastController,
     private passwordService: PasswordService,
-    private readonly auth: AuthService,
 
   ) {
     this.otpForm = this.fb.group({

@@ -10,7 +10,6 @@ import {
 } from '@word-wizard/app/child/data-access';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { AuthService } from '@auth0/auth0-angular';
 import { AddChildService } from '@word-wizard/app/add-child/data-access';
 import { AlertController } from '@ionic/angular';
 
@@ -31,9 +30,12 @@ export class ChildSettingsPage {
   passwordSet = false;
   @Select(ChildState.currentChild) currentChild$!: Observable<Child>;
 
+  helpText: string[] = ["You can change your child's profile or delete their profile here"];
+  audioSources: string[] = ['assets/mp3/childsettings1.mp3'];
+
+
   constructor(
     private readonly fb: FormBuilder,
-    private auth: AuthService,
     private addChildService: AddChildService,
     private childSettingsService: ChildSettingsService,
     private store: Store,

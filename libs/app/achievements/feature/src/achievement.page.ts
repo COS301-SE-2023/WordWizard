@@ -26,7 +26,7 @@ export class AchievementPage {
   open = false;
 
   childProfilePictureSrc =
-    'https://ww-img-bckt.s3.amazonaws.com/Dragon4-testProfile.png';
+    'assets/img/Awards/Blankbadge.png';
 
   awards: AwardSection[] = [];
   parentActive!: boolean;
@@ -44,7 +44,7 @@ export class AchievementPage {
     this.selectedAward = award;
     if (this.selectedAward.completed == false) {
       this.selectedAward.img =
-        'https://ww-img-bckt.s3.amazonaws.com/ww-awards/Blankbadge.png';
+        'assets/img/Awards/Blankbadge.png';
       this.selectedAward.name = 'Locked';
     } else {
       this.selectedAward.name = 'You completed a ' + category + ' award!';
@@ -85,7 +85,7 @@ export class AchievementPage {
             const badge: Badge = {
               img: award.completed
                 ? award.img
-                : 'https://ww-img-bucket.s3.amazonaws.com/ww-awards/Blankbadge.png',
+                : 'assets/img/Awards/Blankbadge.png',
               name: category.name,
               description: award.description,
             };

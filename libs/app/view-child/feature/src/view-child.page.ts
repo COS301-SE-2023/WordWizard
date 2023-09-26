@@ -22,13 +22,13 @@ export class ViewChildPage {
 
   child: Child = {
     _id: '0',
-    username: 'Martie',
+    username: '',
     age: 0,
     parent: '',
     vocab_list: '',
     practice_list: '',
     progress: '',
-    profile_photo: 'assets/img/item/cauldron-cropped.png',
+    profile_photo: '',
   };
 
   stage = 0;

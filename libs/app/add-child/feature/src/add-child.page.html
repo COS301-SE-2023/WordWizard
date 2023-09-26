@@ -59,15 +59,22 @@
       </div>
     </div>
     <div class="container">
-      <ion-button
-        class="add-picture"
-        (click)="controlModal()"
-        *ngIf="!selectedImage; else selected">
-        <ion-icon
-          [ngStyle]="{'font-size': '128px'}"
-          slot="icon-only"
-          src="assets/svg/add-outline.svg"></ion-icon>
-      </ion-button>
+      <ion-grid>
+        <ion-row>
+          <p class="title">Choose a profile picture</p>
+        </ion-row>
+        <ion-row class="plus-button-container">
+          <ion-button
+            class="add-picture"
+            (click)="controlModal()"
+            *ngIf="!selectedImage; else selected">
+            <ion-icon
+              [ngStyle]="{'font-size': '128px'}"
+              slot="icon-only"
+              src="assets/svg/add-outline.svg"></ion-icon>
+          </ion-button>
+        </ion-row>
+      </ion-grid>
       <ng-template #selected>
         <ion-avatar class="custom-avatar-button" (click)="controlModal()">
           <ion-img src="{{selectedImage}}" />
@@ -81,10 +88,6 @@
     <div>
       <label htmlFor="age">Age:</label><br />
       <input type="number" id="age" formControlName="age" class="test1" />
-    </div>
-    <div class="agreement">
-      <input type="checkbox" id="accept-agreement" formControlName="acceptAgreement" class="test1" />
-      <label htmlFor="accept-agreement">Accept <a routerLink="../user-agreement">Terms of Service</a></label><br />
     </div>
     <ion-button
       [disabled]="!form.valid || !selectedImage"

@@ -52,6 +52,7 @@
   </div>
   <div id="potion-container">
     <div id="attempts-container">
+      <ion-icon name="heart"></ion-icon>
       {{ getAttemptsRemaining$ | async  }}
     </div>
     <ww-progress-potion [percentage]="progressPercentage"></ww-progress-potion>

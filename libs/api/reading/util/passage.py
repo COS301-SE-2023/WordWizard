@@ -1,4 +1,5 @@
 import os
+import re
 from dotenv import load_dotenv
 import openai
 load_dotenv()
@@ -7,9 +8,9 @@ api_key = os.getenv("OPEN_AI_KEY")
 openai.api_key = api_key
 
 def query_passage(query:str):
-    q = "Sentence: The wizards subbed their toys.\nFocus Words: wizards, subbed"
-    # q = query_chat(query)
-    return santise_string(q)
+    q = query_chat(query)
+    sentence, focus = extract_info(q)
+    return santise_string(f"Sentence: {sentence}\nFocus Words: {focus}")
 
 def query_chat(query:str):
     response = openai.ChatCompletion.create(
@@ -28,3 +29,11 @@ def query_chat(query:str):
     )
     return response["choices"][0]["message"]["content"]
 
+def extract_info(input_string):
+    sentence_match = re.search(r"Sentence: (.*)", input_string)
+    focus_words_match = re.search(r"Focus Words: (.*)", input_string)
+
+    sentence = sentence_match.group(1).strip() if sentence_match else None
+    focus_words = focus_words_match.group(1).strip() if focus_words_match else None
+
+    return sentence, focus_words

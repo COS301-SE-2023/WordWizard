@@ -1,4 +1,5 @@
 <ww-loading/>
+<ww-help *ngIf="showInitialHelp"></ww-help>
 <ww-header title="Manage Children"
 backRoute=''
 settingsRoute="/password"
@@ -7,7 +8,7 @@ settingsRoute="/password"
 [helpText]="helpText"
 [audioSources]="audioSources"
 [volumeChanger]="true"/>
-<ion-content>
+<ion-content >
   <ww-password [visible]="passwordSet" (correct)="correctPin()" (control)="this.passwordSet = false"/>
   <div class="overlay-container" [class.hidden-overlay]="!visible">
     <div class="overlay">

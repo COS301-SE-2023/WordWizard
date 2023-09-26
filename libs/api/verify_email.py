@@ -18,7 +18,7 @@ def send(recipient_email, verification_code, msg=''):
       <body>
         <h2>Email Verification</h2>
         <p>Hello,</p>
-        <p style='color:red'>Please use the following verification code: <strong>{verification_code}</strong></p>
+        <p style='color:blue'>Please use the following verification code: <strong>{verification_code}</strong></p>
         <p>Thank you!</p>
       </body>
     </html>
@@ -37,7 +37,7 @@ def send(recipient_email, verification_code, msg=''):
     finally:
         server.quit()
 
-def generate_verification_code(length=6):
+def generate_verification_code(length=4):
   characters = string.digits
   verification_code = ''.join(random.choice(characters) for _ in range(length))
   return verification_code

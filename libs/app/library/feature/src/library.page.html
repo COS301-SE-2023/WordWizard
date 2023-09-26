@@ -10,7 +10,11 @@
       [audioSources]="audioSources"
       [volumeChanger]="true" />
     <ng-template #childActive>
-      <ww-header title="Library" [backRoute]="'../dashboard'" />
+      <ww-header title="Library" [backRoute]="'../dashboard'"
+      [help]="true"
+      [helpText]="helpText"
+      [audioSources]="audioSources"
+      [volumeChanger]="true"/>
     </ng-template>
     <ion-segment value="vocab" #toolbarSegment>
       <ion-segment-button value="vocab">
@@ -44,7 +48,7 @@
       ngClass="practice-list">
       <ion-grid *ngIf="hasPractice">
         <ion-row>
-          <ion-col *ngFor="let j of practice.words; let i = index" size="6">
+          <ion-col *ngFor="let j of practice?.words; let i = index" size="6">
             <ww-cauldron
               [vocab]="j"
               [number]="i"
