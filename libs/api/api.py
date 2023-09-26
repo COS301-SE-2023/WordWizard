@@ -109,6 +109,21 @@ async def verify_user(user: User):
 async def get_user(user: User = Depends(get_current_user)):
     return user
 
+@app.get('/delete')
+async def delete_user(user: User = Depends(get_current_user)):
+    try:
+        result = db["Parents"].find_one({"email": user["username"]})
+        for child in result["children"]:
+            db["Practice"].delete_one({"_id": child})
+            db["Vocabulary"].delete_one({"_id": child})
+            db["Progress"].delete_one({"_id": child})
+            db["Children"].delete_one({"_id": child})
+        db["Parents"].delete_one({"email": user["username"]})
+        db["user"].delete_one({"username": user["username"]})
+    except Exception as e:
+        return { "status" : "error" }
+    return { "status" : "success" }
+
 @app.post('/forgot')
 async def forgot_password(user: User):
     code = generate_verification_code()
