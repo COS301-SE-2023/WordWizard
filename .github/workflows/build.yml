@@ -18,12 +18,13 @@ jobs:
         run: |
           echo "MONGODB_CONNECTION_STRING=${{ secrets.MONGODB_CONNECTION_STRING }}" >> .env
           echo "WW_API_ENDPOINT=${{ secrets.WW_API_ENDPOINT }}" >> .env
-
+          echo "auth_username=${{ secrets.auth_username }}" >> cypress.env.json
+          echo "auth_password=${{ secrets.auth_password }}" >> cypress.env.json
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
           python-version: '3.10'
-      
+
       - name: Install python dependancies
         run: |
           python -m pip install --upgrade pip
@@ -47,7 +48,7 @@ jobs:
 
       - name: Build app prod
         run: npm run build:app:prod
-      
+
       - name: Upload codecov report
         uses: codecov/codecov-action@v3
         with:
