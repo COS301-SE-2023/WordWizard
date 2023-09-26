@@ -14,17 +14,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Create Directory
-        run: mkdir -p WordWizard/apps/word-wizard-e2e
-
       - name: Create .env file
         run: |
           echo "MONGODB_CONNECTION_STRING=${{ secrets.MONGODB_CONNECTION_STRING }}" >> .env
           echo "WW_API_ENDPOINT=${{ secrets.WW_API_ENDPOINT }}" >> .env
-          echo "{" >> WordWizard/apps/word-wizard-e2e/cypress.env.json
-          echo "  \"auth_username\": \"${{ secrets.auth_username }}\"," >> WordWizard/apps/word-wizard-e2e/cypress.env.json
-          echo "  \"auth_password\": \"${{ secrets.auth_password }}\"" >> WordWizard/apps/word-wizard-e2e/cypress.env.json
-          echo "}" >> WordWizard/apps/word-wizard-e2e/cypress.env.json
+
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
@@ -45,7 +39,7 @@ jobs:
         run: npm run lint
 
       - name: Run cypress
-        run: npm run test:e2e
+        run: nx run word-wizard-e2e:e2e --env auth_username=${{ secrets.auth_username }}, auth_password=${{ secrets.auth_password }}
 
       - name: Test
         working-directory: ./
