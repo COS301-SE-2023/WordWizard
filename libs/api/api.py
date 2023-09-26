@@ -15,7 +15,6 @@ from .add_child.api.add_child import router as add_child_router
 from .child.api.child import router as child_router
 from .achievements.api.achievements import router as achievements_router
 from .statistics.api.statistics import router as statistics_router
-from .parent.api.parent import router as parent_router
 from .pin.api.pin import router as pin_router
 from .verify_email import send, generate_verification_code
 from .deps import Database
@@ -173,5 +172,4 @@ app.include_router(add_child_router, prefix="/add-child", tags=["add_child"], de
 app.include_router(child_router, prefix="/child", tags=["child"], dependencies=[Depends(get_current_user)])
 app.include_router(achievements_router, prefix="/achievements", tags=["achievements"], dependencies=[Depends(get_current_user)])
 app.include_router(statistics_router, prefix="/statistics", tags=["statistics"], dependencies=[Depends(get_current_user)])
-app.include_router(parent_router, prefix="/parent", tags=["parent"], dependencies=[Depends(get_current_user)])
 app.include_router(pin_router, prefix="/pin", tags=["pin"])
