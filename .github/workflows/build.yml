@@ -18,8 +18,10 @@ jobs:
         run: |
           echo "MONGODB_CONNECTION_STRING=${{ secrets.MONGODB_CONNECTION_STRING }}" >> .env
           echo "WW_API_ENDPOINT=${{ secrets.WW_API_ENDPOINT }}" >> .env
-          echo "auth_username=${{ secrets.auth_username }}" >> cypress.env.json
-          echo "auth_password=${{ secrets.auth_password }}" >> cypress.env.json
+          echo "{" >> WordWizard/apps/word-wizard-e2e/cypress.env.json
+          echo "  \"auth_username\": \"${{ secrets.auth_username }}\"," >> WordWizard/apps/word-wizard-e2e/cypress.env.json
+          echo "  \"auth_password\": \"${{ secrets.auth_password }}\"" >> WordWizard/apps/word-wizard-e2e/cypress.env.json
+          echo "}" >> WordWizard/apps/word-wizard-e2e/cypress.env.json
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
