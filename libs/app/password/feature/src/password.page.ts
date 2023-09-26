@@ -35,10 +35,10 @@ export class PasswordPage {
     ) {
     this.passcode$.subscribe((passcode) => {
       if (passcode === '') {
-        this.title = 'Set Passcode';
+        this.title = 'Set PIN';
         this.back = '';
       } else {
-        this.title = 'Change Passcode';
+        this.title = 'Change PIN';
         this.change = true;
         this.passwordService.updatePin().subscribe((res: any) => {
           this.code = res.code;
@@ -65,7 +65,7 @@ export class PasswordPage {
         });
         this.password = '';
       } else
-        this,this.presentToast("Invalid code", "danger");
+        this,this.presentToast("Invalid PIN", "danger");
       this.validationCode = '';
     } else {
       if (this.password.length == 4 && this.password.indexOf(' ') < 0) {
