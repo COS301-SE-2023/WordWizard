@@ -8,9 +8,15 @@ api_key = os.getenv("OPEN_AI_KEY")
 openai.api_key = api_key
 
 def query_passage(query:str):
-    q = query_chat(query)
+    # q = query_chat(query)
+    q = """
+    Sentence: The first thing I do when I get home is take off my shoes.\n
+    Focus Words: take, off
+"""
     sentence, focus = extract_info(q)
     return santise_string(f"Sentence: {sentence}\nFocus Words: {focus}")
+    
+    # return santise_string(f"Sentence: {sentence}\nFocus Words: {focus}")
 
 def query_chat(query:str):
     response = openai.ChatCompletion.create(

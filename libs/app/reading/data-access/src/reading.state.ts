@@ -120,11 +120,8 @@ export class ReadingState {
         attemptsRemaining--;
         
         if (draft.Passage.model.Content.done) {
-          if(Word.attemptsRemaining != 0) 
-            Word.attemptsRemaining--;
-          if(attemptsRemaining > 0)
-            Word.attemptsRemaining = Word.attemptsRemaining - 1;
-          if (attemptsRemaining > 0) {
+          Word.attemptsRemaining--;
+          if (attemptsRemaining >= 0) {
             passage.forEach((word) => {
               if (word.word.toLowerCase() === payload.newAttempt.toLowerCase())
                 word.correct = true;
