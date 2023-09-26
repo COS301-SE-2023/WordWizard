@@ -22,7 +22,7 @@ export class PreferencesPage {
   @Select(ChildState.currentChild) currentChild$!: Observable<Child>;
   options:preferences[] = [];
   chosenOption:preferences[] = [];
-  colors = ["#FFBF00", "#FFD700", "#FF6347", "#FF4500", "#FF8C00", "#FF7F50", "#FF69B4", "#FF1493", "#FF00FF", "#FF00FF"]
+  colors = ["#EC1919", "#197AEC", "#36EC19", "#EC7E19", "#FF03B8",]
 
   input = "";
 
