@@ -172,4 +172,4 @@ app.include_router(add_child_router, prefix="/add-child", tags=["add_child"], de
 app.include_router(child_router, prefix="/child", tags=["child"], dependencies=[Depends(get_current_user)])
 app.include_router(achievements_router, prefix="/achievements", tags=["achievements"], dependencies=[Depends(get_current_user)])
 app.include_router(statistics_router, prefix="/statistics", tags=["statistics"], dependencies=[Depends(get_current_user)])
-app.include_router(pin_router, prefix="/pin", tags=["pin"])
+app.include_router(pin_router, prefix="/pin", tags=["pin"], dependencies=[Depends(get_current_user)])
