@@ -34,7 +34,7 @@ def santise_string(response: str):
     sentence_arr = sentence.split(" ")
     focus_words = sec[1].split(":")[1].strip()
     focuse_arr = focus_words.split(",")
-    words = [Word(word=word, imageURL="img", correct=None) for word in sentence_arr]
+    words = [Word(word=word.lower(), imageURL="img", correct=None) for word in sentence_arr]
     return_arr = []
     for w in focuse_arr:
         return_arr.append(find_word_index(words, w.strip()))

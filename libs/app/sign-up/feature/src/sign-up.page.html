@@ -19,6 +19,10 @@
           <label htmlFor="age" class="input-lbl">Confirm Password:</label><br />
           <input type="password" id="age" formControlName="confirmPassword" />
         </div>
+        <div class="agreement">
+          <input type="checkbox" id="accept-agreement" formControlName="acceptAgreement" class="test1" />
+          <label htmlFor="accept-agreement">Accept <a routerLink="../user-agreement">Terms of Service</a></label><br />
+        </div>
         <div class="button-container">
           <ion-button type="submit">Sign Up</ion-button>
         </div>

@@ -19,6 +19,22 @@
       
 
       form {
+        .agreement {
+          display: flex;
+          justify-content: center;
+          text-align: center;
+          align-content: center;
+        
+          label {
+            height: fit-content;
+            margin-top: 1.2rem;
+            margin-left: 1rem;
+          }
+        }
+        
+        #accept-agreement {
+          width: 3rem;
+        }
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -51,7 +67,7 @@
 
       width: 20rem;
       background-color: white;
-      height: 33rem;
+      height: 39rem;
       border-radius: 1.8rem;
       border: 3px solid #070527;
       display: flex;
@@ -67,7 +83,7 @@
       }
       .hat {
         position: absolute;
-        top: -30%;
+        top: -26%;
         left: 50%;
         transform: translate(3%);
         img {

@@ -116,6 +116,7 @@ export class ReadingPage {
         this.store.dispatch(new MakeAttempt({ newAttempt: '' }));
       }
     } else {
+      // console.log("")
       this.practice.passage.every((word) => {
         if (words.includes(word.word.toLowerCase())) {
           this.triggerConfetti();

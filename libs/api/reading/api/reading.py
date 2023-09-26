@@ -12,19 +12,23 @@ from ..util.passage import query_passage
 db = Database.getInstance().db
 router = APIRouter()
 
-def get_class(id:str):
+def get_class(id:str, level:int):
     practice = db['Practice'].find_one({'_id': ObjectId(id)},{'_id':0})
     vocab = db['Vocabulary'].find_one({'_id': ObjectId(id)},{'_id':0})
     child = db['Children'].find_one({'_id': ObjectId(id)},{'_id':0})
     pref = []
     if "preferences" in child:
         pref = child["preferences"]
-    return Rating(vocab["words"], practice["words"])
+    
+    chosen = ''
+    if len(pref) > 0:
+        chosen = random.choice(pref)
+    return Rating(vocab["words"], practice["words"], chosen, level)
 
 
 @router.post('/passage')
 def create_reading(reading: PassageRqst):
-    q = query_passage(get_class(reading.id).generatePrompt())
+    q = query_passage(get_class(reading.id, reading.level).generatePrompt())
     return q
 
 @router.post('/update-progress')
