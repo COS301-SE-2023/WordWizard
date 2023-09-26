@@ -106,9 +106,12 @@ label {
   }
 }
 .hidden-overlay {
-  // animation: fadeOut 1s ease-in forwards;
   display: none;
 }
+.close-icon {
+  color: black !important;
+}
+
 .close {
   display: flex;
   justify-content: flex-end;
@@ -201,8 +204,6 @@ label {
   align-content: center;
 
   label {
-    // text-align: center;
-    // align-content: center;
     height: fit-content;
     margin-top: 1.2rem;
     margin-left: 1rem;
@@ -213,3 +214,6 @@ label {
   width: 3rem;
 }
 
+.title {
+  color: white;
+}
