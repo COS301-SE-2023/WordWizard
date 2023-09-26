@@ -39,7 +39,7 @@ jobs:
         run: npm run lint
 
       - name: Run cypress
-        run: npm nx run word-wizard-e2e:e2e --env auth_username=${{ secrets.auth_username }}, auth_password=${{ secrets.auth_password }}
+        run: npx nx run word-wizard-e2e:e2e --env auth_username=${{ secrets.auth_username }}, auth_password=${{ secrets.auth_password }}
 
       - name: Test
         working-directory: ./
