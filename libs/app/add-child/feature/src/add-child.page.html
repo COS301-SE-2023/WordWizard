@@ -61,17 +61,14 @@
     <div class="container">
       <ion-grid>
         <ion-row>
-          <p class="title">Choose a profile picture</p>
+          <p class="title"> </p>
         </ion-row>
         <ion-row class="plus-button-container">
           <ion-button
             class="add-picture"
             (click)="controlModal()"
             *ngIf="!selectedImage; else selected">
-            <ion-icon
-              [ngStyle]="{'font-size': '128px'}"
-              slot="icon-only"
-              src="assets/svg/add-outline.svg"></ion-icon>
+            <ion-icon  [ngStyle]="{'font-size': '120px'}" src="assets/svg/person-outline.svg"></ion-icon>
           </ion-button>
         </ion-row>
       </ion-grid>

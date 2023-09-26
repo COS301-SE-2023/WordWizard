@@ -19,6 +19,7 @@ export class PasswordPage {
   parent_email = '';
   back = "../manage-children";
   title = 'Set Password';
+  codeSent = false;
 
   // Pin logic for stuff
   code = '12345';
@@ -40,9 +41,9 @@ export class PasswordPage {
       } else {
         this.title = 'Change Passcode';
         this.change = true;
-        this.passwordService.updatePin().subscribe((res: any) => {
-          this.code = res.code;
-        })
+        // this.passwordService.updatePin().subscribe((res: any) => {
+        //   this.code = res.code;
+        // })
       }
     });
     this.parent_email = cookieService.get('email');
@@ -90,5 +91,12 @@ export class PasswordPage {
       color: color,
     });
     toast.present();
+  }
+
+  async changePassword() {
+    this.passwordService.updatePin().subscribe((res: any) => {
+      this.code = res.code;
+      this.codeSent = true;
+    });
   }
 }

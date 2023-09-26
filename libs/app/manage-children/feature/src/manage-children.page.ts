@@ -32,6 +32,7 @@ export class ManageChildrenPage {
   selectedChild!: Child;
   showInitialHelp = false;
   helpSub: Subscription;
+  wantDelete = false;
 
 
   helpText: string[] = ['Welcome, press on the plus-button to add a child', 'You can sign out or delete your account, but be careful','If you want to read, navigate to your profile'];
@@ -152,7 +153,8 @@ export class ManageChildrenPage {
         {
           text: 'OK',
           handler: () => {
-            this.deleteAccount();
+            this.wantDelete = true;
+            this.passwordSet = true;
           },
         },
       ],
@@ -166,6 +168,9 @@ export class ManageChildrenPage {
 
   correctPin() {
     this.passwordSet = false;
+    if (this.wantDelete) {
+      this.deleteAccount();
+    }
     if (this.parentActive) {
       this.router.navigate(['/view-child']);
     }
@@ -173,4 +178,5 @@ export class ManageChildrenPage {
       this.router.navigate(['/dashboard']);
     }
   }
+
 }
