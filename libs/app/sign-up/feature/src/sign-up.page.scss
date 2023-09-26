@@ -24,17 +24,26 @@
           justify-content: center;
           text-align: center;
           align-content: center;
+          color: black;
+          font-size: large;
+          font-family: Inter;
         
           label {
             height: fit-content;
             margin-top: 1.2rem;
             margin-left: 1rem;
           }
+
+          #accept-agreement {
+            width: 3rem;
+            color: white;
+            border: #000 solid 1px;
+            background-color: white !important;
+            accent-color: #070527;
+          }
         }
         
-        #accept-agreement {
-          width: 3rem;
-        }
+        
         display: flex;
         flex-direction: column;
         align-items: center;
