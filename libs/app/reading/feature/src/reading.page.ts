@@ -47,6 +47,8 @@ export class ReadingPage {
   sentence = '';
   font = false;
 
+  attemptsRemaining!: number;
+
   helpText: string[] = ['Click and hold the microphone to speak', 'Click on the speaker to hear the word', 'Your progress is shown in the potion bottle and the amount of attempts you have left is shown in the top left corner'];
   audioSources: string[] = ['assets/mp3/reading1.mp3', 'assets/mp3/reading2.mp3', 'assets/mp3/reading3.mp3'];
 
@@ -58,6 +60,9 @@ export class ReadingPage {
     });
     this.getCurrent$.subscribe((data) => {
       this.currentWord = data;
+    });
+    this.getAttemptsRemaining$.subscribe((data) => {
+      this.attemptsRemaining = data;
     });
     this.readingState$.subscribe((data) => {
       this.practice = data;
