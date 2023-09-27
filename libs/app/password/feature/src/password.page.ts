@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { PasswordService } from '@word-wizard/app/password/data-access';
 import { ChildState, Child, SetPassword } from '@word-wizard/app/child/data-access';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
 import { ToastController } from '@ionic/angular';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'word-wizard-password',
@@ -20,8 +20,6 @@ export class PasswordPage {
   back = "../manage-children";
   title = 'Set Password';
   codeSent = false;
-
-  // Pin logic for stuff
   code = '12345';
   change = false;
 
@@ -33,18 +31,21 @@ export class PasswordPage {
     private cookieService: CookieService,
     private store: Store,
     public toastController: ToastController,
+    private route: ActivatedRoute,
     ) {
     this.passcode$.subscribe((passcode) => {
-      if (passcode === '') {
-        this.title = 'Set Passcode';
-        this.back = '';
-      } else {
-        this.title = 'Change Passcode';
-        this.change = true;
-        // this.passwordService.updatePin().subscribe((res: any) => {
-        //   this.code = res.code;
-        // })
-      }
+      this.route.queryParams.subscribe(params => {
+        if (params['first']) {
+          this.title = 'Set Passcode';
+          this.back = '';
+        } else {
+          this.title = 'Change Passcode';
+          this.change = true;
+          this.passwordService.updatePin().subscribe((res: any) => {
+            this.code = res.code;
+          })
+        }
+      });
     });
     this.parent_email = cookieService.get('email');
   }

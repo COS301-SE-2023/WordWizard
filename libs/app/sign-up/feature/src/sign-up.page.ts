@@ -90,7 +90,7 @@ export class SignUpPage {
         this.cookieService.set("email", this.form.value.email.toLowerCase(), undefined, undefined, undefined, true, 'Strict');
         this.cookieService.set('authToken', res.access_token, undefined, undefined, undefined, true, 'Strict');
         this.form.reset();
-        this.router.navigate(['/password']);
+        this.router.navigate(['/password'],{queryParams: {first: true}});
       });
     }
     else
