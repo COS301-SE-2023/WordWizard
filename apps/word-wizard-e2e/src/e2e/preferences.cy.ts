@@ -17,15 +17,16 @@ describe('Preferences', () => {
 
       cy.wait(3000);
       cy.get('button.circle').first().click();
-      cy.get('.continueChild').first().click();
+      cy.get('.continueParent').first().click();
       cy.get("#otp1").type('1');
       cy.get("#otp2").type('2');
       cy.get("#otp3").type('3');
       cy.get("#otp4").type('4');
+      cy.get(".trophy").last().click();
     });
 
 
     it('should redirect to add-child', () => {
-        cy.url().should('equal', 'http://localhost:4200/dashboard');   
+        cy.url().should('equal', 'http://localhost:4200/preferences');   
     });
 });
