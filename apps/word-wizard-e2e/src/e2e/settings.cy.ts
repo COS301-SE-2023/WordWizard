@@ -14,7 +14,7 @@ describe('word-wizard/settings', () => {
     cy.get('input#age').type(Cypress.env('auth_password'), { log: false });
     cy.get('#login-button').click({ force: true });
 
-    cy.wait(3000);
+    cy.wait(5000);
     cy.get('button.circle').first().click();
     cy.get('.continueParent').first().click();
     cy.get("#otp1").type('1');
