@@ -62,10 +62,7 @@ def test_edit_child():
 
 
 def test_delete_child():
-    sample_child_id = "65087dc330bd3697ca68e1a6"  # Replace with a valid child ID
-
-    # Simulate a successful deletion using the mock function
-    # You can customize the return value to simulate different scenarios
+    sample_child_id = "65087dc330bd3697ca68e1a6"
     mock_delete_child_from_db_result = {"status": "success"}
     app.dependency_overrides[delete] = lambda: mock_delete_child_from_db_result
 
@@ -76,5 +73,4 @@ def test_delete_child():
 
 
 def mock_delete_child_from_db(child_id):
-    # Simulate the deletion process (e.g., marking as deleted)
     return {"status": "success"}

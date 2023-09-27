@@ -14,8 +14,6 @@ class UpdateRqst(BaseModel):
     userID: str
     word: str
 
-
-# Classes for returning data to client
 class Word:
     def __init__(self, word: str, img: str):
         self.word = word
