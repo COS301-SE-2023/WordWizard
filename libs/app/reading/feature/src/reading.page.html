@@ -51,10 +51,16 @@
       (change)="updateFont($event)" />
   </div>
   <div id="potion-container">
-    <div id="attempts-container">
+    <div id="attempts-container" *ngIf="attemptsRemaining >= 0; else zero">
       <ion-icon name="heart"></ion-icon>
-      {{ getAttemptsRemaining$ | async  }}
+      {{ attemptsRemaining }}
     </div>
+    <ng-template #zero>
+      <div id="attempts-container">
+        <ion-icon name="heart"></ion-icon>
+        0
+      </div>
+    </ng-template>
     <ww-progress-potion [percentage]="progressPercentage"></ww-progress-potion>
     <div></div>
   </div>

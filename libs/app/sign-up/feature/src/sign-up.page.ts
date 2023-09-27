@@ -74,7 +74,7 @@ export class SignUpPage {
       if(this.form.get('password')?.hasError('invalidPassword'))
         this.presentCustomToast('Password must include at least one uppercase letter, one lowercase letter, one number, and one special character.', 'danger');
       else
-        this.presentCustomToast('Please fill in all the fields correctly', 'danger');
+        this.presentCustomToast('Please ensure you have filled in all the fields', 'danger');
     }
   }
 
@@ -90,7 +90,7 @@ export class SignUpPage {
         this.cookieService.set("email", this.form.value.email.toLowerCase(), undefined, undefined, undefined, true, 'Strict');
         this.cookieService.set('authToken', res.access_token, undefined, undefined, undefined, true, 'Strict');
         this.form.reset();
-        this.router.navigate(['/password']);
+        this.router.navigate(['/password'],{queryParams: {first: true}});
       });
     }
     else
@@ -100,7 +100,7 @@ export class SignUpPage {
   async presentCustomToast(msg: string, color: string) {
     const toast = await this.toastController.create({
       message: msg,
-      duration: 2000,
+      duration: 5000,
       color: color,
     });
     toast.present();
