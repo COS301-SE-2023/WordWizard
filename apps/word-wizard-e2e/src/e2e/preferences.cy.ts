@@ -14,33 +14,18 @@ describe('Preferences', () => {
       cy.get('input#name').type(Cypress.env('auth_username'));
       cy.get('input#age').type(Cypress.env('auth_password'), { log: false });
       cy.get('#login-button').click({ force: true });
+
+      cy.wait(3000);
+      cy.get('button.circle').first().click();
+      cy.get('.continueChild').first().click();
+      cy.get("#otp1").type('1');
+      cy.get("#otp2").type('2');
+      cy.get("#otp3").type('3');
+      cy.get("#otp4").type('4');
     });
 
-    it('should visit manage-children', () => {
-        cy.visit('/manage-children');
-        cy.url().should('equal', 'http://localhost:4200/manage-children');
+
+    it('should redirect to add-child', () => {
+        cy.url().should('equal', 'http://localhost:4200/dashboard');   
     });
-    
-    // it('should select a child and redirect to dashboard', () => {
-    //     cy.get('.circle')
-    //     .first()
-    //     .then(($btn) => {
-    //         if ($btn.text() === 'Add Child') {
-    //         cy.log('no existing children');
-    //         } else {
-    //         cy.visit('/manage-children');
-    //         cy.get('.circle').first().click();
-    
-    //         cy.get('.overlay').should('be.visible');
-    //         cy.get('.continueChild').click();
-    //         cy.url().should('equal', 'http://localhost:4200/dashboard');
-    //         }
-    //     });
-    // });
-    
-    // it('should redirect to add-child', () => {
-    //     cy.visit('/manage-children');
-    //     cy.get('button').last().click();
-    //     cy.url().should('equal', 'http://localhost:4200/add-child');
-    // });
 });
