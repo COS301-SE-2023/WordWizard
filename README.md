@@ -37,7 +37,7 @@ The system is designed to adapt to each user's level of proficiency and learning
 
 
 ## Usability Questionnaire
-- [[COS 301 Usability Questionnaire_ WordWizard.pdf](https://github.com/COS301-SE-2023/WordWizard/files/12221610/COS.301.Usability.Questionnaire_.WordWizard.pdf)](https://forms.gle/K3nGGmNZEACYu6j4A)
+- (https://forms.gle/K3nGGmNZEACYu6j4A)
 
 
 # Demos:
