@@ -8,8 +8,14 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ['./welcome.page.scss'],
 })
 export class WelcomePage {
-  constructor(private readonly router: Router, private readonly cookieService: CookieService) {
-    if(this.cookieService.get('email') && this.cookieService.get('authToken')) {
+  constructor(
+    private readonly router: Router,
+    private readonly cookieService: CookieService,
+  ) {
+    if (
+      this.cookieService.get('email') &&
+      this.cookieService.get('authToken')
+    ) {
       this.router.navigate(['/manage-children']);
     }
   }

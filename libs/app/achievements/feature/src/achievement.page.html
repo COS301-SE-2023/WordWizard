@@ -8,11 +8,13 @@
   [audioSources]="audioSources"
   [volumeChanger]="true" />
 <ng-template #childActive>
-  <ww-header title="Magical Treasures" [backRoute]="'../dashboard'"
-  [help]="true"
-  [helpText]="helpText"
-  [audioSources]="audioSources"
-  [volumeChanger]="true" />
+  <ww-header
+    title="Magical Treasures"
+    [backRoute]="'../dashboard'"
+    [help]="true"
+    [helpText]="helpText"
+    [audioSources]="audioSources"
+    [volumeChanger]="true" />
 </ng-template>
 <ion-content [scrollY]="false" [scrollX]="false">
   <div class="page-container">
@@ -43,6 +45,5 @@
       [isModalOpen]="open"
       (close)="open=false"
       [badge]="selectedAward"></ww-modal>
-
   </div>
 </ion-content>

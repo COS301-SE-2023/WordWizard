@@ -21,7 +21,7 @@ export class CauldronComponent {
     const textArray = text.split(' ');
     textArray.forEach((word) => {
       if (word.toLocaleLowerCase() === this.vocab.word.toLocaleLowerCase()) {
-        this,this.triggerConfetti();
+        this, this.triggerConfetti();
         this.textChanged.emit(word);
         modal.dismiss();
       }

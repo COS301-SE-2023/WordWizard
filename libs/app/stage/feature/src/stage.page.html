@@ -1,10 +1,12 @@
 <ww-loading></ww-loading>
 <ion-content [scrollY]="false">
-  <ww-header title="Stages" backRoute="../dashboard"
-  [help]="true"
-  [helpText]="helpText"
-  [audioSources]="audioSources"
-  [volumeChanger]="true" />
+  <ww-header
+    title="Stages"
+    backRoute="../dashboard"
+    [help]="true"
+    [helpText]="helpText"
+    [audioSources]="audioSources"
+    [volumeChanger]="true" />
   <div class="stage-container">
     <ww-lesson-coin [coins]="coins" (coinClicked)="levelSet($event)" />
   </div>

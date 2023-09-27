@@ -8,7 +8,14 @@ import { FormsModule } from '@angular/forms';
 import { PreferencesService } from '@word-wizard/app/preferences/data-access';
 
 @NgModule({
-  imports: [CommonModule, PreferencesRouting, HeaderModule, ButtonModule, IonicModule, FormsModule],
+  imports: [
+    CommonModule,
+    PreferencesRouting,
+    HeaderModule,
+    ButtonModule,
+    IonicModule,
+    FormsModule,
+  ],
   declarations: [PreferencesPage],
   providers: [PreferencesService],
 })

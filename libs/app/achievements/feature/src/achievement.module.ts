@@ -17,7 +17,7 @@ import { LoadingModule } from '@word-wizard/app/loading/feature';
     AchievementRouting,
     SharedUiModule,
     HttpClientModule,
-    LoadingModule
+    LoadingModule,
   ],
   declarations: [AchievementPage],
   providers: [AchievementService],

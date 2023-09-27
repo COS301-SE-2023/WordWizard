@@ -17,10 +17,10 @@ describe('word-wizard/view-child', () => {
     cy.wait(5000);
     cy.get('button.circle').first().click();
     cy.get('.continueParent').first().click();
-    cy.get("#otp1").type('1');
-    cy.get("#otp2").type('2');
-    cy.get("#otp3").type('3');
-    cy.get("#otp4").type('4');
+    cy.get('#otp1').type('1');
+    cy.get('#otp2').type('2');
+    cy.get('#otp3').type('3');
+    cy.get('#otp4').type('4');
   });
 
   it('should load the view-child page', () => {
@@ -28,8 +28,8 @@ describe('word-wizard/view-child', () => {
   });
 
   it('should navigate to the Library page when the Library button is clicked', () => {
-        cy.get('.spellbook').first().click();
-        cy.url().should('include', '/library');
+    cy.get('.spellbook').first().click();
+    cy.url().should('include', '/library');
   });
 
   it('should navigate to settings page when the settings button is clicked', () => {

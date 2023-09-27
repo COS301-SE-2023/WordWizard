@@ -3,7 +3,9 @@ import tempfile
 from fastapi.testclient import TestClient
 from ..util.speech_models import AudioRqst
 from ...test_api import app
+
 client = TestClient(app)
+
 
 def test_text_to_speech():
     rqst = AudioRqst(text="Hello, world!")
@@ -14,6 +16,7 @@ def test_text_to_speech():
         f.write(response.content)
         f.flush()
         assert os.path.getsize(f.name) > 0
+
 
 def test_speech_to_text():
     with open("tests/test_audio.wav", "rb") as f:

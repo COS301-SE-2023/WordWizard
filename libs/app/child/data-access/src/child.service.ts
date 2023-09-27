@@ -7,9 +7,7 @@ import { Child, DeleteAccountRsps } from './interfaces/child.interfaces';
   providedIn: 'root',
 })
 export class ChildService {
-  constructor(
-    private readonly http: HttpClient,
-  ) {}
+  constructor(private readonly http: HttpClient) {}
   getChildren(email: string, name: string) {
     const request: GetChildrenRqst = {
       parent_email: email,
@@ -17,12 +15,14 @@ export class ChildService {
     };
 
     const cookies = document.cookie.split('; ');
-    const tokenCookie = cookies.find(cookie => cookie.startsWith('authToken='));
+    const tokenCookie = cookies.find((cookie) =>
+      cookie.startsWith('authToken='),
+    );
     const token = tokenCookie ? tokenCookie.split('=')[1] : null;
 
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     });
     return this.http.post<Child[]>(
       `${process.env['WW_API_ENDPOINT']}/child`,
@@ -33,12 +33,14 @@ export class ChildService {
 
   deleteAccount() {
     const cookies = document.cookie.split('; ');
-    const tokenCookie = cookies.find(cookie => cookie.startsWith('authToken='));
+    const tokenCookie = cookies.find((cookie) =>
+      cookie.startsWith('authToken='),
+    );
     const token = tokenCookie ? tokenCookie.split('=')[1] : null;
 
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     });
     return this.http.get<DeleteAccountRsps>(
       `${process.env['WW_API_ENDPOINT']}/delete`,

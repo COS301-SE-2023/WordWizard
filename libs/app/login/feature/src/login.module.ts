@@ -7,7 +7,13 @@ import { LoginPage } from './login.page';
 import { LoadingModule } from '@word-wizard/app/loading/feature';
 
 @NgModule({
-  imports: [CommonModule, LoginRouting, IonicModule, ReactiveFormsModule, LoadingModule],
+  imports: [
+    CommonModule,
+    LoginRouting,
+    IonicModule,
+    ReactiveFormsModule,
+    LoadingModule,
+  ],
   declarations: [LoginPage],
 })
 export class LoginModule {}

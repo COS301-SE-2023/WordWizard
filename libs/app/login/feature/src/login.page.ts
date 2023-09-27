@@ -13,8 +13,8 @@ import { ToastController } from '@ionic/angular';
 export class LoginPage {
   form!: FormGroup;
   constructor(
-    private readonly fb: FormBuilder, 
-    private readonly auth: AuthService, 
+    private readonly fb: FormBuilder,
+    private readonly auth: AuthService,
     private readonly router: Router,
     private readonly cookieService: CookieService,
     public toastController: ToastController,
@@ -26,21 +26,39 @@ export class LoginPage {
   }
 
   submit() {
-    this.auth.login(this.form.value.email.toLowerCase(), this.form.value.password).subscribe(
-      // eslint-disable-next-line
-      (response: any) => {
-        if(response.access_token) {
-          this.cookieService.set("email", this.form.value.email.toLowerCase(), undefined, undefined, undefined, true, 'Strict');
-          this.cookieService.set("authToken", response.access_token, undefined, undefined, undefined, true, 'Strict');
-          this.form.reset();
-          this.router.navigate(['/manage-children']);
-        }
-      },
-      // eslint-disable-next-line
-      (error) => {
-        this.presentToast("Invalid email or password", "danger");
-      }
-    );
+    this.auth
+      .login(this.form.value.email.toLowerCase(), this.form.value.password)
+      .subscribe(
+        // eslint-disable-next-line
+        (response: any) => {
+          if (response.access_token) {
+            this.cookieService.set(
+              'email',
+              this.form.value.email.toLowerCase(),
+              undefined,
+              undefined,
+              undefined,
+              true,
+              'Strict',
+            );
+            this.cookieService.set(
+              'authToken',
+              response.access_token,
+              undefined,
+              undefined,
+              undefined,
+              true,
+              'Strict',
+            );
+            this.form.reset();
+            this.router.navigate(['/manage-children']);
+          }
+        },
+        // eslint-disable-next-line
+        (error) => {
+          this.presentToast('Invalid email or password', 'danger');
+        },
+      );
   }
 
   async presentToast(text: string, color: string) {

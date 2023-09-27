@@ -1,22 +1,19 @@
 import { Component, OnDestroy, EventEmitter, Output } from '@angular/core';
 import { HelpService } from '@word-wizard/app/help/data-access';
 
-
 @Component({
   selector: 'ww-help',
   templateUrl: './help.component.html',
   styleUrls: ['./help.component.scss'],
 })
-export class HelpComponent implements OnDestroy{
-
+export class HelpComponent implements OnDestroy {
   messages: string[] = [];
   show = false;
-  audioSources : string[] = [];
+  audioSources: string[] = [];
   currentMessage = 0;
   audio!: HTMLAudioElement | null;
 
   @Output() closeHelp = new EventEmitter<void>();
-
 
   constructor(private helpService: HelpService) {
     helpService.help$.subscribe((help) => {
@@ -37,11 +34,10 @@ export class HelpComponent implements OnDestroy{
     this.closeHelp.emit();
   }
 
-
-  next(){
+  next() {
     this.audio?.pause();
     this.currentMessage++;
-    if(this.currentMessage >= this.messages.length){
+    if (this.currentMessage >= this.messages.length) {
       this.show = false;
       this.audio = null;
       this.helpService.hide();
@@ -49,11 +45,7 @@ export class HelpComponent implements OnDestroy{
       return;
     }
     this.playAudio();
-
   }
-
-
-
 
   playAudio() {
     if (this.audio) {
@@ -72,6 +64,4 @@ export class HelpComponent implements OnDestroy{
   audioEndedHandler = () => {
     this.next();
   };
-
-
 }

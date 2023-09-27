@@ -20,7 +20,7 @@ from .verify_email import send, generate_verification_code
 from .deps import Database
 
 db = Database.getInstance().db
-user_collection = db['user']
+user_collection = db["user"]
 
 load_dotenv()
 
@@ -36,78 +36,85 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 class User(BaseModel):
     username: str
     password: str
+
 
 class Forgot(BaseModel):
     username: str
     code: str
     password: str
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl='token')
+
+
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
+
 
 def authenticate_user(username: str, password: str):
-    user = user_collection.find_one({'username': username})
+    user = user_collection.find_one({"username": username})
     if not user:
         return False
     if not verify_password(username, password):
         return False
     return user
 
-@app.post('/token')
+
+@app.post("/token")
 async def generate_token(form_data: OAuth2PasswordRequestForm = Depends()):
     user = authenticate_user(form_data.username, form_data.password)
     if not user:
-        raise HTTPException(status_code=401, detail='Invalid username or password')
-    user_obj = user_collection.find_one({'username': form_data.username})
-    token = jwt.encode({'username': user_obj['username']}, JWT_SECRET)
-    return {'access_token': token, 'token_type': 'bearer'}
+        raise HTTPException(status_code=401, detail="Invalid username or password")
+    user_obj = user_collection.find_one({"username": form_data.username})
+    token = jwt.encode({"username": user_obj["username"]}, JWT_SECRET)
+    return {"access_token": token, "token_type": "bearer"}
+
 
 async def get_current_user(token: str = Depends(oauth2_scheme)):
     try:
-        payload = jwt.decode(token, JWT_SECRET, algorithms=['HS256'])
-        user = user_collection.find_one({'username': payload.get('username')})
+        payload = jwt.decode(token, JWT_SECRET, algorithms=["HS256"])
+        user = user_collection.find_one({"username": payload.get("username")})
     except:
-        raise HTTPException(status_code=401, detail='Invalid username or password')
-    return {'username': payload.get('username')}
+        raise HTTPException(status_code=401, detail="Invalid username or password")
+    return {"username": payload.get("username")}
 
-@app.post('/sign-up')
+
+@app.post("/sign-up")
 async def create_user(user: User):
-    parent_data = {
-        'username': user.username,
-        'email': user.username,
-        'children': []
-    }
-    db['Parents'].insert_one(parent_data)
+    parent_data = {"username": user.username, "email": user.username, "children": []}
+    db["Parents"].insert_one(parent_data)
     if check_existing(user.username):
-        raise HTTPException(status_code=401, detail='Username already exists')
-    res = user_collection.insert_one({
-        'username': user.username,
-        'password_hash': bcrypt.hash(user.password)
-    })
-    token = jwt.encode({'username':user.username}, JWT_SECRET)
-    return {'access_token': token, 'token_type': 'bearer', 'status': 'success'}
+        raise HTTPException(status_code=401, detail="Username already exists")
+    res = user_collection.insert_one(
+        {"username": user.username, "password_hash": bcrypt.hash(user.password)}
+    )
+    token = jwt.encode({"username": user.username}, JWT_SECRET)
+    return {"access_token": token, "token_type": "bearer", "status": "success"}
 
-@app.post('/login')
+
+@app.post("/login")
 async def login_user(user: User):
     if not authenticate_user(user.username, user.password):
-        raise HTTPException(status_code=401, detail='Invalid username or password')
-    token = jwt.encode({'username':user.username}, JWT_SECRET)
-    return {'access_token': token, 'token_type': 'bearer', 'status': 'success'}
+        raise HTTPException(status_code=401, detail="Invalid username or password")
+    token = jwt.encode({"username": user.username}, JWT_SECRET)
+    return {"access_token": token, "token_type": "bearer", "status": "success"}
 
-@app.post('/verify')
+
+@app.post("/verify")
 async def verify_user(user: User):
     if check_existing(user.username):
-        raise HTTPException(status_code=401, detail='Username already exists')
+        raise HTTPException(status_code=401, detail="Username already exists")
     code = generate_verification_code()
     send(user.username, code)
-    return {'code': hashlib.sha256(code.encode()).hexdigest(), 'status': 'success'}
+    return {"code": hashlib.sha256(code.encode()).hexdigest(), "status": "success"}
 
-@app.get('/validate-token')
+
+@app.get("/validate-token")
 async def get_user(user: User = Depends(get_current_user)):
     return user
 
-@app.get('/delete')
+
+@app.get("/delete")
 async def delete_user(user: User = Depends(get_current_user)):
     try:
         result = db["Parents"].find_one({"email": user["username"]})
@@ -119,13 +126,14 @@ async def delete_user(user: User = Depends(get_current_user)):
         db["Parents"].delete_one({"email": user["username"]})
         db["user"].delete_one({"username": user["username"]})
     except Exception as e:
-        return { "status" : "error" }
-    return { "status" : "success" }
+        return {"status": "error"}
+    return {"status": "success"}
 
-@app.post('/forgot')
+
+@app.post("/forgot")
 async def forgot_password(user: User):
     code = generate_verification_code()
-    html = f'''
+    html = f"""
     <html>
       <body>
         <h2>Reset Password</h2>
@@ -134,42 +142,94 @@ async def forgot_password(user: User):
         <p>Thank you!</p>
       </body>
     </html>
-    '''
+    """
     send(user.username, code, msg=html)
-    user_collection.update_one({'username': user.username}, {'$set': {'code': hashlib.sha256(code.encode()).hexdigest()}})
-    return {'code': hashlib.sha256(code.encode()).hexdigest(), 'status': 'success'}
+    user_collection.update_one(
+        {"username": user.username},
+        {"$set": {"code": hashlib.sha256(code.encode()).hexdigest()}},
+    )
+    return {"code": hashlib.sha256(code.encode()).hexdigest(), "status": "success"}
 
-@app.post('/reset')
+
+@app.post("/reset")
 async def reset_password(user: Forgot):
-    user_obj = user_collection.find_one({'username': user.username})
+    user_obj = user_collection.find_one({"username": user.username})
     if not user_obj:
-        raise HTTPException(status_code=401, detail='Invalid username')
-    if user_obj['code'] != hashlib.sha256(user.code.encode()).hexdigest():
-        raise HTTPException(status_code=401, detail='Invalid code')
-    user_collection.update_one({'username': user.username}, {'$set': {'password_hash': bcrypt.hash(user.password)}})
-    user_collection.update_one({'username': user.username}, {'$unset': {'code': 1}})
-    return {'status': 'success'}
+        raise HTTPException(status_code=401, detail="Invalid username")
+    if user_obj["code"] != hashlib.sha256(user.code.encode()).hexdigest():
+        raise HTTPException(status_code=401, detail="Invalid code")
+    user_collection.update_one(
+        {"username": user.username},
+        {"$set": {"password_hash": bcrypt.hash(user.password)}},
+    )
+    user_collection.update_one({"username": user.username}, {"$unset": {"code": 1}})
+    return {"status": "success"}
 
-@app.get('/items')
+
+@app.get("/items")
 async def read_items(token: str = Depends(oauth2_scheme)):
-    return {'token': token}
+    return {"token": token}
 
-def check_existing(username:str) -> bool:
-    if user_collection.find_one({'username': username}):
+
+def check_existing(username: str) -> bool:
+    if user_collection.find_one({"username": username}):
         return True
     return False
 
+
 def verify_password(username: str, password: str) -> bool:
-    user = user_collection.find_one({'username': username})
+    user = user_collection.find_one({"username": username})
     return bcrypt.verify(password, user["password_hash"])
 
 
-app.include_router(reading_router, prefix="/reading", tags=["reading"], dependencies=[Depends(get_current_user)])
-app.include_router(stage_router, prefix="/stage", tags=["stage"], dependencies=[Depends(get_current_user)])
-app.include_router(library_router, prefix="/library", tags=["library"], dependencies=[Depends(get_current_user)])
-app.include_router(speech_router, prefix="/speech", tags=["speech"], dependencies=[Depends(get_current_user)])
-app.include_router(add_child_router, prefix="/add-child", tags=["add_child"], dependencies=[Depends(get_current_user)])
-app.include_router(child_router, prefix="/child", tags=["child"], dependencies=[Depends(get_current_user)])
-app.include_router(achievements_router, prefix="/achievements", tags=["achievements"], dependencies=[Depends(get_current_user)])
-app.include_router(statistics_router, prefix="/statistics", tags=["statistics"], dependencies=[Depends(get_current_user)])
-app.include_router(pin_router, prefix="/pin", tags=["pin"], dependencies=[Depends(get_current_user)])
+app.include_router(
+    reading_router,
+    prefix="/reading",
+    tags=["reading"],
+    dependencies=[Depends(get_current_user)],
+)
+app.include_router(
+    stage_router,
+    prefix="/stage",
+    tags=["stage"],
+    dependencies=[Depends(get_current_user)],
+)
+app.include_router(
+    library_router,
+    prefix="/library",
+    tags=["library"],
+    dependencies=[Depends(get_current_user)],
+)
+app.include_router(
+    speech_router,
+    prefix="/speech",
+    tags=["speech"],
+    dependencies=[Depends(get_current_user)],
+)
+app.include_router(
+    add_child_router,
+    prefix="/add-child",
+    tags=["add_child"],
+    dependencies=[Depends(get_current_user)],
+)
+app.include_router(
+    child_router,
+    prefix="/child",
+    tags=["child"],
+    dependencies=[Depends(get_current_user)],
+)
+app.include_router(
+    achievements_router,
+    prefix="/achievements",
+    tags=["achievements"],
+    dependencies=[Depends(get_current_user)],
+)
+app.include_router(
+    statistics_router,
+    prefix="/statistics",
+    tags=["statistics"],
+    dependencies=[Depends(get_current_user)],
+)
+app.include_router(
+    pin_router, prefix="/pin", tags=["pin"], dependencies=[Depends(get_current_user)]
+)

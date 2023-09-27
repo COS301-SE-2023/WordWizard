@@ -16,7 +16,6 @@ describe('word-wizard/manage-children', () => {
     cy.get('#login-button').click({ force: true });
 
     cy.wait(5000);
-
   });
 
   it('should load manage-children', () => {

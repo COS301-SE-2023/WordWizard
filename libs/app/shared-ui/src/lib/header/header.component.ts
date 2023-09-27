@@ -1,4 +1,4 @@
-import { Component, Input, EventEmitter, Output, OnInit} from '@angular/core';
+import { Component, Input, EventEmitter, Output, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -15,19 +15,15 @@ export class HeaderComponent implements OnInit {
   @Output() settingsClick = new EventEmitter<void>();
   @Output() back = new EventEmitter<void>();
 
-  //burgermenu inputs
-  @Input () volumeChanger! : boolean;
-  @Input () fontChanger! : boolean;
-  @Input () help! : boolean;
-  @Input () helpText!: string[];
-  @Input () audioSources!: string[];
-
+  @Input() volumeChanger!: boolean;
+  @Input() fontChanger!: boolean;
+  @Input() help!: boolean;
+  @Input() helpText!: string[];
+  @Input() audioSources!: string[];
 
   backActive!: boolean;
 
-  constructor(private router: Router) {
-
-  }
+  constructor(private router: Router) {}
 
   ngOnInit() {
     if (this.backRoute != '') {
@@ -44,7 +40,4 @@ export class HeaderComponent implements OnInit {
   backClick() {
     this.back.emit();
   }
-
 }
-
-

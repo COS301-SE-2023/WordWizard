@@ -1,13 +1,15 @@
-<ww-loading/>
-<ww-header 
-title="Child Settings" 
-backRoute="/view-child" 
-[help]="true"
-[helpText]="helpText"
-[audioSources]="audioSources"
-[volumeChanger]="true"
-></ww-header>
-<ww-password [visible]="passwordSet" (correct)="deleteProfile()" (control)="this.passwordSet = false"/>
+<ww-loading />
+<ww-header
+  title="Child Settings"
+  backRoute="/view-child"
+  [help]="true"
+  [helpText]="helpText"
+  [audioSources]="audioSources"
+  [volumeChanger]="true"></ww-header>
+<ww-password
+  [visible]="passwordSet"
+  (correct)="deleteProfile()"
+  (control)="this.passwordSet = false" />
 <ion-content [scrollY]="true">
   <div class="header-container">
     <ion-grid>

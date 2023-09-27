@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 
+
 class StatisticsReq(BaseModel):
     child_id: str
 
@@ -9,7 +10,8 @@ class LevelStat:
         self.level = level
         self.score = score
         self.completed = completed
-        self.date = date 
+        self.date = date
+
 
 class ProgressHistory:
     def __init__(self, date: str):
@@ -18,4 +20,3 @@ class ProgressHistory:
 
     def add_levelStat(self, levelStat: LevelStat):
         self.levelsStats.append(levelStat)
-

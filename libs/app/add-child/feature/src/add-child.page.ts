@@ -22,8 +22,13 @@ export class AddChildPage {
   selectedImage!: string;
   pictures: string[] = [];
 
-  helpText: string[] = ["Enter your child's name and age, Then proceed to, choose a profile picture, and press add."];
-  audioSources: string[] = ['assets/mp3/addChild1.mp3', 'assets/mp3/addChild2.mp3'];
+  helpText: string[] = [
+    "Enter your child's name and age, Then proceed to, choose a profile picture, and press add.",
+  ];
+  audioSources: string[] = [
+    'assets/mp3/addChild1.mp3',
+    'assets/mp3/addChild2.mp3',
+  ];
 
   constructor(
     private readonly fb: FormBuilder,

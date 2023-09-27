@@ -2,10 +2,9 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CoreService {
-
   volumeChangeSubject = new Subject<number>();
   volume!: number;
 
@@ -15,7 +14,6 @@ export class CoreService {
   }
 
   getVolume() {
-    return (this.volume * 100);
+    return this.volume * 100;
   }
-
 }

@@ -35,7 +35,7 @@ export class LessonCoinComponent implements AfterViewInit, OnInit {
 
   ngOnInit() {
     const windowWidth = window.innerWidth > 600 ? 600 : window.innerWidth;
-    const verticalOffset = window.innerHeight / 7; //space between coins, since 5 coins on a page
+    const verticalOffset = window.innerHeight / 7;
 
     this.coins.forEach((coin, index) => {
       coin.leftPosition =

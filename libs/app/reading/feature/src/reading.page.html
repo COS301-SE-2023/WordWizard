@@ -11,7 +11,7 @@
     [audioSources]="audioSources"
     [volumeChanger]="true"
     [fontChanger]="true"
-    (back)="handle()"/>
+    (back)="handle()" />
   <div class="overlay-container" [class.hidden-overlay]="!visible">
     <div class="overlay">
       <ion-grid>
@@ -83,7 +83,8 @@
         </ng-container>
         <ng-template #doneTemplate>
           <p>
-            <span *ngFor="let word of practice?.passage; let last = last; let i = index">
+            <span
+              *ngFor="let word of practice?.passage; let last = last; let i = index">
               <span
                 [ngStyle]="{ 'color': getWordColor(word), 'font-size': fontSize}"
                 style="font-size: 100px"
@@ -99,14 +100,15 @@
   <div class="button-container">
     <div class="button-group">
       <ng-container *ngIf="!practice.done; else finishedTemplate">
-        <ww-speaker [speakPhrase]="practice.passage[practice.focusWordsIndex[currentWord]]?.word" />
+        <ww-speaker
+          [speakPhrase]="practice.passage[practice.focusWordsIndex[currentWord]]?.word" />
       </ng-container>
       <ng-template #finishedTemplate>
         <ww-speaker [speakPhrase]="sentence" />
       </ng-template>
     </div>
     <div class="button-group">
-      <ww-microphone (textChanged)="handleTextChange($event)"/>
+      <ww-microphone (textChanged)="handleTextChange($event)" />
     </div>
   </div>
 </ion-content>

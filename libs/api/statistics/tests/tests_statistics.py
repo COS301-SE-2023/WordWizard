@@ -9,6 +9,7 @@ from bson import ObjectId
 valid_child_id = str("64fc454dc889d0d030785db0")
 invalid_child_id = str("14fc454dc889d0d030785db0")
 
+
 def test_get_stats_child_found():
     rqst_body = {"child_id": valid_child_id}
 
@@ -19,6 +20,7 @@ def test_get_stats_child_found():
     response_data = response.json()
     assert "total_words" in response_data
     assert "average_score" in response_data
+
 
 def test_get_stats_child_not_found():
     rqst_body = {"child_id": invalid_child_id}

@@ -1,15 +1,21 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { PreferenceResponse, GetPreferencesResponse, Topics } from './responses/preferences.responses';
-import { GetPreferencesReq, UpdatePreferencesReq } from './requests/preferences.requests';
+import {
+  PreferenceResponse,
+  GetPreferencesResponse,
+  Topics,
+} from './responses/preferences.responses';
+import {
+  GetPreferencesReq,
+  UpdatePreferencesReq,
+} from './requests/preferences.requests';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PreferencesService {
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getPreferences(request: GetPreferencesReq): Observable<PreferenceResponse> {
     const headers = new HttpHeaders({
@@ -22,7 +28,9 @@ export class PreferencesService {
     );
   }
 
-  updatePreferences(request: UpdatePreferencesReq): Observable<GetPreferencesResponse> {
+  updatePreferences(
+    request: UpdatePreferencesReq,
+  ): Observable<GetPreferencesResponse> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
     });
@@ -34,12 +42,11 @@ export class PreferencesService {
   }
 
   getTopics(): Observable<Topics> {
-      const headers = new HttpHeaders({
-        'Content-Type': 'application/json',
-      });
-      return this.http.get<Topics>(
-        `${process.env['WW_API_ENDPOINT']}/child`,
-        { headers },
-      );
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+    return this.http.get<Topics>(`${process.env['WW_API_ENDPOINT']}/child`, {
+      headers,
+    });
   }
 }

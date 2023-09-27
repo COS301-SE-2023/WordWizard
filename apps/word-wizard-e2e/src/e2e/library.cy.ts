@@ -18,10 +18,10 @@ describe('word-wizard/library', () => {
     cy.wait(5000);
     cy.get('button.circle').first().click();
     cy.get('.continueChild').first().click();
-    cy.get("#otp1").type('1');
-    cy.get("#otp2").type('2');
-    cy.get("#otp3").type('3');
-    cy.get("#otp4").type('4');
+    cy.get('#otp1').type('1');
+    cy.get('#otp2').type('2');
+    cy.get('#otp3').type('3');
+    cy.get('#otp4').type('4');
 
     cy.get('a.spellbook').first().click();
   });
@@ -46,5 +46,5 @@ describe('word-wizard/library', () => {
   it('should open practice list and load cauldrons', () => {
     cy.get('ion-segment-button').last().click();
     cy.get('ww-cauldron').should('exist');
-  })
+  });
 });

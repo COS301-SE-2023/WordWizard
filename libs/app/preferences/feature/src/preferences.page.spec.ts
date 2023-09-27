@@ -15,7 +15,14 @@ describe('PreferencesPage', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports:[HeaderModule, ButtonModule, IonicModule, FormsModule, HttpClientModule, NgxsModule.forRoot([]) ],
+      imports: [
+        HeaderModule,
+        ButtonModule,
+        IonicModule,
+        FormsModule,
+        HttpClientModule,
+        NgxsModule.forRoot([]),
+      ],
       declarations: [PreferencesPage],
       providers: [
         {

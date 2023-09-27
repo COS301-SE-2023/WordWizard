@@ -14,7 +14,7 @@ import { PasswordService } from '@word-wizard/app/password/data-access';
 })
 export class PasswordComponent {
   @Input() visible = false;
-  pin!:string;
+  pin!: string;
   otpForm: FormGroup;
   @Output() correct = new EventEmitter<void>();
   @Output() control = new EventEmitter<void>();
@@ -22,11 +22,10 @@ export class PasswordComponent {
   @Select(ChildState.passcode) passcode$!: Observable<string>;
 
   constructor(
-    private fb: FormBuilder, 
-    private router: Router, 
+    private fb: FormBuilder,
+    private router: Router,
     private toastController: ToastController,
     private passwordService: PasswordService,
-
   ) {
     this.otpForm = this.fb.group({
       otp1: [''],
@@ -44,29 +43,32 @@ export class PasswordComponent {
   }
 
   //eslint-disable-next-line
-  move(e:any, p:any, c:any, n:any) {
-    if(e.key === 'Backspace') {
-      if(p != '')
-        p.focus();
+  move(e: any, p: any, c: any, n: any) {
+    if (e.key === 'Backspace') {
+      if (p != '') p.focus();
     } else {
-      if(n != '')
-        n.focus()
+      if (n != '') n.focus();
       else {
-        if(this.otpForm.value.otp1 + this.otpForm.value.otp2 + this.otpForm.value.otp3 + this.otpForm.value.otp4 == this.pin) {
+        if (
+          this.otpForm.value.otp1 +
+            this.otpForm.value.otp2 +
+            this.otpForm.value.otp3 +
+            this.otpForm.value.otp4 ==
+          this.pin
+        ) {
           this.correct.emit();
           this.otpForm.patchValue({
-            otp1: '', 
-            otp2: '', 
-            otp3: '', 
-            otp4: '', 
+            otp1: '',
+            otp2: '',
+            otp3: '',
+            otp4: '',
           });
-        }
-        else {
+        } else {
           this.otpForm.patchValue({
-            otp1: '', 
-            otp2: '', 
-            otp3: '', 
-            otp4: '', 
+            otp1: '',
+            otp2: '',
+            otp3: '',
+            otp4: '',
           });
           this.presentToast();
         }
@@ -75,7 +77,7 @@ export class PasswordComponent {
   }
 
   nav(route: string) {
-    this.router.navigate([route])
+    this.router.navigate([route]);
   }
 
   async presentToast() {
@@ -93,5 +95,4 @@ export class PasswordComponent {
     });
     await toast.present();
   }
-  
 }

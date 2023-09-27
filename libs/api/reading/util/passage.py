@@ -2,32 +2,32 @@ import os
 import re
 from dotenv import load_dotenv
 import openai
+
 load_dotenv()
 from .helper import santise_string
+
 api_key = os.getenv("OPEN_AI_KEY")
 openai.api_key = api_key
 
-def query_passage(query:str):
+
+def query_passage(query: str):
     q = query_chat(query)
     sentence, focus = extract_info(q)
     return santise_string(f"Sentence: {sentence}\nFocus Words: {focus}")
 
-def query_chat(query:str):
+
+def query_chat(query: str):
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
-        messages=[
-            {
-                "role": "user",
-                "content": query
-            }
-        ],
+        messages=[{"role": "user", "content": query}],
         temperature=1,
         max_tokens=256,
         top_p=1,
         frequency_penalty=0,
-        presence_penalty=0
+        presence_penalty=0,
     )
     return response["choices"][0]["message"]["content"]
+
 
 def extract_info(input_string):
     sentence_match = re.search(r"Sentence: (.*)", input_string)
