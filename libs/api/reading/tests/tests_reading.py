@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
 from ...test_api import app
-from ..util.reading_models import PassageRqst, Content, Word  # Adjust the import path
+from ..util.reading_models import PassageRqst, Content, Word
 from unittest.mock import patch, MagicMock
 from ..util.helper import *
 from ..util.Rating import Rating

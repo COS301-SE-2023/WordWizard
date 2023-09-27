@@ -20,7 +20,7 @@ class Award:
 class AwardSection:
     def __init__(self, name: str):
         self.name = name
-        self.awards = []  # List to store the awards
+        self.awards = []
 
     def add_award(self, award: Award):
         self.awards.append(award)
