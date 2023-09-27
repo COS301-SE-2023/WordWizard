@@ -20,11 +20,9 @@ def test_create_practice_list():
 
     result = create_practice_list(child_id=child_id)
 
-    expected_practice_list_document = {
-        "_id": child_id,
-        "words": []
-    }
+    expected_practice_list_document = {"_id": child_id, "words": []}
     assert result == expected_practice_list_document
+
 
 def test_create_vocab_list():
     minNumber = 1
@@ -34,11 +32,9 @@ def test_create_vocab_list():
 
     result = create_vocab_list(child_id=child_id)
 
-    expected_vocab_list_document = {
-        "_id": child_id,
-        "words": []
-    }
+    expected_vocab_list_document = {"_id": child_id, "words": []}
     assert result == expected_vocab_list_document
+
 
 # def test_create_progress():
 #     minNumber = 1
@@ -71,6 +67,7 @@ def test_create_vocab_list():
 #     assert result["total_words"] == expected_progress_document["total_words"]
 #     assert result["average_score"] == expected_progress_document["average_score"]
 
+
 def test_add_create_testing():
     sample_parent_email = "parent@example.com"
     sample_parent_name = "Parent Name"
@@ -83,26 +80,27 @@ def test_add_create_testing():
         "parent_name": sample_parent_name,
         "name": sample_child_name,
         "age": sample_child_age,
-        "profile_picture": sample_profile_picture
+        "profile_picture": sample_profile_picture,
     }
-    response = client.post('/add-child/', json=rqst_body, params={'testing': True})
+    response = client.post("/add-child/", json=rqst_body, params={"testing": True})
 
     assert response.status_code == 200
     expected_response = {
-        '_id': None,
-        'username': sample_child_name,
-        'age': sample_child_age,
-        'preferences': [],
-        'parent': None,
-        'profile_photo': sample_profile_picture,
-        'vocab_list': '',
-        'practice_list': '',
-        'progress': ''
+        "_id": None,
+        "username": sample_child_name,
+        "age": sample_child_age,
+        "preferences": [],
+        "parent": None,
+        "profile_photo": sample_profile_picture,
+        "vocab_list": "",
+        "practice_list": "",
+        "progress": "",
     }
     assert response.json() == expected_response
 
+
 def test_get_photos():
-    response = client.get('/add-child/')
+    response = client.get("/add-child/")
     assert response.status_code == 200
-    assert 'images' in response.json()
-    assert len(response.json()['images']) > 0
+    assert "images" in response.json()
+    assert len(response.json()["images"]) > 0

@@ -10,9 +10,10 @@ import os
 
 router = APIRouter()
 
-@router.post('/text-to-speech')
+
+@router.post("/text-to-speech")
 async def text_to_speech(rqst: AudioRqst):
-    tts = gTTS(rqst.text, lang='en-za')
+    tts = gTTS(rqst.text, lang="en-za")
     mp3_fp = io.BytesIO()
     tts.write_to_fp(mp3_fp)
     mp3_fp.seek(0)

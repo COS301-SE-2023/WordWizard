@@ -6,10 +6,7 @@ client = TestClient(app)
 
 
 def test_get_Awards():
-    
-    rqst_body = {
-        "child_id": "64fc454dc889d0d030785db0"  
-    }
+    rqst_body = {"child_id": "64fc454dc889d0d030785db0"}
     # Send a POST request to the /achievements endpoint
     response = client.post("/achievements/", json=rqst_body)
     assert response.status_code == 200
@@ -18,27 +15,33 @@ def test_get_Awards():
     # Define the expected structure
     expected_structure = [
         {
-            'name': str,
-            'awards': [
+            "name": str,
+            "awards": [
                 {
-                    'goal': int,
-                    'progress': int,
-                    'description': str,
-                    'completed': bool,
-                    'img': str
+                    "goal": int,
+                    "progress": int,
+                    "description": str,
+                    "completed": bool,
+                    "img": str,
                 }
-            ]
+            ],
         }
     ]
 
     # Check if the response data matches the expected structure
     assert isinstance(response_data, list), "Response data is not a list"
     for item in response_data:
-        assert all(key in item for key in expected_structure[0]), "Response item structure is incorrect"
-        for award in item['awards']:
-            assert all(key in award for key in expected_structure[0]['awards'][0]), "Award structure is incorrect"
+        assert all(
+            key in item for key in expected_structure[0]
+        ), "Response item structure is incorrect"
+        for award in item["awards"]:
+            assert all(
+                key in award for key in expected_structure[0]["awards"][0]
+            ), "Award structure is incorrect"
 
     for item in response_data:
-        assert isinstance(item['name'], str) and item['name'], "Name is invalid"
-        for award in item['awards']:
-            assert isinstance(award['description'], str) and award['description'], "Award description is invalid"
+        assert isinstance(item["name"], str) and item["name"], "Name is invalid"
+        for award in item["awards"]:
+            assert (
+                isinstance(award["description"], str) and award["description"]
+            ), "Award description is invalid"

@@ -7,7 +7,9 @@ class AwardsRqst(BaseModel):
 
 
 class Award:
-    def __init__(self, goal: int, progress: int, description: str, completed: bool, img: str):
+    def __init__(
+        self, goal: int, progress: int, description: str, completed: bool, img: str
+    ):
         self.goal = goal
         self.progress = progress
         self.description = description
@@ -19,7 +21,7 @@ class AwardSection:
     def __init__(self, name: str):
         self.name = name
         self.awards = []  # List to store the awards
-    
+
     def add_award(self, award: Award):
         self.awards.append(award)
 

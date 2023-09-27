@@ -1,13 +1,13 @@
 from fastapi.testclient import TestClient
 from ...test_api import app
 from bson import ObjectId
-from ..api.child import delete  
+from ..api.child import delete
 
 client = TestClient(app)
 
 sample_parent_email = "parent@example.com"
 sample_parent_name = "Parent Name"
-sample_child_id = "65087dc330bd3697ca68e1a6"  
+sample_child_id = "65087dc330bd3697ca68e1a6"
 sample_preferences = ["Preference1", "Preference2"]
 sample_child_name = "Child Name"
 sample_child_age = 5
@@ -30,14 +30,14 @@ def test_get_children():
     response = client.post("/child/", json=rqst_body)
     assert response.status_code == 200
     assert isinstance(response.json(), list)
-    
-    
+
+
 def test_get_preferences():
     rqst_body = {"child_id": sample_child_id}
 
     response = client.post("/child/get-preferences", json=rqst_body)
     assert response.status_code == 200
-    assert "preferences" in response.json() 
+    assert "preferences" in response.json()
 
 
 def test_update_preferences():
@@ -60,15 +60,16 @@ def test_edit_child():
     assert response.status_code == 200
     assert "status" in response.json() and response.json()["status"] == "success"
 
+
 def test_delete_child():
     sample_child_id = "65087dc330bd3697ca68e1a6"  # Replace with a valid child ID
 
     # Simulate a successful deletion using the mock function
     # You can customize the return value to simulate different scenarios
-    mock_delete_child_from_db_result = {'status': 'success'}
+    mock_delete_child_from_db_result = {"status": "success"}
     app.dependency_overrides[delete] = lambda: mock_delete_child_from_db_result
 
-    response = client.post('/child/delete-child', json={"child_id": sample_child_id})
+    response = client.post("/child/delete-child", json={"child_id": sample_child_id})
 
     assert response.status_code == 200
     assert response.json() == mock_delete_child_from_db_result
@@ -76,7 +77,4 @@ def test_delete_child():
 
 def mock_delete_child_from_db(child_id):
     # Simulate the deletion process (e.g., marking as deleted)
-    return {'status': 'success'}
-
-        
-
+    return {"status": "success"}
