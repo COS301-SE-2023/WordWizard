@@ -17,14 +17,14 @@ The system is designed to adapt to each user's level of proficiency and learning
 # Documentation:
 
 ## Functional Requirements(SRS)
-[![Google Docs](https://img.shields.io/badge/Google%20Docs-View%20Document-blue)](https://docs.google.com/document/d/1ciOoZX2MzLFtCf3m2Z29c-V7krlfxKHC/edit?usp=sharing&ouid=116132882510647438116&rtpof=true&sd=true)
+- [DEMO 4 ~ SRS.pdf](https://github.com/COS301-SE-2023/WordWizard/files/12741851/DEMO.4.SRS.pdf)
+
 
 ## Technical installation
 - [Installation guide](https://github.com/COS301-SE-2023/WordWizard/files/12218662/Installation.guide.pdf)
 
 ## User Manual
-- [User Manual](https://github.com/COS301-SE-2023/WordWizard/files/12219801/Word.Wizard.App.User.Manual.docx.pdf)
-
+- [Word Wizard App User Manual.docx.pdf](https://github.com/COS301-SE-2023/WordWizard/files/12741818/Word.Wizard.App.User.Manual.docx.pdf)
 
 ## Coding Standards
 - [Standards Documentation.pdf](https://github.com/COS301-SE-2023/WordWizard/files/12221562/Standards.Documentation.pdf)
@@ -32,9 +32,12 @@ The system is designed to adapt to each user's level of proficiency and learning
 ## Architecture Doc.
 - [DEMO__3_Architecture.pdf](https://github.com/COS301-SE-2023/WordWizard/files/12224870/DEMO__3_Architecture.pdf)
 
+## Testing Policy
+- [Testing Policy.pdf](https://github.com/COS301-SE-2023/WordWizard/files/12741658/Testing.Policy.pdf)
 
-## Usability Questionnaire (Tentative)
-- [COS 301 Usability Questionnaire_ WordWizard.pdf](https://github.com/COS301-SE-2023/WordWizard/files/12221610/COS.301.Usability.Questionnaire_.WordWizard.pdf)
+
+## Usability Questionnaire
+- (https://forms.gle/K3nGGmNZEACYu6j4A)
 
 
 # Demos:
