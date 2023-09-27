@@ -5,9 +5,6 @@ ion-content {
     #02001b 90.1%,
     #02001b 94.27%
   );
-
-  
-
 }
 
 ion-header {
@@ -89,13 +86,9 @@ ion-header {
   background-color: rgba(0, 0, 0, 0.6);
   width: 100vw;
   height: 150vh;
-
-  // height: calc();
-  // height: inherit;
   top: 0;
   left: 0;
   z-index: 1;
-  // overflow: scroll;
 }
 
 .overlay {
@@ -123,7 +116,7 @@ ion-header {
 }
 
 .continueParent {
-  margin-bottom: 3rem;
+  margin-bottom: 20vw;
   margin-left: auto;
   margin-right: auto;
   display: flex;
@@ -138,7 +131,7 @@ ion-header {
   color: white;
   font-size: 20vw;
   z-index: 2;
-  background-color: #0C0331;
+  background-color: #070527;
 }
 
 ww-help{

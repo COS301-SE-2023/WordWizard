@@ -42,7 +42,7 @@ export class ChildStatisticsPage implements AfterViewInit {
       this.childStatisticsService.getStats(data._id).subscribe((res) => {
         if (res.progress_history.length !== 0) {
           this.childStats = res;
-          this.averageScore = res.average_score;
+          this.averageScore = Math.round(res.average_score);
           this.incorrectCount = res.incorrect_words_by_level;
           this.lessonCount = res.progress_history.length;
           this.wordsLearned = res.total_words;

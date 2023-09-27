@@ -27,7 +27,9 @@ class Rating:
         for w in self.prtc:
             if isinstance(w, str):
                 pref,suff = get_prefixes_suffixes(w)
-                self.phono_dic[find_phonotactics(w)].add(-1)
+                phono = find_phonotactics(w)
+                if phono != None:
+                    self.phono_dic[find_phonotactics(w)].add(-1)
                 self.syllables[count_syllables(w)-1].add(-1)
                 if pref:
                     self.prefixes[len(pref)].add(-1)
