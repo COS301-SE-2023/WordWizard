@@ -15,7 +15,7 @@ describe('word-wizard/manage-children', () => {
     cy.get('input#age').type(Cypress.env('auth_password'), { log: false });
     cy.get('#login-button').click({ force: true });
 
-    cy.wait(3000);
+    cy.wait(5000);
 
   });
 

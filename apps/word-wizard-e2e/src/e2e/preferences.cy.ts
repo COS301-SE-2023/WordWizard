@@ -4,18 +4,18 @@ describe('Preferences', () => {
     beforeEach(() => {
       cy.viewport('iphone-6');
       cy.visit('/');
-  
+
       cy.url().then((url) => {
         if (url.includes('welcome')) {
           cy.get('ion-button').click();
         }
       });
-  
+
       cy.get('input#name').type(Cypress.env('auth_username'));
       cy.get('input#age').type(Cypress.env('auth_password'), { log: false });
       cy.get('#login-button').click({ force: true });
 
-      cy.wait(4000);
+      cy.wait(5000);
       cy.get('button.circle').first().click();
       cy.get('.continueParent').first().click();
       cy.get("#otp1").type('1');
@@ -28,7 +28,7 @@ describe('Preferences', () => {
 
 
     it('should be in preferences', () => {
-        cy.url().should('equal', 'http://localhost:4200/preferences');   
+        cy.url().should('equal', 'http://localhost:4200/preferences');
     });
 
     it('should select a preference', () => {
