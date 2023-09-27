@@ -17,7 +17,8 @@ The system is designed to adapt to each user's level of proficiency and learning
 # Documentation:
 
 ## Functional Requirements(SRS)
-[![Google Docs](https://img.shields.io/badge/Google%20Docs-View%20Document-blue)](https://docs.google.com/document/d/1ciOoZX2MzLFtCf3m2Z29c-V7krlfxKHC/edit?usp=sharing&ouid=116132882510647438116&rtpof=true&sd=true)
+- (https://img.shields.io/badge/Google%20Docs-View%20Document-blue)] [DEMO 4 ~ SRS.pdf](https://github.com/COS301-SE-2023/WordWizard/files/12741851/DEMO.4.SRS.pdf)
+
 
 ## Technical installation
 - [Installation guide](https://github.com/COS301-SE-2023/WordWizard/files/12218662/Installation.guide.pdf)
