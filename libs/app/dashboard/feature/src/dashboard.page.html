@@ -1,13 +1,13 @@
-<ww-loading/>
+<ww-loading />
 <ion-content [scrollY]="false">
-<ww-header
-  [title]="'Dashboard'"
-  [settingsActive]="false"
-  [backRoute]="'../manage-children'"
-  [help]="true"
-  [helpText]="helpText"
-  [audioSources]="audioSources"
-  [volumeChanger]="true"/>
+  <ww-header
+    [title]="'Dashboard'"
+    [settingsActive]="false"
+    [backRoute]="'../manage-children'"
+    [help]="true"
+    [helpText]="helpText"
+    [audioSources]="audioSources"
+    [volumeChanger]="true" />
   <div class="dashboard">
     <div class="background">
       <div class="pfp">
@@ -18,7 +18,7 @@
               <ion-row>
                 <ion-col class="centre">
                   <ion-button>
-                    <ion-icon name="create-outline"/>
+                    <ion-icon name="create-outline" />
                   </ion-button>
                 </ion-col>
               </ion-row>
@@ -34,13 +34,13 @@
           <ion-row>
             <ion-col size="6" class="centre">
               <a class="spellbook" routerLink="/library">
-                <ion-img src="assets/icon/spellbook-cropped.png"/>
+                <ion-img src="assets/icon/spellbook-cropped.png" />
                 Library
               </a>
             </ion-col>
             <ion-col size="6">
               <a class="trophy" routerLink="/achievements">
-                <ion-img src="assets/icon/trophy_new.png"/>
+                <ion-img src="assets/icon/trophy_new.png" />
                 Badges
               </a>
             </ion-col>
@@ -53,7 +53,7 @@
           <ion-row>
             <ion-col class="centre">
               <a class="map" routerLink="/stage">
-                <ion-img src="assets/icon/map-cropped.png"/>
+                <ion-img src="assets/icon/map-cropped.png" />
                 Levels
               </a>
             </ion-col>
@@ -73,7 +73,7 @@
           </ion-avatar>
           <ng-template #unselected>
             <div class="unselected">
-              <ion-icon src="assets/svg/person-outline.svg"/>
+              <ion-icon src="assets/svg/person-outline.svg" />
             </div>
           </ng-template>
         </div>
@@ -84,7 +84,7 @@
             <ion-icon
               src="assets/svg/close-outline.svg"
               class="close-icon"
-              (click)="modal()"/>
+              (click)="modal()" />
           </ion-col>
         </ion-row>
         <ion-row>

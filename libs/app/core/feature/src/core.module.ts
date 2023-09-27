@@ -20,7 +20,15 @@ import { LoadingInterceptorService } from '@word-wizard/app/loading/data-access'
     NoopAnimationsModule,
     NgxsModule.forRoot([]),
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },{provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptorService, multi: true,}, LoadingService],
+  providers: [
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingInterceptorService,
+      multi: true,
+    },
+    LoadingService,
+  ],
   bootstrap: [CoreShell],
 })
 export class CoreModule {}

@@ -111,23 +111,21 @@ ww-progress-potion {
   justify-content: space-evenly;
   flex-direction: row;
   position: relative;
-  div{
+  div {
     flex-grow: 1;
   }
 
-  #attempts-container{
+  #attempts-container {
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 2rem;
 
-    ion-icon{
+    ion-icon {
       color: red;
     }
   }
-
 }
-
 
 .overlay-container {
   position: absolute;

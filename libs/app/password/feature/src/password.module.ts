@@ -11,10 +11,18 @@ import { PasswordService } from '@word-wizard/app/password/data-access';
 import { LoadingModule } from '@word-wizard/app/loading/feature';
 
 @NgModule({
-  imports: [CommonModule, RouterModule, SharedUiModule, IonicModule, ReadingSharedUiModule, PasswordRoute, FormsModule, LoadingModule],
+  imports: [
+    CommonModule,
+    RouterModule,
+    SharedUiModule,
+    IonicModule,
+    ReadingSharedUiModule,
+    PasswordRoute,
+    FormsModule,
+    LoadingModule,
+  ],
   declarations: [PasswordPage],
   exports: [PasswordPage],
   providers: [PasswordService],
 })
 export class PasswordModule {}
-

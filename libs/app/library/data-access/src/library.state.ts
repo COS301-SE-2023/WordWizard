@@ -90,7 +90,7 @@ export class LibraryState {
           });
           vocabList.words.push({
             word: payload.word,
-            img: ""
+            img: '',
           });
         }),
       );

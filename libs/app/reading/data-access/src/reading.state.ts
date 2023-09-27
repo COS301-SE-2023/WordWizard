@@ -84,23 +84,26 @@ export class ReadingState {
         lvl = data;
       })
       .unsubscribe();
-  
-    this.currentChild$.subscribe(async (data) => {
-      const rqst: PassageRequest = {
-        id: data._id,
-        level: lvl,
-      } as PassageRequest;
-      this.readingService.getPassage(rqst).subscribe((data) => {
-        ctx.setState(
-          produce((draft: ReadingStateModel) => {
-            draft.Passage.model.Content.passage = data.passage;
-            draft.Passage.model.level = lvl;
-            draft.Passage.model.Content.focusWordsIndex = data.focusWordsIndex;
-            draft.Passage.model.Content.done = false;
-          }),
-        );
-      });
-    }).unsubscribe();
+
+    this.currentChild$
+      .subscribe(async (data) => {
+        const rqst: PassageRequest = {
+          id: data._id,
+          level: lvl,
+        } as PassageRequest;
+        this.readingService.getPassage(rqst).subscribe((data) => {
+          ctx.setState(
+            produce((draft: ReadingStateModel) => {
+              draft.Passage.model.Content.passage = data.passage;
+              draft.Passage.model.level = lvl;
+              draft.Passage.model.Content.focusWordsIndex =
+                data.focusWordsIndex;
+              draft.Passage.model.Content.done = false;
+            }),
+          );
+        });
+      })
+      .unsubscribe();
   }
 
   @Action(MakeAttempt)
@@ -118,7 +121,7 @@ export class ReadingState {
 
         const currentWord = passage[focus[current]];
         attemptsRemaining--;
-        
+
         if (draft.Passage.model.Content.done) {
           Word.attemptsRemaining--;
           if (attemptsRemaining >= 0) {
@@ -129,10 +132,11 @@ export class ReadingState {
             if (passage.every((word) => word.correct !== null)) {
               this.store.dispatch(new UpdateProgress());
             }
-          } else
-            this.store.dispatch(new UpdateProgress());
+          } else this.store.dispatch(new UpdateProgress());
         } else {
-          if (currentWord.word.toLowerCase() === payload.newAttempt.toLowerCase()) {
+          if (
+            currentWord.word.toLowerCase() === payload.newAttempt.toLowerCase()
+          ) {
             currentWord.correct = true;
             Word.current++;
             Word.attemptsRemaining = 2;
@@ -140,8 +144,7 @@ export class ReadingState {
             currentWord.correct = false;
             Word.current++;
             Word.attemptsRemaining = 2;
-          } else
-            Word.attemptsRemaining = Word.attemptsRemaining - 1;
+          } else Word.attemptsRemaining = Word.attemptsRemaining - 1;
 
           if (Word.current === focus.length) {
             Word.attemptsRemaining = passage.length;
@@ -238,7 +241,7 @@ export class ReadingState {
   }
 
   @Selector()
-  static getAttemptsRemaining(state: ReadingStateModel){
+  static getAttemptsRemaining(state: ReadingStateModel) {
     return state.Passage.model.Word.attemptsRemaining;
   }
 }

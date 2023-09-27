@@ -18,11 +18,11 @@ describe('word-wizard/reading', () => {
     cy.wait(5000);
     cy.get('button.circle').first().click();
     cy.get('.continueChild').first().click();
-    cy.get("#otp1").type('1');
-    cy.get("#otp2").type('2');
-    cy.get("#otp3").type('3');
-    cy.get("#otp4").type('4');
-    cy.get(".map").last().click();
+    cy.get('#otp1').type('1');
+    cy.get('#otp2').type('2');
+    cy.get('#otp3').type('3');
+    cy.get('#otp4').type('4');
+    cy.get('.map').last().click();
   });
 
   it('should load the reading page', () => {

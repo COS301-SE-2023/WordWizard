@@ -23,7 +23,6 @@ describe('word-wizard/add-child', () => {
   });
 
   it('should select a profile picture', () => {
-
     cy.get('.add-picture').click();
     cy.get('.overlay').should('be.visible');
 

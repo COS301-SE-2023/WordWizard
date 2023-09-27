@@ -7,7 +7,7 @@
     [help]="true"
     [helpText]="helpText"
     [audioSources]="audioSources"
-    [volumeChanger]="true"/>
+    [volumeChanger]="true" />
   <form [formGroup]="form" (ngSubmit)="submit()">
     <div class="overlay-container" [class.hidden-overlay]="!visible">
       <div class="overlay">
@@ -61,14 +61,16 @@
     <div class="container">
       <ion-grid>
         <ion-row>
-          <p class="title"> </p>
+          <p class="title"></p>
         </ion-row>
         <ion-row class="plus-button-container">
           <ion-button
             class="add-picture"
             (click)="controlModal()"
             *ngIf="!selectedImage; else selected">
-            <ion-icon  [ngStyle]="{'font-size': '120px'}" src="assets/svg/person-outline.svg"></ion-icon>
+            <ion-icon
+              [ngStyle]="{'font-size': '120px'}"
+              src="assets/svg/person-outline.svg"></ion-icon>
           </ion-button>
         </ion-row>
       </ion-grid>
@@ -90,6 +92,7 @@
       [disabled]="!form.valid || !selectedImage"
       type="submit"
       class="submit-btn"
-      >Add</ion-button>
+      >Add</ion-button
+    >
   </form>
 </ion-content>

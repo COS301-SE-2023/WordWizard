@@ -1,16 +1,16 @@
 export interface PreferenceResponse {
-    preferences: string[];
+  preferences: string[];
 }
 
 export interface GetPreferencesResponse {
-    status: string;
+  status: string;
 }
 
 export interface Topics {
-    topics: string[];
+  topics: string[];
 }
 
 export interface preferences {
-    value: string;
-    color: string;
+  value: string;
+  color: string;
 }

@@ -21,7 +21,10 @@ export class ChildStatisticsPage implements AfterViewInit {
   @ViewChild('chartCanvas', { static: false }) chartCanvas!: ElementRef;
   chart!: Chart;
 
-  helpText: string[] = ["Here you can see your child's progress over time.","The graph shows the score of each lesson your child has completed."];
+  helpText: string[] = [
+    "Here you can see your child's progress over time.",
+    'The graph shows the score of each lesson your child has completed.',
+  ];
   audioSources: string[] = ['assets/mp3/stats1.mp3', 'assets/mp3/stats2.mp3'];
 
   constructor(
@@ -64,7 +67,6 @@ export class ChildStatisticsPage implements AfterViewInit {
   renderChart() {
     const ctx: CanvasRenderingContext2D =
       this.chartCanvas.nativeElement.getContext('2d');
-    // const canvas: HTMLCanvasElement = document.getElementById('bar-chart') as HTMLCanvasElement;
     const existingChart = Chart.getChart(ctx);
     if (existingChart) {
       existingChart.destroy();
@@ -99,7 +101,6 @@ export class ChildStatisticsPage implements AfterViewInit {
       options: {
         responsive: true,
         maintainAspectRatio: false,
-        // height: 50,
         scales: {
           y: {
             type: 'linear',

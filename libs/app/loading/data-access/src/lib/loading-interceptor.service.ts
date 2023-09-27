@@ -11,27 +11,28 @@ import { LoadingService } from './loading.service';
 import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LoadingInterceptorService implements HttpInterceptor {
-
-  constructor(private loadingService: LoadingService, private readonly cookieServie: CookieService) {}
+  constructor(
+    private loadingService: LoadingService,
+    private readonly cookieServie: CookieService,
+  ) {}
 
   intercept(
     // eslint-disable-next-line
     request: HttpRequest<any>,
-    next: HttpHandler
+    next: HttpHandler,
     // eslint-disable-next-line
   ): Observable<HttpEvent<any>> {
-
-    if((!request.url.includes(process.env['WW_AUTH0_DOMAIN'] as string))){
+    if (!request.url.includes(process.env['WW_AUTH0_DOMAIN'] as string)) {
       this.loadingService.show();
       const token = this.cookieServie.get('authToken');
 
       if (token) {
         request = request.clone({
           setHeaders: {
-            Authorization: `Bearer ${token}`
+            Authorization: `Bearer ${token}`,
           },
         });
       }
@@ -39,12 +40,10 @@ export class LoadingInterceptorService implements HttpInterceptor {
       return next.handle(request).pipe(
         finalize(() => {
           this.loadingService.hide();
-        })
+        }),
       );
     }
 
-
     return next.handle(request);
-
   }
 }

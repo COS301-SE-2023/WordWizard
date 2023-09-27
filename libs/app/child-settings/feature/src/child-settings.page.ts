@@ -30,9 +30,10 @@ export class ChildSettingsPage {
   passwordSet = false;
   @Select(ChildState.currentChild) currentChild$!: Observable<Child>;
 
-  helpText: string[] = ["You can change your child's profile or delete their profile here"];
+  helpText: string[] = [
+    "You can change your child's profile or delete their profile here",
+  ];
   audioSources: string[] = ['assets/mp3/childsettings1.mp3'];
-
 
   constructor(
     private readonly fb: FormBuilder,
@@ -72,12 +73,14 @@ export class ChildSettingsPage {
   }
 
   deleteProfile() {
-    this.currentChild$.subscribe((data) => {
-      this.childSettingsService.deleteChild(data._id).subscribe((res) => {
-        this.store.dispatch(new DeleteChild({ childId: data._id }));
-        this.passwordSet = false;
-      });
-    }).unsubscribe();
+    this.currentChild$
+      .subscribe((data) => {
+        this.childSettingsService.deleteChild(data._id).subscribe((res) => {
+          this.store.dispatch(new DeleteChild({ childId: data._id }));
+          this.passwordSet = false;
+        });
+      })
+      .unsubscribe();
     this.router.navigate(['/manage-children']);
   }
 

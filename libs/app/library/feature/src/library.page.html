@@ -10,11 +10,13 @@
       [audioSources]="audioSources"
       [volumeChanger]="true" />
     <ng-template #childActive>
-      <ww-header title="Library" [backRoute]="'../dashboard'"
-      [help]="true"
-      [helpText]="helpText"
-      [audioSources]="audioSources"
-      [volumeChanger]="true"/>
+      <ww-header
+        title="Library"
+        [backRoute]="'../dashboard'"
+        [help]="true"
+        [helpText]="helpText"
+        [audioSources]="audioSources"
+        [volumeChanger]="true" />
     </ng-template>
     <ion-segment value="vocab" #toolbarSegment>
       <ion-segment-button value="vocab">

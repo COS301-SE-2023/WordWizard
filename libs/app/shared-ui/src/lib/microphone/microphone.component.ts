@@ -13,7 +13,6 @@ export class MicrophoneComponent {
 
   @Output() textChanged: EventEmitter<string> = new EventEmitter<string>();
 
-
   constructor(public voiceService: VoiceRecognitionService) {}
 
   async startRecording() {
@@ -37,10 +36,8 @@ export class MicrophoneComponent {
     });
   }
 
-  recording(){
-    if(this.isRecording)
-      this.isRecording = false;
-    else
-      this.isRecording = true;
+  recording() {
+    if (this.isRecording) this.isRecording = false;
+    else this.isRecording = true;
   }
 }
