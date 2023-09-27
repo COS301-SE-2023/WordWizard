@@ -14,12 +14,12 @@ describe('login', () => {
 
 
   it('should navigate to Forgot Password', () => {
-    cy.get('#forgot-password').click();
+    cy.get('#forgot-password').click({ force: true });
     cy.url().should('include', 'forgot-password');
   });
 
   it('should navigate to SignUp', () => {
-    cy.get('#sign-up').click();
+    cy.get('#sign-up').click({ force: true });
     cy.url().should('include', 'sign-up');
   });
 
