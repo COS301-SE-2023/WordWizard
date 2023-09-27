@@ -26,7 +26,16 @@ describe('Preferences', () => {
     });
 
 
-    it('should redirect to add-child', () => {
+    it('should be in preferences', () => {
         cy.url().should('equal', 'http://localhost:4200/preferences');   
     });
+
+    it('should select a preference', () => {
+      cy.wait(2000);
+      cy.get(".op-chip").first().click();
+      // cy.wait(2000);
+      // cy.get(".close").first().click();
+    });
+
+
 });
