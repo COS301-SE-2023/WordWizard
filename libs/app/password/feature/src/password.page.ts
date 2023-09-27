@@ -23,7 +23,6 @@ export class PasswordPage {
   code = '12345';
   change = false;
 
-  @Select(ChildState.passcode) passcode$!: Observable<string>;
   @Select(ChildState.currentChild) currentChild$!: Observable<Child>;
   constructor(
     private router: Router,
@@ -33,19 +32,17 @@ export class PasswordPage {
     public toastController: ToastController,
     private route: ActivatedRoute,
     ) {
-    this.passcode$.subscribe((passcode) => {
-      this.route.queryParams.subscribe(params => {
-        if (params['first']) {
-          this.title = 'Set Passcode';
-          this.back = '';
-        } else {
-          this.title = 'Change Passcode';
-          this.change = true;
-          this.passwordService.updatePin().subscribe((res: any) => {
-            this.code = res.code;
-          })
-        }
-      });
+    this.route.queryParams.subscribe(params => {
+      if (params['first']) {
+        this.title = 'Set Passcode';
+        this.back = '';
+      } else {
+        this.title = 'Change Passcode';
+        this.change = true;
+        this.passwordService.updatePin().subscribe((res: any) => {
+          this.code = res.code;
+        })
+      }
     });
     this.parent_email = cookieService.get('email');
   }
