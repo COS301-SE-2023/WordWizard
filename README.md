@@ -17,7 +17,7 @@ The system is designed to adapt to each user's level of proficiency and learning
 # Documentation:
 
 ## Functional Requirements(SRS)
-- (https://img.shields.io/badge/Google%20Docs-View%20Document-blue)] [DEMO 4 ~ SRS.pdf](https://github.com/COS301-SE-2023/WordWizard/files/12741851/DEMO.4.SRS.pdf)
+- [DEMO 4 ~ SRS.pdf](https://github.com/COS301-SE-2023/WordWizard/files/12741851/DEMO.4.SRS.pdf)
 
 
 ## Technical installation
