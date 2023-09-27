@@ -23,8 +23,7 @@ The system is designed to adapt to each user's level of proficiency and learning
 - [Installation guide](https://github.com/COS301-SE-2023/WordWizard/files/12218662/Installation.guide.pdf)
 
 ## User Manual
-- [User Manual](https://github.com/COS301-SE-2023/WordWizard/files/12219801/Word.Wizard.App.User.Manual.docx.pdf)
-
+- [Word Wizard App User Manual.docx.pdf](https://github.com/COS301-SE-2023/WordWizard/files/12741818/Word.Wizard.App.User.Manual.docx.pdf)
 
 ## Coding Standards
 - [Standards Documentation.pdf](https://github.com/COS301-SE-2023/WordWizard/files/12221562/Standards.Documentation.pdf)
