@@ -32,9 +32,12 @@ The system is designed to adapt to each user's level of proficiency and learning
 ## Architecture Doc.
 - [DEMO__3_Architecture.pdf](https://github.com/COS301-SE-2023/WordWizard/files/12224870/DEMO__3_Architecture.pdf)
 
+## Testing Policy
+- [Testing Policy.pdf](https://github.com/COS301-SE-2023/WordWizard/files/12741658/Testing.Policy.pdf)
 
-## Usability Questionnaire (Tentative)
-- [COS 301 Usability Questionnaire_ WordWizard.pdf](https://github.com/COS301-SE-2023/WordWizard/files/12221610/COS.301.Usability.Questionnaire_.WordWizard.pdf)
+
+## Usability Questionnaire
+- [[COS 301 Usability Questionnaire_ WordWizard.pdf](https://github.com/COS301-SE-2023/WordWizard/files/12221610/COS.301.Usability.Questionnaire_.WordWizard.pdf)](https://forms.gle/K3nGGmNZEACYu6j4A)
 
 
 # Demos:
