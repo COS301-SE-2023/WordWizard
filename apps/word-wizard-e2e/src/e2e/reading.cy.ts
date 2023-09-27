@@ -28,20 +28,6 @@ describe('word-wizard/reading', () => {
   it('should load the reading page', () => {
     cy.get('#coin').first().click();
     cy.url().should('equal', 'http://localhost:4200/reading');
+    cy.get('ion-title').should('contain', 'Reading Page');
   });
-
-  // it('should display the Reading Page with the correct header', () => {
-  //   cy.visit('/reading');
-  //   cy.get('#header-content').should('contain', 'Reading Page');
-  //   cy.get('#header-content').should(
-  //     'have.attr',
-  //     'ng-reflect-settings-active',
-  //     'true',
-  //   );
-  //   cy.get('#header-content').should(
-  //     'have.attr',
-  //     'ng-reflect-back-route',
-  //     './',
-  //   );
-  // });
 });
