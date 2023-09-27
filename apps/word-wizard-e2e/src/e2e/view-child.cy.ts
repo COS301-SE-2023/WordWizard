@@ -1,43 +1,39 @@
 /* eslint-disable */
 describe('word-wizard/view-child', () => {
-  // beforeEach(() => {
-  //   cy.viewport('iphone-6');
-  //   cy.visit('/');
+  beforeEach(() => {
+    cy.viewport('iphone-6');
+    cy.visit('/');
 
-  //   cy.url().then((url) => {
-  //     if (url.includes('welcome')) {
-  //       cy.get('ion-button').click();
-  //     }
-  //   });
+    cy.url().then((url) => {
+      if (url.includes('welcome')) {
+        cy.get('ion-button').click();
+      }
+    });
 
-  //   cy.get('input#username').type(Cypress.env('auth_username'));
-  //   cy.get('input#password').type(Cypress.env('auth_password'), { log: false });
-  //   cy.contains('button', 'Continue').click({ force: true });
+    cy.get('input#name').type(Cypress.env('auth_username'));
+    cy.get('input#age').type(Cypress.env('auth_password'), { log: false });
+    cy.get('#login-button').click({ force: true });
 
-  //   cy.get('button').then(($btn) => {
-  //     if ($btn.text() === 'Accept') {
-  //       cy.get('button').contains('Accept').click();
-  //     }
-  //   });
+    cy.wait(3000);
+    cy.get('button.circle').first().click();
+    cy.get('.continueParent').first().click();
+    cy.get("#otp1").type('1');
+    cy.get("#otp2").type('2');
+    cy.get("#otp3").type('3');
+    cy.get("#otp4").type('4');
+  });
 
+  it('should load the view-child page', () => {
+    cy.url().should('contain', 'view-child');
+  });
 
-  //   cy.visit('/manage-children');
-  //   cy.get('.circle').first().click();
+  it('should navigate to the Library page when the Library button is clicked', () => {
+        cy.get('.spellbook').first().click();
+        cy.url().should('include', '/library');
+  });
 
-  //   cy.url().then((url) => {
-  //     if (url.includes('add-child')) {
-  //       cy.log('no existing children');
-  //     } else {
-  //       cy.get('.overlay').should('be.visible');
-  //       cy.get('.continueParent').click();
-  //       cy.url().should('equal', 'http://localhost:4200/view-child');
-  //     }
-  //   });
-  // });
-
-  // it('should load the childs pfp, load the childs name, load the childs current stage', () => {
-  //   cy.get('.pfp').find('img').should('be.visible');
-  //   cy.get('.name').find('p').should('contain', 'Test');
-  //   cy.get('.stage').contains('Stage');
-  // });
+  it('should navigate to settings page when the settings button is clicked', () => {
+    cy.get('#settings-button').first().click();
+    cy.url().should('include', '/settings');
+  });
 });
