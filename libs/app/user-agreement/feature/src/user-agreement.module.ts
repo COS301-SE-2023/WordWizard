@@ -6,12 +6,7 @@ import { SharedUiModule } from '@word-wizard/app/shared-ui';
 import { IonicModule } from '@ionic/angular';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    UserAgreementRouting,
-    SharedUiModule,
-    IonicModule
-  ],
+  imports: [CommonModule, UserAgreementRouting, SharedUiModule, IonicModule],
   declarations: [UserAgreementPage],
   exports: [UserAgreementPage],
 })

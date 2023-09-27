@@ -8,8 +8,15 @@ import { ButtonModule } from '@word-wizard/app/shared-ui';
 import { AuthService } from '@word-wizard/app/auth/data-access';
 import { LoadingModule } from '@word-wizard/app/loading/feature';
 @NgModule({
-  imports: [CommonModule, SignupRouting, IonicModule, ReactiveFormsModule, ButtonModule, LoadingModule],
+  imports: [
+    CommonModule,
+    SignupRouting,
+    IonicModule,
+    ReactiveFormsModule,
+    ButtonModule,
+    LoadingModule,
+  ],
   declarations: [SignUpPage],
-  providers: [AuthService]
+  providers: [AuthService],
 })
 export class SignUpModule {}

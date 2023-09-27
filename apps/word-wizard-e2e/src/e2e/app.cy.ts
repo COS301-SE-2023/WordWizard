@@ -12,7 +12,6 @@ describe('login', () => {
     });
   });
 
-
   it('should navigate to Forgot Password', () => {
     cy.get('#forgot-password').click({ force: true });
     cy.url().should('include', 'forgot-password');
@@ -24,7 +23,6 @@ describe('login', () => {
   });
 
   it('should complete login', () => {
-
     cy.get('input#name').type(Cypress.env('auth_username'));
     cy.get('input#age').type(Cypress.env('auth_password'), { log: false });
     cy.get('#login-button').click({ force: true });

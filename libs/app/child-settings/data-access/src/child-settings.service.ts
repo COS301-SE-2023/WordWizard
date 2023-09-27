@@ -5,7 +5,7 @@ import {
   EditChildRqst,
 } from './requests/child-settings.requests';
 import { Store } from '@ngxs/store';
-import { UpdateChild } from '@word-wizard/app/child/data-access'
+import { UpdateChild } from '@word-wizard/app/child/data-access';
 
 import { status } from './responses/child-settings.responses';
 
@@ -22,7 +22,9 @@ export class ChildSettingsService {
       age: age,
       profile_picture: image,
     };
-    this.store.dispatch(new UpdateChild({childId: id, name: name, age: age, image: image}));
+    this.store.dispatch(
+      new UpdateChild({ childId: id, name: name, age: age, image: image }),
+    );
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
     });

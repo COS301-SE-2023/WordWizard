@@ -8,7 +8,7 @@ import {
   Child,
   ChangeActive,
   SetPassword,
-  DeleteAccount
+  DeleteAccount,
 } from '@word-wizard/app/child/data-access';
 import { Select, Store } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
@@ -34,9 +34,16 @@ export class ManageChildrenPage {
   helpSub: Subscription;
   wantDelete = false;
 
-
-  helpText: string[] = ['Welcome, press on the plus-button to add a child', 'You can sign out or delete your account, but be careful','If you want to read, navigate to your profile'];
-  audioSources: string[] = ['assets/mp3/manage1.mp3', 'assets/mp3/manage2.mp3', 'assets/mp3/manage3.mp3'];
+  helpText: string[] = [
+    'Welcome, press on the plus-button to add a child',
+    'You can sign out or delete your account, but be careful',
+    'If you want to read, navigate to your profile',
+  ];
+  audioSources: string[] = [
+    'assets/mp3/manage1.mp3',
+    'assets/mp3/manage2.mp3',
+    'assets/mp3/manage3.mp3',
+  ];
 
   parentActive = true;
 
@@ -50,7 +57,7 @@ export class ManageChildrenPage {
     private loadingService: LoadingService,
     private passwordService: PasswordService,
     private route: ActivatedRoute,
-    private helpService: HelpService
+    private helpService: HelpService,
   ) {
     loadingService.show();
     setTimeout(() => {
@@ -63,30 +70,35 @@ export class ManageChildrenPage {
       this.Children$.subscribe((data) => {
         this.children = data;
       });
-      this.passwordService.getPin(`${this.cookieService.get('email')}`).subscribe(
-        (response) => {
-          this.store.dispatch(new SetPassword({passcode: `${response}`}));
-        }
-      );
+      this.passwordService
+        .getPin(`${this.cookieService.get('email')}`)
+        .subscribe((response) => {
+          this.store.dispatch(new SetPassword({ passcode: `${response}` }));
+        });
       loadingService.hide();
     }, 2000);
 
-    const routeSub = this.route.queryParams.subscribe(params => {
-      if(params['first'])
-        this.showInitialHelp =  params['first'].toLowerCase() === 'true' ? true : false;
-      if(this.showInitialHelp) {
-        helpService.show(['Welcome to WordWizard, I am wizzy and I will guide you along your journey', 'If you need help with anything press on the menu button on the top right of the screen and then press on the question mark'], ['assets/mp3/first1.mp3', 'assets/mp3/first2.mp3']);
+    const routeSub = this.route.queryParams.subscribe((params) => {
+      if (params['first'])
+        this.showInitialHelp =
+          params['first'].toLowerCase() === 'true' ? true : false;
+      if (this.showInitialHelp) {
+        helpService.show(
+          [
+            'Welcome to WordWizard, I am wizzy and I will guide you along your journey',
+            'If you need help with anything press on the menu button on the top right of the screen and then press on the question mark',
+          ],
+          ['assets/mp3/first1.mp3', 'assets/mp3/first2.mp3'],
+        );
         routeSub.unsubscribe();
       }
-
     });
 
     this.helpSub = helpService.help$.subscribe((help) => {
-
-      if(help.show === false){
+      if (help.show === false) {
         this.showInitialHelp = false;
       }
-      });
+    });
   }
 
   setChild(child: Child) {
@@ -173,10 +185,8 @@ export class ManageChildrenPage {
     }
     if (this.parentActive) {
       this.router.navigate(['/view-child']);
-    }
-    else {
+    } else {
       this.router.navigate(['/dashboard']);
     }
   }
-
 }

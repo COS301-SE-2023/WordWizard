@@ -1,7 +1,7 @@
 import { Progress } from '../interfaces/reading.interfaces';
 
 export interface PassageRequest {
-  id : string;
+  id: string;
   level: number;
 }
 

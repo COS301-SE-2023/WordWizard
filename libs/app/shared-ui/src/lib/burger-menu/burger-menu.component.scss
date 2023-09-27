@@ -1,15 +1,15 @@
-.burger-menu{
+.burger-menu {
   height: 100%;
   width: auto;
   position: relative;
   z-index: 100;
 }
 
-ion-button{
+ion-button {
   --background: transparent;
 }
 
-.dropdown{
+.dropdown {
   height: fit-content;
   width: 90%;
   bottom: 0px;
@@ -20,14 +20,13 @@ ion-button{
   align-items: center;
   position: absolute;
   transform: translateY(100%);
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgba(0, 0, 0, 0.5);
   border-radius: 10%;
   z-index: 100;
 
-  *{
+  * {
     margin-bottom: 5px;
   }
-
 }
 
 // #font-size{

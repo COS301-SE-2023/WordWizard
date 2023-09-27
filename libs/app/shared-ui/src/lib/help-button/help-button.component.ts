@@ -7,20 +7,18 @@ import { HelpService } from '@word-wizard/app/help/data-access';
   styleUrls: ['./help-button.component.scss'],
 })
 export class HelpButtonComponent {
-
   constructor(private helpService: HelpService) {}
 
   @Input() helpText!: string[];
   @Input() audioSources!: string[];
   show = false;
 
-  help(){
+  help() {
     this.show = true;
     this.helpService.show(this.helpText, this.audioSources);
   }
 
-  close(){
+  close() {
     this.show = false;
   }
-
 }

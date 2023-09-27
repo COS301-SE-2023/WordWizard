@@ -1,30 +1,37 @@
 <ww-loading></ww-loading>
 <ion-content scrollY="false">
-    <div id="container">
-      <div class="welcome">
-        <div class="hat">
-          <img src="assets/img/wizzard_hat.png" />
-        </div>
-        <p class="title">Login</p>
-        <form [formGroup]="form" (ngSubmit)="submit()">
-          <div>
-            <label htmlFor="name" class="input-lbl">Email:</label><br />
-            <input type="text" id="name" formControlName="email" />
-          </div>
-          <div>
-            <label htmlFor="age" class="input-lbl">Password:</label><br />
-            <input type="password" id="age" formControlName="password" />
-          </div>
-          <div class="button-container">
-            <ion-button id="login-button" type="submit">Login</ion-button>
-          </div>
-        </form>
+  <div id="container">
+    <div class="welcome">
+      <div class="hat">
+        <img src="assets/img/wizzard_hat.png" />
+      </div>
+      <p class="title">Login</p>
+      <form [formGroup]="form" (ngSubmit)="submit()">
         <div>
-          <p class="login" >Forgot password? <a id="forgot-password" routerLink="/forgot-password">Reset Password</a></p>
+          <label htmlFor="name" class="input-lbl">Email:</label><br />
+          <input type="text" id="name" formControlName="email" />
         </div>
         <div>
-            <p class="login" >Not a user? <a id="sign-up" routerLink="/sign-up">Sign Up</a></p>
+          <label htmlFor="age" class="input-lbl">Password:</label><br />
+          <input type="password" id="age" formControlName="password" />
         </div>
+        <div class="button-container">
+          <ion-button id="login-button" type="submit">Login</ion-button>
+        </div>
+      </form>
+      <div>
+        <p class="login">
+          Forgot password?
+          <a id="forgot-password" routerLink="/forgot-password"
+            >Reset Password</a
+          >
+        </p>
+      </div>
+      <div>
+        <p class="login">
+          Not a user? <a id="sign-up" routerLink="/sign-up">Sign Up</a>
+        </p>
       </div>
     </div>
-  </ion-content>
+  </div>
+</ion-content>

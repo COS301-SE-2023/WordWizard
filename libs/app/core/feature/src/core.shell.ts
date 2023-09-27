@@ -7,14 +7,12 @@ import { CoreService } from '@word-wizard/app/core/data-access';
   styleUrls: ['./core.shell.scss'],
 })
 export class CoreShell {
-
   private clickSound!: HTMLAudioElement;
   private bgAudio!: HTMLAudioElement;
   private bgAudioHelper!: HTMLAudioElement;
 
   constructor(private coreService: CoreService, private ngZone: NgZone) {
-
-    this.coreService.volumeChangeSubject.subscribe(volume => {
+    this.coreService.volumeChangeSubject.subscribe((volume) => {
       this.bgAudio.volume = volume;
       this.bgAudioHelper.volume = volume;
       //save volume in local storage
@@ -29,10 +27,9 @@ export class CoreShell {
     this.coreService.volumeChange(0.0);
     this.clickSound.volume = 0.085;
 
-
     const storedVolume = localStorage.getItem('volume');
 
-    if(storedVolume!= null) {
+    if (storedVolume != null) {
       coreService.volumeChange(parseFloat(storedVolume));
     }
     this.bgAudio.play();

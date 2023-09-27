@@ -8,8 +8,7 @@
       <ion-icon
         size="large"
         name="arrow-back-outline"
-        src="assets/svg/arrow-back-outline.svg"
-      />
+        src="assets/svg/arrow-back-outline.svg" />
     </ion-nav-link>
 
     <ion-nav-link [routerLink]="settingsRoute" *ngIf="settingsActive">
@@ -18,12 +17,15 @@
         name="settings-sharp"
         src="assets/svg/settings-sharp.svg" />
     </ion-nav-link>
-    
+
     <ion-title>{{ title }}</ion-title>
 
-
-    <ww-burger-menu [volumeChanger]="volumeChanger" [fontChanger]="fontChanger" [help]="help" [helpText]="helpText" [audioSources]="audioSources" (settingsClick)="fontChange()"></ww-burger-menu>
-
+    <ww-burger-menu
+      [volumeChanger]="volumeChanger"
+      [fontChanger]="fontChanger"
+      [help]="help"
+      [helpText]="helpText"
+      [audioSources]="audioSources"
+      (settingsClick)="fontChange()"></ww-burger-menu>
   </div>
-
 </ion-header>

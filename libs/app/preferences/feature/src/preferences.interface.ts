@@ -1,4 +1,4 @@
 export interface preferences {
-    value: string;
-    color: string;
+  value: string;
+  color: string;
 }

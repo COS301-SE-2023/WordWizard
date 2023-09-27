@@ -8,10 +8,9 @@ import { Observable } from 'rxjs';
   styleUrls: ['./loading.page.scss'],
 })
 export class LoadingPage implements OnInit {
-
   loading$!: Observable<boolean>;
 
-  constructor(private loadingService: LoadingService) { }
+  constructor(private loadingService: LoadingService) {}
 
   ngOnInit() {
     this.loading$ = this.loadingService.loading$;

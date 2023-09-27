@@ -9,16 +9,16 @@ import { PasswordComponent } from './password.component';
 import { ButtonModule } from '../button';
 
 @NgModule({
-  imports: [ 
-    CommonModule, 
-    FormsModule, 
-    IonicModule, 
-    ReactiveFormsModule, 
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonicModule,
+    ReactiveFormsModule,
     ButtonModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   declarations: [PasswordComponent],
   exports: [PasswordComponent],
-  providers: [PasswordService]
+  providers: [PasswordService],
 })
 export class PasswordModule {}

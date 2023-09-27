@@ -25,7 +25,8 @@ export class ReadingPage {
   @Select(ReadingState.getReadingState) readingState$!: Observable<Content>;
   @Select(ReadingState.getCurrent) getCurrent$!: Observable<number>;
   @Select(ReadingState.getStatus) getStatus$!: Observable<boolean>;
-  @Select(ReadingState.getAttemptsRemaining) getAttemptsRemaining$!: Observable<number>;
+  @Select(ReadingState.getAttemptsRemaining)
+  getAttemptsRemaining$!: Observable<number>;
 
   backgroundImage = 'assets/img/CastleBackground.png';
   backButton = 'assets/img/item/backbutton.png';
@@ -49,10 +50,22 @@ export class ReadingPage {
 
   attemptsRemaining!: number;
 
-  helpText: string[] = ['Click and hold the microphone to speak', 'Click on the speaker to hear the word', 'Your progress is shown in the potion bottle and the amount of attempts you have left is shown in the top left corner'];
-  audioSources: string[] = ['assets/mp3/reading1.mp3', 'assets/mp3/reading2.mp3', 'assets/mp3/reading3.mp3'];
+  helpText: string[] = [
+    'Click and hold the microphone to speak',
+    'Click on the speaker to hear the word',
+    'Your progress is shown in the potion bottle and the amount of attempts you have left is shown in the top left corner',
+  ];
+  audioSources: string[] = [
+    'assets/mp3/reading1.mp3',
+    'assets/mp3/reading2.mp3',
+    'assets/mp3/reading3.mp3',
+  ];
 
-  constructor(private store: Store, private router: Router, private toastController: ToastController) {
+  constructor(
+    private store: Store,
+    private router: Router,
+    private toastController: ToastController,
+  ) {
     this.setStars();
     this.store.dispatch(new SetPassage());
     this.getStatus$.subscribe((data) => {
@@ -110,14 +123,16 @@ export class ReadingPage {
           500,
         );
       } else {
-        this.toastController.create({
-          message: 'Ooops, Try again!',
-          duration: 2000,
-          color: 'danger',
-          position: 'top',
-        }).then((toast) => {
-          toast.present();
-        });
+        this.toastController
+          .create({
+            message: 'Ooops, Try again!',
+            duration: 2000,
+            color: 'danger',
+            position: 'top',
+          })
+          .then((toast) => {
+            toast.present();
+          });
         this.store.dispatch(new MakeAttempt({ newAttempt: '' }));
       }
     } else {
@@ -171,18 +186,15 @@ export class ReadingPage {
 
   controlModal() {
     this.store.dispatch(new SetStatus({ status: false }));
-    this.store.dispatch(new UpdateStage({ stars: this.getStars()}));
+    this.store.dispatch(new UpdateStage({ stars: this.getStars() }));
     this.store.dispatch(new ResetPassage());
     this.router.navigate(['/stage']);
   }
 
   getStars() {
-    if (this.progressPercentage >= '50%')
-      return 1;
-    if (this.progressPercentage >= '75%')
-      return 2;
-    if (this.progressPercentage == '100%')
-      return 3;
+    if (this.progressPercentage >= '50%') return 1;
+    if (this.progressPercentage >= '75%') return 2;
+    if (this.progressPercentage == '100%') return 3;
     return 0;
   }
 
@@ -211,6 +223,6 @@ export class ReadingPage {
   }
 
   handle() {
-    this.store.dispatch(new UpdateStage({ stars: this.getStars()}));
+    this.store.dispatch(new UpdateStage({ stars: this.getStars() }));
   }
 }

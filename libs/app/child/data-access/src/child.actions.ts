@@ -37,7 +37,14 @@ export class SetPassword {
 }
 export class UpdateChild {
   static readonly type = '[Child] Update Child';
-  constructor(public payload: { childId: string; name: string; age: number; image: string }) {}
+  constructor(
+    public payload: {
+      childId: string;
+      name: string;
+      age: number;
+      image: string;
+    },
+  ) {}
 }
 
 export class DeleteAccount {

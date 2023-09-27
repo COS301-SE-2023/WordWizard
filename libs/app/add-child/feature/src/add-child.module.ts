@@ -17,7 +17,7 @@ import { LoadingModule } from '@word-wizard/app/loading/feature';
     ReactiveFormsModule,
     HttpClientModule,
     SharedUiModule,
-    LoadingModule
+    LoadingModule,
   ],
   declarations: [AddChildPage],
   providers: [AddChildService],

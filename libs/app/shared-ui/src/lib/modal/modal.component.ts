@@ -26,10 +26,7 @@ export class ModalComponent implements OnInit {
     await this.sleep(1000);
     if (this.badge) {
       this.title = 'Achievement';
-      if (
-        this.badge.img ==
-        'assets/img/Awards/Blankbadge.png'
-      ) {
+      if (this.badge.img == 'assets/img/Awards/Blankbadge.png') {
         this.badge.name = 'Locked';
       }
     }

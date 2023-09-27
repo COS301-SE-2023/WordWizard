@@ -8,8 +8,15 @@ import { ForgotPasswordPage } from './forgot-password.page';
 import { AuthService } from '@word-wizard/app/auth/data-access';
 import { LoadingModule } from '@word-wizard/app/loading/feature';
 @NgModule({
-  imports: [CommonModule, ForgotPasswordRouting, HttpClientModule, IonicModule, ReactiveFormsModule, LoadingModule],
+  imports: [
+    CommonModule,
+    ForgotPasswordRouting,
+    HttpClientModule,
+    IonicModule,
+    ReactiveFormsModule,
+    LoadingModule,
+  ],
   declarations: [ForgotPasswordPage],
-  providers: [AuthService]
+  providers: [AuthService],
 })
 export class ForgotPasswordModule {}

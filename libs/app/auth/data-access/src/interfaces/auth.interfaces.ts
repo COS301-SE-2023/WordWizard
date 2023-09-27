@@ -1,3 +1,3 @@
 export interface VerfiyResponse {
-    code: string;
+  code: string;
 }

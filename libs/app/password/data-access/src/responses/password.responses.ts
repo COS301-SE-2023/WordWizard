@@ -1,8 +1,8 @@
 export interface SetPinRsp {
-    message: string;
-    status_code: boolean;
+  message: string;
+  status_code: boolean;
 }
 
 export interface PinRsp {
-    pin: string;
+  pin: string;
 }

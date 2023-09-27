@@ -15,6 +15,6 @@ export class VoiceRecognitionService {
       formData,
     );
   }
-  constructor(private http: HttpClient){}
+  constructor(private http: HttpClient) {}
 }
 /* eslint:enable */

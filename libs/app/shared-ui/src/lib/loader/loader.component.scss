@@ -1,48 +1,48 @@
 .animation-container p {
-    text-align: center;
-    font-size: 2rem;
-    color: white;
-    background: transparent;
+  text-align: center;
+  font-size: 2rem;
+  color: white;
+  background: transparent;
 }
 
 .loader {
-    margin: auto;
-    border: 20px solid #dadada;
-    border-radius: 50%;
-    border-top: 20px solid #861486;
-    width: 200px;
-    height: 200px;
-    display: flex;
-    align-content: center;
-    animation: spinner 4s linear infinite;
+  margin: auto;
+  border: 20px solid #dadada;
+  border-radius: 50%;
+  border-top: 20px solid #861486;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  align-content: center;
+  animation: spinner 4s linear infinite;
 
-    background: transparent;
+  background: transparent;
 }
 
 @keyframes spinner {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .loader img {
-    height: 100%;
-    width: auto;
-    margin: auto;
-    animation: spin-pulse 4s linear infinite;
+  height: 100%;
+  width: auto;
+  margin: auto;
+  animation: spin-pulse 4s linear infinite;
 }
 
 @keyframes spin-pulse {
-    0% {
-        transform: scale(0.6);
-    }
-    50% {
-        transform: scale(0.9);
-    }
-    100% {
-        transform: scale(0.6);
-    }
+  0% {
+    transform: scale(0.6);
+  }
+  50% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(0.6);
+  }
 }

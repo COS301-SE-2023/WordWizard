@@ -13,17 +13,17 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class ForgotPasswordPage {
   form!: FormGroup;
-  pin!: FormGroup
+  pin!: FormGroup;
   submitted = false;
   code = '';
   constructor(
-    private readonly fb: FormBuilder, 
-    private readonly auth: AuthService, 
+    private readonly fb: FormBuilder,
+    private readonly auth: AuthService,
     private readonly router: Router,
     private readonly toastController: ToastController,
-  ) { 
+  ) {
     this.form = this.fb.group({
-      email: ['', Validators.required]
+      email: ['', Validators.required],
     });
     this.pin = this.fb.group({
       pin: ['', Validators.required],
@@ -33,17 +33,15 @@ export class ForgotPasswordPage {
   }
 
   submit() {
-    if(this.form.valid) {
+    if (this.form.valid) {
       this.auth.forgotPassword(this.form.value.email).subscribe(
         // eslint-disable-next-line
         (response: any) => {
           this.code = response.code;
-        }
+        },
       );
       this.submitted = true;
-    }
-    else 
-    {
+    } else {
       this.presentToast('Please enter a valid email', 'danger');
     }
   }
@@ -55,23 +53,25 @@ export class ForgotPasswordPage {
 
   submitPin() {
     if (this.pin.valid) {
-      if(this.code === SHA256(this.pin.value.pin).toString()){
-        if(this.pin.value.password !== this.pin.value.confirmPassword) {
-          this.presentToast('Password does not match', 'danger')
+      if (this.code === SHA256(this.pin.value.pin).toString()) {
+        if (this.pin.value.password !== this.pin.value.confirmPassword) {
+          this.presentToast('Password does not match', 'danger');
           return;
         }
-        this.auth.resetPassword(this.form.value.email, this.pin.value.password, this.pin.value.pin).subscribe((res: any) => {
-          this.presentToast('Password reset successfully', 'success')
-          this.router.navigate(['/login']);
-        })
-      }
-      else 
-      {
+        this.auth
+          .resetPassword(
+            this.form.value.email,
+            this.pin.value.password,
+            this.pin.value.pin,
+          )
+          .subscribe((res: any) => {
+            this.presentToast('Password reset successfully', 'success');
+            this.router.navigate(['/login']);
+          });
+      } else {
         this.presentToast('Invalid code', 'danger');
       }
-    }
-    else 
-    {
+    } else {
       this.presentToast('Please fill out all the fields', 'danger');
     }
   }

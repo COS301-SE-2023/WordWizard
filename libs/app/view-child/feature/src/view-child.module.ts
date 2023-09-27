@@ -13,7 +13,7 @@ import { LoadingModule } from '@word-wizard/app/loading/feature';
     ViewChildRouting,
     IonicModule,
     SharedUiModule,
-    LoadingModule
+    LoadingModule,
   ],
   declarations: [ViewChildPage],
   exports: [ViewChildPage],

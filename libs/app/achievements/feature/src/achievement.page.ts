@@ -6,11 +6,7 @@ import {
 } from '@word-wizard/app/achievements/data-access';
 import { Observable } from 'rxjs';
 import { Select, Store } from '@ngxs/store';
-import {
-
-  ChildState,
-  Child,
-} from '@word-wizard/app/child/data-access';
+import { ChildState, Child } from '@word-wizard/app/child/data-access';
 import { Badge } from '@word-wizard/app/shared-ui';
 
 export interface achievement {
@@ -25,26 +21,28 @@ export interface achievement {
 export class AchievementPage {
   open = false;
 
-  childProfilePictureSrc =
-    'assets/img/Awards/Blankbadge.png';
+  childProfilePictureSrc = 'assets/img/Awards/Blankbadge.png';
 
   awards: AwardSection[] = [];
   parentActive!: boolean;
   selectedAward: any;
   badges: Badge[] = [];
 
-  helpText: string[] = ['Click on each badge to see more details.', 'You collect badges by completing more levels.'];
-  audioSources: string[] = ['assets/mp3/achievements1.mp3', 'assets/mp3/achievements2.mp3'];
-
-
+  helpText: string[] = [
+    'Click on each badge to see more details.',
+    'You collect badges by completing more levels.',
+  ];
+  audioSources: string[] = [
+    'assets/mp3/achievements1.mp3',
+    'assets/mp3/achievements2.mp3',
+  ];
 
   @Select(ChildState.currentChild) currentChild$!: Observable<Child>;
   @Select(ChildState.parentActive) parentActive$!: Observable<boolean>;
   openModal(award: any, category: any) {
     this.selectedAward = award;
     if (this.selectedAward.completed == false) {
-      this.selectedAward.img =
-        'assets/img/Awards/Blankbadge.png';
+      this.selectedAward.img = 'assets/img/Awards/Blankbadge.png';
       this.selectedAward.name = 'Locked';
     } else {
       this.selectedAward.name = 'You completed a ' + category + ' award!';
@@ -54,7 +52,7 @@ export class AchievementPage {
 
   constructor(
     private achievementService: AchievementService,
-    private elRef:ElementRef
+    private elRef: ElementRef,
   ) {
     this.currentChild$.subscribe((child) => {
       if (child && child._id !== '') {
@@ -63,17 +61,14 @@ export class AchievementPage {
         if (child.profile_photo != '') {
           this.childProfilePictureSrc = child.profile_photo;
         }
-
       }
     });
-
 
     this.parentActive$.subscribe((data) => {
       if (data === true) this.parentActive = true;
       else this.parentActive = data;
     });
   }
-
 
   loadAwards(id: string) {
     this.achievementService.getAwards(id).subscribe(

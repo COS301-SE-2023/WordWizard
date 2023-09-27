@@ -7,7 +7,6 @@ import { CoreService } from '@word-wizard/app/core/data-access';
   styleUrls: ['./burger-menu.component.scss'],
 })
 export class BurgerMenuComponent {
-
   @Input() volumeChanger = true;
   @Input() fontChanger = false;
   @Input() help = true;
@@ -25,7 +24,7 @@ export class BurgerMenuComponent {
   }
 
   toggleMenu() {
-    if(this.open) {
+    if (this.open) {
       this.open = false;
     } else {
       this.open = true;
@@ -33,19 +32,14 @@ export class BurgerMenuComponent {
   }
 
   toggleBackgroundMusic() {
-    if (this.audioLevel === 6)
-      this.audioLevel = 3;
-    else if (this.audioLevel === 3)
-      this.audioLevel = 0;
-    else if (this.audioLevel === 0)
-      this.audioLevel = 6;
+    if (this.audioLevel === 6) this.audioLevel = 3;
+    else if (this.audioLevel === 3) this.audioLevel = 0;
+    else if (this.audioLevel === 0) this.audioLevel = 6;
     localStorage.setItem('volume', `0.0${this.audioLevel.toString()}`);
-    this.coreService.volumeChange((this.audioLevel / 100));
+    this.coreService.volumeChange(this.audioLevel / 100);
   }
-
 
   fontChange() {
     this.settingsClick.emit();
   }
-
 }

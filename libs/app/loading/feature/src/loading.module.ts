@@ -7,7 +7,13 @@ import { IonicModule } from '@ionic/angular';
 import { ReadingSharedUiModule } from '@word-wizard/app/reading/shared-ui';
 
 @NgModule({
-  imports: [CommonModule, RouterModule, SharedUiModule, IonicModule.forRoot(), ReadingSharedUiModule,],
+  imports: [
+    CommonModule,
+    RouterModule,
+    SharedUiModule,
+    IonicModule.forRoot(),
+    ReadingSharedUiModule,
+  ],
   declarations: [LoadingPage],
   exports: [LoadingPage],
 })

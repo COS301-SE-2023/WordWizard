@@ -22,7 +22,10 @@ export class StagePage implements OnInit {
   name = '';
   background = '';
 
-  helpText: string[] = ['Start at the top and work your way down.', 'Each coin is a level, you can replay levels to improve your score.'];
+  helpText: string[] = [
+    'Start at the top and work your way down.',
+    'Each coin is a level, you can replay levels to improve your score.',
+  ];
   audioSources: string[] = ['assets/mp3/stage1.mp3', 'assets/mp3/stage2.mp3'];
 
   coins: Coin[] = [

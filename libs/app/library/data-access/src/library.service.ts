@@ -26,7 +26,7 @@ export class LibraryService {
     );
   }
 
-  addVocab(request: UpdateRequest) : Observable<UpdateResponse> {
+  addVocab(request: UpdateRequest): Observable<UpdateResponse> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
     });

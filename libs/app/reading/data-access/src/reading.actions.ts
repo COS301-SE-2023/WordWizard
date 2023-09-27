@@ -18,6 +18,6 @@ export class SetStatus {
   constructor(public payload: { status: boolean }) {}
 }
 
-export class ResetPassage{
+export class ResetPassage {
   static readonly type = '[Reading] Reset Passage';
 }
