@@ -144,11 +144,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule],
 })
-export class CoreRouting {
-  // constructor(private auth: AuthService, private router: Router) {
-  //   this.auth.isAuthenticated$.subscribe((isAuthenticated) => {
-  //     if (isAuthenticated) this.router.navigate(['/manage-children']);
-  //     else this.router.navigate(['/welcome']);
-  //   });
-  // }
-}
+export class CoreRouting {}

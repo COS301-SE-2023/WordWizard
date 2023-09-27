@@ -32,7 +32,6 @@ export class ModalComponent implements OnInit {
     }
 
     if (this.child) {
-      // this.title = this.child.username;
       this.title = 'Manage Child';
     }
 

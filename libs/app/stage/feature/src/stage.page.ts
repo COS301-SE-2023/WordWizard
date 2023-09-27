@@ -15,7 +15,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./stage.page.scss'],
 })
 export class StagePage implements OnInit {
-  //get stage from state
   @Select(StageState.getStage) stage$!: Observable<stage>;
   @Select(StageState.getSelectedStage) selectedStage$!: Observable<number>;
 

@@ -1,11 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
-//import the request models and response models
 import {
   SetPinRqst,
-  ValidatePasswordRqst,
   PinRqst,
 } from './requests/password.requests';
 import { SetPinRsp, PinRsp } from './responses/password.responses';

@@ -9,7 +9,6 @@ import { LoadingModule } from '@word-wizard/app/loading/feature';
 @NgModule({
   imports: [
     CommonModule,
-    // RouterModule.forChild(appViewChildFeatureRoutes)
     ViewChildRouting,
     IonicModule,
     SharedUiModule,

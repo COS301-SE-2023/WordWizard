@@ -11,7 +11,6 @@ import { SharedUiModule } from '@word-wizard/app/shared-ui';
   imports: [
     CommonModule,
     SplashRouting,
-    // RouterModule.forChild(appSplashFeatureRoutes)
     SharedUiModule,
   ],
   declarations: [SplashPage],

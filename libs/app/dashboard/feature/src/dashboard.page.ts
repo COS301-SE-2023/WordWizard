@@ -26,7 +26,6 @@ export class DashboardPage {
     progress: '',
     profile_photo: 'assets/img/item/cauldron-cropped.png',
   };
-  // child!: Child;
   visible = false;
   pictures: string[] = [];
   stage = 0;
@@ -48,7 +47,6 @@ export class DashboardPage {
     private readonly childService: ChildSettingsService,
     private stageService: StageService,
   ) {
-    // Get the child's data
     this.currentChild$.subscribe((data) => {
       this.addChildService.getImages().subscribe((res) => {
         this.pictures = res.images;
@@ -56,13 +54,9 @@ export class DashboardPage {
 
       if (data !== undefined && data._id !== '') {
         this.child = data;
-
-        // Create request
         const rqst: levelsRequest = {
           progress_id: data._id,
         };
-
-        // Get the stage from the db
         this.stageService
           .getStage(rqst)
           .subscribe((data: getLevelsResponse) => {
@@ -72,7 +66,6 @@ export class DashboardPage {
     });
   }
 
-  // CHILD SETTINGS CODE
   modal() {
     this.visible = !this.visible;
   }

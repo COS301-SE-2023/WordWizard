@@ -67,7 +67,6 @@ export class ChildStatisticsPage implements AfterViewInit {
   renderChart() {
     const ctx: CanvasRenderingContext2D =
       this.chartCanvas.nativeElement.getContext('2d');
-    // const canvas: HTMLCanvasElement = document.getElementById('bar-chart') as HTMLCanvasElement;
     const existingChart = Chart.getChart(ctx);
     if (existingChart) {
       existingChart.destroy();
@@ -102,7 +101,6 @@ export class ChildStatisticsPage implements AfterViewInit {
       options: {
         responsive: true,
         maintainAspectRatio: false,
-        // height: 50,
         scales: {
           y: {
             type: 'linear',

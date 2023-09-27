@@ -15,7 +15,6 @@ export class HeaderComponent implements OnInit {
   @Output() settingsClick = new EventEmitter<void>();
   @Output() back = new EventEmitter<void>();
 
-  //burgermenu inputs
   @Input() volumeChanger!: boolean;
   @Input() fontChanger!: boolean;
   @Input() help!: boolean;
