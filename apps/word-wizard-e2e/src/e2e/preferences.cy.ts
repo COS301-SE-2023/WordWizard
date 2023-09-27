@@ -15,7 +15,7 @@ describe('Preferences', () => {
       cy.get('input#age').type(Cypress.env('auth_password'), { log: false });
       cy.get('#login-button').click({ force: true });
 
-      cy.wait(3000);
+      cy.wait(4000);
       cy.get('button.circle').first().click();
       cy.get('.continueParent').first().click();
       cy.get("#otp1").type('1');
@@ -23,6 +23,7 @@ describe('Preferences', () => {
       cy.get("#otp3").type('3');
       cy.get("#otp4").type('4');
       cy.get(".trophy").last().click();
+      cy.url().should('equal', 'http://localhost:4200/preferences');
     });
 
 
@@ -43,5 +44,9 @@ describe('Preferences', () => {
       cy.get(".btn-tpc").first().click();
     });
 
-
+    it('Should remove a preference and save it', () => {
+      cy.wait(2000);
+      cy.get("ion-icon.close").last().click();
+      cy.get(".btn-tpc").first().click();
+    });
 });
