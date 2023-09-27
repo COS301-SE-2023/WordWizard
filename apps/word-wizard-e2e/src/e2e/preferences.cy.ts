@@ -32,9 +32,15 @@ describe('Preferences', () => {
 
     it('should select a preference', () => {
       cy.wait(2000);
+      cy.get(".op-chip").last().click();
+      cy.wait(3000);
+      cy.get("ion-icon.close").last().click();
+    });
+
+    it('should select a preference and save it', () => {
+      cy.wait(2000);
       cy.get(".op-chip").first().click();
-      // cy.wait(2000);
-      // cy.get(".close").first().click();
+      cy.get(".btn-tpc").first().click();
     });
 
 
