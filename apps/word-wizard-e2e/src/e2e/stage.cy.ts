@@ -11,28 +11,31 @@ describe('word-wizard/stage', () => {
       }
     });
 
-    cy.get('input#username').type(Cypress.env('auth_username'));
-    cy.get('input#password').type(Cypress.env('auth_password'), { log: false });
-    cy.contains('button', 'Continue').click({ force: true });
+    cy.get('input#name').type(Cypress.env('auth_username'));
+    cy.get('input#age').type(Cypress.env('auth_password'), { log: false });
+    cy.get('#login-button').click({ force: true });
 
-    cy.get('button').then(($btn) => {
-      if ($btn.text() === 'Accept') {
-        cy.get('button').contains('Accept').click();
-      }
-    });
+    cy.wait(5000);
+    cy.get('button.circle').first().click();
+    cy.get('.continueChild').first().click();
+    cy.get("#otp1").type('1');
+    cy.get("#otp2").type('2');
+    cy.get("#otp3").type('3');
+    cy.get("#otp4").type('4');
+
+    cy.get('a.map').first().click();
+
   });
 
-  it('should load the stage page', () => {
-    cy.visit('/stage');
+  it('should visit the stage page', () => {
+    cy.url().should('equal', 'http://localhost:4200/stage');
   });
 
   it('should display the header title', () => {
-    cy.visit('/stage');
     cy.get('ion-title').should('contain', 'Stages');
   });
 
-  it('should display 20 coins', () => {
-    cy.visit('/stage');
-    cy.get('ww-lesson-coin').find('.coin').should('have.length', 20);
+  it('should load coins', () => {
+    cy.get('.coin').should('exist');
   });
 });

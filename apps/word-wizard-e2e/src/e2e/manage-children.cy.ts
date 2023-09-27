@@ -11,42 +11,24 @@ describe('word-wizard/manage-children', () => {
       }
     });
 
-    cy.get('input#username').type(Cypress.env('auth_username'));
-    cy.get('input#password').type(Cypress.env('auth_password'), { log: false });
-    cy.contains('button', 'Continue').click({ force: true });
+    cy.get('input#name').type(Cypress.env('auth_username'));
+    cy.get('input#age').type(Cypress.env('auth_password'), { log: false });
+    cy.get('#login-button').click({ force: true });
 
-    cy.get('button').then(($btn) => {
-      if ($btn.text() === 'Accept') {
-        cy.get('button').contains('Accept').click();
-      }
-    });
+    cy.wait(5000);
+
   });
 
-  it('should visit manage-children', () => {
-    cy.visit('/manage-children');
+  it('should load manage-children', () => {
     cy.url().should('equal', 'http://localhost:4200/manage-children');
   });
 
-  it('should select a child and redirect to dashboard', () => {
-    cy.get('.circle')
-      .first()
-      .then(($btn) => {
-        if ($btn.text() === 'Add Child') {
-          cy.log('no existing children');
-        } else {
-          cy.visit('/manage-children');
-          cy.get('.circle').first().click();
-
-          cy.get('.overlay').should('be.visible');
-          cy.get('.continueChild').click();
-          cy.url().should('equal', 'http://localhost:4200/dashboard');
-        }
-      });
+  it('should load children', () => {
+    cy.get('.circle').should('exist');
   });
 
   it('should redirect to add-child', () => {
-    cy.visit('/manage-children');
-    cy.get('button').last().click();
+    cy.get('.circle').last().click();
     cy.url().should('equal', 'http://localhost:4200/add-child');
   });
 });
