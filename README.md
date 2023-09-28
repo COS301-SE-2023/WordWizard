@@ -30,7 +30,7 @@ The system is designed to adapt to each user's level of proficiency and learning
 - [Standards Documentation.pdf](https://github.com/COS301-SE-2023/WordWizard/files/12221562/Standards.Documentation.pdf)
 
 ## Architecture Doc.
-- [DEMO__3_Architecture.pdf](https://github.com/COS301-SE-2023/WordWizard/files/12224870/DEMO__3_Architecture.pdf)
+- [Architecture.pdf](https://github.com/COS301-SE-2023/WordWizard/files/12746152/Architecture.pdf)
 
 ## Testing Policy
 - [Testing Policy.pdf](https://github.com/COS301-SE-2023/WordWizard/files/12741658/Testing.Policy.pdf)
