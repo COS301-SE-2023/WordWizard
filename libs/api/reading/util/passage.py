@@ -12,13 +12,11 @@ openai.api_key = api_key
 
 
 def query_passage(query: str):
-    # q = query_chat(query)
-    q = "Sentence: the cat sat on the mat\nFocus Words: cat, sat"
+    q = query_chat(query)
     sentence, focus = extract_info(q)
-    print(sentence, focus)
-    # while is_profane(q) or sentence == None or focus == None:
-    #     q = query_chat(query)
-    #     sentence, focus = extract_info(q)
+    while is_profane(q) or sentence == None or focus == None:
+        q = query_chat(query)
+        sentence, focus = extract_info(q)
     return santise_string(f"Sentence: {sentence}\nFocus Words: {focus}")
 
 
