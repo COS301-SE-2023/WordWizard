@@ -68,22 +68,24 @@
     <div class="header-container">
       <div>
         <ng-container *ngIf="!practice.done; else doneTemplate">
-          <p>
-            <span
-              [ngStyle]="{ 'color': getWordColor(practice.passage[practice.focusWordsIndex[currentWord]]), 'font-size': fontSize }"
-              >{{ practice.passage[practice.focusWordsIndex[currentWord]]?.word
-              }}</span
-            >
-          </p>
-          <div class="content-container">
-            <img
-              *ngIf="isValid(practice.passage[practice.focusWordsIndex[currentWord]]?.imageURL)"
-              [src]="practice.passage[practice.focusWordsIndex[currentWord]]?.imageURL"
-              alt="Magic Image" />
+          <div class="container-2">
+            <p class="word-container">
+              <span
+                [ngStyle]="{ 'color': getWordColor(practice.passage[practice.focusWordsIndex[currentWord]]), 'font-size': fontSize }"
+                >{{ practice.passage[practice.focusWordsIndex[currentWord]]?.word
+                }}</span
+              >
+            </p>
+            <div class="content-container">
+              <!-- <img
+                *ngIf="isValid(practice.passage[practice.focusWordsIndex[currentWord]]?.imageURL)"
+                [src]="practice.passage[practice.focusWordsIndex[currentWord]]?.imageURL"
+                alt="Magic Image" /> -->
+            </div>
           </div>
         </ng-container>
         <ng-template #doneTemplate>
-          <p>
+          <p class="overflow-container">
             <span
               *ngFor="let word of practice?.passage; let last = last; let i = index">
               <span

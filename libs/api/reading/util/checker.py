@@ -26,6 +26,7 @@ dic = {
     "fatherfucker": True,
     "frigger": True,
     "fuck": True,
+    "fucking": True,
     "goddamn": True,
     "godsdamn": True,
     "hell": True,

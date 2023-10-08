@@ -219,6 +219,7 @@ export class ReadingPage {
   // eslint-disable-next-line
   updateFont(event: any) {
     this.value = event.target.value;
+    console.log(this.value);
     this.fontSize = `${event.target.value}em`;
   }
 
