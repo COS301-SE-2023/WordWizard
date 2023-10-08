@@ -2,6 +2,7 @@ import os
 import re
 from dotenv import load_dotenv
 import openai
+from .checker import is_profane
 
 load_dotenv()
 from .helper import santise_string
@@ -11,8 +12,13 @@ openai.api_key = api_key
 
 
 def query_passage(query: str):
-    q = query_chat(query)
+    # q = query_chat(query)
+    q = "Sentence: the cat sat on the mat\nFocus Words: cat, sat"
     sentence, focus = extract_info(q)
+    print(sentence, focus)
+    # while is_profane(q) or sentence == None or focus == None:
+    #     q = query_chat(query)
+    #     sentence, focus = extract_info(q)
     return santise_string(f"Sentence: {sentence}\nFocus Words: {focus}")
 
 

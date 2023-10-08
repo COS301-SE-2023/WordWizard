@@ -91,6 +91,11 @@ export class ReadingPage {
     });
   }
 
+  isValid(src: string | undefined) {
+    if (src && src != '') return true;
+    return false;
+  }
+
   getWordColor(w: Word | null | undefined) {
     if (w) {
       if (w.correct) return 'green';
@@ -214,6 +219,7 @@ export class ReadingPage {
   // eslint-disable-next-line
   updateFont(event: any) {
     this.value = event.target.value;
+    console.log(this.value);
     this.fontSize = `${event.target.value}em`;
   }
 

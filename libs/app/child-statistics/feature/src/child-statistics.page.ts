@@ -79,9 +79,9 @@ export class ChildStatisticsPage implements AfterViewInit {
     }
 
     if (this.chartData.length > 0) {
-      labels[0] = this.chartData[0].date;
+      labels[0] = this.formatDate(this.chartData[0].date);
       labels[this.chartData.length - 1] =
-        this.chartData[this.chartData.length - 1].date;
+        this.formatDate(this.chartData[this.chartData.length - 1].date);
     }
 
     const data = {
@@ -109,5 +109,13 @@ export class ChildStatisticsPage implements AfterViewInit {
         },
       },
     });
+  }
+
+  formatDate(inputDate: string): string {
+    const date = new Date(inputDate);
+    const year = date.getFullYear() % 100;
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
+    return `${month}-${day}-${year}`;
   }
 }

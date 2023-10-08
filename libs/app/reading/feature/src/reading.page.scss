@@ -12,6 +12,16 @@
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
 
+.word-container {
+  padding-top: 50%;
+}
+
+.overflow-container {
+  overflow-y: auto;
+  height: 100%;
+}
+
+
 .header-container {
   background-color: #861486;
   color: #ffffff;
