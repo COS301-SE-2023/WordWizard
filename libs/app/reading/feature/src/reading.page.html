@@ -77,6 +77,7 @@
           </p>
           <div class="content-container">
             <img
+              *ngIf="isValid(practice.passage[practice.focusWordsIndex[currentWord]]?.imageURL)"
               [src]="practice.passage[practice.focusWordsIndex[currentWord]]?.imageURL"
               alt="Magic Image" />
           </div>
