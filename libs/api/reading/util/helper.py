@@ -85,13 +85,13 @@ def santise_string(response: str):
     focus_words = sec[1].split(":")[1].strip()
     focuse_arr = focus_words.split(",")
     words = [
-        Word(word=word.lower(), imageURL="img", correct=None) for word in sentence_arr
+        Word(word=word.lower() if word.lower() != "i" else word, imageURL="img", correct=None) for word in sentence_arr
     ]
     return_arr = []
     for w in focuse_arr:
         return_arr.append(find_word_index(words, w.strip()))
     for f in return_arr:
-        words[f].imageURL = generate_image(f"A cute picture to represent the word {words[f].word} for children")
+        words[f].imageURL = generate_image(f"A cute picture of {words[f].word} for children")
     return Content(passage=words, focusWordsIndex=return_arr)
 
 

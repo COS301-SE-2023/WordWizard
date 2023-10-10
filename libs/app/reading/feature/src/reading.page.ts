@@ -91,11 +91,6 @@ export class ReadingPage {
     });
   }
 
-  isValid(src: string | undefined) {
-    if (src && src != '') return true;
-    return false;
-  }
-
   getWordColor(w: Word | null | undefined) {
     if (w) {
       if (w.correct) return 'green';
