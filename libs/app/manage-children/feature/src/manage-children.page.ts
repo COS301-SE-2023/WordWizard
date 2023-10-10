@@ -18,6 +18,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { LoadingService } from '@word-wizard/app/loading/data-access';
 import { PasswordService } from '@word-wizard/app/password/data-access';
 import { HelpService } from '@word-wizard/app/help/data-access';
+import { SetStage } from '@word-wizard/app/stage/data-access';
 
 @Component({
   selector: 'word-wizard-manage-children',
@@ -104,6 +105,7 @@ export class ManageChildrenPage {
   setChild(child: Child) {
     this.selectedChild = child;
     this.store.dispatch(new SetChild({ childId: child._id }));
+    this.store.dispatch(new SetStage());
     this.controlModal();
   }
 

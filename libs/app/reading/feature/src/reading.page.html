@@ -1,5 +1,6 @@
 <ww-loading></ww-loading>
 <ion-content class="page-container" [scrollY]="false">
+  <h1 class="wrong" [class.play]="wrong">🙁</h1>
   <ww-header
     [title]="'Reading Page'"
     [settingsActive]="false"
@@ -79,7 +80,7 @@
             <div *ngIf="practice.passage.length > 0" class="content-container">
               <img
                 [src]="practice.passage[practice.focusWordsIndex[currentWord]]?.imageURL"
-                alt="Magic Image" />
+                alt="" />
             </div>
           </div>
         </ng-container>

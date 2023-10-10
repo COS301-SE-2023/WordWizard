@@ -47,6 +47,7 @@ export class ReadingPage {
   currentWord = 0;
   sentence = '';
   font = false;
+  wrong = false;
 
   attemptsRemaining!: number;
 
@@ -123,16 +124,10 @@ export class ReadingPage {
           500,
         );
       } else {
-        this.toastController
-          .create({
-            message: 'Ooops, Try again!',
-            duration: 2000,
-            color: 'danger',
-            position: 'top',
-          })
-          .then((toast) => {
-            toast.present();
-          });
+        this.wrong = true;
+        setTimeout(() => {
+          this.wrong = false;
+        }, 2000);
         this.store.dispatch(new MakeAttempt({ newAttempt: '' }));
       }
     } else {
