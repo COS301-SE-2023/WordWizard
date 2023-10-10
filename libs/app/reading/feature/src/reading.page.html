@@ -69,18 +69,17 @@
       <div>
         <ng-container *ngIf="!practice.done; else doneTemplate">
           <div class="container-2">
-            <p class="word-container">
+            <p >
               <span
                 [ngStyle]="{ 'color': getWordColor(practice.passage[practice.focusWordsIndex[currentWord]]), 'font-size': fontSize }"
                 >{{ practice.passage[practice.focusWordsIndex[currentWord]]?.word
                 }}</span
               >
             </p>
-            <div class="content-container">
-              <!-- <img
-                *ngIf="isValid(practice.passage[practice.focusWordsIndex[currentWord]]?.imageURL)"
+            <div *ngIf="practice.passage.length > 0" class="content-container">
+              <img
                 [src]="practice.passage[practice.focusWordsIndex[currentWord]]?.imageURL"
-                alt="Magic Image" /> -->
+                alt="Magic Image" />
             </div>
           </div>
         </ng-container>
