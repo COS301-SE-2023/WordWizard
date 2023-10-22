@@ -9,6 +9,12 @@
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
+  .invalid {
+    height: 45rem !important;
+    .hat {
+      top: -20% !important;
+    }
+  }
   .welcome {
     .login {
       color: #070527;
@@ -29,6 +35,19 @@
           margin-top: 1.2rem;
           margin-left: 1rem;
         }
+      }
+      /* Style for the centered <div> */
+      .centered-div {
+        display: flex; 
+        justify-content: center; /* Horizontally center the contents */
+        align-items: center; /* Vertically center the contents */
+        height: fit-content;
+        padding-left: 5%;
+        padding-right: 5%;
+      }
+
+      .hint {
+        color: red;
       }
 
       #accept-agreement {
