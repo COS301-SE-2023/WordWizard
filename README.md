@@ -46,6 +46,8 @@ The system is designed to adapt to each user's level of proficiency and learning
 
 ## Usability Questionnaire
 - (https://forms.gle/K3nGGmNZEACYu6j4A)
+  
+[Umleiten Research.pdf](https://github.com/COS301-SE-2023/WordWizard/files/13064191/Umleiten.Research.pdf)
 
 
 # Demos:
