@@ -22,6 +22,7 @@ export class SignUpPage {
   pin!: FormGroup;
   submitted = false;
   code = '';
+  invalid = false;
   constructor(
     private readonly fb: FormBuilder,
     private readonly auth: AuthService,
@@ -69,6 +70,7 @@ export class SignUpPage {
 
   submit() {
     if (this.form.valid) {
+      this.invalid = false;
       if (this.form.value.password == this.form.value.confirmPassword) {
         this.auth.verify(this.form.value.email.toLowerCase()).subscribe(
           // eslint-disable-next-line
@@ -87,10 +89,7 @@ export class SignUpPage {
       } else this.presentCustomToast('Passwords do not match', 'danger');
     } else {
       if (this.form.get('password')?.hasError('invalidPassword'))
-        this.presentCustomToast(
-          'Password must include at least one uppercase letter, one lowercase letter, one number, and one special character.',
-          'danger',
-        );
+        this.invalid = true;
       else
         this.presentCustomToast(
           'Please ensure you have filled in all the fields',

@@ -1,7 +1,7 @@
 <ww-loading />
 <ion-content scrollY="false">
   <div id="container">
-    <div class="welcome">
+    <div class="welcome" [class.invalid]="invalid">
       <div class="hat">
         <img src="assets/img/wizzard_hat.png" />
       </div>
@@ -15,12 +15,15 @@
           <input type="text" id="name" formControlName="email" />
         </div>
         <div>
-          <label htmlFor="age" class="input-lbl">Password:</label><br />
-          <input type="password" id="age" formControlName="password" />
+          <label htmlFor="pass" class="input-lbl">Password:</label><br />
+          <input type="password" id="pass" formControlName="password" />
+        </div>
+        <div class="centered-div" *ngIf="invalid">
+          <p class="hint">Password must include at least one uppercase letter, one lowercase letter, one number, and one special character.</p>
         </div>
         <div>
-          <label htmlFor="age" class="input-lbl">Confirm Password:</label><br />
-          <input type="password" id="age" formControlName="confirmPassword" />
+          <label htmlFor="Confirm" class="input-lbl">Confirm Password:</label><br />
+          <input type="password" id="Confirm" formControlName="confirmPassword" />
         </div>
         <div class="agreement">
           <input
