@@ -35,6 +35,14 @@ The system is designed to adapt to each user's level of proficiency and learning
 ## Testing Policy
 - [Testing Policy.pdf](https://github.com/COS301-SE-2023/WordWizard/files/12741658/Testing.Policy.pdf)
 
+## Slideshow
+(https://docs.google.com/presentation/d/1ye5LZUBmnlREg6-j07Xv_dlaV6iY_Hco/edit?usp=sharing&ouid=105500140085487337039&rtpof=true&sd=true)
+
+## Video demo
+(https://youtu.be/Y8mZPMz-XqM)
+
+## Hosted Website
+(https://dev.d1igw2t1lnge7k.amplifyapp.com/welcome)
 
 ## Usability Questionnaire
 - (https://forms.gle/K3nGGmNZEACYu6j4A)
