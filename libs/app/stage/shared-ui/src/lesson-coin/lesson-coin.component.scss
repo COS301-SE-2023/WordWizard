@@ -8,6 +8,7 @@
   height: fit-content;
   width: 100%;
   overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 .coin-map {
@@ -16,6 +17,10 @@
   position: relative;
   overflow-x: hidden;
   z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  overflow-y: scroll;
 }
 
 .coin {
@@ -24,6 +29,10 @@
   position: relative;
   z-index: 10;
   display: block;
+}
+
+.coin:last-of-type {
+  margin-bottom: 2rem;
 }
 
 .coin-image-container {

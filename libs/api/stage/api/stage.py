@@ -35,10 +35,10 @@ def create_reading(rqst: LevelRequest):
                 score_value = get_score_range(result["level_scores"][str(level)])
                 score_values.append(score_value)
 
-            while len(score_values) < 20:
+            while len(score_values) < 50:
                 score_values.append(0)
 
-            return {"levels": score_values[:20]}
+            return {"levels": score_values[:50]}
         return {"message": "Progress not found"}
 
     except Exception as e:
