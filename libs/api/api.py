@@ -26,7 +26,7 @@ load_dotenv()
 
 JWT_SECRET = os.getenv("JWT_SECRET")
 
-app = FastAPI()
+app = FastAPI(docs_url=None)
 
 app.add_middleware(
     CORSMiddleware,
