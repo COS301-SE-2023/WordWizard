@@ -41,6 +41,9 @@ The system is designed to adapt to each user's level of proficiency and learning
 ## Video demo
 (https://youtu.be/Y8mZPMz-XqM)
 
+## Promotional Video
+https://youtu.be/kZYU3BS8HF8
+
 ## Hosted Website
 (https://dev.d1igw2t1lnge7k.amplifyapp.com/welcome)
 
