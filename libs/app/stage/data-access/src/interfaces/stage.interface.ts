@@ -8,5 +8,4 @@ export interface Coin {
   name: string;
   filledStars: number;
   leftPosition?: number;
-  topPosition?: number;
 }
